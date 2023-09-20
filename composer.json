@@ -1,0 +1,16 @@
+{
+    "name": "php/php-mvc",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "PHP\\": "src/"
+        }
+    },
+    "require": {
+        "lion/database": "^8.9",
+        "lion/mailer": "^5.1",
+        "lion/spreadsheet": "^1.7",
+        "lion/request": "^5.4",
+        "lion/route": "^8.7"
+    }
+}
