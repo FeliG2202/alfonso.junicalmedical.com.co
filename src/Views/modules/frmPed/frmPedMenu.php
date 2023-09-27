@@ -25,6 +25,10 @@ $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
 $hora_inicio = '00:00';
 $hora_fin = '24:00';
+
+$traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => 'Miércoles','Thursday' => 'Jueves','Friday' => 'Viernes','Saturday' => 'Sábado','Sunday' => 'Domingo','January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre','October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre','am' => 'am','pm' => 'pm');
+
+$fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
 
 <div class="col-lg-11 mx-auto mt-3 mb-3 p-3 rounded shadow-sm">
@@ -46,7 +50,7 @@ $hora_fin = '24:00';
                     <div class="col p-2 mb-3">
                         <h2 class="text-center">Menú de Almuerzos</h2>
                         <?php
-                        echo ("<h6 class='text-center'>{$fecha_actual}</h6>"); ?>
+                        echo ("<h6 class='text-center'>{$fecha_traducida}</h6>"); ?>
                     </div>
                     <hr>
                 </div>
@@ -70,38 +74,38 @@ $hora_fin = '24:00';
                         /* Selecionar componentes del almuerzo */
                         print '<div class="checkbox-group">';
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriSopaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriSopaNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriSopaNombre'] . '</label>';
+                        echo  '<input name="nutriSopaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriSopaNombre'] . '" id="flexCheckDefault1" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault1">' . $value['nutriSopaNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo '<input name="nutriArrozNombre" class="form-check-input" type="checkbox" value="' . $value['nutriArrozNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriArrozNombre'] . '</label>';
+                        echo '<input name="nutriArrozNombre" class="form-check-input" type="checkbox" value="' . $value['nutriArrozNombre'] . '" id="flexCheckDefault2" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault2">' . $value['nutriArrozNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriProteNombre" class="form-check-input" type="checkbox" value="' . $value['nutriProteNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriProteNombre'] . '</label>';
+                        echo  '<input name="nutriProteNombre" class="form-check-input" type="checkbox" value="' . $value['nutriProteNombre'] . '" id="flexCheckDefault3" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault3">' . $value['nutriProteNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriEnergeNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnergeNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriEnergeNombre'] . '</label>';
+                        echo  '<input name="nutriEnergeNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnergeNombre'] . '" id="flexCheckDefault4" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault4">' . $value['nutriEnergeNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriAcompNombre" class="form-check-input" type="checkbox" value="' . $value['nutriAcompNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriAcompNombre'] . '</label>';
+                        echo  '<input name="nutriAcompNombre" class="form-check-input" type="checkbox" value="' . $value['nutriAcompNombre'] . '" id="flexCheckDefault5" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault5">' . $value['nutriAcompNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriEnsalNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnsalNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriEnsalNombre'] . '</label>';
+                        echo  '<input name="nutriEnsalNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnsalNombre'] . '" id="flexCheckDefault6" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault6">' . $value['nutriEnsalNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriBebidaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriBebidaNombre'] . '" id="flexCheckDefault" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault">' . $value['nutriBebidaNombre'] . '</label>';
+                        echo  '<input name="nutriBebidaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriBebidaNombre'] . '" id="flexCheckDefault7" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault7">' . $value['nutriBebidaNombre'] . '</label>';
                         print '</div>';
                         print '</div>';
                         print '</div>';
