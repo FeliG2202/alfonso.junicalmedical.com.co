@@ -38,8 +38,8 @@ if ($request != null) {
 
 <script>
         // Add JavaScript to automatically select the input field when the view loads
-        window.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('identMenu').focus();
-        });
-    </script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('identMenu').focus();
+    });
+</script>
 
