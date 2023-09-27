@@ -170,9 +170,8 @@ class PedAlmMenuControlador {
         Spreadsheet::download($path, $file_name);
     }
 
-   public function consultarAlmTipoControlador() {
-    $data = date("Y-m-d");
-    return $this->PedAlmMenuModelo->consultarEditAlmMenuModelo($data);
+   public function consultarAlmTipoControlador(string $id) {
+    return $this->PedAlmMenuModelo->consultarEditAlmMenuModelo($id);
    }
 
    public function eliminarAlmTipoControlador(string $idMenuSeleccionado) {

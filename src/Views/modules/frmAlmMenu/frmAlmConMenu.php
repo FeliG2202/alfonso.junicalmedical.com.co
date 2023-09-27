@@ -4,6 +4,7 @@ use PHP\Controllers\TemplateControlador;
 if (!isset($_SESSION['session'])) {
     TemplateControlador::redirect("index.php?view=login");
 }
+
 ?>
 <div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto">
     <h2 class="mt-4 text-center">Menu de Almuerzos</h2>

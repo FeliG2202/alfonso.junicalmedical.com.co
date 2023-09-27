@@ -98,3 +98,10 @@ if ($request != null) {
         </div>
     </form>
 </div>
+
+<script>
+        // Add JavaScript to automatically select the input field when the view loads
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('code-1').focus();
+    });
+</script>

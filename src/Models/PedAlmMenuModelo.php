@@ -124,7 +124,8 @@ class PedAlmMenuModelo extends Connection {
         ->getAll();
     }
 
-   public function consultarEditAlmMenuModelo($data) {
+   public function consultarEditAlmMenuModelo($id) {
+        $data = date("Y-m-d");
        return DB::table('menu_seleccionado'
         )->select(
             DB::column('idMenuSeleccionado'),
@@ -136,7 +137,7 @@ class PedAlmMenuModelo extends Connection {
             DB::column('nutriEnsalNombre'),
             DB::column('nutriBebidaNombre')
         )->where(
-        DB::equalTo(DB::column('idpersona')), 1
+        DB::equalTo(DB::column('idpersona')), $id
         )->and(
         DB::equalTo(DB::column('fecha_actual')), $data
         )->getAll();

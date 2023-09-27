@@ -107,7 +107,7 @@ Route::prefix('frmPedPaci', function(){
 });
 
 Route::prefix('frmPedEdit',function(){
-    Route::get('read',[PedAlmMenuControlador::class, 'consultarAlmTipoControlador']);
+    Route::get('read/{id}',[PedAlmMenuControlador::class, 'consultarAlmTipoControlador']);
     Route::delete('delete/{idMenuSeleccionado}', [PedAlmMenuControlador::class, 'eliminarAlmTipoControlador']);
 });
 
