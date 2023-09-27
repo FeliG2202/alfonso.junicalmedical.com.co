@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       localStorage.setItem(
         "sb|sidebar-toggle",
         document.body.classList.contains("sb-sidenav-toggled")
-      );
+        );
     });
   }
 });
@@ -40,7 +40,7 @@ function handleCheckboxClick(checkbox) {
     if (selectedCard) {
       const checkboxesInCard = selectedCard.querySelectorAll(
         'input[type="checkbox"]'
-      );
+        );
       checkboxesInCard.forEach((cb) => (cb.checked = false));
     }
     selectedCard = card;
@@ -49,32 +49,85 @@ function handleCheckboxClick(checkbox) {
 
 /*validador de casillas para el codigo de verificacion*/
 function validarNumero(input, siguienteInputId, inputAnteriorId) {
-            input.value = input.value.replace(/[^0-9]/g, '');
+  input.value = input.value.replace(/[^0-9]/g, '');
 
-            if (input.value.length === 0) {
-                document.getElementById(inputAnteriorId).focus();
-            } else if (input.value.length > 0) {
-                document.getElementById(siguienteInputId).focus();
-            }
-        }
+  if (input.value.length === 0) {
+    document.getElementById(inputAnteriorId).focus();
+  } else if (input.value.length > 0) {
+    document.getElementById(siguienteInputId).focus();
+  }
+}
 
 /*validador de campos de fechas actuales*/
 function validarFechas() {
-    const fechaInicioInput = document.getElementById("date_start");
-    const fechaFinInput = document.getElementById("date_end");
+  const fechaInicioInput = document.getElementById("date_start");
+  const fechaFinInput = document.getElementById("date_end");
 
-    const fechaInicio = new Date(fechaInicioInput.value);
-    const fechaFin = new Date(fechaFinInput.value);
-    const fechaActual = new Date(dayjs().format("YYYY-MM-DD"));
+  const fechaInicio = new Date(fechaInicioInput.value);
+  const fechaFin = new Date(fechaFinInput.value);
+  const fechaActual = new Date(dayjs().format("YYYY-MM-DD"));
 
-    if (fechaInicio > fechaActual) {
-        fechaInicioInput.value = "";
-         alert("No puedes seleccionar una fecha de inicio futura.");
-    }
+  if (fechaInicio > fechaActual) {
+    fechaInicioInput.value = "";
+    alert("No puedes seleccionar una fecha de inicio futura.");
+  }
 
-    if (fechaFin > fechaActual) {
-        fechaFinInput.value = "";
-        alert("No puedes seleccionar una fecha de finalización futura.");
-    }
+  if (fechaFin > fechaActual) {
+    fechaFinInput.value = "";
+    alert("No puedes seleccionar una fecha de finalización futura.");
+  }
 }
 
+
+$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+  var $this = $(this),
+  label = $this.prev('label');
+
+  if (e.type === 'keyup') {
+    if ($this.val() === '') {
+      label.removeClass('active highlight');
+    } else {
+      label.addClass('active highlight');
+    }
+  } else if (e.type === 'blur') {
+    if( $this.val() === '' ) {
+      label.removeClass('active highlight');
+    } else {
+      label.removeClass('highlight');
+    }
+  } else if (e.type === 'focus') {
+
+    if( $this.val() === '' ) {
+      label.removeClass('highlight');
+    }
+    else if( $this.val() !== '' ) {
+      label.addClass('highlight');
+    }
+  }
+
+});
+
+$('.tab a').on('click', function (e) {
+
+  e.preventDefault();
+
+  $(this).parent().addClass('active');
+  $(this).parent().siblings().removeClass('active');
+
+  target = $(this).attr('href');
+
+  $('.tab-content > div').not(target).hide();
+
+  $(target).fadeIn(600);
+
+});
+
+
+
+// Inicializar el componente de pestañas de Bootstrap
+$(document).ready(function() {
+  $('.nav-tabs a').on('click', function() {
+    $(this).tab('show');
+  });
+});

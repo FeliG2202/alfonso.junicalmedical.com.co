@@ -12,6 +12,7 @@ use PHP\Controllers\AlmEnsalControlador;
 use PHP\Controllers\AlmSopaControlador;
 use PHP\Controllers\AlmProteControlador;
 use PHP\Controllers\AlmMenuControlador;
+use PHP\Controllers\EditAlmMenuControlador;
 use PHP\Controllers\PedAlmMenuPaciControlador;
 
 Route::prefix('reporte', function() {
@@ -103,5 +104,10 @@ Route::prefix('frmPedPaci', function(){
     Route::get('paci/{idPaciente}',[PedAlmMenuPaciControlador::class, 'consultarAlmMenuIdControlador']);
     Route::get('paci', [PedAlmMenuPaciControlador::class, 'consultarMenuDiaControlador']);
     Route::post('paciMenu', [PedAlmMenuPaciControlador::class, 'registrarMenuDiaControlador']);
+});
+
+Route::prefix('frmPedEdit',function(){
+    Route::get('read',[PedAlmMenuControlador::class, 'consultarAlmTipoControlador']);
+    Route::delete('delete/{idMenuSeleccionado}', [PedAlmMenuControlador::class, 'eliminarAlmTipoControlador']);
 });
 

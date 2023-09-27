@@ -32,4 +32,5 @@ if ($request != null) {
             <button type="submit" name="btnPedDatosPers" class="btn btn-success">Siguiente</button>
         </div>
     </form>
+
 </div>

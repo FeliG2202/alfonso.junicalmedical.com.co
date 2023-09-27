@@ -7,7 +7,7 @@ use PDOException;
 use PHP\Models\Connection;
 use LionDatabase\Drivers\MySQL\MySQL as DB;
 
-class PedAlmMenuModelo extends Connection {
+class EditAlmMenuModelo extends Connection {
 
     public $tabla = 'personas';
     public $tablaMDP = 'menu_seleccionado';
@@ -101,52 +101,23 @@ class PedAlmMenuModelo extends Connection {
         )->getAll();
     }
 
-    public function generateReportDatesDB() {
-        return DB::table(
-            DB::as('menu_seleccionado', 'ms')
-        )->select(
-            DB::column('personaDocumento', 'prs'),
-            DB::column('personaNombreCompleto', 'prs'),
-            DB::column('nutriSopaNombre', 'ms'),
-            DB::column('nutriArrozNombre', 'ms'),
-            DB::column('nutriProteNombre', 'ms'),
-            DB::column('nutriEnergeNombre', 'ms'),
-            DB::column('nutriAcompNombre', 'ms'),
-            DB::column('nutriEnsalNombre', 'ms'),
-            DB::column('nutriBebidaNombre', 'ms'),
-            DB::column('fecha_actual', 'ms'),
-        )->inner()->join(
-            DB::as('personas', 'prs'),
-            DB::column('idPersona', 'ms'),
-            DB::column('idPersona', 'prs'),
-        )->where('fecha_actual')
-        ->between(request->date_start, request->date_end)
-        ->getAll();
+
+    public function consultarEditAlmMenuModelo() {
+       return DB::query("SELECT menu_seleccionado.idPersona,  personas.personaDocumento FROM menu_seleccionado left JOIN personas ON menu_seleccionado.idPersona = personas.idPersona WHERE personas.idPersona = 1 and menu_seleccionado.fecha_actual = '2023-09-22'")->getAll();
     }
 
-   public function consultarEditAlmMenuModelo($data) {
-       return DB::table('menu_seleccionado'
-        )->select(
-            DB::column('idMenuSeleccionado'),
-            DB::column('nutriSopaNombre'),
-            DB::column('nutriArrozNombre'),
-            DB::column('nutriProteNombre'),
-            DB::column('nutriEnergeNombre'),
-            DB::column('nutriAcompNombre'),
-            DB::column('nutriEnsalNombre'),
-            DB::column('nutriBebidaNombre')
-        )->where(
-        DB::equalTo(DB::column('idpersona')), 1
-        )->and(
-        DB::equalTo(DB::column('fecha_actual')), $data
-        )->getAll();
+    public function actualizarEditAlmMenuModelo($data) {
+        return DB::table('nutritipo')->update([
+            'nutriTipoNombre' => $data['nutriTipoNombre']
+        ])->where(
+            DB::equalTo('idNutriTipo'), $data['idNutriTipo'])
+        ->execute();
     }
 
-
-public function eliminarAlmTipoModelo($data) {
-        return DB::table('menu_seleccionado')
+    public function eliminarEditAlmMenuModelo($data) {
+        return DB::table('nutritipo')
             ->delete()
-            ->where(DB::equalTo('idMenuSeleccionado'), $data['idMenuSeleccionado'])
+            ->where(DB::equalTo('idNutriTipo'), $data['idNutriTipo'])
             ->execute();
     }
 }

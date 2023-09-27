@@ -169,4 +169,23 @@ class PedAlmMenuControlador {
         Spreadsheet::save($path . $file_name);
         Spreadsheet::download($path, $file_name);
     }
+
+   public function consultarAlmTipoControlador() {
+    $data = date("Y-m-d");
+    return $this->PedAlmMenuModelo->consultarEditAlmMenuModelo($data);
+   }
+
+   public function eliminarAlmTipoControlador(string $idMenuSeleccionado) {
+        $res = $this->PedAlmMenuModelo->eliminarAlmTipoModelo([
+            'idMenuSeleccionado' => (int) $idMenuSeleccionado
+        ]);
+
+        if ($res->status === 'database-error') {
+            return $res;
+            return response->code(500)->error('Error al momento de Eliminar');
+        }
+
+        return response->code(200)->success('Eliminado correctamente');
+    }
+
 }
