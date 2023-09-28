@@ -32,7 +32,7 @@ if (!isset($_SESSION['session'])) {
                             <th>Sopa</th>
                             <th>Arroz</th>
                             <th>Proteina</th>
-                            <th>Energetico</th>
+                            <th>Energético</th>
                             <th>Acompañante</th>
                             <th>Ensalada</th>
                             <th>Bebida</th>

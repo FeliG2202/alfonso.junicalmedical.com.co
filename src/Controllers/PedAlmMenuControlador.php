@@ -124,8 +124,14 @@ class PedAlmMenuControlador {
                 'nutriBebidaNombre' => (string) $_POST['nutriBebidaNombre'],
 				'date' => date('Y-m-d')
 			])
-				? (object) ['request' => false, 'url' => "index.php?folder=frmPed&view=frmPedPersId"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmPed&view=frmPedPersId"];
+				? (object) ['request' => false,
+                            'url' => "index.php?folder=frmPed&view=frmPedPersId",
+                            'message' => "Error al registrar la dieta"
+                            ]
+				: (object) ['request' => true,
+                            'url' => "index.php?folder=frmPed&view=frmPedPersId",
+                            'message' => "Dieta registrada correctamente"
+                            ];
 		}
 	}
 
@@ -150,16 +156,17 @@ class PedAlmMenuControlador {
 
         foreach ($all_menu as $key => $menu) {
             Spreadsheet::setCell("A{$cont}", (($cont - 3) + 1));
-            Spreadsheet::setCell("B{$cont}", $menu->personaDocumento);
-            Spreadsheet::setCell("C{$cont}", $menu->personaNombreCompleto);
-            Spreadsheet::setCell("D{$cont}", $menu->nutriSopaNombre);
-            Spreadsheet::setCell("E{$cont}", $menu->nutriArrozNombre);
-            Spreadsheet::setCell("F{$cont}", $menu->nutriProteNombre);
-            Spreadsheet::setCell("G{$cont}", $menu->nutriEnergeNombre);
-            Spreadsheet::setCell("H{$cont}", $menu->nutriAcompNombre);
-            Spreadsheet::setCell("I{$cont}", $menu->nutriEnsalNombre);
-            Spreadsheet::setCell("J{$cont}", $menu->nutriBebidaNombre);
-            Spreadsheet::setCell("K{$cont}", $menu->fecha_actual);
+            Spreadsheet::setCell("B{$cont}", $menu->fecha_actual);
+            Spreadsheet::setCell("C{$cont}", $menu->personaDocumento);
+            Spreadsheet::setCell("D{$cont}", $menu->personaNombreCompleto);
+            Spreadsheet::setCell("E{$cont}", $menu->nutriSopaNombre);
+            Spreadsheet::setCell("F{$cont}", $menu->nutriArrozNombre);
+            Spreadsheet::setCell("G{$cont}", $menu->nutriProteNombre);
+            Spreadsheet::setCell("H{$cont}", $menu->nutriEnergeNombre);
+            Spreadsheet::setCell("I{$cont}", $menu->nutriAcompNombre);
+            Spreadsheet::setCell("J{$cont}", $menu->nutriEnsalNombre);
+            Spreadsheet::setCell("K{$cont}", $menu->nutriBebidaNombre);
+
             $cont++;
         }
 

@@ -67,30 +67,28 @@
 
 <!-- //////////////////////////////////////////////////////// -->
 <script type="text/javascript">
-    (function() {
+    (function eadTipos() {
         axios.get(`${host}/api/frmPed/frmConPedMenu/leer-menu`).then(res => {
-            if (!res.data.status) {
-                new DataTable('#table-menu', {
-                    data: res.data,
-                    destroy: true,
-                    responsive: true,
-                    language: {
-                        url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
-                    },
-                    columns: [
-                        { data: 'personaDocumento' },
-                        { data: 'personaNombreCompleto' },
-                        { data: 'nutriSopaNombre' },
-                        { data: 'nutriArrozNombre' },
-                        { data: 'nutriProteNombre' },
-                        { data: 'nutriEnergeNombre' },
-                        { data: 'nutriAcompNombre' },
-                        { data: 'nutriEnsalNombre' },
-                        { data: 'nutriBebidaNombre' },
-                        { data: 'fecha_actual' }
-                        ],
-                });
-            }
+            new DataTable('#table-menu', {
+                data: (!res.data.status ? res.data : []),
+                destroy: true,
+                responsive: true,
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
+                },
+                columns: [
+                    { data: 'personaDocumento' },
+                    { data: 'personaNombreCompleto' },
+                    { data: 'nutriSopaNombre' },
+                    { data: 'nutriArrozNombre' },
+                    { data: 'nutriProteNombre' },
+                    { data: 'nutriEnergeNombre' },
+                    { data: 'nutriAcompNombre' },
+                    { data: 'nutriEnsalNombre' },
+                    { data: 'nutriBebidaNombre' },
+                    { data: 'fecha_actual' }
+                    ],
+            });
         });
     })();
 

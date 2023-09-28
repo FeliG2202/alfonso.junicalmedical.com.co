@@ -5,13 +5,6 @@ use PHP\Controllers\TemplateControlador;
 
 $PedAlmMenuControlador = new PedAlmMenuControlador();
 
-$request = $PedAlmMenuControlador->validatePage();
-if ($request != null) {
-    if ($request->request) {
-        TemplateControlador::redirect($request->url);
-    }
-}
-
 $request = $PedAlmMenuControlador->registrarMenuDiaControlador();
 if ($request != null) {
     if ($request->request) {
@@ -35,7 +28,7 @@ $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => '
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
 
-<div class="col-lg-11 mx-auto mt-3 mb-3 p-3 rounded shadow-sm">
+<div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
     <div class="container">
         <div class="card">
           <div class="card-body">
@@ -52,7 +45,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
                 <div class="row">
                     <div class="col p-2 mb-3">
-                        <h2 class="text-center">Menú de Almuerzos</h2>
+                        <h3 class="text-center">Menú de Almuerzos</h3>
                         <?php
                         echo ("<h6 class='text-center'>{$fecha_traducida}</h6>"); ?>
                     </div>
@@ -63,7 +56,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     "",
                     "Ocurrio un error, Intentelo de nuevo"
                 ); ?>
-                <div class="row p-4">
+                <div class="row p-1">
                     <!-- Tarjeta 1 -->
 
                     <?php
@@ -75,7 +68,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
                         print '<div class="card" id="tarjeta1">';
                         print '<div class="card-body">';
-                        echo '<h5 class="card-title">' . $value['nutriTipoNombre'] . '</h5>';
+                        echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
                         echo ("<hr>");
                         /* Selecionar componentes del almuerzo */
                         print '<div class="checkbox-group">';
@@ -116,7 +109,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         print '</div>';
                         print '</div>';
 
-                        echo ('<div class="mt-4 p-2"><button type="submit" id="btnPedDatosPers' . $cont++ . '" name="btnPedDatosPers" class="btn btn-success w-100">Seleccionar</button></div>');
+                        echo ('<div class="mt-2 p-2"><button type="submit" id="btnPedDatosPers' . $cont++ . '" name="btnPedDatosPers" class="btn btn-success w-100">Seleccionar</button></div>');
                         print  '</div>';
                         print '</form>';
                         print '</div>';
@@ -154,7 +147,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     <th>Sopa</th>
                                     <th>Arroz</th>
                                     <th>Proteina</th>
-                                    <th>Energetico</th>
+                                    <th>Energético</th>
                                     <th>Acompañante</th>
                                     <th>Ensalada</th>
                                     <th>Bebida</th>

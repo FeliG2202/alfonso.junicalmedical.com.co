@@ -1,5 +1,4 @@
 <?php
-
 use PHP\Controllers\PedAlmMenuControlador;
 use PHP\Controllers\TemplateControlador;
 
@@ -11,6 +10,8 @@ if ($request != null) {
         TemplateControlador::redirect($request->url);
     }
 }
+
+
 
 ?>
 
