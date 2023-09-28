@@ -2,11 +2,11 @@
   <!-- Navbar Brand-->
   <?php if (isset($_SESSION['session'])) { ?>
     <a class="navbar-brand" href="index.php?view=inicio2">
-      <img src="<?php echo(host); ?>/src/Views/assets/img/logo.png" alt="Bootstrap" width="190" height="50">
+      <img src="<?php echo(host); ?>/src/Views/assets/img/logo.png" alt="Bootstrap" width="180" height="50">
     </a>
   <?php } else { ?>
     <a class="navbar-brand" href="index.php?view=inicio">
-      <img src="<?php echo(host); ?>/src/Views/assets/img/logo.png" alt="Bootstrap" width="190" height="50">
+      <img src="<?php echo(host); ?>/src/Views/assets/img/logo.png" alt="Bootstrap" width="180" height="50">
     </a>
   <?php } ?>
   <!-- Sidebar Toggle-->

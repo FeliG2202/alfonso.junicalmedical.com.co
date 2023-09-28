@@ -21,6 +21,10 @@ if ($request != null) {
 
 $menuPorDias = $PedAlmMenuControlador->consultarMenuDiaControlador();
 
+$cont = 1;
+$cont1 = 0;
+$cont2 = 0;
+$cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
 $hora_inicio = '00:00';
@@ -37,8 +41,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
           <div class="card-body">
             <nav>
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud de Dieta</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar Dieta</a>
+                <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
+                <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
             </div>
         </nav>
         <div class="tab-content table-responsive" id="nav-tabContent">
@@ -61,10 +65,12 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 ); ?>
                 <div class="row p-4">
                     <!-- Tarjeta 1 -->
+
                     <?php
+
                     foreach ($menuPorDias['data'] as $key => $value) {
                         print '<div class="col-md-6 p-2">';
-                        print '<form method="POST" action="">';
+                        print '<form method="POST" action="" id="from' . $cont3++ . '">';
                         print '<input type="hidden" name="selected-idm" value="'. $value['idNutriMenu'] .'">';
                         echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
                         print '<div class="card" id="tarjeta1">';
@@ -74,43 +80,43 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         /* Selecionar componentes del almuerzo */
                         print '<div class="checkbox-group">';
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriSopaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriSopaNombre'] . '" id="flexCheckDefault1" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault1">' . $value['nutriSopaNombre'] . '</label>';
+                        echo  '<input name="nutriSopaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriSopaNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriSopaNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo '<input name="nutriArrozNombre" class="form-check-input" type="checkbox" value="' . $value['nutriArrozNombre'] . '" id="flexCheckDefault2" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault2">' . $value['nutriArrozNombre'] . '</label>';
+                        echo '<input name="nutriArrozNombre" class="form-check-input" type="checkbox" value="' . $value['nutriArrozNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriArrozNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriProteNombre" class="form-check-input" type="checkbox" value="' . $value['nutriProteNombre'] . '" id="flexCheckDefault3" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault3">' . $value['nutriProteNombre'] . '</label>';
+                        echo  '<input name="nutriProteNombre" class="form-check-input" type="checkbox" value="' . $value['nutriProteNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriProteNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriEnergeNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnergeNombre'] . '" id="flexCheckDefault4" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault4">' . $value['nutriEnergeNombre'] . '</label>';
+                        echo  '<input name="nutriEnergeNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnergeNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriEnergeNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriAcompNombre" class="form-check-input" type="checkbox" value="' . $value['nutriAcompNombre'] . '" id="flexCheckDefault5" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault5">' . $value['nutriAcompNombre'] . '</label>';
+                        echo  '<input name="nutriAcompNombre" class="form-check-input" type="checkbox" value="' . $value['nutriAcompNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriAcompNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriEnsalNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnsalNombre'] . '" id="flexCheckDefault6" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault6">' . $value['nutriEnsalNombre'] . '</label>';
+                        echo  '<input name="nutriEnsalNombre" class="form-check-input" type="checkbox" value="' . $value['nutriEnsalNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriEnsalNombre'] . '</label>';
                         print '</div>';
 
                         print '<div class="form-check checkbox-container">';
-                        echo  '<input name="nutriBebidaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriBebidaNombre'] . '" id="flexCheckDefault7" onclick="handleCheckboxClick(this)">';
-                        echo '<label class="form-check-label" for="flexCheckDefault7">' . $value['nutriBebidaNombre'] . '</label>';
+                        echo  '<input name="nutriBebidaNombre" class="form-check-input" type="checkbox" value="' . $value['nutriBebidaNombre'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nutriBebidaNombre'] . '</label>';
                         print '</div>';
                         print '</div>';
                         print '</div>';
 
-                        echo ('<div class="mt-4 p-2"><button type="submit" name="btnPedDatosPers" class="btn btn-success w-100">Seleccionar</button></div>');
+                        echo ('<div class="mt-4 p-2"><button type="submit" id="btnPedDatosPers' . $cont++ . '" name="btnPedDatosPers" class="btn btn-success w-100">Seleccionar</button></div>');
                         print  '</div>';
                         print '</form>';
                         print '</div>';
@@ -132,7 +138,6 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             <div class="card mb-4">
                 <div class="card-body">
                     <!-- Boton para actualizar la tabla -->
-                        <h2 class="text-center">Dietas Registradas</h2>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
                         <button type="button" class="btn btn-outline-dark" id="btn-reload">
                             <i class="fas fa-repeat"></i>
@@ -197,58 +202,108 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 </div>
 </div>
 
+<script>
+  // Función para habilitar o deshabilitar el botón de envío
+  function actualizarEstadoBoton1() {
+    var checkboxes1 = document.querySelectorAll('#from1 input[type="checkbox"]');
+    var enviarButton1 = document.getElementById('btnPedDatosPers1');
 
+    // Verifica si al menos un checkbox está seleccionado
+    var alMenosUnoSeleccionado1 = Array.from(checkboxes1).some(function(checkbox1) {
+      return checkbox1.checked;
+    });
+
+    // Habilita o deshabilita el botón de envío según si se selecciona al menos uno
+    if (alMenosUnoSeleccionado1) {
+      enviarButton1.removeAttribute('disabled');
+    } else {
+      enviarButton1.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  // Agrega un evento de cambio a cada checkbox
+  var checkboxes1 = document.querySelectorAll('#from1 input[type="checkbox"]');
+  checkboxes1.forEach(function(checkbox1) {
+    checkbox1.addEventListener('change', actualizarEstadoBoton1);
+  });
+
+  // Ejecuta la función inicialmente cuando la página se carga
+  document.addEventListener('DOMContentLoaded', actualizarEstadoBoton1);
+</script>
+
+<script>
+  // Función para habilitar o deshabilitar el botón de envío
+  function actualizarEstadoBoton2() {
+    var checkboxes2 = document.querySelectorAll('#from2 input[type="checkbox"]');
+    var enviarButton2 = document.getElementById('btnPedDatosPers2');
+
+    // Verifica si al menos un checkbox está seleccionado
+    var alMenosUnoSeleccionado2 = Array.from(checkboxes2).some(function(checkbox2) {
+      return checkbox2.checked;
+    });
+
+    // Habilita o deshabilita el botón de envío según si se selecciona al menos uno
+    if (alMenosUnoSeleccionado2) {
+      enviarButton2.removeAttribute('disabled');
+    } else {
+      enviarButton2.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  // Agrega un evento de cambio a cada checkbox
+  var checkboxes2 = document.querySelectorAll('#from2 input[type="checkbox"]');
+  checkboxes2.forEach(function(checkbox2) {
+    checkbox2.addEventListener('change', actualizarEstadoBoton2);
+  });
+
+  // Ejecuta la función inicialmente cuando la página se carga
+  document.addEventListener('DOMContentLoaded', actualizarEstadoBoton2);
+</script>
 
 <!-- ================================backend================================== -->
 
 
 <script type="text/javascript">
-
+    const urlParams = new URLSearchParams(window.location.href);
+    const idPersona = urlParams.get('idPersona');
+    const id = idPersona.split('#').shift();
+    // ya se que funciona solo que cuando queda una solo dato en la tabla no actualiza la tabla
+    console.log(id);
 
     const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
         keyboard: false
     });
 
+
     // HACE LA CONSULTA A LA BASE DE DATOS Y TRAE LOS DATOS DE LA API
     // Y HACE LA FUNCION "CLICK" PARA EL MODAL
     function readTipos() {
-        let id;
-        const urlParams = new URLSearchParams(window.location.href);
-        const idPersona = urlParams.get('idPersona');
-        const partes = idPersona.split('#');
-
-        if (partes.length >= 1) {
-            id = partes[0];
-            console.log(id);
-        }
-
         axios.get(`${host}/api/frmPedEdit/read/${id}`).then(res => {
-            if (!res.data.status) {
-                new DataTable('#table-menu', {
-                    data: res.data,
-                    destroy: true,
-                    responsive: true,
-                    language: {
-                        url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
-                    },
-                    columns: [
-                        { data: 'nutriSopaNombre' },
-                        { data: 'nutriArrozNombre' },
-                        { data: 'nutriProteNombre' },
-                        { data: 'nutriEnergeNombre' },
-                        { data: 'nutriAcompNombre' },
-                        { data: 'nutriEnsalNombre' },
-                        { data: 'nutriBebidaNombre' },
-                        ],
-                    createdRow: (html, row, index) => {
-                        html.setAttribute("role", "button");
-                        html.addEventListener("click", () => {
-                            document.getElementById("idMenuSeleccionado").value = row.idMenuSeleccionado;
-                            myModal.show();
-                        });
-                    },
-                });
-            }
+            new DataTable('#table-menu', {
+                data: (!res.data.status ? res.data : []),
+                destroy: true,
+                responsive: true,
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
+                },
+                columns: [
+                    { data: 'nutriSopaNombre' },
+                    { data: 'nutriArrozNombre' },
+                    { data: 'nutriProteNombre' },
+                    { data: 'nutriEnergeNombre' },
+                    { data: 'nutriAcompNombre' },
+                    { data: 'nutriEnsalNombre' },
+                    { data: 'nutriBebidaNombre' },
+                    ],
+                createdRow: (html, row, index) => {
+                    html.setAttribute("role", "button");
+                    html.addEventListener("click", () => {
+                        document.getElementById("idMenuSeleccionado").value = row.idMenuSeleccionado;
+                        myModal.show();
+                    });
+                },
+            });
+
         });
     }
 
