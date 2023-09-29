@@ -52,23 +52,28 @@ class PedAlmMenuPaciControlador {
     }
 
     public function registrarMenuDiaControlador() {
-
-        $res = $this->pedAlmMenuPaciModelo->registrarMenuDiaModelo([
-            'idPaciente' => request->idPaciente,
-            'idNutriMenu' => request->idNutriMenu,
-            'list' => trim(request->selected_list),
-            'date' => date('Y-m-d')
-        ]);
-
-        if ($res->status === "database-error") {
-            return response->code(500)->error('Error al momento de registrar');
+        if (isset($_POST['btnPedDatosPers'])) {
+            return !$this->pedAlmMenuPaciModelo->registrarMenuDiaModelo([
+                'idPaciente' => (int) $_POST['selected-idp'],
+                'idMenu' => (int) $_POST['selected-idm'],
+                'nutriSopaNombre' => (string) $_POST['nutriSopaNombre'],
+                'nutriArrozNombre' => (string) $_POST['nutriArrozNombre'],
+                'nutriProteNombre' => (string) $_POST['nutriProteNombre'],
+                'nutriEnergeNombre' => (string) $_POST['nutriEnergeNombre'],
+                'nutriAcompNombre' => (string) $_POST['nutriAcompNombre'],
+                'nutriEnsalNombre' => (string) $_POST['nutriEnsalNombre'],
+                'nutriBebidaNombre' => (string) $_POST['nutriBebidaNombre'],
+                'date' => date('Y-m-d')
+            ])
+                ? (object) ['request' => false,
+                            'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId",
+                            'message' => "Error al registrar la dieta"
+                            ]
+                : (object) ['request' => true,
+                            'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId",
+                            'message' => "Dieta registrada correctamente"
+                            ];
         }
-
-        return response->code(200)->success('registrado correctamente');
-    }
-
-    public function consultarAlmMenuApartControlador() {
-        return $this->pedAlmMenuPaciModelo->consultarAlmMenuApartModelo();
     }
 
     /*Generador de Reportes*/
@@ -98,5 +103,22 @@ class PedAlmMenuPaciControlador {
 
         Spreadsheet::save($path . $file_name);
         Spreadsheet::download($path, $file_name);
+    }
+
+    public function consultarAlmTipoControlador(string $id) {
+        return $this->pedAlmMenuPaciModelo->consultarEditAlmMenuModelo($id);
+   }
+
+   public function eliminarAlmTipoControlador(string $idMenuSeleccionadoPaci) {
+        $res = $this->pedAlmMenuPaciModelo->eliminarAlmTipoModelo([
+            'idMenuSeleccionadoPaci' => (int) $idMenuSeleccionadoPaci
+        ]);
+
+        if ($res->status === 'database-error') {
+            return $res;
+            return response->code(500)->error('Error al momento de Eliminar');
+        }
+
+        return response->code(200)->success('Eliminado correctamente');
     }
 }

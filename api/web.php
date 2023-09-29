@@ -103,7 +103,9 @@ Route::prefix('frmPedPaci', function(){
     Route::post('paci', [PedAlmMenuPaciControlador::class, 'procesarFormulario']);
     Route::get('paci/{idPaciente}',[PedAlmMenuPaciControlador::class, 'consultarAlmMenuIdControlador']);
     Route::get('paci', [PedAlmMenuPaciControlador::class, 'consultarMenuDiaControlador']);
-    Route::post('paciMenu', [PedAlmMenuPaciControlador::class, 'registrarMenuDiaControlador']);
+    //Route::post('paciMenu', [PedAlmMenuPaciControlador::class, 'registrarMenuDiaControlador']);
+    Route::get('read/{id}',[PedAlmMenuPaciControlador::class, 'consultarAlmTipoControlador']);
+    Route::delete('delete/{idMenuSeleccionadoPaci}', [PedAlmMenuPaciControlador::class, 'eliminarAlmTipoControlador']);
 });
 
 Route::prefix('frmPedEdit',function(){

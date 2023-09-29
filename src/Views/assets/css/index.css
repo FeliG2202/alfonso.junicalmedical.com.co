@@ -52,7 +52,18 @@ input[type=number] {
     margin-top: -50px;
 }
 
+.custom-card-wrapper {
+            /* Agrega un efecto de elevación leve al pasar el mouse */
+            display: block;
+            text-decoration: none; /* Elimina la decoración de texto del enlace */
+            color: inherit; /* Hereda el color del texto del elemento padre */
+        }
 
+        /* Agrega un efecto de elevación leve al pasar el mouse */
+        .custom-card:hover {
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
 
 
 

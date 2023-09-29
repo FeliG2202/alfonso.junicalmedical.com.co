@@ -1,5 +1,5 @@
 <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 rounded shadow-sm">
-    <h2 class="text-center">Solicitud de Alimentos para Pacientes</h2>
+    <h2 class="text-center">Dietas</h2>
     <hr>
 
     <?php
@@ -10,7 +10,7 @@
     if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
         <form class="form" id="form-consul-menu">
             <div class="row mb-3">
-                <label for="pacienteDocumento" class="form-label">Digite número de identificación</label>
+                <label for="pacienteDocumento" class="form-label">Número de identificación</label>
                 <input type="number" id="pacienteDocumento" class="form-control" required>
             </div>
 
