@@ -40,10 +40,21 @@ class AlmMenuModelo {
 		return DB::table('view_nutrimenu')->select()->getAll();
 	}
 
+	public function consultarAlmMenuPaciModelo() {
+		return DB::table('View_nutrimenupaci')->select()->getAll();
+	}
+
 	public function eliminarAlmMenuModelo($data) {
-		return DB::table('nutriensal')
+		return DB::table('nutrimenu')
 			->delete()
 			->where(DB::equalTo('idNutriMenu'), $data['idNutriMenu'])
+			->execute();
+	}
+
+	public function eliminarAlmMenuPaciModelo($data) {
+		return DB::table('nutrimenupaci')
+			->delete()
+			->where(DB::equalTo('idNutriMenuPaci'), $data['idNutriMenuPaci'])
 			->execute();
 	}
 

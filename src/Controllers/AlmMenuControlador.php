@@ -58,6 +58,10 @@ class AlmMenuControlador {
 		return $this->AlmMenuModelo->consultarAlmMenuModelo();
 	}
 
+	public function consultarAlmMenuPaciControlador(){
+		return $this->AlmMenuModelo->consultarAlmMenuPaciModelo();
+	}
+
 	public function eliminarAlmMenuControlador(string $idNutriMenu) {
 		$res = $this->AlmMenuModelo->eliminarAlmMenuModelo([
 			'idNutriMenu' => (int) $idNutriMenu
@@ -71,4 +75,16 @@ class AlmMenuControlador {
 		return response->code(200)->success('Eliminado correctamente');
 	}
 	
+	public function eliminarAlmMenuPaciControlador(string $idNutriMenuPaci) {
+		$res = $this->AlmMenuModelo->eliminarAlmMenuPaciModelo([
+			'idNutriMenuPaci' => (int) $idNutriMenuPaci
+		]);
+
+		if ($res->status === 'database-error') {
+			return $res;
+			return response->code(500)->error('Error al momento de Eliminar');
+		}
+
+		return response->code(200)->success('Eliminado correctamente');
+	}
 }

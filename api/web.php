@@ -98,8 +98,9 @@ Route::prefix('frmAlmMenu', function(){
     Route::post('menuEmple', [AlmMenuControlador::class, 'registrarAlmTipoControlador']);
     Route::post('menuPaci', [AlmMenuControlador::class, 'registrarAlmTipoControladorPaci']);
     Route::get('menu', [AlmMenuControlador::class, 'consultarAlmMenuControlador']);
-    // Route::delete('menu/{idNutriMenu}', [AlmMenuControlador::class, 'eliminarAlmEnsalControlador']);
-    // Route::put('menu/{idNutriMenu}', [AlmMenuControlador::class, 'actualizarAlmEnsalControlador']);
+    Route::get('menuPaci', [AlmMenuControlador::class, 'consultarAlmMenuPaciControlador']);
+    Route::delete('menu/{idNutriMenu}', [AlmMenuControlador::class, 'eliminarAlmMenuControlador']);
+    Route::delete('menuPaci/{idNutriMenuPaci}', [AlmMenuControlador::class, 'eliminarAlmMenuPaciControlador']);
 });
 
 Route::prefix('frmPedPaci', function(){
