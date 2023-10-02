@@ -7,7 +7,7 @@ if (!isset($_SESSION['session'])) {
 ?>
 
 <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
-	<h2 class="text-center">Registrar Acompañamiento</h2>
+	<h2 class="text-center">Acompañamiento</h2>
 	<hr>
 
 	<div class="gap-2 d-md-flex justify-content-md-end my-2">
@@ -18,7 +18,7 @@ if (!isset($_SESSION['session'])) {
 
 	<form class="form" id="form-create-acomp">
 		<div class="row mb-3">
-			<label for="" class="form-label">Nombre del Acompañamiento</label>
+			<label for="" class="form-label">Descripción</label>
 			<input type="text" id="nutriAcompNombre" class="form-control" required>
 		</div>
 		<br>

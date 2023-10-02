@@ -6,7 +6,7 @@ if (!isset($_SESSION['session'])) {
 }
 ?>
 <div class="col-12 col-sm-12 col-md-11 col-lg-10 mx-auto">
-	<h2 class="mt-4 text-center">Tipos de Energeticos</h2>
+	<h2 class="mt-4 text-center">Tipos de Energéticos</h2>
 
 	<div class="card mb-4">
 		<div class="card-body">
@@ -16,7 +16,7 @@ if (!isset($_SESSION['session'])) {
 				</a>
 
 				<button type="button" class="btn btn-outline-dark" id="btn-reload">
-					<i class="fas fa-repeat"></i>Reload
+					<i class="fas fa-repeat"></i>
 				</button>
 			</div>
 
@@ -25,7 +25,7 @@ if (!isset($_SESSION['session'])) {
 			<table class="table table-hover table-sm w-100" id="table-menu">
 				<thead>
 					<tr>
-						<th>Nombre del Energetico</th>
+						<th>Descripción</th>
 					</tr>
 				</thead>
 				<tbody></tbody>

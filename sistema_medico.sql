@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 02-10-2023 a las 14:47:35
+-- Tiempo de generación: 02-10-2023 a las 16:48:49
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.8
 
@@ -67,14 +67,6 @@ CREATE TABLE `menu_seleccionado` (
   `fecha_actual` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
---
--- Volcado de datos para la tabla `menu_seleccionado`
---
-
-INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `fecha_actual`) VALUES
-(4, 1, 7, 'Sopa de avena', 'Arroz con Pollo', 'Pollo en Miel Mostaza', 'Tornillos Guisados', '', '', '', '2023-09-28'),
-(5, 1, 9, 'Sopa de cuchuco', '', '', 'Hbichuelas', '', '', 'Jugo de Tomate de Arbol', '2023-09-29');
-
 -- --------------------------------------------------------
 
 --
@@ -94,13 +86,6 @@ CREATE TABLE `menu_seleccionado_paci` (
   `nutriBebidaNombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fecha_actual` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `menu_seleccionado_paci`
---
-
-INSERT INTO `menu_seleccionado_paci` (`idMenuSeleccionadoPaci`, `idPaciente`, `idNutriMenuPaci`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `fecha_actual`) VALUES
-(8, 1, 6, 'Sopa de mute', 'Arroz con Fideo', 'Chuleta de Tilapia', 'Macarrones Guisados', 'Monedas de Platano', 'Pepino/Apio/Zanahoria', 'Jugo de Feijoa', '2023-10-02');
 
 -- --------------------------------------------------------
 
@@ -278,14 +263,6 @@ CREATE TABLE `nutrimenu` (
   `idNutriSemana` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Volcado de datos para la tabla `nutrimenu`
---
-
-INSERT INTO `nutrimenu` (`idNutriMenu`, `idNutriTipo`, `idNutriDias`, `idNutriSopa`, `idNutriArroz`, `idNutriProte`, `idNutriEnerge`, `idNutriAcomp`, `idNutriEnsal`, `idNutriBebida`, `idNutriSemana`) VALUES
-(1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1),
-(19, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -305,15 +282,6 @@ CREATE TABLE `nutrimenupaci` (
   `idNutriBebida` int NOT NULL,
   `idNutriSemana` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `nutrimenupaci`
---
-
-INSERT INTO `nutrimenupaci` (`idNutriMenuPaci`, `idNutriTipo`, `idNutriDias`, `idNutriSopa`, `idNutriArroz`, `idNutriProte`, `idNutriEnerge`, `idNutriAcomp`, `idNutriEnsal`, `idNutriBebida`, `idNutriSemana`) VALUES
-(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-(6, 2, 1, 2, 2, 2, 2, 1, 2, 2, 1),
-(8, 1, 1, 2, 1, 15, 1, 14, 2, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -908,13 +876,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
 --
 ALTER TABLE `menu_seleccionado_paci`
-  MODIFY `idMenuSeleccionadoPaci` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idMenuSeleccionadoPaci` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `nutriacomp`
@@ -956,13 +924,13 @@ ALTER TABLE `nutriensal`
 -- AUTO_INCREMENT de la tabla `nutrimenu`
 --
 ALTER TABLE `nutrimenu`
-  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `nutrimenupaci`
 --
 ALTER TABLE `nutrimenupaci`
-  MODIFY `idNutriMenuPaci` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idNutriMenuPaci` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `nutriprote`

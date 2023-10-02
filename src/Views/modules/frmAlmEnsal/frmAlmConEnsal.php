@@ -25,7 +25,7 @@ if (!isset($_SESSION['session'])) {
 			<table class="table table-hover table-sm w-100" id="table-menu">
 				<thead>
 					<tr>
-						<th>Nombre de la Ensalañamiento</th>
+						<th>Descripción</th>
 					</tr>
 				</thead>
 				<tbody></tbody>

@@ -8,7 +8,7 @@ if (!isset($_SESSION['session'])) {
 
 <div class="row">
     <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
-        <h2 class="text-center">Registrar Energetico</h2>
+        <h2 class="text-center">Energético</h2>
         <hr>
 
         <div class="gap-2 d-md-flex justify-content-md-end my-2">
@@ -19,7 +19,7 @@ if (!isset($_SESSION['session'])) {
 
         <form class="form" id="form-create-energe">
             <div class="row mb-3">
-                <label for="" class="form-label">Nombre del Tipo de menú</label>
+                <label for="" class="form-label">Descripción</label>
                 <input type="text" id="nutriEnergeNombre" class="form-control" required>
             </div>
             <br>
