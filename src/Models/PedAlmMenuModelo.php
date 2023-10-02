@@ -101,6 +101,28 @@ class PedAlmMenuModelo extends Connection {
         )->getAll();
     }
 
+    public function consultarAlmMenuApartPaciModelo() {
+        return DB::table(
+            DB::as('menu_seleccionado_paci', 'msp')
+        )->select(
+            DB::column('pacienteDocumento', 'pct'),
+            DB::column('pacienteNombre', 'pct'),
+            DB::column('nutriSopaNombre', 'msp'),
+            DB::column('nutriArrozNombre', 'msp'),
+            DB::column('nutriProteNombre', 'msp'),
+            DB::column('nutriEnergeNombre', 'msp'),
+            DB::column('nutriAcompNombre', 'msp'),
+            DB::column('nutriEnsalNombre', 'msp'),
+            DB::column('nutriBebidaNombre', 'msp'),
+            DB::column('fecha_actual', 'msp'),
+        )->inner()->join(
+            DB::as('pacientes', 'pct'),
+            DB::column('idPaciente', 'msp'),
+            DB::column('idPaciente', 'pct'),
+        )->getAll();
+    }
+
+
     public function generateReportDatesDB() {
         return DB::table(
             DB::as('menu_seleccionado', 'ms')
@@ -119,6 +141,30 @@ class PedAlmMenuModelo extends Connection {
             DB::as('personas', 'prs'),
             DB::column('idPersona', 'ms'),
             DB::column('idPersona', 'prs'),
+        )->where('fecha_actual')
+        ->between(request->date_start, request->date_end)
+        ->getAll();
+    }
+
+    // Generar reporte paciente
+     public function generateReportPaciDatesDB() {
+        return DB::table(
+            DB::as('menu_seleccionado_paci', 'msp')
+        )->select(
+            DB::column('pacienteDocumento', 'pct'),
+            DB::column('pacienteNombre', 'pct'),
+            DB::column('nutriSopaNombre', 'msp'),
+            DB::column('nutriArrozNombre', 'msp'),
+            DB::column('nutriProteNombre', 'msp'),
+            DB::column('nutriEnergeNombre', 'msp'),
+            DB::column('nutriAcompNombre', 'msp'),
+            DB::column('nutriEnsalNombre', 'msp'),
+            DB::column('nutriBebidaNombre', 'msp'),
+            DB::column('fecha_actual', 'msp'),
+        )->inner()->join(
+            DB::as('pacientes', 'pct'),
+            DB::column('idPaciente', 'msp'),
+            DB::column('idPaciente', 'pct'),
         )->where('fecha_actual')
         ->between(request->date_start, request->date_end)
         ->getAll();

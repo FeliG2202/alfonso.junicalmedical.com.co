@@ -17,7 +17,9 @@ use PHP\Controllers\PedAlmMenuPaciControlador;
 
 Route::prefix('frmPed', function() {
         Route::get('read', [PedAlmMenuControlador::class, 'consultarAlmMenuApartControlador']);
+        Route::get('readPaci', [PedAlmMenuControlador::class, 'consultarAlmMenuApartPaciControlador']);
         Route::post("put", [PedAlmMenuControlador::class, 'generateReportDates']);
+        Route::post("putPaci", [PedAlmMenuControlador::class, 'generateReportPaciDates']);
 });
 
 Route::get('dias', [AlmDiaControlador::class, 'listarAlmDiaMenuControlador']);

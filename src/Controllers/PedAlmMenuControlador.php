@@ -139,6 +139,10 @@ class PedAlmMenuControlador {
         return $this->PedAlmMenuModelo->consultarAlmMenuApartModelo();
     }
 
+    public function consultarAlmMenuApartPaciControlador(){
+        return $this->PedAlmMenuModelo->consultarAlmMenuApartPaciModelo();
+    }
+
 
     /*Generador de Reportes*/
     public function generateReportDates() {
@@ -152,13 +156,50 @@ class PedAlmMenuControlador {
         }
 
         $cont = 3;
-        Spreadsheet::load("../src/Views/assets/excel/reporte-almuerzos.xlsx");
+        Spreadsheet::load("../src/Views/assets/excel/reporte-almuerzos-empl.xlsx");
 
         foreach ($all_menu as $key => $menu) {
             Spreadsheet::setCell("A{$cont}", (($cont - 3) + 1));
             Spreadsheet::setCell("B{$cont}", $menu->fecha_actual);
             Spreadsheet::setCell("C{$cont}", $menu->personaDocumento);
             Spreadsheet::setCell("D{$cont}", $menu->personaNombreCompleto);
+            Spreadsheet::setCell("E{$cont}", $menu->nutriSopaNombre);
+            Spreadsheet::setCell("F{$cont}", $menu->nutriArrozNombre);
+            Spreadsheet::setCell("G{$cont}", $menu->nutriProteNombre);
+            Spreadsheet::setCell("H{$cont}", $menu->nutriEnergeNombre);
+            Spreadsheet::setCell("I{$cont}", $menu->nutriAcompNombre);
+            Spreadsheet::setCell("J{$cont}", $menu->nutriEnsalNombre);
+            Spreadsheet::setCell("K{$cont}", $menu->nutriBebidaNombre);
+
+            $cont++;
+        }
+
+        $path = "../src/Views/assets/excel/";
+        $file_name = "reporte-almuerzos-" . date("Y-m-d") . ".xlsx";
+
+        Spreadsheet::save($path . $file_name);
+        Spreadsheet::download($path, $file_name);
+    }
+
+    /*Generador de Reportes*/
+    public function generateReportPaciDates() {
+        if (!isset(request->date_start, request->date_end)) {
+            return response->code(500)->error("Debe agregar la fecha de inicio y fin para generar el reporte");
+        }
+
+        $all_menu = $this->PedAlmMenuModelo->generateReportPaciDatesDB();
+        if (isset($all_menu->status)) {
+            return response->code(204)->finish();
+        }
+
+        $cont = 3;
+        Spreadsheet::load("../src/Views/assets/excel/reporte-almuerzos-paci.xlsx");
+
+        foreach ($all_menu as $key => $menu) {
+            Spreadsheet::setCell("A{$cont}", (($cont - 3) + 1));
+            Spreadsheet::setCell("B{$cont}", $menu->fecha_actual);
+            Spreadsheet::setCell("C{$cont}", $menu->pacienteDocumento);
+            Spreadsheet::setCell("D{$cont}", $menu->pacienteNombre);
             Spreadsheet::setCell("E{$cont}", $menu->nutriSopaNombre);
             Spreadsheet::setCell("F{$cont}", $menu->nutriArrozNombre);
             Spreadsheet::setCell("G{$cont}", $menu->nutriProteNombre);
