@@ -15,4 +15,8 @@ class AlmDiaControlador {
 	public function listarAlmDiaMenuControlador() {
 		return $this->AlmDiaModelo->ListarAlmDiaMenuModelo();
 	}
+
+	public function listarAlmSemanaMenuControlador() {
+		return $this->AlmDiaModelo->ListarAlmSemanaMenuModelo();
+	}
 }

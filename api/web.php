@@ -28,6 +28,8 @@ Route::prefix('frmPed', function() {
 
 Route::get('dias', [AlmDiaControlador::class, 'listarAlmDiaMenuControlador']);
 
+Route::get('semana', [AlmDiaControlador::class, 'listarAlmSemanaMenuControlador']);
+
 // YA QUEDO FUNCIONANDO
 Route::prefix('frmAlmTipo', function() {
     Route::post('tipo', [AlmTipoControlador::class, 'registrarAlmTipoControlador']);
@@ -93,7 +95,8 @@ Route::prefix('frmAlmEnsal', function() {
 });
 
 Route::prefix('frmAlmMenu', function(){
-    Route::post('menu', [AlmMenuControlador::class, 'registrarAlmTipoControlador']);
+    Route::post('menuEmple', [AlmMenuControlador::class, 'registrarAlmTipoControlador']);
+    Route::post('menuPaci', [AlmMenuControlador::class, 'registrarAlmTipoControladorPaci']);
     Route::get('menu', [AlmMenuControlador::class, 'consultarAlmMenuControlador']);
     // Route::delete('menu/{idNutriMenu}', [AlmMenuControlador::class, 'eliminarAlmEnsalControlador']);
     // Route::put('menu/{idNutriMenu}', [AlmMenuControlador::class, 'actualizarAlmEnsalControlador']);

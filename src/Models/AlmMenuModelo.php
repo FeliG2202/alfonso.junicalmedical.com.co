@@ -17,6 +17,22 @@ class AlmMenuModelo {
 			'idNutriAcomp' => $data['idNutriAcomp'],
 			'idNutriEnsal' => $data['idNutriEnsal'],
 			'idNutriBebida' => $data['idNutriBebida'],
+			'idNutriSemana' => $data['idNutriSemana']
+		])->execute();
+	}
+
+	public function registrarAlmMenuModeloPaci($data) {
+		return DB::table('nutrimenupaci')->insert([
+			'idNutriTipo' => $data['idNutriTipo'],
+			'idNutriDias' => $data['idNutriDias'],
+			'idNutriSopa' => $data['idNutriSopa'],
+			'idNutriArroz' => $data['idNutriArroz'],
+			'idNutriProte' => $data['idNutriProte'],
+			'idNutriEnerge' => $data['idNutriEnerge'],
+			'idNutriAcomp' => $data['idNutriAcomp'],
+			'idNutriEnsal' => $data['idNutriEnsal'],
+			'idNutriBebida' => $data['idNutriBebida'],
+			'idNutriSemana' => $data['idNutriSemana']
 		])->execute();
 	}
 

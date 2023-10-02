@@ -22,7 +22,29 @@ class AlmMenuControlador {
 			'idNutriEnerge' => request->idNutriEnerge,
 			'idNutriAcomp' => request->idNutriAcomp,
 			'idNutriEnsal' => request->idNutriEnsal,
-			'idNutriBebida' => request->idNutriBebida
+			'idNutriBebida' => request->idNutriBebida,
+			'idNutriSemana' => request->idNutriSemana
+		]);
+
+		if ($res->status === "database-error") {
+			return response->code(500)->error('Error al momento de registrar');
+		}
+
+		return response->code(200)->success('registrado correctamente');
+	}
+
+	public function registrarAlmTipoControladorPaci() {
+		$res = $this->AlmMenuModelo->registrarAlmMenuModeloPaci([
+			'idNutriTipo' => request->idNutriTipo,
+			'idNutriDias' => request->idNutriDias,
+			'idNutriSopa' => request->idNutriSopa,
+			'idNutriArroz' => request->idNutriArroz,
+			'idNutriProte' => request->idNutriProte,
+			'idNutriEnerge' => request->idNutriEnerge,
+			'idNutriAcomp' => request->idNutriAcomp,
+			'idNutriEnsal' => request->idNutriEnsal,
+			'idNutriBebida' => request->idNutriBebida,
+			'idNutriSemana' => request->idNutriSemana
 		]);
 
 		if ($res->status === "database-error") {

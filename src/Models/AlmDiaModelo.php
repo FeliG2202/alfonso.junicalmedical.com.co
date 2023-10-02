@@ -10,4 +10,7 @@ class AlmDiaModelo {
 		return DB::table('nutridias')->select()->getAll();
 	}
 
+	public function ListarAlmSemanaMenuModelo() {
+		return DB::table('nutrisemana')->select()->getAll();
+	}
 }

@@ -21,7 +21,7 @@ if (!isset($_SESSION['session'])) {
 				<div class="tab-content " id="nav-tabContent">
 					<div class="tab-pane fade show active" id="Empleado" role="tabpanel">
 						<div class="p-2">
-							<h2 class="text-center">Registrar Menu Empleado</h2>
+							<h2 class="text-center">Menú Empleado</h2>
 							<hr>
 						</div>
 
@@ -32,7 +32,7 @@ if (!isset($_SESSION['session'])) {
 						</div>
 
 						<!-- FORMULARIO DE EMPLEADO -->
-						<form class="form" id="form-create-menu">
+						<form class="form" id="form-create-menu1">
 							<div class="row">
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
@@ -114,6 +114,15 @@ if (!isset($_SESSION['session'])) {
 										</select>
 									</div>
 								</div>
+
+								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+									<div class="mb-3">
+										<label class="form-label" for="idNutriSemana1">Semana</label>
+										<select id="idNutriSemana1" name="idNutriSemana1" class="form-select" required>
+											<option value="" selected>Seleccione</option>
+										</select>
+									</div>
+								</div>
 							</div>
 
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -125,7 +134,7 @@ if (!isset($_SESSION['session'])) {
 					<div class="tab-pane fade" id="Paciente" role="tabpanel">
 
 						<div class="p-2">
-							<h2 class="text-center">Registrar Menu Paciente</h2>
+							<h2 class="text-center">Menú Paciente</h2>
 							<hr>
 						</div>
 
@@ -136,7 +145,7 @@ if (!isset($_SESSION['session'])) {
 							</a>
 						</div>
 
-						<form class="form" id="form-create-menu">
+						<form class="form" id="form-create-menu2">
 							<div class="row">
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
@@ -218,6 +227,15 @@ if (!isset($_SESSION['session'])) {
 										</select>
 									</div>
 								</div>
+
+								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+									<div class="mb-3">
+										<label class="form-label" for="idNutriSemana2">Semana</label>
+										<select id="idNutriSemana2" name="idNutriSemana2" class="form-select" required>
+											<option value="" selected>Seleccione</option>
+										</select>
+									</div>
+								</div>
 							</div>
 
 							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -244,24 +262,26 @@ if (!isset($_SESSION['session'])) {
 		objectSelect('/api/frmAlmEnerge/energe', 'idNutriEnerge1', 'idNutriEnerge', ['nutriEnergeNombre']),
 		objectSelect('/api/frmAlmAcomp/acomp', 'idNutriAcomp1', 'idNutriAcomp', ['nutriAcompNombre']),
 		objectSelect('/api/frmAlmEnsal/ensal', 'idNutriEnsal1', 'idNutriEnsal', ['nutriEnsalNombre']),
-		objectSelect('/api/frmAlmBebida/bebida', 'idNutriBebida1', 'idNutriBebida', ['nutriBebidaNombre'])
+		objectSelect('/api/frmAlmBebida/bebida', 'idNutriBebida1', 'idNutriBebida', ['nutriBebidaNombre']),
+		objectSelect('/api/semana', 'idNutriSemana1', 'idNutriSemana', ['nutriSemanaid'])
 		]);
 
 	// REGISTRAR FORMULARIO
-	addEvent(['form-create-menu'], 'submit', (event) => {
+	addEvent(['form-create-menu1'], 'submit', (event) => {
 		event.preventDefault();
 
-		axios.post(`${host}/api/frmAlmMenu/menu`, {
-			idNutriTipo: getInput("idNutriTipo").value,
-			idNutriDias: getInput("idNutriDias").value,
-			idNutriSopa: getInput("idNutriSopa").value,
-			idNutriArroz: getInput("idNutriArroz").value,
-			idNutriProte: getInput("idNutriProte").value,
-			idNutriEnerge: getInput("idNutriEnerge").value,
-			idNutriAcomp: getInput("idNutriAcomp").value,
-			idNutriEnsal: getInput("idNutriEnsal").value,
-			idNutriBebida: getInput("idNutriBebida").value,
-			btnSaveAlmRegMenu: getInput("btnSaveAlmRegMenu").value
+		axios.post(`${host}/api/frmAlmMenu/menuEmple`, {
+			idNutriTipo: getInput("idNutriTipo1").value,
+			idNutriDias: getInput("idNutriDias1").value,
+			idNutriSopa: getInput("idNutriSopa1").value,
+			idNutriArroz: getInput("idNutriArroz1").value,
+			idNutriProte: getInput("idNutriProte1").value,
+			idNutriEnerge: getInput("idNutriEnerge1").value,
+			idNutriAcomp: getInput("idNutriAcomp1").value,
+			idNutriEnsal: getInput("idNutriEnsal1").value,
+			idNutriBebida: getInput("idNutriBebida1").value,
+			idNutriSemana: getInput("idNutriSemana1").value,
+			btnSaveAlmRegMenu: getInput("btnSaveAlmRegMenu1").value
 		})
 		.then(res => {
 			if (res.data.status === "success") {
@@ -285,33 +305,35 @@ if (!isset($_SESSION['session'])) {
 		objectSelect('/api/frmAlmEnerge/energe', 'idNutriEnerge2', 'idNutriEnerge', ['nutriEnergeNombre']),
 		objectSelect('/api/frmAlmAcomp/acomp', 'idNutriAcomp2', 'idNutriAcomp', ['nutriAcompNombre']),
 		objectSelect('/api/frmAlmEnsal/ensal', 'idNutriEnsal2', 'idNutriEnsal', ['nutriEnsalNombre']),
-		objectSelect('/api/frmAlmBebida/bebida', 'idNutriBebida2', 'idNutriBebida', ['nutriBebidaNombre'])
+		objectSelect('/api/frmAlmBebida/bebida', 'idNutriBebida2', 'idNutriBebida', ['nutriBebidaNombre']),
+		objectSelect('/api/semana', 'idNutriSemana2', 'idNutriSemana', ['nutriSemanaid'])
 		]);
 
-	// REGISTRAR FORMULARIO
-	// addEvent(['form-create-menu'], 'submit', (event) => {
-	// 	event.preventDefault();
+//REGISTRAR FORMULARIO
+	addEvent(['form-create-menu2'], 'submit', (event) => {
+		event.preventDefault();
 
-	// 	axios.post(`${host}/api/frmAlmMenu/menu`, {
-	// 		idNutriTipo: getInput("idNutriTipo").value,
-	// 		idNutriDias: getInput("idNutriDias").value,
-	// 		idNutriSopa: getInput("idNutriSopa").value,
-	// 		idNutriArroz: getInput("idNutriArroz").value,
-	// 		idNutriProte: getInput("idNutriProte").value,
-	// 		idNutriEnerge: getInput("idNutriEnerge").value,
-	// 		idNutriAcomp: getInput("idNutriAcomp").value,
-	// 		idNutriEnsal: getInput("idNutriEnsal").value,
-	// 		idNutriBebida: getInput("idNutriBebida").value,
-	// 		btnSaveAlmRegMenu: getInput("btnSaveAlmRegMenu").value
-	// 	})
-	// 	.then(res => {
-	// 		if (res.data.status === "success") {
-	// 			window.location.href = `${host}/index.php?folder=frmAlmMenu&view=frmAlmConMenu`;
-	// 		}
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	});
-	// });
+		axios.post(`${host}/api/frmAlmMenu/menuPaci`, {
+			idNutriTipo: getInput("idNutriTipo2").value,
+			idNutriDias: getInput("idNutriDias2").value,
+			idNutriSopa: getInput("idNutriSopa2").value,
+			idNutriArroz: getInput("idNutriArroz2").value,
+			idNutriProte: getInput("idNutriProte2").value,
+			idNutriEnerge: getInput("idNutriEnerge2").value,
+			idNutriAcomp: getInput("idNutriAcomp2").value,
+			idNutriEnsal: getInput("idNutriEnsal2").value,
+			idNutriBebida: getInput("idNutriBebida2").value,
+			idNutriSemana: getInput("idNutriSemana2").value,
+			btnSaveAlmRegMenu: getInput("btnSaveAlmRegMenu2").value
+		})
+		.then(res => {
+			if (res.data.status === "success") {
+				window.location.href = `${host}/index.php?folder=frmAlmMenu&view=frmAlmConMenu`;
+			}
+		})
+		.catch(err => {
+			console.log(err);
+		});
+	});
 // END FORMULARIO PACIENTES
 </script>

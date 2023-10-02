@@ -43,7 +43,7 @@ class PedAlmMenuModelo extends Connection {
     }
 
     public function consultarMenuModelo($dia, $semana) {
-        $sql = "SELECT * FROM view_nutrimenu WHERE nutriDiasNombre=? AND nutriMenuSemana=?";
+        $sql = "SELECT * FROM view_nutrimenu WHERE nutriDiasNombre=? AND nutriSemanaNombre=?";
 
         try {
             $stmt = $this->conectar()->prepare($sql);
