@@ -15,15 +15,9 @@ use PHP\Controllers\AlmMenuControlador;
 use PHP\Controllers\EditAlmMenuControlador;
 use PHP\Controllers\PedAlmMenuPaciControlador;
 
-Route::prefix('reporte', function() {
-    Route::get("almuerzos", [PedAlmMenuControlador::class, 'generateReport']);
-    Route::post("almuerzos", [PedAlmMenuControlador::class, 'generateReportDates']);
-});
-
 Route::prefix('frmPed', function() {
-    Route::prefix('frmConPedMenu', function() {
-        Route::get('leer-menu', [PedAlmMenuControlador::class, 'consultarAlmMenuApartControlador']);
-    });
+        Route::get('read', [PedAlmMenuControlador::class, 'consultarAlmMenuApartControlador']);
+        Route::post("put", [PedAlmMenuControlador::class, 'generateReportDates']);
 });
 
 Route::get('dias', [AlmDiaControlador::class, 'listarAlmDiaMenuControlador']);
@@ -107,7 +101,6 @@ Route::prefix('frmPedPaci', function(){
     Route::post('paci', [PedAlmMenuPaciControlador::class, 'procesarFormulario']);
     Route::get('paci/{idPaciente}',[PedAlmMenuPaciControlador::class, 'consultarAlmMenuIdControlador']);
     Route::get('paci', [PedAlmMenuPaciControlador::class, 'consultarMenuDiaControlador']);
-    //Route::post('paciMenu', [PedAlmMenuPaciControlador::class, 'registrarMenuDiaControlador']);
     Route::get('read/{id}',[PedAlmMenuPaciControlador::class, 'consultarAlmTipoControlador']);
     Route::delete('delete/{idMenuSeleccionadoPaci}', [PedAlmMenuPaciControlador::class, 'eliminarAlmTipoControlador']);
 });
