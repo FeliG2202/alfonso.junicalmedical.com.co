@@ -15,6 +15,7 @@ use PHP\Controllers\AlmMenuControlador;
 use PHP\Controllers\EditAlmMenuControlador;
 use PHP\Controllers\PedAlmMenuPaciControlador;
 
+// consulta y exportacion de los registros de almuerzos diarios
 Route::prefix('frmPed', function() {
         Route::get('read', [PedAlmMenuControlador::class, 'consultarAlmMenuApartControlador']);
         Route::get('readPaci', [PedAlmMenuControlador::class, 'consultarAlmMenuApartPaciControlador']);
@@ -22,11 +23,13 @@ Route::prefix('frmPed', function() {
         Route::post("putPaci", [PedAlmMenuControlador::class, 'generateReportPaciDates']);
 });
 
+// llama la los dias de la semana
 Route::get('dias', [AlmDiaControlador::class, 'listarAlmDiaMenuControlador']);
 
+// llamma las semanas registradas
 Route::get('semana', [AlmDiaControlador::class, 'listarAlmSemanaMenuControlador']);
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Tipo Menu
 Route::prefix('frmAlmTipo', function() {
     Route::post('tipo', [AlmTipoControlador::class, 'registrarAlmTipoControlador']);
     Route::get('tipo', [AlmTipoControlador::class, 'consultarAlmTipoControlador']);
@@ -34,7 +37,7 @@ Route::prefix('frmAlmTipo', function() {
     Route::put('tipo/{idNutriTipo}', [AlmTipoControlador::class, 'actualizarAlmTipoControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Acompañamiento
 Route::prefix('frmAlmAcomp', function() {
     Route::post('acomp', [AlmAcompControlador::class, 'registrarAlmACompControlador']);
     Route::get('acomp', [AlmAcompControlador::class, 'consultarAlmACompControlador']);
@@ -42,7 +45,7 @@ Route::prefix('frmAlmAcomp', function() {
     Route::put('acomp/{idNutriAcomp}', [AlmAcompControlador::class, 'actualizarAlmACompControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Arroz
 Route::prefix('frmAlmArroz', function() {
     Route::post('arroz', [AlmArrozControlador::class, 'registrarAlmArrozControlador']);
     Route::get('arroz', [AlmArrozControlador::class, 'consultarAlmArrozControlador']);
@@ -50,7 +53,7 @@ Route::prefix('frmAlmArroz', function() {
     Route::put('arroz/{idNutriArroz}', [AlmArrozControlador::class, 'actualizarAlmArrozControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Bebidas
 Route::prefix('frmAlmBebida', function() {
     Route::post('bebida', [AlmBebidaControlador::class, 'registrarAlmBebidaControlador']);
     Route::get('bebida', [AlmBebidaControlador::class, 'consultarAlmBebidaControlador']);
@@ -58,7 +61,7 @@ Route::prefix('frmAlmBebida', function() {
     Route::put('bebida/{idNutriBebida}', [AlmBebidaControlador::class, 'actualizarAlmBebidaControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Proteina
 Route::prefix('frmAlmProte', function() {
     Route::post('prote', [AlmProteControlador::class, 'registrarAlmTipoControlador']);
     Route::get('prote', [AlmProteControlador::class, 'consultarAlmTipoControlador']);
@@ -66,7 +69,7 @@ Route::prefix('frmAlmProte', function() {
     Route::put('prote/{idNutriProte}', [AlmProteControlador::class, 'actualizarAlmProteControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Sopa
 Route::prefix('frmAlmSopa', function() {
     Route::post('sopa', [AlmSopaControlador::class, 'registrarAlmSopaControlador']);
     Route::get('sopa', [AlmSopaControlador::class, 'consultarAlmSopaControlador']);
@@ -74,7 +77,7 @@ Route::prefix('frmAlmSopa', function() {
     Route::put('sopa/{idNutriSopa}', [AlmSopaControlador::class, 'actualizarAlmSopaControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud completo de Energeticos
 Route::prefix('frmAlmEnerge', function() {
     Route::post('energe', [AlmEnergeControlador::class, 'registrarAlmEnergeControlador']);
     Route::get('energe', [AlmEnergeControlador::class, 'consultarAlmEnergeControlador']);
@@ -82,7 +85,7 @@ Route::prefix('frmAlmEnerge', function() {
     Route::put('energe/{idNutriEnerge}', [AlmEnergeControlador::class, 'actualizarAlmEnergeControlador']);
 });
 
-// YA QUEDO FUNCIONANDO
+// Crud complero de Ensalada
 Route::prefix('frmAlmEnsal', function() {
     Route::post('ensal', [AlmEnsalControlador::class, 'registrarAlmEnsalControlador']);
     Route::get('ensal', [AlmEnsalControlador::class, 'consultarAlmEnsalControlador']);
@@ -90,6 +93,7 @@ Route::prefix('frmAlmEnsal', function() {
     Route::put('ensal/{idNutriEnsal}', [AlmEnsalControlador::class, 'actualizarAlmEnsalControlador']);
 });
 
+// Registro, Consulta y Eliminacion de dietas Registradas por dia
 Route::prefix('frmAlmMenu', function(){
     Route::post('menuEmple', [AlmMenuControlador::class, 'registrarAlmTipoControlador']);
     Route::post('menuPaci', [AlmMenuControlador::class, 'registrarAlmTipoControladorPaci']);
@@ -99,6 +103,7 @@ Route::prefix('frmAlmMenu', function(){
     Route::delete('menuPaci/{idNutriMenuPaci}', [AlmMenuControlador::class, 'eliminarAlmMenuPaciControlador']);
 });
 
+//
 Route::prefix('frmPedPaci', function(){
     Route::post('paci', [PedAlmMenuPaciControlador::class, 'procesarFormulario']);
     Route::get('paci/{idPaciente}',[PedAlmMenuPaciControlador::class, 'consultarAlmMenuIdControlador']);
@@ -107,8 +112,13 @@ Route::prefix('frmPedPaci', function(){
     Route::delete('delete/{idMenuSeleccionadoPaci}', [PedAlmMenuPaciControlador::class, 'eliminarAlmTipoControlador']);
 });
 
+// registrar pedido de Dieta Paciente
 Route::prefix('frmPedEdit',function(){
     Route::get('read/{id}',[PedAlmMenuControlador::class, 'consultarAlmTipoControlador']);
     Route::delete('delete/{idMenuSeleccionado}', [PedAlmMenuControlador::class, 'eliminarAlmTipoControlador']);
 });
+
+// Route::prefix('frmRol',function(){
+//     Route::get('read/{id}',[])
+// });
 
