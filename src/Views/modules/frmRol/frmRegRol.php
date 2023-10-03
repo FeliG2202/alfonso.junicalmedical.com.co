@@ -8,7 +8,7 @@ if (!isset($_SESSION['session'])) {
 
 <div class="row">
     <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
-        <h2 class="text-center">Registrar Perfiles</h2>
+        <h2 class="text-center">Perfil de Usuario</h2>
         <hr>
 
         <div class="gap-2 d-md-flex justify-content-md-end my-2">
@@ -36,7 +36,7 @@ if (!isset($_SESSION['session'])) {
     document.getElementById("form-create-energe").addEventListener("submit", (event) => {
         event.preventDefault();
 
-        axios.post(`${host}/api/frmAlmEnerge/energe`, {
+        axios.post(`${host}/api/frmRol/create`, {
             rolNombre: document.getElementById("rolNombre").value,
             btnRoles: document.getElementById("btnRoles").value
         })

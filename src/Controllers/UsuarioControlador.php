@@ -4,34 +4,16 @@ namespace PHP\Controllers;
 
 use PHP\Models\UsuarioModelo;
 
-class UsuarioControlador
-{
+class UsuarioControlador {
 
 	private $usuarioModelo;
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->usuarioModelo = new UsuarioModelo();
 	}
 
-	public function registrarUsuarioControlador()
-	{
-		if (isset($_POST['regUsuario'])) {
-			$datosUsuario = [
-				'usuario' => $_POST['usuario'],
-				'password' => $_POST['password'],
-				'idPersona' => $_POST['idPersonas'],
-				'estado' => 'Activo',
-			];
 
-			return !$this->usuarioModelo->registrarUsuarioModelo($datosUsuario)
-				? (object) ['request' => false, 'url' => "index.php?folder=frmUsuarios&view=frmRegUsuario"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmUsuarios&view=frmConUsuarios"];
-		}
-	}
-
-	public function validateSession()
-	{
+	public function validateSession() {
 		if (isset($_POST['regLogin'])) {
 			$files = $this->usuarioModelo->validateSessionModelo($_POST);
 
@@ -62,8 +44,22 @@ class UsuarioControlador
 		return (object) ['request' => true, 'url' => "index.php?view=inicio2"];
 	}
 
-	public function consultarUsuarioControlador()
-	{
+	public function registrarUsuarioControlador() {
+		$res = $this->usuarioModelo->registrarUsuarioModelo([
+			'idPersona' => request->idPersona,
+			'usuarioLogin' => request->usuarioLogin,
+			'usuarioPassword' => request->usuarioPassword,
+			'idRol' => request->idRol
+		]);
+
+		if ($res->status === "database-error") {
+			return response->code(500)->error('Error al momento de registrar');
+		}
+
+		return response->code(200)->success('registrado correctamente');
+	}
+
+	public function consultarUsuarioControlador() {
 		if (isset($_POST['btnBuscarusuario'])) {
 			$datosUsuario =  $_POST['datoBusqueda'];
 		} else {
@@ -72,14 +68,6 @@ class UsuarioControlador
 
 		$usuarioModelo = new UsuarioModelo();
 		return $usuarioModelo->consultarUsuarioModelo($datosUsuario);
-	}
-
-	public function consultarUsuarioIdControlador()
-	{
-		if (isset($_GET['id'])) {
-			$usuarioModelo = new UsuarioModelo();
-			return $usuarioModelo->consultarUsuarioIdModelo($_GET['id']);
-		}
 	}
 
 	public function actualizarUsuarioControlador()

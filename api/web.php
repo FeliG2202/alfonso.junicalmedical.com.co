@@ -12,8 +12,10 @@ use PHP\Controllers\AlmEnsalControlador;
 use PHP\Controllers\AlmSopaControlador;
 use PHP\Controllers\AlmProteControlador;
 use PHP\Controllers\AlmMenuControlador;
-use PHP\Controllers\EditAlmMenuControlador;
 use PHP\Controllers\PedAlmMenuPaciControlador;
+use PHP\Controllers\PersonaControlador;
+use PHP\Controllers\RolControlador;
+use PHP\Controllers\UsuarioControlador;
 
 // consulta y exportacion de los registros de almuerzos diarios
 Route::prefix('frmPed', function() {
@@ -118,7 +120,24 @@ Route::prefix('frmPedEdit',function(){
     Route::delete('delete/{idMenuSeleccionado}', [PedAlmMenuControlador::class, 'eliminarAlmTipoControlador']);
 });
 
-// Route::prefix('frmRol',function(){
-//     Route::get('read/{id}',[])
-// });
+Route::prefix('frmRol',function(){
+    Route::post('create',[RolControlador::class, "registrarRolControlador"]);
+    Route::get('read',[RolControlador::class, "consultarRolControlador"]);
+    Route::put('update/{idRol}',[RolControlador::class, "actualizarRolControlador"]);
+    Route::delete('delete/{idRol}', [RolControlador::class, "eliminarRolControlador"]);
+});
+
+Route::prefix('frmUser',function(){
+    Route::post('create',[UsuarioControlador::class, "registrarUsuarioControlador"]);
+    Route::get('read',[UsuarioControlador::class, "consultarUsuarioControlador"]);
+    Route::put('update',[UsuarioControlador::class, ""]);
+    Route::delete('delete',[UsuarioControlador::class, ""]);
+});
+
+Route::prefix('frmPerson',function(){
+    Route::post('create',[PersonaControlador::class, ""]);
+    Route::get('read',[PersonaControlador::class, "consultarPersonaControlador"]);
+    Route::put('update',[PersonaControlador::class, ""]);
+    Route::delete('delete',[PersonaControlador::class, ""]);
+});
 

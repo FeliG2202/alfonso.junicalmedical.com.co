@@ -4,68 +4,52 @@ namespace PHP\Controllers;
 
 use PHP\Models\RolModelo;
 
-class RolControlador
-{
+class RolControlador {
 
 	private $rolModelo;
-	function __construct()
-	{
+
+	function __construct() {
 		$this->rolModelo = new RolModelo();
 	}
 
+	public function registrarRolControlador() {
+		$res = $this->rolModelo->registrarRolModelo([
+			'rolNombre' => request->rolNombre
+		]);
 
-	public function registrarRolControlador()
-	{
-		if (isset($_POST['regRol'])) {
-			return !$this->rolModelo->registrarRolModelo($_POST['nombrePerfil'])
-				? (object) ['request' => false, 'url' => "index.php?folder=frmRol&view=frmRegRol"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmRol&view=frmConRol"];
+		if ($res->status === "database-error") {
+			return response->code(500)->error('Error al momento de registrar');
 		}
+
+		return response->code(200)->success('registrado correctamente');
 	}
 
-
-	public function consultarRolControlador()
-	{
-		if (isset($_POST['btnBuscarRol'])) {
-			if (isset($_POST['datoBusqueda'])) {
-				$rolBuscado = $_POST['datoBusqueda'];
-			}
-		} else {
-			$rolBuscado = '';
-		}
-		return $this->rolModelo->consultarRolModelo($rolBuscado);
+	public function consultarRolControlador() {
+		return $this->rolModelo->consultarRolModelo();
 	}
 
+	public function actualizarRolControlador(string $idRol) {
+		$res = $this->rolModelo->actualizarRolModelo([
+			'rolNombre' => request->rolNombre,
+			'idRol' => (int) $idRol
+		]);
 
-	public function consultarRolIdControlador()
-	{
-		if (isset($_GET['id'])) {
-			return $this->rolModelo->consultarRolIdModelo($_GET['id']);
+		if ($res->status === 'database-error') {
+			return response->code(500)->error('Error al momento de actualizar');
 		}
+
+		return response->code(200)->success('tipo actualizado correctamente');
 	}
 
+	public function eliminarRolControlador(string $idRol) {
+		$res = $this->rolModelo->eliminarRolModelo([
+			'idRol' => (int) $idRol
+		]);
 
-	public function actualizarRolControlador()
-	{
-		if (isset($_POST['updRol'])) {
-			$datosRol = array(
-				'nombre' => $_POST['nombre'],
-				'id' => $_GET['id']
-			);
-			return !$this->rolModelo->actualizarRolModelo($datosRol)
-				? (object) ['request' => false, 'url' => "index.php?folder=frmRol&view=frmEditRol"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmRol&view=frmConRol"];
+		if ($res->status === 'database-error'){
+			return response->code(500)->error('Error al momento de Eliminar');
 		}
-	}
 
-
-	public function eliminarRolControlador()
-	{
-		if (isset($_GET['id'])) {
-
-			return !$this->rolModelo->eliminarRolModelo($_GET['id'])
-				? (object) ['request' => false, 'url' => "index.php?folder=frmRol&view=frmConRol"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmRol&view=frmConRol"];
-		}
+		return response->code(200)->success('Eliminado correctamente');
 	}
 }

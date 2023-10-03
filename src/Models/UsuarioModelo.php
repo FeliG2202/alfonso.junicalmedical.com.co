@@ -5,6 +5,7 @@ namespace PHP\Models;
 use PDO;
 use PDOException;
 use PHP\Models\Connection;
+use LionDatabase\Drivers\MySQL\MySQL as DB;
 
 class UsuarioModelo extends Connection {
 
@@ -14,22 +15,15 @@ class UsuarioModelo extends Connection {
 		$this->tabla = 'usuarios';
 	}
 
-	function registrarUsuarioModelo($datosUsuario) {
-		$sql = "INSERT INTO $this->tabla(usuarioLogin, usuarioPassword, usuarioEstado, idPersonas) VALUES (?,?,?,?)";
-		try {
-			$stmt = $this->conectar()->prepare($sql);
-			$stmt->bindParam(1, $datosUsuario['usuario'], PDO::PARAM_STR);
-			$stmt->bindParam(2, $datosUsuario['password'], PDO::PARAM_STR);
-			$stmt->bindParam(3, $datosUsuario['estado'], PDO::PARAM_STR);
-			$stmt->bindParam(4, $datosUsuario['idPersona'], PDO::PARAM_INT);
-			if ($stmt->execute()) {
-				return true;
-			}else{
-				return false;
-			}
-		} catch (PDOException $e) {
-			print_r($e->getMessage());
-		}
+	public function registrarUsuarioModelo($data) {
+		$estado = 'Activo';
+		return DB::table('nutrimenu')->insert([
+			'idPersona' => $data['idPersona'],
+			'usuarioLogin' => $data['usuarioLogin'],
+			'usuarioPassword' => $data['usuarioPassword'],
+			'idRol' => $data['idRol'],
+			'usuarioEstado' => 'Activo'
+		])->execute();
 	}
 
 	public function validateSessionModelo(array $data) {
