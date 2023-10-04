@@ -16,15 +16,15 @@ class UsuarioModelo extends Connection {
 	}
 
 	public function registrarUsuarioModelo($data) {
-		$estado = 'Activo';
-		return DB::table('nutrimenu')->insert([
-			'idPersona' => $data['idPersona'],
-			'usuarioLogin' => $data['usuarioLogin'],
-			'usuarioPassword' => $data['usuarioPassword'],
-			'idRol' => $data['idRol'],
-			'usuarioEstado' => 'Activo'
-		])->execute();
-	}
+    return DB::table('usuarios')->insert([
+    	'usuarioLogin' => $data['usuarioLogin'],
+    	'usuarioPassword' => $data['usuarioPassword'],
+    	'usuarioEstado' => 'Activo',
+        'idPersona' => $data['idPersona'],
+        'idRol' => $data['idRol'],
+    ])->execute();
+}
+
 
 	public function validateSessionModelo(array $data) {
 		$sql = "SELECT count(*) AS cont FROM usuarios WHERE usuarioLogin=? AND usuarioPassword=?";
@@ -52,75 +52,38 @@ class UsuarioModelo extends Connection {
 		}
 	}
 
-	public function consultarUsuarioModelo($datosUsuario) {
-
-		$datosUsuario = '%'.$datosUsuario.'%';
-
-
-		$sql = "SELECT * FROM $this->tabla WHERE usuarioLogin LIKE ?";
-		try {
-			$stmt = $this->conectar()->prepare($sql);
-			$stmt->bindParam(1, $datosUsuario, PDO::PARAM_STR);
-			if ($stmt->execute()) {
-				return $stmt->fetchAll();
-			} else {
-				return [];
-			}
-		} catch (PDOException $e) {
-			print_r($e->getMessage());
-		}
+	public function consultarUsuarioModelo() {
+		return DB::table(
+            DB::as('usuarios', 'user')
+        )->select(
+            DB::column('personaNombreCompleto', 'prs'),
+            DB::column('usuarioLogin', 'user'),
+            DB::column('rolNombre', 'rol'),
+            DB::column('usuarioEstado', 'user'),
+        )->inner()->join(
+            DB::as('personas', 'prs'),
+            DB::column('idPersona', 'user'),
+            DB::column('idPersona', 'prs'),
+        )->inner()->join(
+            DB::as('roles', 'rol'),
+            DB::column('idRol', 'user'),
+            DB::column('idRol', 'rol'),
+        )->getAll();
 	}
 
-	public function consultarUsuarioIdModelo($id) {
-		$sql = "SELECT * FROM $this->tabla WHERE idUsuario=?";
-		try {
-			$stmt = $this->conectar()->prepare($sql);	
-			$stmt->bindParam(1, $id, PDO::PARAM_INT);		
-			if ($stmt->execute()) {
-				return $stmt->fetchAll();
-			}
-			else{
-				return [];
-			}
-		} catch (PDOException $e) {
-			print_r($e->getMessage());
-		}
+	public function actualizarUsuarioModelo($data) {
+		return DB::table('usuarios')->update([
+			'usuarioLogin' => $data['usuarioLogin'],
+			'usuarioEstado' => $data['usuarioEstado']
+		])->where(
+			DB::equalTo('idUsuario'), $data['idUsuario'])
+		->execute();
 	}
 
-	public function actualizarUsuarioModelo($datosUsuario){
-		$sql = "UPDATE $this->tabla SET usuarioLogin=?, usuarioPassword=?, usuarioEstado=? WHERE idUsuario = ?";
-		try {
-			$stmt = $this->conectar()->prepare($sql);
-			$stmt->bindParam(1,$datosUsuario['login'],PDO::PARAM_STR);
-			$stmt->bindParam(2,$datosUsuario['password'],PDO::PARAM_STR);
-			$stmt->bindParam(3,$datosUsuario['estado'],PDO::PARAM_STR);
-			$stmt->bindParam(4,$datosUsuario['id'],PDO::PARAM_INT);
-			if ($stmt->execute()) {
-				return true;
-			}
-			else{
-				return false;
-			}
-		} catch (PDOException $e) {
-			print_r($e->getMessage());			
-		}
-	}
-
-	public function eliminarUsuarioModelo($id){
-
-		$sql= "DELETE FROM $this->tabla WHERE idUsuario = ?";
-
-		try {
-			$stmt = $this->conectar()->prepare($sql);
-			$stmt->bindParam(1, $id, PDO::PARAM_INT);
-			if ($stmt->execute()) {
-				return true;
-			}
-			else{
-				return false;
-			}
-		} catch (PDOException $e) {
-			print_r($e->getMessage());
-		}
+	public function eliminarUsuarioModelo($data) {
+		return DB::table('usuarios')
+			->delete()
+			->where(DB::equalTo('idUsuario'), $data['idUsuario'])
+			->execute();
 	}
 }

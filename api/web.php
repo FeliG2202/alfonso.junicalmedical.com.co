@@ -120,6 +120,7 @@ Route::prefix('frmPedEdit',function(){
     Route::delete('delete/{idMenuSeleccionado}', [PedAlmMenuControlador::class, 'eliminarAlmTipoControlador']);
 });
 
+// registrar Roles del sistema
 Route::prefix('frmRol',function(){
     Route::post('create',[RolControlador::class, "registrarRolControlador"]);
     Route::get('read',[RolControlador::class, "consultarRolControlador"]);
@@ -127,13 +128,15 @@ Route::prefix('frmRol',function(){
     Route::delete('delete/{idRol}', [RolControlador::class, "eliminarRolControlador"]);
 });
 
+// ceracion de usuarios para el sistema
 Route::prefix('frmUser',function(){
     Route::post('create',[UsuarioControlador::class, "registrarUsuarioControlador"]);
     Route::get('read',[UsuarioControlador::class, "consultarUsuarioControlador"]);
-    Route::put('update',[UsuarioControlador::class, ""]);
-    Route::delete('delete',[UsuarioControlador::class, ""]);
+    Route::put('update/{idUsuario}',[UsuarioControlador::class, "actualizarUsuarioControlador"]);
+    Route::delete('delete/{idUsuario}',[UsuarioControlador::class, "eliminarUsuarioControlador"]);
 });
 
+// creacion de empleados
 Route::prefix('frmPerson',function(){
     Route::post('create',[PersonaControlador::class, ""]);
     Route::get('read',[PersonaControlador::class, "consultarPersonaControlador"]);

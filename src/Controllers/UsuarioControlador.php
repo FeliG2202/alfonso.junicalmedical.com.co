@@ -46,9 +46,9 @@ class UsuarioControlador {
 
 	public function registrarUsuarioControlador() {
 		$res = $this->usuarioModelo->registrarUsuarioModelo([
-			'idPersona' => request->idPersona,
 			'usuarioLogin' => request->usuarioLogin,
 			'usuarioPassword' => request->usuarioPassword,
+			'idPersona' => request->idPersona,
 			'idRol' => request->idRol
 		]);
 
@@ -60,41 +60,32 @@ class UsuarioControlador {
 	}
 
 	public function consultarUsuarioControlador() {
-		if (isset($_POST['btnBuscarusuario'])) {
-			$datosUsuario =  $_POST['datoBusqueda'];
-		} else {
-			$datosUsuario = "";
-		}
-
-		$usuarioModelo = new UsuarioModelo();
-		return $usuarioModelo->consultarUsuarioModelo($datosUsuario);
+		return $this->usuarioModelo->consultarUsuarioModelo();
 	}
 
-	public function actualizarUsuarioControlador()
-	{
-		if (isset($_POST['updusuario'])) {
-			$datosUsuario = array(
-				'login' => $_POST['login'],
-				'password' => $_POST['password'],
-				'estado' => $_POST['estado'],
-				'id' => $_GET['id']
-			);
-			$usuarioModelo = new UsuarioModelo();
-			return !$usuarioModelo->actualizarUsuarioModelo($datosUsuario)
-				? (object) ['request' => false, 'url' => "index.php?folder=frmUsuarios&view=frmRegUsuarios"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmUsuarios&view=frmConUsuarios"];
+	public function actualizarUsuarioControlador(string $idNutriEnsal) {
+		$res = $this->usuarioModelo->actualizarUsuarioModelo([
+			'nutriEnsalNombre' => request->nutriEnsalNombre,
+			'idNutriEnsal' => (int) $idNutriEnsal
+		]);
+
+		if ($res->status === 'database-error') {
+			return response->code(500)->error('Error al momento de actualizar');
 		}
+
+		return response->code(200)->success('tipo actualizado correctamente');
 	}
 
+	public function eliminarUsuarioControlador(string $idUsuario) {
+		$res = $this->usuarioModelo->eliminarUsuarioModelo([
+			'idUsuario' => (int) $idUsuario
+		]);
 
-	public function eliminarUsuarioControlador()
-	{
-		if (isset($_GET['id'])) {
-
-			$usuarioModelo = new UsuarioModelo();
-			return !$usuarioModelo->eliminarUsuarioModelo($_GET['id'])
-				? (object) ['request' => false, 'url' => "index.php?folder=frmUsuarios&view=frmConUsuarios"]
-				: (object) ['request' => true, 'url' => "index.php?folder=frmUsuarios&view=frmConUsuarios"];
+		if ($res->status === 'database-error') {
+			return $res;
+			return response->code(500)->error('Error al momento de Eliminar');
 		}
+
+		return response->code(200)->success('Eliminado correctamente');
 	}
 }
