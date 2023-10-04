@@ -137,10 +137,10 @@ Route::prefix('frmUser',function(){
 });
 
 // creacion de empleados
-Route::prefix('frmPerson',function(){
-    Route::post('create',[PersonaControlador::class, ""]);
+Route::prefix('frmEmpl',function(){
+    Route::post('create',[PersonaControlador::class, "registrarPersonaControlador"]);
     Route::get('read',[PersonaControlador::class, "consultarPersonaControlador"]);
-    Route::put('update',[PersonaControlador::class, ""]);
-    Route::delete('delete',[PersonaControlador::class, ""]);
+    Route::put('update/{idPersona}',[PersonaControlador::class, "actualizarPersonaControlador"]);
+    Route::delete('delete/{idPersona}',[PersonaControlador::class, "eliminarPersonaControlador"]);
 });
 

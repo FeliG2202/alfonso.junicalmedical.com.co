@@ -76,7 +76,7 @@ if (!isset($_SESSION['session'])) {
 // FORMULARIO User
 	uploadSelect([
 		objectSelect('/api/frmRol/read', 'idRol', 'idRol', ['rolNombre']),
-		objectSelect('/api/frmPerson/read', 'idPersona', 'idPersona', ['personaDocumento','personaNombreCompleto'])
+		objectSelect('/api/frmEmpl/read', 'idPersona', 'idPersona', ['personaDocumento','personaNombreCompleto'])
 		]);
 
 //REGISTRAR FORMULARIO

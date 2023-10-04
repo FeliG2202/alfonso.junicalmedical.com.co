@@ -7,50 +7,56 @@ use PHP\Models\PersonaModelo;
 class PersonaControlador {
 
 	private $PersonaModelo;
+
 	function __construct(){
 		$this->PersonaModelo = new PersonaModelo();
 	}
-	
+
 	public function registrarPersonaControlador() {
-		if(isset($_POST['regPersona'])){
-			$datosPersona = array('nombreCompleto' => $_POST['nombreCompleto'], 
-				'identificacion'=>$_POST['identificacion'],
-				'email' => $_POST['email'],
-				'cell' => $_POST['cell']);
+		$res = $this->PersonaModelo->registrarPersonaModelo([
+			'personaDocumento' => request->personaDocumento,
+			'personaNombreCompleto' => request->personaNombreCompleto,
+			'personaCorreo' => request->personaCorreo,
+			'personaNumberCell' => request->personaNumberCell
+		]);
 
-
-			return !$this->PersonaModelo->registrarPersonaModelo($datosPersona) 
-			? (object) ['request' => false, 'url' => "index.php?folder=frmPersona&view=frmRegPersona"] 
-			: (object) ['request' => true, 'url' => "index.php?folder=frmPersona&view=frmConPersona"];
+		if ($res->status === "database-error") {
+			return response->code(500)->error('Error al momento de registrar');
 		}
+
+		return response->code(200)->success('registrado correctamente');
 	}
 
 	public function consultarPersonaControlador() {
 		return $this->PersonaModelo->consultarPersonaModelo();
 	}
 
+	public function actualizarPersonaControlador(string $idPersona) {
+		$res = $this->PersonaModelo->actualizarPersonaModelo([
+			'personaDocumento' => request->personaDocumento,
+			'personaNombreCompleto' => request->personaNombreCompleto,
+			'personaCorreo' => request->personaCorreo,
+			'personaNumberCell' => request->personaNumberCell,
+			'idPersona' => (int) $idPersona
+		]);
 
-	public function actualizarPersonaControlador(){
-		if (isset($_POST['updPersona'])) {
-			$datosPersona = array('nombreCompleto'=>$_POST['nombreCompleto'],
-				'identificacion'=>$_POST['identificacion'],
-				'email'=>$_POST['email'],
-				'cell'=>$_POST['cell'],
-				'id'=>$_GET['id']);
-
-
-			return !$this->PersonaModelo->actualizarPersonaModelo($datosPersona) 
-			? (object) ['request' => false, 'url' => "index.php?folder=frmPersona&view=frmEditPersona"] 
-			: (object) ['request' => true, 'url' => "index.php?folder=frmPersona&view=frmConPersona"];
+		if ($res->status === 'database-error') {
+			return response->code(500)->error('Error al momento de actualizar');
 		}
+
+		return response->code(200)->success('tipo actualizado correctamente');
 	}
 
-	public function eliminarPersonaControlador() {
-		if (isset($_GET['id'])) {
+	public function eliminarPersonaControlador(string $idPersona) {
+		$res = $this->PersonaModelo->eliminarPersonaModelo([
+			'idPersona' => (int) $idPersona
+		]);
 
-			return !$this->PersonaModelo->eliminarPersonaModelo($_GET['id']) 
-			? (object) ['request' => false, 'url' => "index.php?folder=frmPersona&view=frmConPersona"] 
-			: (object) ['request' => true, 'url' => "index.php?folder=frmPersona&view=frmConPersona"];
+		if ($res->status === 'database-error') {
+			return $res;
+			return response->code(500)->error('Error al momento de Eliminar');
 		}
+
+		return response->code(200)->success('Eliminado correctamente');
 	}
 }
