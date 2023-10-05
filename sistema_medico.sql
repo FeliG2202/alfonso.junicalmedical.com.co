@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 02-10-2023 a las 16:48:49
+-- Tiempo de generación: 04-10-2023 a las 21:02:40
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.8
 
@@ -20,32 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistema_medico`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `menus`
---
-
-CREATE TABLE `menus` (
-  `idMenu` int NOT NULL,
-  `menuNombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `menuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
-  `idRol` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `menus`
---
-
-INSERT INTO `menus` (`idMenu`, `menuNombre`, `menuEstado`, `idRol`) VALUES
-(1, 'Personas', 'online', '3'),
-(2, 'Usuarios', 'online', '3'),
-(3, 'Perfiles', 'online', '3'),
-(4, 'Menu', 'online', '3'),
-(10, 'Perfiles Usuario', 'online', '3'),
-(11, 'Formulario', 'online/offline', '1,2,3'),
-(12, 'Ingresar Menú Almuerzo', 'online', '1');
 
 -- --------------------------------------------------------
 
@@ -138,7 +112,7 @@ INSERT INTO `nutriarroz` (`idNutriArroz`, `nutriArrozNombre`) VALUES
 (1, 'Arroz blanco'),
 (2, 'Arroz con Fideo'),
 (3, 'Arroz Moreno'),
-(4, 'Arroz con Pollo'),
+(4, '66683773'),
 (5, 'Arroz con Perejil'),
 (6, 'Arroz de zanahoria');
 
@@ -255,7 +229,7 @@ CREATE TABLE `nutrimenu` (
   `idNutriDias` int NOT NULL,
   `idNutriSopa` int NOT NULL,
   `idNutriArroz` int NOT NULL,
-  `idNutriProte` int NOT NULL,
+  `idNutriProte` int DEFAULT NULL,
   `idNutriEnerge` int DEFAULT NULL,
   `idNutriAcomp` int NOT NULL,
   `idNutriEnsal` int NOT NULL,
@@ -357,8 +331,6 @@ CREATE TABLE `nutrisopa` (
 
 INSERT INTO `nutrisopa` (`idNutriSopa`, `nutriSopaNombre`) VALUES
 (1, 'Sopa de pastas'),
-(2, 'Sopa de mute'),
-(3, 'Sopa de verduras'),
 (4, 'Sopa de avena'),
 (5, 'Sopa de cuchuco'),
 (6, 'Sopa de cebada'),
@@ -392,50 +364,6 @@ INSERT INTO `nutritipo` (`idNutriTipo`, `nutriTipoNombre`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `opcionesmenu`
---
-
-CREATE TABLE `opcionesmenu` (
-  `idOpcionMenu` int NOT NULL,
-  `idMenu` int NOT NULL,
-  `opcionMenuNombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `opcionMenuEnlace` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `opcionesmenu_folder` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `opcionMenuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
-  `idRol` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `opcionesmenu`
---
-
-INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcionMenuEnlace`, `opcionesmenu_folder`, `opcionMenuEstado`, `idRol`) VALUES
-(6, 4, 'registrar Opciones Menu', 'frmRegOpcionesMenu', 'frmMenu', 'online', '3'),
-(7, 4, 'registrar Menu', 'frmRegMenu', 'frmMenu', 'online', '3'),
-(8, 4, 'Consultar Menu', 'frmConMenu', 'frmMenu', 'online', '3'),
-(12, 1, 'Registrar personas', 'frmRegPersona', 'frmPersona', 'online', '3'),
-(13, 2, 'registrar Usuarios', 'frmRegUsuario', 'frmUsuarios', 'online', '3'),
-(14, 1, 'consultar personas', 'FrmConPersona', 'frmPersona', 'online', '3'),
-(15, 2, 'Consultar Usuarios', 'frmConUsuarios', 'frmUsuarios', 'online', '3'),
-(16, 3, 'registrar perfiles', 'frmRegRol', 'frmRol', 'online', '3'),
-(17, 10, 'Registrar Rol Usuario', 'frmRegRolUsuario', 'frmRol', 'online', '3'),
-(18, 4, 'Asignar Menu Principal a Perfiles', 'frmRegRolMenu', 'frmMenu', 'online', '3'),
-(19, 11, 'Almuerzo', 'frmDieta', 'frmPedPaci', 'online/offline', '1,2,3'),
-(20, 12, 'Tipo Menu', 'frmAlmRegTipo', 'frmAlmTipo', 'online', '1'),
-(21, 12, 'Sopa', 'frmAlmRegSopa', 'frmAlmSopa', 'online', '1'),
-(22, 12, 'Acompañamiento', 'frmAlmRegAcomp', 'frmAlmAcomp', 'online', '1'),
-(23, 12, 'Bebida', 'frmAlmRegBebida', 'frmAlmBebida', 'online', '1'),
-(24, 12, 'Energetico', 'frmAlmRegEnerge', 'frmAlmEnerge', 'online', '1'),
-(25, 12, 'Ensalada', 'frmAlmRegEnsal', 'frmAlmEnsal', 'online', '1'),
-(26, 12, 'Proteina', 'frmAlmRegProte', 'frmAlmProte', 'online', '1'),
-(27, 11, 'Menu', 'frmAlmRegMenu', 'frmAlmMenu', 'online', '1,3'),
-(28, 12, 'Arroz', 'frmAlmRegArroz', 'frmAlmArroz', 'online', '1'),
-(29, 10, 'Registrar Perfil', 'frmRegRol', 'frmRol', 'online', '1'),
-(30, 11, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `pacientes`
 --
 
@@ -465,7 +393,7 @@ INSERT INTO `pacientes` (`idPaciente`, `pacienteNombre`, `pacienteDocumento`, `p
 CREATE TABLE `personas` (
   `idPersona` int NOT NULL,
   `personaNombreCompleto` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `personaNumberCell` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `personaNumberCell` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `personaCorreo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `personaDocumento` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `personasCodigo` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL
@@ -478,7 +406,8 @@ CREATE TABLE `personas` (
 INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell`, `personaCorreo`, `personaDocumento`, `personasCodigo`) VALUES
 (1, 'Felipe Gavilan Castaño', '3156078058', 'felipegavilan2202@gmail.com', '1005958885', NULL),
 (2, 'Andre Castaño Molina', '3156530301', 'fgavilac@junical.com.co', '123456789', NULL),
-(3, 'Ana E Sotelo', '123456789', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', NULL);
+(3, 'Ana E Sotelo', '', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', NULL),
+(4, 'Adriana Maria Suarez', '', 'adrianamsg.07@gmail.com', '66683773', NULL);
 
 -- --------------------------------------------------------
 
@@ -496,34 +425,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`idRol`, `rolNombre`) VALUES
-(1, 'Administrador'),
-(3, 'Root'),
+(1, 'Administradores'),
+(3, 'root'),
 (2, 'Usuario');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `rolesmenu`
---
-
-CREATE TABLE `rolesmenu` (
-  `idRolMenu` int NOT NULL,
-  `rolMenuEstado` enum('activo','Inactivo') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `idMenu` int NOT NULL,
-  `idRol` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `rolesmenu`
---
-
-INSERT INTO `rolesmenu` (`idRolMenu`, `rolMenuEstado`, `idMenu`, `idRol`) VALUES
-(1, 'activo', 11, 5),
-(2, 'activo', 11, 5),
-(3, 'activo', 12, 8),
-(4, 'activo', 4, 8),
-(5, 'activo', 3, 8),
-(6, 'activo', 10, 8);
 
 -- --------------------------------------------------------
 
@@ -533,10 +437,10 @@ INSERT INTO `rolesmenu` (`idRolMenu`, `rolMenuEstado`, `idMenu`, `idRol`) VALUES
 
 CREATE TABLE `usuarios` (
   `idUsuario` int NOT NULL,
-  `usuarioLogin` char(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `usuarioLogin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `usuarioPassword` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `usuarioEstado` enum('Activo','Inactivo') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `idPersonas` int NOT NULL,
+  `idPersona` int NOT NULL,
   `idRol` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
@@ -544,45 +448,74 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuarioEstado`, `idPersonas`, `idRol`) VALUES
-(1, 'Maria sdssds', 'Maria123', 'Inactivo', 1, 2),
-(2, 'Ubaldo', 'Ubaldo123', 'Inactivo', 2, 2),
-(3, 'maxi', 'Maxi123', 'Inactivo', 4, 2),
-(6, 'Maria', '11323232', 'Inactivo', 1, 2),
-(12, 'Fgavilac', '1234', 'Activo', 4, 3),
-(36, 'Sleon', '1212', 'Activo', 1, 1);
+INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuarioEstado`, `idPersona`, `idRol`) VALUES
+(1, 'Asotelo', '1234', 'Activo', 3, 2),
+(2, 'Fgavilac', '1234', 'Activo', 1, 3),
+(3, 'Sleon', '1212', 'Activo', 2, 1),
+(37, 'Fgavilanc', '1234', 'Activo', 1, 1),
+(38, 'Acastañom', '123456', 'Inactivo', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuariosroles`
+-- Estructura de tabla para la tabla `opcionesmenu`
 --
 
-CREATE TABLE `usuariosroles` (
-  `idUsuarioRol` int NOT NULL,
-  `usuarioRolEstado` enum('true','false') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'true',
-  `idUsuario` int NOT NULL,
-  `idRol` int NOT NULL
+CREATE TABLE `opcionesmenu` (
+  `idOpcionMenu` int NOT NULL,
+  `idMenu` int NOT NULL,
+  `opcionMenuNombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `opcionMenuEnlace` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `opcionesmenu_folder` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `opcionMenuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
+  `idRol` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
--- Volcado de datos para la tabla `usuariosroles`
+-- Volcado de datos para la tabla `opcionesmenu`
 --
 
-INSERT INTO `usuariosroles` (`idUsuarioRol`, `usuarioRolEstado`, `idUsuario`, `idRol`) VALUES
-(13, 'true', 2, 5),
-(14, 'true', 2, 7),
-(15, 'true', 3, 5),
-(16, 'true', 3, 7),
-(17, 'true', 12, 5),
-(18, 'true', 12, 7),
-(27, 'true', 6, 8),
-(29, 'true', 6, 5),
-(30, 'true', 2, 8),
-(32, 'true', 1, 5),
-(33, 'true', 1, 8),
-(34, 'true', 1, 7),
-(35, 'true', 12, 8);
+INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcionMenuEnlace`, `opcionesmenu_folder`, `opcionMenuEstado`, `idRol`) VALUES
+(1, 4, 'registrar Opciones Menu', 'frmRegOpcionesMenu', 'frmSidebarOption', 'online', '3'),
+(2, 4, 'registrar Menu', 'frmRegMenu', 'frmSidebar', 'online', '3'),
+(3, 1, 'Creación de Usuarios', 'frmRegUsuario', 'frmUsuarios', 'online', '3'),
+(4, 1, 'Creacion de Empleados', 'frmEmplReg', 'frmEmpleado', 'online', '3'),
+(5, 2, 'Perfiles de Usuario', 'frmRegRol', 'frmRol', 'online', '3'),
+(6, 4, 'Almuerzo', 'frmDieta', 'frmPedPaci', 'online/offline', '1,2,3'),
+(7, 5, 'Tipo Menu', 'frmAlmRegTipo', 'frmAlmTipo', 'online', '1'),
+(8, 5, 'Sopa', 'frmAlmRegSopa', 'frmAlmSopa', 'online', '1'),
+(9, 5, 'Acompañamiento', 'frmAlmRegAcomp', 'frmAlmAcomp', 'online', '1'),
+(10, 5, 'Bebida', 'frmAlmRegBebida', 'frmAlmBebida', 'online', '1'),
+(11, 5, 'Energetico', 'frmAlmRegEnerge', 'frmAlmEnerge', 'online', '1'),
+(12, 12, 'Ensalada', 'frmAlmRegEnsal', 'frmAlmEnsal', 'online', '1'),
+(13, 5, 'Proteina', 'frmAlmRegProte', 'frmAlmProte', 'online', '1'),
+(14, 4, 'Menu', 'frmAlmRegMenu', 'frmAlmMenu', 'online', '1,3'),
+(15, 5, 'Arroz', 'frmAlmRegArroz', 'frmAlmArroz', 'online', '1'),
+(16, 4, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menus`
+--
+
+CREATE TABLE `menus` (
+  `idMenu` int NOT NULL,
+  `menuNombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `menuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
+  `idRol` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `menus`
+--
+
+INSERT INTO `menus` (`idMenu`, `menuNombre`, `menuEstado`, `idRol`) VALUES
+(1, 'Usuarios', 'online', '3'),
+(2, 'Perfiles', 'online', '3'),
+(3, 'Menu', 'online', '3'),
+(4, 'Formulario', 'online/offline', '1,2,3'),
+(5, 'Ingresar Menú Almuerzo', 'online', '1');
 
 -- --------------------------------------------------------
 
@@ -592,17 +525,17 @@ INSERT INTO `usuariosroles` (`idUsuarioRol`, `usuarioRolEstado`, `idUsuario`, `i
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -613,48 +546,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
-);
-
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `view_rolesusuarios`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `view_rolesusuarios` (
-`idRol` int
-,`idUsuario` int
-,`idUsuarioRol` int
-,`rolNombre` varchar(50)
-,`usuarioLogin` char(15)
-,`usuarioRolEstado` enum('true','false')
-);
-
--- --------------------------------------------------------
-
---
--- Estructura Stand-in para la vista `view_usuariosroles`
--- (Véase abajo para la vista actual)
---
-CREATE TABLE `view_usuariosroles` (
-`idRol` int
-,`idUsuario` int
-,`idUsuarioRol` int
-,`rolNombre` varchar(50)
-,`usuarioEstado` enum('Activo','Inactivo')
-,`usuarioLogin` char(15)
-,`usuarioRolEstado` enum('true','false')
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -674,24 +576,6 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `View_nutrimenupaci`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `View_nutrimenupaci`  AS SELECT `nutrimenupaci`.`idNutriMenuPaci` AS `idNutriMenuPaci`, `nutritipo`.`nutriTipoNombre` AS `nutriTipoNombre`, `nutridias`.`nutriDiasNombre` AS `nutriDiasNombre`, `nutrisopa`.`nutriSopaNombre` AS `nutriSopaNombre`, `nutriarroz`.`nutriArrozNombre` AS `nutriArrozNombre`, `nutriprote`.`nutriProteNombre` AS `nutriProteNombre`, `nutrienerge`.`nutriEnergeNombre` AS `nutriEnergeNombre`, `nutriacomp`.`nutriAcompNombre` AS `nutriAcompNombre`, `nutriensal`.`nutriEnsalNombre` AS `nutriEnsalNombre`, `nutribebida`.`nutriBebidaNombre` AS `nutriBebidaNombre`, `nutrisemana`.`nutriSemanaNombre` AS `nutriSemanaNombre`, `nutrisemana`.`nutriSemanaid` AS `nutriSemanaid` FROM ((((((((((`nutrimenupaci` join `nutritipo` on((`nutrimenupaci`.`idNutriTipo` = `nutritipo`.`idNutriTipo`))) join `nutridias` on((`nutrimenupaci`.`idNutriDias` = `nutridias`.`idNutriDias`))) join `nutrisopa` on((`nutrimenupaci`.`idNutriSopa` = `nutrisopa`.`idNutriSopa`))) join `nutriarroz` on((`nutrimenupaci`.`idNutriArroz` = `nutriarroz`.`idNutriArroz`))) join `nutriprote` on((`nutrimenupaci`.`idNutriProte` = `nutriprote`.`idNutriProte`))) join `nutrienerge` on((`nutrimenupaci`.`idNutriEnerge` = `nutrienerge`.`idNutriEnerge`))) join `nutriacomp` on((`nutrimenupaci`.`idNutriAcomp` = `nutriacomp`.`idNutriAcomp`))) join `nutriensal` on((`nutrimenupaci`.`idNutriEnsal` = `nutriensal`.`idNutriEnsal`))) join `nutribebida` on((`nutrimenupaci`.`idNutriBebida` = `nutribebida`.`idNutriBebida`))) join `nutrisemana` on((`nutrimenupaci`.`idNutriSemana` = `nutrisemana`.`idNutriSemana`))) ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `view_rolesusuarios`
---
-DROP TABLE IF EXISTS `view_rolesusuarios`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_rolesusuarios`  AS SELECT `a`.`idUsuarioRol` AS `idUsuarioRol`, `a`.`idUsuario` AS `idUsuario`, `a`.`idRol` AS `idRol`, `a`.`usuarioRolEstado` AS `usuarioRolEstado`, `b`.`usuarioLogin` AS `usuarioLogin`, `c`.`rolNombre` AS `rolNombre` FROM ((`usuariosroles` `a` join `usuarios` `b`) join `roles` `c`) WHERE ((`a`.`idUsuario` = `b`.`idUsuario`) AND (`a`.`idRol` = `c`.`idRol`)) ;
-
--- --------------------------------------------------------
-
---
--- Estructura para la vista `view_usuariosroles`
---
-DROP TABLE IF EXISTS `view_usuariosroles`;
-
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_usuariosroles`  AS SELECT `ur`.`idUsuarioRol` AS `idUsuarioRol`, `ur`.`usuarioRolEstado` AS `usuarioRolEstado`, `ur`.`idUsuario` AS `idUsuario`, `ur`.`idRol` AS `idRol`, `us`.`usuarioLogin` AS `usuarioLogin`, `us`.`usuarioEstado` AS `usuarioEstado`, `ro`.`rolNombre` AS `rolNombre` FROM ((`usuariosroles` `ur` join `usuarios` `us`) join `roles` `ro`) WHERE ((`ur`.`idUsuario` = `us`.`idUsuario`) AND (`ur`.`idRol` = `ro`.`idRol`)) ;
 
 --
 -- Índices para tablas volcadas
@@ -838,29 +722,15 @@ ALTER TABLE `roles`
   ADD UNIQUE KEY `rolNombre` (`rolNombre`);
 
 --
--- Indices de la tabla `rolesmenu`
---
-ALTER TABLE `rolesmenu`
-  ADD PRIMARY KEY (`idRolMenu`),
-  ADD KEY `fk-idMenu-RolesMenu_idx` (`idMenu`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`),
   ADD UNIQUE KEY `login` (`usuarioLogin`),
   ADD UNIQUE KEY `usuarioLogin_2` (`usuarioLogin`),
-  ADD KEY `idPersonas` (`idPersonas`),
-  ADD KEY `usuarioLogin` (`usuarioLogin`);
-
---
--- Indices de la tabla `usuariosroles`
---
-ALTER TABLE `usuariosroles`
-  ADD PRIMARY KEY (`idUsuarioRol`),
-  ADD UNIQUE KEY `indx-unico-idrol-idusuario-usuarioroles` (`idUsuario`,`idRol`),
-  ADD KEY `idUsuario` (`idUsuario`);
+  ADD KEY `idPersona` (`idPersona`),
+  ADD KEY `usuarioLogin` (`usuarioLogin`),
+  ADD KEY `FK_idRol_Roles` (`idRol`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -870,7 +740,7 @@ ALTER TABLE `usuariosroles`
 -- AUTO_INCREMENT de la tabla `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `idMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
@@ -954,7 +824,7 @@ ALTER TABLE `nutritipo`
 -- AUTO_INCREMENT de la tabla `opcionesmenu`
 --
 ALTER TABLE `opcionesmenu`
-  MODIFY `idOpcionMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idOpcionMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
@@ -966,31 +836,19 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idRol` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT de la tabla `rolesmenu`
---
-ALTER TABLE `rolesmenu`
-  MODIFY `idRolMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idRol` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT de la tabla `usuariosroles`
---
-ALTER TABLE `usuariosroles`
-  MODIFY `idUsuarioRol` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
@@ -1039,6 +897,19 @@ ALTER TABLE `nutrimenupaci`
   ADD CONSTRAINT `nutrimenupaci_ibfk_7` FOREIGN KEY (`idNutriAcomp`) REFERENCES `nutriacomp` (`idNutriAcomp`),
   ADD CONSTRAINT `nutrimenupaci_ibfk_8` FOREIGN KEY (`idNutriEnsal`) REFERENCES `nutriensal` (`idNutriEnsal`),
   ADD CONSTRAINT `nutrimenupaci_ibfk_9` FOREIGN KEY (`idNutriBebida`) REFERENCES `nutribebida` (`idNutriBebida`);
+
+--
+-- Filtros para la tabla `opcionesmenu`
+--
+ALTER TABLE `opcionesmenu`
+  ADD CONSTRAINT `FK_idMenu_Menus` FOREIGN KEY (`idMenu`) REFERENCES `menus` (`idMenu`);
+
+--
+-- Filtros para la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `FK_idPersonas_Personas` FOREIGN KEY (`idPersona`) REFERENCES `personas` (`idPersona`),
+  ADD CONSTRAINT `FK_idRol_Roles` FOREIGN KEY (`idRol`) REFERENCES `roles` (`idRol`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

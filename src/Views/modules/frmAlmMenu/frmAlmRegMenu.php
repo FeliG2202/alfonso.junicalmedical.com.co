@@ -73,7 +73,7 @@ if (!isset($_SESSION['session'])) {
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
 										<label class="form-label" for="idNutriProte1">Proteina</label>
-										<select id="idNutriProte1" name="idNutriProte1" class="form-select" required>
+										<select id="idNutriProte1" name="idNutriProte1" class="form-select">
 											<option value="" selected>Seleccione</option>
 										</select>
 									</div>
@@ -82,7 +82,7 @@ if (!isset($_SESSION['session'])) {
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
 										<label class="form-label" for="idNutriEnerge1">Energetico</label>
-										<select id="idNutriEnerge1" name="idNutriEnerge1" class="form-select" required>
+										<select id="idNutriEnerge1" name="idNutriEnerge1" class="form-select">
 											<option value="" selected>Seleccione</option>
 										</select>
 									</div>
@@ -91,7 +91,7 @@ if (!isset($_SESSION['session'])) {
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
 										<label class="form-label" for="idNutriAcomp1">Acompañamiento</label>
-										<select id="idNutriAcomp1" name="idNutriAcomp1" class="form-select" required>
+										<select id="idNutriAcomp1" name="idNutriAcomp1" class="form-select">
 											<option value="" selected>Seleccione</option>
 										</select>
 									</div>
@@ -186,7 +186,7 @@ if (!isset($_SESSION['session'])) {
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
 										<label class="form-label" for="idNutriProte2">Proteina</label>
-										<select id="idNutriProte2" name="idNutriProte2" class="form-select" required>
+										<select id="idNutriProte2" name="idNutriProte2" class="form-select">
 											<option value="" selected>Seleccione</option>
 										</select>
 									</div>
@@ -195,7 +195,7 @@ if (!isset($_SESSION['session'])) {
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
 										<label class="form-label" for="idNutriEnerge2">Energetico</label>
-										<select id="idNutriEnerge2" name="idNutriEnerge2" class="form-select" required>
+										<select id="idNutriEnerge2" name="idNutriEnerge2" class="form-select">
 											<option value="" selected>Seleccione</option>
 										</select>
 									</div>
@@ -204,7 +204,7 @@ if (!isset($_SESSION['session'])) {
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
 										<label class="form-label" for="idNutriAcomp2">Acompañamiento</label>
-										<select id="idNutriAcomp2" name="idNutriAcomp2" class="form-select" required>
+										<select id="idNutriAcomp2" name="idNutriAcomp2" class="form-select">
 											<option value="" selected>Seleccione</option>
 										</select>
 									</div>
