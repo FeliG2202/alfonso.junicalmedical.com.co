@@ -16,7 +16,6 @@ class AlmMenuModelo {
 			'idNutriEnerge' => $data['idNutriEnerge'],
 			'idNutriAcomp' => $data['idNutriAcomp'],
 			'idNutriEnsal' => $data['idNutriEnsal'],
-			'idNutriBebida' => $data['idNutriBebida'],
 			'idNutriSemana' => $data['idNutriSemana']
 		])->execute();
 	}
@@ -31,7 +30,6 @@ class AlmMenuModelo {
 			'idNutriEnerge' => $data['idNutriEnerge'],
 			'idNutriAcomp' => $data['idNutriAcomp'],
 			'idNutriEnsal' => $data['idNutriEnsal'],
-			'idNutriBebida' => $data['idNutriBebida'],
 			'idNutriSemana' => $data['idNutriSemana']
 		])->execute();
 	}

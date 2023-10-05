@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 04-10-2023 a las 21:02:40
+-- Tiempo de generación: 05-10-2023 a las 15:24:25
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.8
 
@@ -20,6 +20,32 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistema_medico`
 --
+CREATE DATABASE IF NOT EXISTS `sistema_medico` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+USE `sistema_medico`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `menus`
+--
+
+CREATE TABLE `menus` (
+  `idMenu` int NOT NULL,
+  `menuNombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `menuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
+  `idRol` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `menus`
+--
+
+INSERT INTO `menus` (`idMenu`, `menuNombre`, `menuEstado`, `idRol`) VALUES
+(1, 'Usuarios', 'online', '3'),
+(2, 'Perfiles', 'online', '3'),
+(3, 'Menu', 'online', '3'),
+(4, 'Formulario', 'online/offline', '1,2,3'),
+(5, 'Ingresar Menú Almuerzo', 'online', '1');
 
 -- --------------------------------------------------------
 
@@ -40,6 +66,13 @@ CREATE TABLE `menu_seleccionado` (
   `nutriBebidaNombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fecha_actual` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `menu_seleccionado`
+--
+
+INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `fecha_actual`) VALUES
+(1, 1, 1, 'Sopa de avena', 'Arroz con Pollo', '', '', 'Croquetas de yuca', 'Lechuga/Cebolla y Tomate', '', '2023-10-05');
 
 -- --------------------------------------------------------
 
@@ -91,7 +124,8 @@ INSERT INTO `nutriacomp` (`idNutriAcomp`, `nutriAcompNombre`) VALUES
 (12, 'Yuca al Vapor'),
 (13, 'Maduro Cocinado'),
 (14, 'Pure de Papa'),
-(15, 'Yuca Frita');
+(15, 'Yuca Frita'),
+(16, 'Papa Salada');
 
 -- --------------------------------------------------------
 
@@ -112,7 +146,7 @@ INSERT INTO `nutriarroz` (`idNutriArroz`, `nutriArrozNombre`) VALUES
 (1, 'Arroz blanco'),
 (2, 'Arroz con Fideo'),
 (3, 'Arroz Moreno'),
-(4, '66683773'),
+(4, 'Arroz con Pollo'),
 (5, 'Arroz con Perejil'),
 (6, 'Arroz de zanahoria');
 
@@ -187,7 +221,7 @@ INSERT INTO `nutrienerge` (`idNutriEnerge`, `nutriEnergeNombre`) VALUES
 (3, 'Frijoles'),
 (4, 'Lentejas Guisadas'),
 (5, 'Habichuelas'),
-(6, 'spaguetih'),
+(6, 'Spaguetti  Boloñesa'),
 (7, 'Alverjas'),
 (8, 'Tornillos Guisados'),
 (9, 'Alverja Guisados'),
@@ -233,9 +267,16 @@ CREATE TABLE `nutrimenu` (
   `idNutriEnerge` int DEFAULT NULL,
   `idNutriAcomp` int NOT NULL,
   `idNutriEnsal` int NOT NULL,
-  `idNutriBebida` int NOT NULL,
+  `idNutriBebida` int DEFAULT NULL,
   `idNutriSemana` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `nutrimenu`
+--
+
+INSERT INTO `nutrimenu` (`idNutriMenu`, `idNutriTipo`, `idNutriDias`, `idNutriSopa`, `idNutriArroz`, `idNutriProte`, `idNutriEnerge`, `idNutriAcomp`, `idNutriEnsal`, `idNutriBebida`, `idNutriSemana`) VALUES
+(1, 1, 4, 4, 4, NULL, NULL, 7, 4, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -364,6 +405,43 @@ INSERT INTO `nutritipo` (`idNutriTipo`, `nutriTipoNombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `opcionesmenu`
+--
+
+CREATE TABLE `opcionesmenu` (
+  `idOpcionMenu` int NOT NULL,
+  `idMenu` int NOT NULL,
+  `opcionMenuNombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `opcionMenuEnlace` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `opcionesmenu_folder` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
+  `opcionMenuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
+  `idRol` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
+
+--
+-- Volcado de datos para la tabla `opcionesmenu`
+--
+
+INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcionMenuEnlace`, `opcionesmenu_folder`, `opcionMenuEstado`, `idRol`) VALUES
+(2, 4, 'registrar Menu', 'frmRegMenu', 'frmSidebar', 'online', '3'),
+(3, 1, 'Creación de Usuarios', 'frmRegUsuario', 'frmUsuarios', 'online', '3'),
+(4, 1, 'Creacion de Empleados', 'frmEmplReg', 'frmEmpleado', 'online', '3'),
+(5, 2, 'Perfiles de Usuario', 'frmRegRol', 'frmRol', 'online', '3'),
+(6, 4, 'Almuerzo', 'frmDieta', 'frmPedPaci', 'online/offline', '1,2,3'),
+(7, 5, 'Tipo Menu', 'frmAlmRegTipo', 'frmAlmTipo', 'online', '1'),
+(8, 5, 'Sopa', 'frmAlmRegSopa', 'frmAlmSopa', 'online', '1'),
+(9, 5, 'Acompañamiento', 'frmAlmRegAcomp', 'frmAlmAcomp', 'online', '1'),
+(10, 5, 'Bebida', 'frmAlmRegBebida', 'frmAlmBebida', 'online', '1'),
+(11, 5, 'Energetico', 'frmAlmRegEnerge', 'frmAlmEnerge', 'online', '1'),
+(12, 5, 'Ensalada', 'frmAlmRegEnsal', 'frmAlmEnsal', 'online', '1'),
+(13, 5, 'Proteina', 'frmAlmRegProte', 'frmAlmProte', 'online', '1'),
+(14, 4, 'Menu', 'frmAlmRegMenu', 'frmAlmMenu', 'online', '1,3'),
+(15, 5, 'Arroz', 'frmAlmRegArroz', 'frmAlmArroz', 'online', '1'),
+(16, 4, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `pacientes`
 --
 
@@ -458,68 +536,6 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `opcionesmenu`
---
-
-CREATE TABLE `opcionesmenu` (
-  `idOpcionMenu` int NOT NULL,
-  `idMenu` int NOT NULL,
-  `opcionMenuNombre` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `opcionMenuEnlace` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `opcionesmenu_folder` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `opcionMenuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
-  `idRol` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `opcionesmenu`
---
-
-INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcionMenuEnlace`, `opcionesmenu_folder`, `opcionMenuEstado`, `idRol`) VALUES
-(1, 4, 'registrar Opciones Menu', 'frmRegOpcionesMenu', 'frmSidebarOption', 'online', '3'),
-(2, 4, 'registrar Menu', 'frmRegMenu', 'frmSidebar', 'online', '3'),
-(3, 1, 'Creación de Usuarios', 'frmRegUsuario', 'frmUsuarios', 'online', '3'),
-(4, 1, 'Creacion de Empleados', 'frmEmplReg', 'frmEmpleado', 'online', '3'),
-(5, 2, 'Perfiles de Usuario', 'frmRegRol', 'frmRol', 'online', '3'),
-(6, 4, 'Almuerzo', 'frmDieta', 'frmPedPaci', 'online/offline', '1,2,3'),
-(7, 5, 'Tipo Menu', 'frmAlmRegTipo', 'frmAlmTipo', 'online', '1'),
-(8, 5, 'Sopa', 'frmAlmRegSopa', 'frmAlmSopa', 'online', '1'),
-(9, 5, 'Acompañamiento', 'frmAlmRegAcomp', 'frmAlmAcomp', 'online', '1'),
-(10, 5, 'Bebida', 'frmAlmRegBebida', 'frmAlmBebida', 'online', '1'),
-(11, 5, 'Energetico', 'frmAlmRegEnerge', 'frmAlmEnerge', 'online', '1'),
-(12, 12, 'Ensalada', 'frmAlmRegEnsal', 'frmAlmEnsal', 'online', '1'),
-(13, 5, 'Proteina', 'frmAlmRegProte', 'frmAlmProte', 'online', '1'),
-(14, 4, 'Menu', 'frmAlmRegMenu', 'frmAlmMenu', 'online', '1,3'),
-(15, 5, 'Arroz', 'frmAlmRegArroz', 'frmAlmArroz', 'online', '1'),
-(16, 4, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `menus`
---
-
-CREATE TABLE `menus` (
-  `idMenu` int NOT NULL,
-  `menuNombre` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `menuEstado` enum('online','offline','online/offline') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL DEFAULT 'online',
-  `idRol` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
-
---
--- Volcado de datos para la tabla `menus`
---
-
-INSERT INTO `menus` (`idMenu`, `menuNombre`, `menuEstado`, `idRol`) VALUES
-(1, 'Usuarios', 'online', '3'),
-(2, 'Perfiles', 'online', '3'),
-(3, 'Menu', 'online', '3'),
-(4, 'Formulario', 'online/offline', '1,2,3'),
-(5, 'Ingresar Menú Almuerzo', 'online', '1');
-
--- --------------------------------------------------------
-
---
 -- Estructura Stand-in para la vista `view_nutrimenu`
 -- (Véase abajo para la vista actual)
 --
@@ -566,7 +582,7 @@ CREATE TABLE `View_nutrimenupaci` (
 --
 DROP TABLE IF EXISTS `view_nutrimenu`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_nutrimenu`  AS SELECT `nutrimenu`.`idNutriMenu` AS `idNutriMenu`, `nutritipo`.`nutriTipoNombre` AS `nutriTipoNombre`, `nutridias`.`nutriDiasNombre` AS `nutriDiasNombre`, `nutrisopa`.`nutriSopaNombre` AS `nutriSopaNombre`, `nutriarroz`.`nutriArrozNombre` AS `nutriArrozNombre`, `nutriprote`.`nutriProteNombre` AS `nutriProteNombre`, `nutrienerge`.`nutriEnergeNombre` AS `nutriEnergeNombre`, `nutriacomp`.`nutriAcompNombre` AS `nutriAcompNombre`, `nutriensal`.`nutriEnsalNombre` AS `nutriEnsalNombre`, `nutribebida`.`nutriBebidaNombre` AS `nutriBebidaNombre`, `nutrisemana`.`nutriSemanaNombre` AS `nutriSemanaNombre`, `nutrisemana`.`nutriSemanaid` AS `nutriSemanaid` FROM ((((((((((`nutrimenu` join `nutritipo` on((`nutrimenu`.`idNutriTipo` = `nutritipo`.`idNutriTipo`))) join `nutridias` on((`nutrimenu`.`idNutriDias` = `nutridias`.`idNutriDias`))) join `nutrisopa` on((`nutrimenu`.`idNutriSopa` = `nutrisopa`.`idNutriSopa`))) join `nutriarroz` on((`nutrimenu`.`idNutriArroz` = `nutriarroz`.`idNutriArroz`))) join `nutriprote` on((`nutrimenu`.`idNutriProte` = `nutriprote`.`idNutriProte`))) join `nutrienerge` on((`nutrimenu`.`idNutriEnerge` = `nutrienerge`.`idNutriEnerge`))) join `nutriacomp` on((`nutrimenu`.`idNutriAcomp` = `nutriacomp`.`idNutriAcomp`))) join `nutriensal` on((`nutrimenu`.`idNutriEnsal` = `nutriensal`.`idNutriEnsal`))) join `nutribebida` on((`nutrimenu`.`idNutriBebida` = `nutribebida`.`idNutriBebida`))) join `nutrisemana` on((`nutrimenu`.`idNutriSemana` = `nutrisemana`.`idNutriSemana`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_nutrimenu`  AS SELECT `nutrimenu`.`idNutriMenu` AS `idNutriMenu`, `nutritipo`.`nutriTipoNombre` AS `nutriTipoNombre`, `nutridias`.`nutriDiasNombre` AS `nutriDiasNombre`, `nutrisopa`.`nutriSopaNombre` AS `nutriSopaNombre`, `nutriarroz`.`nutriArrozNombre` AS `nutriArrozNombre`, `nutriprote`.`nutriProteNombre` AS `nutriProteNombre`, `nutrienerge`.`nutriEnergeNombre` AS `nutriEnergeNombre`, `nutriacomp`.`nutriAcompNombre` AS `nutriAcompNombre`, `nutriensal`.`nutriEnsalNombre` AS `nutriEnsalNombre`, `nutribebida`.`nutriBebidaNombre` AS `nutriBebidaNombre`, `nutrisemana`.`nutriSemanaNombre` AS `nutriSemanaNombre`, `nutrisemana`.`nutriSemanaid` AS `nutriSemanaid` FROM ((((((((((`nutrimenu` left join `nutritipo` on((`nutrimenu`.`idNutriTipo` = `nutritipo`.`idNutriTipo`))) left join `nutridias` on((`nutrimenu`.`idNutriDias` = `nutridias`.`idNutriDias`))) left join `nutrisopa` on((`nutrimenu`.`idNutriSopa` = `nutrisopa`.`idNutriSopa`))) left join `nutriarroz` on((`nutrimenu`.`idNutriArroz` = `nutriarroz`.`idNutriArroz`))) left join `nutriprote` on((`nutrimenu`.`idNutriProte` = `nutriprote`.`idNutriProte`))) left join `nutrienerge` on((`nutrimenu`.`idNutriEnerge` = `nutrienerge`.`idNutriEnerge`))) left join `nutriacomp` on((`nutrimenu`.`idNutriAcomp` = `nutriacomp`.`idNutriAcomp`))) left join `nutriensal` on((`nutrimenu`.`idNutriEnsal` = `nutriensal`.`idNutriEnsal`))) left join `nutribebida` on((`nutrimenu`.`idNutriBebida` = `nutribebida`.`idNutriBebida`))) left join `nutrisemana` on((`nutrimenu`.`idNutriSemana` = `nutrisemana`.`idNutriSemana`))) ;
 
 -- --------------------------------------------------------
 
@@ -746,7 +762,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
@@ -758,7 +774,7 @@ ALTER TABLE `menu_seleccionado_paci`
 -- AUTO_INCREMENT de la tabla `nutriacomp`
 --
 ALTER TABLE `nutriacomp`
-  MODIFY `idNutriAcomp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idNutriAcomp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `nutriarroz`
@@ -794,7 +810,7 @@ ALTER TABLE `nutriensal`
 -- AUTO_INCREMENT de la tabla `nutrimenu`
 --
 ALTER TABLE `nutrimenu`
-  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `nutrimenupaci`

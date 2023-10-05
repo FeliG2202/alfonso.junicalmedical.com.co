@@ -22,7 +22,6 @@ class AlmMenuControlador {
 			'idNutriEnerge' => request->idNutriEnerge,
 			'idNutriAcomp' => request->idNutriAcomp,
 			'idNutriEnsal' => request->idNutriEnsal,
-			'idNutriBebida' => request->idNutriBebida,
 			'idNutriSemana' => request->idNutriSemana
 		]);
 
@@ -43,7 +42,6 @@ class AlmMenuControlador {
 			'idNutriEnerge' => request->idNutriEnerge,
 			'idNutriAcomp' => request->idNutriAcomp,
 			'idNutriEnsal' => request->idNutriEnsal,
-			'idNutriBebida' => request->idNutriBebida,
 			'idNutriSemana' => request->idNutriSemana
 		]);
 

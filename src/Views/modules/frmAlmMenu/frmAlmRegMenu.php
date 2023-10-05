@@ -108,15 +108,6 @@ if (!isset($_SESSION['session'])) {
 
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
-										<label class="form-label" for="idNutriBebida1">Bebida</label>
-										<select id="idNutriBebida1" name="idNutriBebida1" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
 										<label class="form-label" for="idNutriSemana1">Semana</label>
 										<select id="idNutriSemana1" name="idNutriSemana1" class="form-select" required>
 											<option value="" selected>Seleccione</option>
@@ -221,15 +212,6 @@ if (!isset($_SESSION['session'])) {
 
 								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
 									<div class="mb-3">
-										<label class="form-label" for="idNutriBebida2">Bebida</label>
-										<select id="idNutriBebida2" name="idNutriBebida2" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
 										<label class="form-label" for="idNutriSemana2">Semana</label>
 										<select id="idNutriSemana2" name="idNutriSemana2" class="form-select" required>
 											<option value="" selected>Seleccione</option>
@@ -262,7 +244,6 @@ if (!isset($_SESSION['session'])) {
 		objectSelect('/api/frmAlmEnerge/energe', 'idNutriEnerge1', 'idNutriEnerge', ['nutriEnergeNombre']),
 		objectSelect('/api/frmAlmAcomp/acomp', 'idNutriAcomp1', 'idNutriAcomp', ['nutriAcompNombre']),
 		objectSelect('/api/frmAlmEnsal/ensal', 'idNutriEnsal1', 'idNutriEnsal', ['nutriEnsalNombre']),
-		objectSelect('/api/frmAlmBebida/bebida', 'idNutriBebida1', 'idNutriBebida', ['nutriBebidaNombre']),
 		objectSelect('/api/semana', 'idNutriSemana1', 'idNutriSemana', ['nutriSemanaid'])
 		]);
 
@@ -279,7 +260,6 @@ if (!isset($_SESSION['session'])) {
 			idNutriEnerge: getInput("idNutriEnerge1").value,
 			idNutriAcomp: getInput("idNutriAcomp1").value,
 			idNutriEnsal: getInput("idNutriEnsal1").value,
-			idNutriBebida: getInput("idNutriBebida1").value,
 			idNutriSemana: getInput("idNutriSemana1").value,
 			btnSaveAlmRegMenu: getInput("btnSaveAlmRegMenu1").value
 		})
@@ -305,7 +285,6 @@ if (!isset($_SESSION['session'])) {
 		objectSelect('/api/frmAlmEnerge/energe', 'idNutriEnerge2', 'idNutriEnerge', ['nutriEnergeNombre']),
 		objectSelect('/api/frmAlmAcomp/acomp', 'idNutriAcomp2', 'idNutriAcomp', ['nutriAcompNombre']),
 		objectSelect('/api/frmAlmEnsal/ensal', 'idNutriEnsal2', 'idNutriEnsal', ['nutriEnsalNombre']),
-		objectSelect('/api/frmAlmBebida/bebida', 'idNutriBebida2', 'idNutriBebida', ['nutriBebidaNombre']),
 		objectSelect('/api/semana', 'idNutriSemana2', 'idNutriSemana', ['nutriSemanaid'])
 		]);
 
@@ -322,7 +301,6 @@ if (!isset($_SESSION['session'])) {
 			idNutriEnerge: getInput("idNutriEnerge2").value,
 			idNutriAcomp: getInput("idNutriAcomp2").value,
 			idNutriEnsal: getInput("idNutriEnsal2").value,
-			idNutriBebida: getInput("idNutriBebida2").value,
 			idNutriSemana: getInput("idNutriSemana2").value,
 			btnSaveAlmRegMenu: getInput("btnSaveAlmRegMenu2").value
 		})
