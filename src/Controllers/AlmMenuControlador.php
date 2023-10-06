@@ -18,9 +18,9 @@ class AlmMenuControlador {
 					'idNutriDias' => request->idNutriDias,
 					'idNutriSopa' => request->idNutriSopa,
 					'idNutriArroz' => request->idNutriArroz,
-					'idNutriProte' => request->idNutriProte,
+					'idNutriProte' => toNull(request->idNutriProte),
 					'idNutriEnerge' => toNull(request->idNutriEnerge),
-					'idNutriAcomp' => request->idNutriAcomp,
+					'idNutriAcomp' => toNull(request->idNutriAcomp),
 					'idNutriEnsal' => request->idNutriEnsal,
 					'idNutriSemana' => request->idNutriSemana
 				]));

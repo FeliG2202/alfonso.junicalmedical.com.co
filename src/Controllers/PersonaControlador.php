@@ -17,7 +17,7 @@ class PersonaControlador {
 			'personaDocumento' => request->personaDocumento,
 			'personaNombreCompleto' => request->personaNombreCompleto,
 			'personaCorreo' => request->personaCorreo,
-			'personaNumberCell' => request->personaNumberCell
+			'personaNumberCell' => toNull(request->personaNumberCell)
 		]);
 
 		if ($res->status === "database-error") {
