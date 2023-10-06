@@ -13,17 +13,17 @@ class AlmMenuControlador {
 	}
 
 	public function registrarAlmTipoControlador() {
-		$res = $this->AlmMenuModelo->registrarAlmMenuModelo([
-			'idNutriTipo' => request->idNutriTipo,
-			'idNutriDias' => request->idNutriDias,
-			'idNutriSopa' => request->idNutriSopa,
-			'idNutriArroz' => request->idNutriArroz,
-			'idNutriProte' => request->idNutriProte,
-			'idNutriEnerge' => request->idNutriEnerge,
-			'idNutriAcomp' => request->idNutriAcomp,
-			'idNutriEnsal' => request->idNutriEnsal,
-			'idNutriSemana' => request->idNutriSemana
-		]);
+		$res = $this->AlmMenuModelo->registrarAlmMenuModelo(([
+					'idNutriTipo' => request->idNutriTipo,
+					'idNutriDias' => request->idNutriDias,
+					'idNutriSopa' => request->idNutriSopa,
+					'idNutriArroz' => request->idNutriArroz,
+					'idNutriProte' => request->idNutriProte,
+					'idNutriEnerge' => toNull(request->idNutriEnerge),
+					'idNutriAcomp' => request->idNutriAcomp,
+					'idNutriEnsal' => request->idNutriEnsal,
+					'idNutriSemana' => request->idNutriSemana
+				]));
 
 		if ($res->status === "database-error") {
 			return response->code(500)->error('Error al momento de registrar');

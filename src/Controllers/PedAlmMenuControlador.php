@@ -126,11 +126,9 @@ class PedAlmMenuControlador {
 			])
 				? (object) ['request' => false,
                             'url' => "index.php?folder=frmPed&view=frmPedPersId",
-                            'message' => "Error al registrar la dieta"
                             ]
 				: (object) ['request' => true,
-                            'url' => "index.php?folder=frmPed&view=frmPedPersId",
-                            'message' => "Dieta registrada correctamente"
+                            'url' => "index.php?folder=frmPed&view=frmPedPersId&message=ok"
                             ];
 		}
 	}

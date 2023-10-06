@@ -12,7 +12,6 @@ if ($request != null) {
 }
 ?>
 
-
 <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 rounded shadow-sm">
     <h2 class="text-center">Dietas</h2>
     <hr>
@@ -41,6 +40,13 @@ if ($request != null) {
         </form>
     </div>
 <?php } else { ?>
+    <?php if (isset($_GET['message']) && $_GET['message'] === 'ok') { ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Registrado correctamente
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } ?>
+
     <div class="alert alert-warning">
         <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
         <strong>7:30 AM</strong> hasta las <strong>9:30 AM</strong>
