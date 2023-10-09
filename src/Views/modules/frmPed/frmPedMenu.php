@@ -21,7 +21,7 @@ $cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
 $hora_inicio = '07:00';
-$hora_fin = '10:00';
+$hora_fin = '24:00';
 
 $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => 'Miércoles','Thursday' => 'Jueves','Friday' => 'Viernes','Saturday' => 'Sábado','Sunday' => 'Domingo','January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre','October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre','am' => 'am','pm' => 'pm');
 
@@ -51,9 +51,15 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
                         <hr>
                     </div>
+                    <?php if (isset($_GET['message']) && $_GET['message'] === 'ok') { ?>
+            <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                Registrado correctamente
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
                     <?php TemplateControlador::response(
                         $request,
-                        "",
+                        "Registrado Correctamente",
                         "Ocurrio un error, Intentelo de nuevo"
                     ); ?>
                     <div class="row p-1">
@@ -241,5 +247,12 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     (function() {
         readTipos();
     })();
+
+    var alertElement = document.querySelector("#success-alert");
+    function hideAlert() {
+        alertElement.style.display = "none";
+    }
+    alertElement.style.display = "block";
+    setTimeout(hideAlert, 3000);
 </script>
 

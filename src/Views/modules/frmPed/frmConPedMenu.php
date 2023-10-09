@@ -13,7 +13,7 @@
                 <div class="tab-content " id="nav-tabContent">
                     <div class="tab-pane fade show active" id="Empleado" role="tabpanel">
                          <div class="p-2">
-                            <h2 class="text-center">Relación de Solicitudes</h2>
+                            <h2 class="text-center">Consolidado de Dietas</h2>
                             <hr>
                         </div>
 
@@ -86,7 +86,7 @@
                     <div class="tab-pane fade" id="Paciente" role="tabpanel">
                         <!-- Solicitud de alimentos paciente -->
                         <div class="p-2">
-                            <h2 class="text-center">Relación de Solicitudes</h2>
+                            <h2 class="text-center">Consolidado de Dietas</h2>
                             <hr>
                         </div>
 

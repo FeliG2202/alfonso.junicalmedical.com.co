@@ -128,7 +128,7 @@ class PedAlmMenuControlador {
                             'url' => "index.php?folder=frmPed&view=frmPedPersId",
                             ]
 				: (object) ['request' => true,
-                            'url' => "index.php?folder=frmPed&view=frmPedPersId&message=ok"
+                            'url' => "index.php?folder=frmPed&view=frmPedMenu&idPersona={$_GET['idPersona']}&message=ok"
                             ];
 		}
 	}
