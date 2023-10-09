@@ -21,7 +21,7 @@ $cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
 $hora_inicio = '07:30';
-$hora_fin = '09:30';
+$hora_fin = '20:30';
 
 $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => 'Miércoles','Thursday' => 'Jueves','Friday' => 'Viernes','Saturday' => 'Sábado','Sunday' => 'Domingo','January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre','October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre','am' => 'am','pm' => 'pm');
 
@@ -31,18 +31,18 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 <div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
     <div class="container">
         <div class="card">
-          <div class="card-body">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
-            </div>
-        </nav>
-        <div class="tab-content table-responsive" id="nav-tabContent">
-            <!-- Registrar Dietas -->
-            <div class="tab-pane fade show active" id="Solicitud" role="tabpanel">
-                <?php
-                if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+           <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+              <div class="card-body">
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
+                </div>
+            </nav>
+            <div class="tab-content table-responsive" id="nav-tabContent">
+                <!-- Registrar Dietas -->
+                <div class="tab-pane fade show active" id="Solicitud" role="tabpanel">
+
                     <div class="row">
                         <div class="col p-2 mb-3">
                             <h3 class="text-center">Menú de Almuerzos</h3>
@@ -94,19 +94,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         ?>
 
                     </div>
-
-                <?php } else { ?>
-
-
-                    <div class="alert alert-warning">
-                        <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                        <strong>8:00 AM</strong> hasta las <strong>10:00 AM</strong>
-                    </div>
-                <?php } ?>
-            </div>
-
-            <div class="tab-pane fade" id="Eliminar" role="tabpanel">
-                <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+                </div>
+                <div class="tab-pane fade" id="Eliminar" role="tabpanel">
                     <!-- Eliminar dieta -->
                     <div class="card mb-4">
                         <div class="card-body">
@@ -163,10 +152,13 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
                     </div>
                 <?php } else { ?>
-                    <div class="alert alert-warning">
-                        <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                        <strong>8:00 AM</strong> hasta las <strong>10:00 AM</strong>
+                    <div class="p-4">
+                        <div class="alert alert-warning p-3">
+                            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
+                            <strong>7:30 AM</strong> hasta las <strong>9:30 AM</strong>
+                        </div>
                     </div>
+
                 <?php } ?>
             </div>
         </div>

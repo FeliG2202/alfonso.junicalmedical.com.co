@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 05-10-2023 a las 15:24:25
+-- Tiempo de generación: 09-10-2023 a las 12:12:06
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.8
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `sistema_medico`
 --
-CREATE DATABASE IF NOT EXISTS `sistema_medico` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `sistema_medico`;
 
 -- --------------------------------------------------------
 
@@ -72,7 +70,17 @@ CREATE TABLE `menu_seleccionado` (
 --
 
 INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `fecha_actual`) VALUES
-(1, 1, 1, 'Sopa de avena', 'Arroz con Pollo', '', '', 'Croquetas de yuca', 'Lechuga/Cebolla y Tomate', '', '2023-10-05');
+(8, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
+(9, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
+(10, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
+(11, 1, 18, 'Sancocho', '', '', '', '', '', '', '2023-10-05'),
+(12, 1, 18, '', '', '', '', 'Papa Francesa', '', '', '2023-10-05'),
+(13, 1, 18, '', '', '', '', 'Papa Francesa', '', '', '2023-10-05'),
+(14, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
+(15, 1, 19, '', 'Arroz blanco', 'Fricase de Pollo', '', 'Yuca Frita', '', '', '2023-10-05'),
+(16, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
+(17, 1, 18, '', 'Arroz blanco', 'Creps Rellenos de Carne', '', '', '', '', '2023-10-05'),
+(18, 1, 18, 'Sancocho', '', '', '', 'Papa Francesa', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05');
 
 -- --------------------------------------------------------
 
@@ -113,7 +121,7 @@ INSERT INTO `nutriacomp` (`idNutriAcomp`, `nutriAcompNombre`) VALUES
 (1, 'Patacones'),
 (2, 'Monedas de Platano'),
 (3, 'Papa Francesa'),
-(4, 'Papa, yuca en salsa criolla'),
+(4, 'Papa, Yuca (Salsa Criolla)'),
 (5, 'Croquetas de arracacha'),
 (6, 'Aborrajado'),
 (7, 'Croquetas de yuca'),
@@ -125,7 +133,9 @@ INSERT INTO `nutriacomp` (`idNutriAcomp`, `nutriAcompNombre`) VALUES
 (13, 'Maduro Cocinado'),
 (14, 'Pure de Papa'),
 (15, 'Yuca Frita'),
-(16, 'Papa Salada');
+(16, 'Papa Salada'),
+(17, 'Plátano al Horno'),
+(18, 'Papa y Yuca');
 
 -- --------------------------------------------------------
 
@@ -148,7 +158,8 @@ INSERT INTO `nutriarroz` (`idNutriArroz`, `nutriArrozNombre`) VALUES
 (3, 'Arroz Moreno'),
 (4, 'Arroz con Pollo'),
 (5, 'Arroz con Perejil'),
-(6, 'Arroz de zanahoria');
+(6, 'Arroz de zanahoria'),
+(7, 'Arroz con Ajonjolí');
 
 -- --------------------------------------------------------
 
@@ -218,14 +229,17 @@ CREATE TABLE `nutrienerge` (
 INSERT INTO `nutrienerge` (`idNutriEnerge`, `nutriEnergeNombre`) VALUES
 (1, 'Garbanzos Guisados'),
 (2, 'Macarrones Guisados'),
-(3, 'Frijoles'),
+(3, 'Frijol Cabeza Negra'),
 (4, 'Lentejas Guisadas'),
 (5, 'Habichuelas'),
 (6, 'Spaguetti  Boloñesa'),
 (7, 'Alverjas'),
 (8, 'Tornillos Guisados'),
 (9, 'Alverja Guisados'),
-(10, 'Ensalada Fria');
+(10, 'Ensalada Fria'),
+(12, 'Ensalada Rusa'),
+(13, 'Migas'),
+(14, 'Verduras Calientes');
 
 -- --------------------------------------------------------
 
@@ -243,13 +257,17 @@ CREATE TABLE `nutriensal` (
 --
 
 INSERT INTO `nutriensal` (`idNutriEnsal`, `nutriEnsalNombre`) VALUES
-(1, 'Lechuga/zanahoria/Cebolla/Aguacate'),
-(2, 'Pepino/Apio/Zanahoria'),
-(3, 'Lechuga/Ahuyama Rallada/Maiz/Binagreta'),
-(4, 'Lechuga/Cebolla y Tomate'),
-(5, 'Brocoli/zanahoria Gratinados/Mayonesa'),
-(6, 'Lechuga/Ahuyama Rallada/Maiz'),
-(7, 'Remolacha y Zanahoria cocida con Mayonesa');
+(1, 'Lechuga/ Zanahoria/ Cebolla/ Aguacate'),
+(2, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)'),
+(3, 'Lechuga/ Ahuyama Rallada/ Maíz/ Vinagreta'),
+(4, 'Lechuga/ Cebolla y Tomate'),
+(5, 'Brocoli/ Zanahoria Gratinados/ Mayonesa'),
+(6, 'Lechuga/ Ahuyama Rallada/ Maíz'),
+(7, 'Remolacha y Zanahoria cocida con Mayonesa'),
+(8, 'Zanahoria/ Lechuga/ Tomate y Mayonesa'),
+(9, 'Lechuga/ Zanahoria/ Cebolla/ Aguacate'),
+(10, 'Tajada de Aguacate'),
+(11, 'Lechuga/ Maicitos/ Pepino');
 
 -- --------------------------------------------------------
 
@@ -265,7 +283,7 @@ CREATE TABLE `nutrimenu` (
   `idNutriArroz` int NOT NULL,
   `idNutriProte` int DEFAULT NULL,
   `idNutriEnerge` int DEFAULT NULL,
-  `idNutriAcomp` int NOT NULL,
+  `idNutriAcomp` int DEFAULT NULL,
   `idNutriEnsal` int NOT NULL,
   `idNutriBebida` int DEFAULT NULL,
   `idNutriSemana` int NOT NULL
@@ -276,7 +294,22 @@ CREATE TABLE `nutrimenu` (
 --
 
 INSERT INTO `nutrimenu` (`idNutriMenu`, `idNutriTipo`, `idNutriDias`, `idNutriSopa`, `idNutriArroz`, `idNutriProte`, `idNutriEnerge`, `idNutriAcomp`, `idNutriEnsal`, `idNutriBebida`, `idNutriSemana`) VALUES
-(1, 1, 4, 4, 4, NULL, NULL, 7, 4, NULL, 1);
+(1, 1, 5, 4, 4, NULL, NULL, 9, 1, NULL, 1),
+(3, 1, 5, 5, 1, 22, 12, 9, 8, NULL, 0),
+(4, 2, 5, 5, 1, 23, 3, 10, 8, NULL, 0),
+(5, 2, 5, 4, 5, 9, 2, 17, 1, NULL, 1),
+(6, 1, 1, 1, 1, 1, 13, NULL, 2, NULL, 0),
+(7, 2, 1, 1, 1, 13, 2, 2, 2, NULL, 0),
+(8, 1, 2, 14, 2, 8, NULL, 3, 1, NULL, 0),
+(9, 2, 2, 14, 2, 24, NULL, 7, 1, NULL, 0),
+(10, 1, 3, 15, 7, 25, NULL, 4, 10, NULL, 0),
+(11, 2, 3, 15, 7, 26, 14, 6, 10, NULL, 0),
+(12, 1, 4, 4, 4, NULL, NULL, 7, 4, NULL, 0),
+(13, 2, 4, 4, 5, NULL, 6, 16, 4, NULL, 0),
+(16, 1, 6, 6, 1, 28, 12, NULL, 11, NULL, 0),
+(17, 2, 6, 6, 1, 27, NULL, 18, 11, NULL, 0),
+(18, 1, 4, 11, 1, 20, NULL, 3, 7, NULL, 1),
+(19, 2, 4, 11, 1, 29, NULL, 15, 7, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -333,7 +366,15 @@ INSERT INTO `nutriprote` (`idNutriProte`, `nutriProteNombre`) VALUES
 (17, 'Pollo en Salsa Maracuya'),
 (18, 'Pollo en Miel Mostaza'),
 (19, 'Gulasch de Cerdo'),
-(20, 'Creps Rellenos de Carne');
+(20, 'Creps Rellenos de Carne'),
+(22, 'Cerdo Asado'),
+(23, 'Carne Asada'),
+(24, 'Pollo a la Jardinera'),
+(25, 'Baza Salsa Criolla'),
+(26, 'Carne en Bistec'),
+(27, 'Sobrebarriga en Salsa Criolla'),
+(28, 'Pollo Apanado'),
+(29, 'Fricase de Pollo');
 
 -- --------------------------------------------------------
 
@@ -381,7 +422,9 @@ INSERT INTO `nutrisopa` (`idNutriSopa`, `nutriSopaNombre`) VALUES
 (10, 'Sopa de Arroz'),
 (11, 'Sancocho'),
 (12, 'Sopa de Platano'),
-(13, 'Crema de Ahuyama');
+(13, 'Crema de Ahuyama'),
+(14, 'Sopa de Mute'),
+(15, 'Sopa de Mondongo');
 
 -- --------------------------------------------------------
 
@@ -423,7 +466,7 @@ CREATE TABLE `opcionesmenu` (
 --
 
 INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcionMenuEnlace`, `opcionesmenu_folder`, `opcionMenuEstado`, `idRol`) VALUES
-(2, 4, 'registrar Menu', 'frmRegMenu', 'frmSidebar', 'online', '3'),
+(2, 3, 'registrar Menu', 'frmRegMenu', 'frmSidebar', 'online', '3'),
 (3, 1, 'Creación de Usuarios', 'frmRegUsuario', 'frmUsuarios', 'online', '3'),
 (4, 1, 'Creacion de Empleados', 'frmEmplReg', 'frmEmpleado', 'online', '3'),
 (5, 2, 'Perfiles de Usuario', 'frmRegRol', 'frmRol', 'online', '3'),
@@ -485,7 +528,18 @@ INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell
 (1, 'Felipe Gavilan Castaño', '3156078058', 'felipegavilan2202@gmail.com', '1005958885', NULL),
 (2, 'Andre Castaño Molina', '3156530301', 'fgavilac@junical.com.co', '123456789', NULL),
 (3, 'Ana E Sotelo', '', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', NULL),
-(4, 'Adriana Maria Suarez', '', 'adrianamsg.07@gmail.com', '66683773', NULL);
+(4, 'Adriana Maria Suarez', '', 'adrianamsg.07@gmail.com', '66683773', NULL),
+(5, 'Cristina Ramirez', NULL, 'ancriraca@hotmail.com', '39561397', NULL),
+(6, 'Jazmín Córdoba', NULL, 'idem_91@yahoo.com', '65703278', NULL),
+(7, 'Jerjohry Lopez', NULL, 'jerjohry.abgderechomedico@gmail.com', '1127388592', NULL),
+(8, 'Vasni Orjuela', NULL, 'vashad94@gmail.com', '1023938436', NULL),
+(9, 'Magda Valeria Mendez', NULL, 'gerencia@junicalmedical.com.co', '1019063981', NULL),
+(10, 'Delly Vasquez', NULL, 'dellyvasquez@hotmail.com', '1010170895', NULL),
+(11, 'Maria Paula Diaz Tibaquira', NULL, 'paulita5491@gmail.com', '1007600126', NULL),
+(12, 'Luz Adriana Rocha', NULL, 'adrianarochagonzalez@gmail.com', '1013623037', NULL),
+(13, 'Paola Prada', NULL, 'jpprada85@gmail.com', '28719410', NULL),
+(14, 'Carol Liliana Segura', NULL, 'carol841216@hotmail.com', '30946051', NULL),
+(15, 'Katherin Chapeton', NULL, 'katherinechapetonmontes@hotmail.com', '52430554', NULL);
 
 -- --------------------------------------------------------
 
@@ -762,7 +816,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
@@ -774,13 +828,13 @@ ALTER TABLE `menu_seleccionado_paci`
 -- AUTO_INCREMENT de la tabla `nutriacomp`
 --
 ALTER TABLE `nutriacomp`
-  MODIFY `idNutriAcomp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idNutriAcomp` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `nutriarroz`
 --
 ALTER TABLE `nutriarroz`
-  MODIFY `idNutriArroz` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idNutriArroz` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `nutribebida`
@@ -798,19 +852,19 @@ ALTER TABLE `nutridias`
 -- AUTO_INCREMENT de la tabla `nutrienerge`
 --
 ALTER TABLE `nutrienerge`
-  MODIFY `idNutriEnerge` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idNutriEnerge` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `nutriensal`
 --
 ALTER TABLE `nutriensal`
-  MODIFY `idNutriEnsal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idNutriEnsal` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `nutrimenu`
 --
 ALTER TABLE `nutrimenu`
-  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `nutrimenupaci`
@@ -822,13 +876,13 @@ ALTER TABLE `nutrimenupaci`
 -- AUTO_INCREMENT de la tabla `nutriprote`
 --
 ALTER TABLE `nutriprote`
-  MODIFY `idNutriProte` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `idNutriProte` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `nutrisopa`
 --
 ALTER TABLE `nutrisopa`
-  MODIFY `idNutriSopa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `idNutriSopa` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `nutritipo`
@@ -852,7 +906,7 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

@@ -12,7 +12,7 @@ if (!isset($_SESSION['session'])) {
 	<div class="card mb-4">
 		<div class="card-body">
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-				<a href="http://localhost/index.php?folder=frmEmpleado&view=frmEmplReg" class="btn btn-outline-secondary">
+				<a href="index.php?folder=frmEmpleado&view=frmEmplReg" class="btn btn-outline-secondary">
 					<i class="fas fa-reply me-2"></i>Atrás
 				</a>
 				<button type="button" class="btn btn-outline-dark" id="btn-reload">

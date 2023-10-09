@@ -19,7 +19,7 @@ if ($request != null) {
     <?php
     $hora_actual = date('H:i');
     $hora_inicio = '07:30';
-    $hora_fin = '09:30';
+    $hora_fin = '20:00';
 
     if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
         <?php TemplateControlador::response(
@@ -27,6 +27,13 @@ if ($request != null) {
             "",
             "Usuario no Autorizado"
         ); ?>
+
+        <?php if (isset($_GET['message']) && $_GET['message'] === 'ok') { ?>
+            <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
+                Registrado correctamente
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
 
         <form class="form" method="POST">
             <div class="row mb-3">
@@ -40,12 +47,6 @@ if ($request != null) {
         </form>
     </div>
 <?php } else { ?>
-    <?php if (isset($_GET['message']) && $_GET['message'] === 'ok') { ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            Registrado correctamente
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    <?php } ?>
 
     <div class="alert alert-warning">
         <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
@@ -56,8 +57,14 @@ if ($request != null) {
 
 <script>
         // Add JavaScript to automatically select the input field when the view loads
-window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('identMenu').focus();
-});
-</script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('identMenu').focus();
+    });
 
+    var alertElement = document.querySelector("#success-alert");
+    function hideAlert() {
+        alertElement.style.display = "none";
+    }
+    alertElement.style.display = "block";
+    setTimeout(hideAlert, 3000);
+</script>
