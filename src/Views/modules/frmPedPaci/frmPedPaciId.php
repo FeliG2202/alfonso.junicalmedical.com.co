@@ -4,8 +4,8 @@
 
     <?php
     $hora_actual = date('H:i');
-    $hora_inicio = '07:30';
-    $hora_fin = '09:30';
+    $hora_inicio = '07:00';
+    $hora_fin = '10:00';
 
     if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
         <form class="form" id="form-consul-menu">
@@ -21,7 +21,7 @@
     <?php } else { ?>
         <div class="alert alert-warning">
             <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-            <strong>7:30 AM</strong> hasta las <strong>9:30 AM</strong>
+            <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
         </div>
     <?php }
     ?>

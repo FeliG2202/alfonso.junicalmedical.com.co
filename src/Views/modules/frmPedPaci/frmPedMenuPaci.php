@@ -20,8 +20,8 @@ $cont2 = 0;
 $cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
-$hora_inicio = '00:00';
-$hora_fin = '24:00';
+$hora_inicio = '07:00';
+$hora_fin = '10:00';
 
 $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => 'Miércoles','Thursday' => 'Jueves','Friday' => 'Viernes','Saturday' => 'Sábado','Sunday' => 'Domingo','January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre','October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre','am' => 'am','pm' => 'pm');
 
@@ -185,7 +185,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             <?php } else { ?>
                 <div class="alert alert-warning">
                     <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                    <strong>8:00 AM</strong> hasta las <strong>10:00 AM</strong>
+                    <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
                 </div>
             <?php } ?>
         </div>

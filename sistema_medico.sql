@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 09-10-2023 a las 12:12:06
+-- Tiempo de generación: 09-10-2023 a las 17:39:21
 -- Versión del servidor: 8.1.0
 -- Versión de PHP: 8.2.8
 
@@ -64,23 +64,6 @@ CREATE TABLE `menu_seleccionado` (
   `nutriBebidaNombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `fecha_actual` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `menu_seleccionado`
---
-
-INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `fecha_actual`) VALUES
-(8, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
-(9, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
-(10, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
-(11, 1, 18, 'Sancocho', '', '', '', '', '', '', '2023-10-05'),
-(12, 1, 18, '', '', '', '', 'Papa Francesa', '', '', '2023-10-05'),
-(13, 1, 18, '', '', '', '', 'Papa Francesa', '', '', '2023-10-05'),
-(14, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
-(15, 1, 19, '', 'Arroz blanco', 'Fricase de Pollo', '', 'Yuca Frita', '', '', '2023-10-05'),
-(16, 1, 18, 'Sancocho', '', 'Creps Rellenos de Carne', '', '', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05'),
-(17, 1, 18, '', 'Arroz blanco', 'Creps Rellenos de Carne', '', '', '', '', '2023-10-05'),
-(18, 1, 18, 'Sancocho', '', '', '', 'Papa Francesa', 'Remolacha y Zanahoria cocida con Mayonesa', '', '2023-10-05');
 
 -- --------------------------------------------------------
 
@@ -595,17 +578,17 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nutriTipoNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriSopaNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
 ,`nutriAcompNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
 ,`nutriBebidaNombre` varchar(45)
-,`nutriSemanaNombre` varchar(5)
+,`nutriDiasNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
 ,`nutriSemanaid` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSopaNombre` varchar(45)
+,`nutriTipoNombre` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -616,17 +599,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriTipoNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriSopaNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
 ,`nutriAcompNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
 ,`nutriBebidaNombre` varchar(45)
-,`nutriSemanaNombre` varchar(5)
+,`nutriDiasNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
 ,`nutriSemanaid` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSopaNombre` varchar(45)
+,`nutriTipoNombre` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -816,7 +799,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
@@ -918,7 +901,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `idUsuario` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Restricciones para tablas volcadas
