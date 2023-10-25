@@ -56,20 +56,21 @@ class PedAlmMenuModelo extends Connection {
     }
 
     public function registrarMenuDiaModelo($data) {
-        $sql = "INSERT INTO {$this->tablaMDP} (idPersona,idNutriMenu,nutriSopaNombre,nutriArrozNombre,nutriProteNombre,nutriEnergeNombre,nutriAcompNombre,nutriEnsalNombre,nutriBebidaNombre,fecha_actual) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO {$this->tablaMDP} (idPersona,idNutriMenu,nombreEmpaquetado,nutriSopaNombre,nutriArrozNombre,nutriProteNombre,nutriEnergeNombre,nutriAcompNombre,nutriEnsalNombre,nutriBebidaNombre,fecha_actual) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             $stmt = $this->conectar()->prepare($sql);
             $stmt->bindParam(1, $data['idPersona'], PDO::PARAM_INT);
             $stmt->bindParam(2, $data['idMenu'], PDO::PARAM_INT);
-            $stmt->bindParam(3, $data['nutriSopaNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(4, $data['nutriArrozNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(5, $data['nutriProteNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(6, $data['nutriEnergeNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(7, $data['nutriAcompNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(8, $data['nutriEnsalNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(9, $data['nutriBebidaNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(10, $data['date'], PDO::PARAM_STR);
+            $stmt->bindParam(3, $data['nombreEmpaquetado'], PDO::PARAM_STR);
+            $stmt->bindParam(4, $data['nutriSopaNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(5, $data['nutriArrozNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(6, $data['nutriProteNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(7, $data['nutriEnergeNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(8, $data['nutriAcompNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(9, $data['nutriEnsalNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(10, $data['nutriBebidaNombre'], PDO::PARAM_STR);
+            $stmt->bindParam(11, $data['date'], PDO::PARAM_STR);
             if ($stmt->execute()) {
                 return true;
             } else {
@@ -136,6 +137,7 @@ class PedAlmMenuModelo extends Connection {
             DB::column('nutriAcompNombre', 'ms'),
             DB::column('nutriEnsalNombre', 'ms'),
             DB::column('nutriBebidaNombre', 'ms'),
+            DB::column('nombreEmpaquetado', 'ms'),
             DB::column('fecha_actual', 'ms'),
         )->inner()->join(
             DB::as('personas', 'prs'),
@@ -181,7 +183,8 @@ class PedAlmMenuModelo extends Connection {
             DB::column('nutriEnergeNombre'),
             DB::column('nutriAcompNombre'),
             DB::column('nutriEnsalNombre'),
-            DB::column('nutriBebidaNombre')
+            DB::column('nutriBebidaNombre'),
+            DB::column('nombreEmpaquetado')
         )->where(
         DB::equalTo(DB::column('idpersona')), $id
         )->and(

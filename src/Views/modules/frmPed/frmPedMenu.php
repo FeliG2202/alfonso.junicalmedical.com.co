@@ -27,7 +27,6 @@ $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => '
 
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
-
 <div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
     <div class="container">
         <div class="card">
@@ -51,17 +50,19 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
                         <hr>
                     </div>
-                    <?php if (isset($_GET['message']) && $_GET['message'] === 'ok') { ?>
-            <div id="success-alert" class="alert alert-success alert-dismissible fade show" role="alert">
-                Registrado correctamente
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
-                    <?php TemplateControlador::response(
-                        $request,
-                        "Registrado Correctamente",
-                        "Ocurrio un error, Intentelo de nuevo"
-                    ); ?>
+                    <?php
+                    if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
+                        $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
+                        $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
+                        $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
+                        ?>
+                        <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
+                            <?php echo $alertText; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php }
+                    ?>
+
                     <div class="row p-1">
                         <!-- Tarjeta 1 -->
 
@@ -73,7 +74,15 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
                             print '<div class="card" id="tarjeta1">';
                             print '<div class="card-body">';
+                            echo '<div class="d-flex justify-content-between align-items-center">';
                             echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
+                            echo('<div class="form-check form-check-inline">');
+                            print '<div class="form-check checkbox-container">';
+                            echo '<input name="nombreEmpaquetado" class="form-check-input" type="checkbox" value="' . $value['nombreEmpaquetado'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                            echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nombreEmpaquetado'] . '</label>';
+                            print '</div>';
+                            echo '</div>';
+                            echo '</div>';
                             echo ("<hr>");
                             /* Selecionar componentes del almuerzo */
                             print '<div class="checkbox-group">';
@@ -126,6 +135,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                             <th>Acompañante</th>
                                             <th>Ensalada</th>
                                             <th>Bebida</th>
+                                            <th>Solicitud</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -207,6 +217,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     { data: 'nutriAcompNombre' },
                     { data: 'nutriEnsalNombre' },
                     { data: 'nutriBebidaNombre' },
+                    { data: 'nombreEmpaquetado' },
                     ],
                 createdRow: (html, row, index) => {
                     html.setAttribute("role", "button");

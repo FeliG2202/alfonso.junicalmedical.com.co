@@ -115,17 +115,18 @@ public function registrarMenuDiaControlador() {
         return !$this->PedAlmMenuModelo->registrarMenuDiaModelo([
             'idPersona' => (int) $_POST['selected-idp'],
             'idMenu' => (int) $_POST['selected-idm'],
-            'nutriSopaNombre' => (string) (empty($_POST['nutriSopaNombre']) ? null : $_POST['nutriSopaNombre']),
-            'nutriArrozNombre' => (string) (empty($_POST['nutriArrozNombre']) ? null : $_POST['nutriArrozNombre']),
-            'nutriProteNombre' => (string) (empty($_POST['nutriProteNombre']) ? null : $_POST['nutriProteNombre']),
-            'nutriEnergeNombre' => (string) (empty($_POST['nutriEnergeNombre']) ? null : $_POST['nutriEnergeNombre']),
-            'nutriAcompNombre' => (string) (empty($_POST['nutriAcompNombre']) ? null : $_POST['nutriAcompNombre']),
-            'nutriEnsalNombre' => (string) (empty($_POST['nutriEnsalNombre']) ? null : $_POST['nutriEnsalNombre']),
-            'nutriBebidaNombre' => (string) (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
+            'nombreEmpaquetado' => (empty($_POST['nombreEmpaquetado']) ? null : $_POST['nombreEmpaquetado']),
+            'nutriSopaNombre' => (empty($_POST['nutriSopaNombre']) ? null : $_POST['nutriSopaNombre']),
+            'nutriArrozNombre' => (empty($_POST['nutriArrozNombre']) ? null : $_POST['nutriArrozNombre']),
+            'nutriProteNombre' => (empty($_POST['nutriProteNombre']) ? null : $_POST['nutriProteNombre']),
+            'nutriEnergeNombre' => (empty($_POST['nutriEnergeNombre']) ? null : $_POST['nutriEnergeNombre']),
+            'nutriAcompNombre' => (empty($_POST['nutriAcompNombre']) ? null : $_POST['nutriAcompNombre']),
+            'nutriEnsalNombre' => (empty($_POST['nutriEnsalNombre']) ? null : $_POST['nutriEnsalNombre']),
+            'nutriBebidaNombre' => (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
             'date' => date('Y-m-d')
         ])
-        ? (object) ['request' => false, 'url' => "index.php?folder=frmPed&view=frmPedPersId"]
-        : (object) ['request' => true, 'url' => "index.php?folder=frmPed&view=frmPedMenu&idPersona={$_GET['idPersona']}&message=ok"];
+        ? (object) ['request' => false, 'url' => "index.php?folder=frmPed&view=frmPedMenu&idPersona={$_GET['idPersona']}&message=false"]
+        : (object) ['request' => true, 'url' => "index.php?folder=frmPed&view=frmPedMenu&idPersona={$_GET['idPersona']}&message=true"];
     }
 }
 
@@ -164,6 +165,8 @@ public function generateReportDates() {
         Spreadsheet::setCell("I{$cont}", $menu->nutriAcompNombre);
         Spreadsheet::setCell("J{$cont}", $menu->nutriEnsalNombre);
         Spreadsheet::setCell("K{$cont}", $menu->nutriBebidaNombre);
+        Spreadsheet::setCell("L{$cont}", $menu->nombreEmpaquetado);
+
 
         $cont++;
     }

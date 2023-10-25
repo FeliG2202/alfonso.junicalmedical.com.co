@@ -16,7 +16,8 @@ class AlmMenuModelo {
 			'idNutriEnerge' => $data['idNutriEnerge'],
 			'idNutriAcomp' => $data['idNutriAcomp'],
 			'idNutriEnsal' => $data['idNutriEnsal'],
-			'idNutriSemana' => $data['idNutriSemana']
+			'idNutriSemana' => $data['idNutriSemana'],
+			'idMenuEmpaquetado' => 1
 		])->execute();
 	}
 
