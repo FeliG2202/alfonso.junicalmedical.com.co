@@ -6,12 +6,16 @@ services:
             context: .
             dockerfile: Dockerfile
         ports:
-            - "80:80"
+            - "80:80"  # HTTP
+            - "443:443" # SSL
         volumes:
             - ./:/var/www/html
         depends_on:
             - db
             - phpmyadmin
+        environment:
+            - APACHE_SSL_CERT_FILE=/etc/apache2/ssl/junicalmedical.com.co.pem
+            - APACHE_SSL_KEY_FILE=/etc/apache2/ssl/junicalmedical.com.co.pem  # Reemplaza con la ubicación de tu archivo de clave SSL
         networks:
             - lion
     db:

@@ -8,16 +8,8 @@ COPY Certificate/STAR_junicalmedical_com_co.crt /etc/apache2/ssl/
 COPY Certificate/USERTrustRSAAAACA.crt /etc/apache2/ssl/
 COPY Certificate/junicalmedical.com.co.pfx /etc/apache2/ssl/
 
-# EXPOSE para el puerto 443 (SSL)
-EXPOSE 443
-
-# Actualiza el sistema y luego instala OpenSSL
-RUN apt-get update && apt-get install -y openssl
-
-# Habilitar SSL y configurar el sitio web
+# Habilitar SSL y configurar el archivo de host virtual para SSL
 RUN a2enmod ssl
-
-# Configurar el archivo de host virtual para Apache
 COPY 000-default-ssl.conf /etc/apache2/sites-available/
 RUN a2ensite 000-default-ssl
 
