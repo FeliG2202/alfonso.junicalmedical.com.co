@@ -1,0 +1,14 @@
+{
+    "name": "lion/database",
+    "description": "Package in charge of the generation and execution of processes with databases",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LionDatabase\\": "src/LionDatabase/"
+        }
+    },
+    "require": {
+        "php": ">=8.1"
+    }
+}

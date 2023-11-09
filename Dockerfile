@@ -1,26 +1,26 @@
-FROM php:8.2-apache
+FROM php:8.1.0-apache
 ARG DEBIAN_FRONTEND=noninteractive
 
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+RUN docker-php-ext-install pdo
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install mysqli
+
+
+COPY ./conf/apache2/ssl/dev.project1.loc+3-key.pem /etc/apache2/ssl/dev.project1.loc+3-key.pem
+COPY ./conf/apache2/ssl/dev.project1.loc+3.pem /etc/apache2/ssl/dev.project1.loc+3.pem
+
+COPY ./conf/apache2/sites-available/dev.project1.loc.conf /etc/apache2/sites-available/dev.project1.loc.conf
+COPY ./conf/apache2/sites-available/dev.project1.loc-ssl.conf /etc/apache2/sites-available/dev.project1.loc-ssl.conf
+
+CMD apachectl -D FOREGROUND 
+
+RUN ln -s /etc/apache2/mods-available/ssl.load  /etc/apache2/mods-enabled/ssl.load
 RUN a2enmod rewrite
-
-# Copiar los archivos SSL y la clave privada al contenedor
-COPY Certificate/AAACertificateServices.crt /etc/apache2/ssl/
-COPY Certificate/SectigoRSAOrganizationValidationSecureServerCA.crt /etc/apache2/ssl/
-COPY Certificate/STAR_junicalmedical_com_co.crt /etc/apache2/ssl/
-COPY Certificate/USERTrustRSAAAACA.crt /etc/apache2/ssl/
-COPY Certificate/junicalmedical.com.co.pfx /etc/apache2/ssl/
-
-RUN apt-get update && apt-get install -y openssl
-
-# Habilitar SSL y configurar el archivo de host virtual para SSL
-RUN a2enmod ssl
-COPY 000-default-ssl.conf /etc/apache2/sites-available/
-RUN a2ensite 000-default-ssl
-
-# Define una variable de entorno para la contraseña del archivo PFX
-ENV PFX_PASSWORD=1sY3Wb9LQ32y
-
-RUN echo $PFX_PASSWORD | openssl pkcs12 -in /etc/apache2/ssl/junicalmedical.com.co.pfx -out /etc/apache2/ssl/junicalmedical.com.co.pem -nokeys -nodes
+RUN a2enmod mime
+RUN a2ensite dev.project1.loc
+RUN a2ensite dev.project1.loc-ssl
+RUN service apache2 restart
 
 RUN apt-get update \
     && apt-get install -y default-mysql-client \
@@ -51,11 +51,3 @@ RUN apt-get update \
     && a2enmod rewrite \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-COPY . .
-
-CMD chsh -s $(which zsh) \
-    && zsh \
-    && composer install \
-    && php -S 0.0.0.0:80
-

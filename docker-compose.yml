@@ -1,7 +1,6 @@
-version: "3.8"
 services:
     app:
-        container_name: MVC-app
+        container_name: php
         build:
             context: .
             dockerfile: Dockerfile
@@ -9,42 +8,42 @@ services:
             - "80:80"  # HTTP
             - "443:443" # SSL
         volumes:
-            - ./:/var/www/html
+            - ./src:/var/www/html
+            - ./conf/php/php.ini:/usr/local/etc/php/php.ini
         depends_on:
             - db
             - phpmyadmin
-        environment:
-            - APACHE_SSL_CERT_FILE=/etc/apache2/ssl/junicalmedical.com.co.pem
-            - APACHE_SSL_KEY_FILE=/etc/apache2/ssl/junicalmedical.com.co.key.pem
         networks:
             - lion
     db:
         image: mysql
         container_name: MVC-mysql
-        command: --default-authentication-plugin=mysql_native_password
+        command: --default-authentication-plugin=caching_sha2_password
         restart: unless-stopped
         environment:
-            MYSQL_DATABASE: "sistema_medico"
-            MYSQL_PASSWORD: "lion"
-            MYSQL_ROOT_PASSWORD: "lion"
+            MYSQL_USER: mysql
+            MYSQL_DATABASE: database
+            MYSQL_PASSWORD: 1234
+            MYSQL_ROOT_PASSWORD: 1234
         ports:
             - "3306:3306"
         volumes:
-            - mysql_data:/var/lib/mysql
+            - ./conf/mysql/conf/my.cnf:/etc/my.cnf
+            - ./mysql:/var/lib/mysql:delegated
         networks:
             - lion
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
-        container_name: MVC-phpmyadmin
+        container_name: phpmyadmin
         restart: unless-stopped
         links:
             - db:db
         ports:
             - 8080:80
         environment:
-            MYSQL_USER: "root"
-            MYSQL_PASSWORD: "lion"
-            MYSQL_ROOT_PASSWORD: "lion"
+            MYSQL_USER: mysql
+            MYSQL_PASSWORD: 1234
+            MYSQL_ROOT_PASSWORD: 1234
         networks:
             - lion
 volumes:

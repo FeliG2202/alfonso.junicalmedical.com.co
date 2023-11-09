@@ -1,0 +1,16 @@
+{
+    "name": "lion/route",
+    "description": "This library has a fast router usage with regular expressions.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "LionRoute\\": "src/LionRoute/"
+        }
+    },
+    "require": {
+        "php": ">=8.1",
+        "phroute/phroute": "^2.2",
+        "guzzlehttp/guzzle": "^7.5"
+    }
+}
