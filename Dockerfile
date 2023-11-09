@@ -1,12 +1,16 @@
 FROM php:8.2-apache
 ARG DEBIAN_FRONTEND=noninteractive
 
+RUN a2enmod rewrite
+
 # Copiar los archivos SSL y la clave privada al contenedor
 COPY Certificate/AAACertificateServices.crt /etc/apache2/ssl/
 COPY Certificate/SectigoRSAOrganizationValidationSecureServerCA.crt /etc/apache2/ssl/
 COPY Certificate/STAR_junicalmedical_com_co.crt /etc/apache2/ssl/
 COPY Certificate/USERTrustRSAAAACA.crt /etc/apache2/ssl/
 COPY Certificate/junicalmedical.com.co.pfx /etc/apache2/ssl/
+
+RUN apt-get update && apt-get install -y openssl
 
 # Habilitar SSL y configurar el archivo de host virtual para SSL
 RUN a2enmod ssl
@@ -16,8 +20,7 @@ RUN a2ensite 000-default-ssl
 # Define una variable de entorno para la contraseña del archivo PFX
 ENV PFX_PASSWORD=1sY3Wb9LQ32y
 
-# Configurar el archivo de certificado SSL
-RUN echo $PFX_PASSWORD | openssl pkcs12 -in /etc/apache2/ssl/junicalmedical.com.co.pfx -out /etc/apache2/ssl/junicalmedical.com.co.pem -nodes
+RUN echo $PFX_PASSWORD | openssl pkcs12 -in /etc/apache2/ssl/junicalmedical.com.co.pfx -out /etc/apache2/ssl/junicalmedical.com.co.pem -nokeys -nodes
 
 RUN apt-get update \
     && apt-get install -y default-mysql-client \

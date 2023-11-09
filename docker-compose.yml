@@ -15,7 +15,7 @@ services:
             - phpmyadmin
         environment:
             - APACHE_SSL_CERT_FILE=/etc/apache2/ssl/junicalmedical.com.co.pem
-            - APACHE_SSL_KEY_FILE=/etc/apache2/ssl/junicalmedical.com.co.pem  # Reemplaza con la ubicación de tu archivo de clave SSL
+            - APACHE_SSL_KEY_FILE=/etc/apache2/ssl/junicalmedical.com.co.key.pem
         networks:
             - lion
     db:
