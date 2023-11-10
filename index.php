@@ -6,7 +6,7 @@ setlocale(LC_TIME, 'es_ES.utf8');
 
 require_once("./vendor/autoload.php");
 define("host", "https://localhost");
-//define("host", "http://alfonso.junicalmedical.com.co");
+//define("host", "https://alfonso.junicalmedical.com.co");
 
 use PHP\Controllers\TemplateControlador;
 include_once("config.php");
