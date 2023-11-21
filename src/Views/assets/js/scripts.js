@@ -27,23 +27,32 @@ window.addEventListener("DOMContentLoaded", (event) => {
 });
 
 
-        // Espera a que la página se cargue completamente
-window.onload = function() {
-            // Verifica si el parámetro 'message' está presente en la URL
-  if (window.location.search.includes("message=true")) {
-                // Elimina el parámetro 'message' de la URL actual
-    var newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search.replace(/&?message=true/, '');
+/* Validador de casillas para el código de verificación */
+function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
+  // Elimina todos los caracteres no numéricos
+  input.value = input.value.replace(/\D/g, '');
 
-                // Reemplaza la URL actual sin el parámetro 'message'
-    history.replaceState({path: newURL}, '', newURL);
-  } if (window.location.search.includes("message=false")) {
-                // Elimina el parámetro 'message' de la URL actual
-    var newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search.replace(/&?message=false/, '');
+  // Limita la longitud de la entrada a 1
+  input.value = input.value.slice(0, 1);
 
-                // Reemplaza la URL actual sin el parámetro 'message'
-    history.replaceState({path: newURL}, '', newURL);
+  // Manejo especial para la tecla Backspace
+  if (event && event.keyCode === 8) {
+    if (input.value.length === 0) {
+      // Si se presiona Backspace y la casilla está vacía, mover el foco al campo anterior
+      document.getElementById(inputAnteriorId).focus();
+      return;
+    }
+  }
+
+  if (input.value.length === 0) {
+    // Si la casilla está vacía, mover el foco al campo anterior
+    document.getElementById(inputAnteriorId).focus();
+  } else if (input.value.length > 0) {
+    // Si se ha ingresado un número, mover el foco al siguiente campo
+    document.getElementById(siguienteInputId).focus();
   }
 }
+
 
 
 /* validador de selecionador */
@@ -65,16 +74,23 @@ function handleCheckboxClick(checkbox) {
   }
 }
 
-/*validador de casillas para el codigo de verificacion*/
+/* Validador de casillas para el código de verificación */
 function validarNumero(input, siguienteInputId, inputAnteriorId) {
-  input.value = input.value.replace(/[^0-9]/g, '');
+  // Elimina todos los caracteres no numéricos
+  input.value = input.value.replace(/\D/g, '');
+
+  // Limita la longitud de la entrada a 1
+  input.value = input.value.slice(0, 1);
 
   if (input.value.length === 0) {
+    // Si la casilla está vacía, mover el foco al campo anterior
     document.getElementById(inputAnteriorId).focus();
   } else if (input.value.length > 0) {
+    // Si se ha ingresado un número, mover el foco al siguiente campo
     document.getElementById(siguienteInputId).focus();
   }
 }
+
 
 /*validador de campos de fechas actuales*/
 function validarFechas() {

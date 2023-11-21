@@ -66,42 +66,41 @@ if ($request != null) {
                 <label class="mb-2">Código de verificación</label>
             </div>
 
-            <div class="col">
-                <input type="number" id="code-1" name="cod-1" maxlength="1" oninput="validarNumero(this, 'code-2', 'code-1')" class="form-control" required autocomplete="off">
+                <div class="col">
+                    <input type="number" id="code-1" name="cod-1" maxlength="1" oninput="validarNumero(this, 'code-2', 'code-1')" class="form-control mb-0" required autocomplete="off">
+                </div>
+
+                <div class="col">
+                    <input type="number" id="code-2" name="cod-2" maxlength="1" oninput="validarNumero(this, 'code-3', 'code-1')" class="form-control mb-0" required autocomplete="off">
+                </div>
+
+                <div class="col">
+                    <input type="number" id="code-3" name="cod-3" maxlength="1" oninput="validarNumero(this, 'code-4', 'code-2')" class="form-control mb-0" required autocomplete="off">
+                </div>
+
+                <div class="col">
+                    <input type="number" id="code-4" name="cod-4" maxlength="1" oninput="validarNumero(this, 'code-5', 'code-3')" class="form-control mb-0" required autocomplete="off">
+                </div>
+
+                <div class="col">
+                    <input type="number" id="code-5" name="cod-5" maxlength="1" oninput="validarNumero(this, 'code-6', 'code-4')" class="form-control mb-0" required autocomplete="off">
+                </div>
+
+                <div class="col">
+                    <input type="number" id="code-6" name="cod-6" maxlength="1" oninput="validarNumero(this, 'code-7', 'code-5')" class="form-control mb-0" required autocomplete="off">
+                </div>
             </div>
 
-            <div class="col">
-                <input type="number" id="code-2" name="cod-2" maxlength="1" oninput="validarNumero(this, 'code-3', 'code-1')" class="form-control" required autocomplete="off">
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <input type="submit" id="submitForm" value="Siguiente" name="btnValCode" class="btn btn-warning">
             </div>
+        </form>
+    </div>
 
-            <div class="col">
-                <input type="number" id="code-3" name="cod-3" maxlength="1" oninput="validarNumero(this, 'code-4', 'code-2')" class="form-control" required autocomplete="off">
-            </div>
-
-            <div class="col">
-                <input type="number" id="code-4" name="cod-4" maxlength="1" oninput="validarNumero(this, 'code-5', 'code-3')" class="form-control" required autocomplete="off">
-            </div>
-
-            <div class="col">
-                <input type="number" id="code-5" name="cod-5" maxlength="1" oninput="validarNumero(this, 'code-6', 'code-4')" class="form-control" required autocomplete="off">
-            </div>
-
-            <div class="col">
-                <input type="number" id="code-6" name="cod-6" maxlength="1" oninput="validarNumero(this, 'code-7', 'code-5')" class="form-control" required autocomplete="off">
-            </div>
-
-
-        </div>
-
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <input type="submit" id="submitForm" value="Siguiente" name="btnValCode" class="btn btn-warning">
-        </div>
-    </form>
-</div>
-
-<script>
+    <script>
         // Add JavaScript to automatically select the input field when the view loads
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('code-1').focus();
-    });
-</script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('code-1').focus();
+        });
+    </script>
