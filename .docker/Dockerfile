@@ -1,5 +1,7 @@
 FROM php:8.2-apache
 
+USER root
+
 RUN mkdir /app
 RUN a2enmod rewrite
 RUN mkdir /etc/apache2/sites-available/ssl

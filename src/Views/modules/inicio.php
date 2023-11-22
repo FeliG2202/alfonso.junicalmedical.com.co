@@ -5,7 +5,7 @@
         <div class="row">
             <!-- Tarjeta 1 -->
             <div class="col-md-5 mx-auto p-2"> <!-- Agregamos 'mx-auto' para centrar la columna horizontalmente -->
-                <a href="index.php?folder=frmPed&view=frmPedPersId" class="custom-card-wrapper">
+                <a href="/frmPed/frmPedPersId" class="custom-card-wrapper">
                     <div class="card custom-card" style="width: 18rem;">
                         <img src="/src/Views/assets/img/empleados.png" class="card-img-top" alt="Imagen de la Tarjeta 1">
                         <div class="card-body">
@@ -17,7 +17,7 @@
 
             <!-- Tarjeta 2 -->
             <div class="col-md-5 mx-auto p-2"> <!-- Agregamos 'mx-auto' para centrar la columna horizontalmente -->
-                <a href="index.php?folder=frmPedPaci&view=frmPedPaciId" class="custom-card-wrapper">
+                <a href="/frmPedPaci/frmPedPaciId" class="custom-card-wrapper">
                     <div class="card custom-card" style="width: 18rem;">
                         <img src="/src/Views/assets/img/pacientes.png" class="card-img-top" alt="Imagen de la Tarjeta 2">
                         <div class="card-body">

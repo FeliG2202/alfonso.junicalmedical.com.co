@@ -19,9 +19,9 @@ $addOption = function ($option) {
 		$name = $option->opcionMenuNombre;
 
 		if ($folder === null) {
-			return "<a class='nav-link' href='index.php?view={$view}'>{$name}</a>";
+			return "<a class='nav-link' href='/{$view}'>{$name}</a>";
 		} else {
-			return "<a class='nav-link' href='index.php?folder={$folder}&view={$view}'>{$name}</a>";
+			return "<a class='nav-link' href='/{$folder}/{$view}'>{$name}</a>";
 		}
 	};
 

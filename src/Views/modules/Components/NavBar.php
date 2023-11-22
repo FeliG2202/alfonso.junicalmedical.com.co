@@ -1,11 +1,11 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-turquesa">
   <!-- Navbar Brand-->
   <?php if (isset($_SESSION['session'])) { ?>
-    <a class="navbar-brand" href="index.php?view=inicio2">
+    <a class="navbar-brand" href="/inicio2">
       <img src="<?php echo(host); ?>/src/Views/assets/img/logo.png" alt="Bootstrap" width="170" height="50">
     </a>
   <?php } else { ?>
-    <a class="navbar-brand" href="index.php?view=inicio">
+    <a class="navbar-brand" href="/inicio">
       <img src="<?php echo(host); ?>/src/Views/assets/img/logo.png" alt="Bootstrap" width="170" height="50">
     </a>
   <?php } ?>
@@ -21,9 +21,9 @@
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
         <?php if (isset($_SESSION['session'])) { ?>
-          <li><a class="dropdown-item" href="index.php?view=salir">Salir</a></li>
+          <li><a class="dropdown-item" href="/salir">Salir</a></li>
         <?php } else { ?>
-          <li><a class="dropdown-item" href="index.php?view=login">iniciar sesión</a></li>
+          <li><a class="dropdown-item" href="/login">iniciar sesión</a></li>
         <?php } ?>
       </ul>
     </li>

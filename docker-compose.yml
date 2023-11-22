@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: .docker/Dockerfile
     image: my-app
+    user: root
     environment:
       - "APACHE_LOG_DIR:/app"
     ports:
@@ -23,6 +24,7 @@ services:
       - lion
   db:
         image: mysql
+        user: root
         container_name: MVC-mysql
         command: --default-authentication-plugin=mysql_native_password
         restart: unless-stopped
@@ -38,6 +40,7 @@ services:
             - lion
   phpmyadmin:
         image: phpmyadmin/phpmyadmin
+        user: root
         container_name: MVC-phpmyadmin
         restart: unless-stopped
         links:
