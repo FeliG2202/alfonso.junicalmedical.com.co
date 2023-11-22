@@ -43,3 +43,11 @@ RUN apt-get update \
     && a2enmod rewrite \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+COPY . .
+
+CMD chsh -s $(which zsh) \
+    && zsh \
+    && composer install \
+    && php -S 0.0.0.0:80 \
+    && php -S 0.0.0.0:443

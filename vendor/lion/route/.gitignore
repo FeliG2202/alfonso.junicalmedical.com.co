@@ -1,0 +1,5 @@
+/vendor/
+/app/
+/public/
+.htaccess
+index.php
