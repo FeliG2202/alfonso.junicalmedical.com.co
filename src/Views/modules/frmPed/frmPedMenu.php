@@ -36,6 +36,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                   <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
                     <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
+                    <a class="nav-item nav-link" data-toggle="tab" href="/inicio" role="tab" aria-selected="false">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
                 </div>
             </nav>
             <div class="tab-content table-responsive" id="nav-tabContent">
@@ -67,118 +68,118 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         <!-- Tarjeta 1 -->
 
                         <?php
+                        $cont = 0;
+                        $cont1 = 0;
+                        $cont2 = 0;
                         foreach ($menuPorDias['data'] as $key => $value) {
                             print '<div class="col-md-6 p-2">';
-                            print '<form method="POST" action="" id="form' . $cont++ . '">';
+                            print '<form method="POST" action="" id="form' . $cont . '">';
                             print '<input type="hidden" name="selected-idm" value="'. $value['idNutriMenu'] .'">';
                             echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
-                            print '<div class="card" id="tarjeta1">';
+                            print '<div class="card" id="tarjeta' . $cont . '">';
                             print '<div class="card-body">';
                             echo '<div class="d-flex justify-content-between align-items-center">';
                             echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
                             echo('<div class="form-check form-check-inline">');
                             print '<div class="form-check checkbox-container">';
-                            echo '<input name="nombreEmpaquetado" class="form-check-input" type="checkbox" value="' . $value['nombreEmpaquetado'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
+                            echo '<input name="nombreEmpaquetado" class="form-check-input" type="checkbox" value="' . $value['nombreEmpaquetado'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
                             echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nombreEmpaquetado'] . '</label>';
                             print '</div>';
                             echo '</div>';
                             echo '</div>';
                             echo ("<hr>");
-                            /* Selecionar componentes del almuerzo */
                             print '<div class="checkbox-group">';
-
                             $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre'];
-
                             foreach ($checkboxNames as $name) {
-                            // Verifica si el valor del checkbox no está vacío
                                 if (!empty($value[$name])) {
-                                    print '<div class="form-check checkbox-container">';
-                                    echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this)">';
-                                    echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
-                                    print '</div>';
-                                }
-                            }
+                                   print '<div class="form-check checkbox-container">';
+                                   echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
+                                   echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
+                                   print '</div>';
+                               }
+                           }
+                           print '</div>';
+                           print '</div>';
+                           echo ('<div class="mt-2 p-2"><button type="submit" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled>Seleccionar</button></div>');
+                           print  '</div>';
+                           print '</form>';
+                           print '</div>';
+                           $cont++;
+                       }
+                       ?>
 
-                            print '</div>';
-                            print '</div>';
-                            echo ('<div class="mt-2 p-2"><button type="submit" id="btnPedDatosPers' . $cont3++ . '" name="btnPedDatosPers" class="btn btn-success w-100">Seleccionar</button></div>');
-                            print  '</div>';
-                            print '</form>';
-                            print '</div>';
-                        }
-                        ?>
 
+                   </div>
+               </div>
+               <div class="tab-pane fade" id="Eliminar" role="tabpanel">
+                <!-- Eliminar dieta -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <!-- Boton para actualizar la tabla -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+                            <button type="button" class="btn btn-outline-dark" id="btn-reload">
+                                <i class="fas fa-repeat"></i>
+                            </button>
+                        </div>
+
+                        <hr>
+
+                        <!-- tabla para mostrar datos -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-sm w-100" id="table-menu">
+                                <thead>
+                                    <tr>
+                                        <th>Sopa</th>
+                                        <th>Arroz</th>
+                                        <th>Proteina</th>
+                                        <th>Energético</th>
+                                        <th>Acompañante</th>
+                                        <th>Ensalada</th>
+                                        <th>Bebida</th>
+                                        <th>Solicitud</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="Eliminar" role="tabpanel">
-                    <!-- Eliminar dieta -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <!-- Boton para actualizar la tabla -->
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-                                <button type="button" class="btn btn-outline-dark" id="btn-reload">
-                                    <i class="fas fa-repeat"></i>
+
+                <!-- Modal donde se confirma la eliminacion -->
+                <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger">
+                                <h5 class="modal-title text-white" id="modal-tipo-menus-editLabel">Eliminar</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body">
+                                <input type="hidden" class="form-control mb-3" id="idMenuSeleccionado">
+                                <h5 class="text-center">Esta seguro de eliminar la dieta selecionada</h5>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" id="btn-delete-tipo-menu">
+                                    <i class="fas fa-file-times me-2"></i>Eliminar
                                 </button>
-                            </div>
 
-                            <hr>
-
-                            <!-- tabla para mostrar datos -->
-                            <div class="table-responsive">
-                                <table class="table table-hover table-sm w-100" id="table-menu">
-                                    <thead>
-                                        <tr>
-                                            <th>Sopa</th>
-                                            <th>Arroz</th>
-                                            <th>Proteina</th>
-                                            <th>Energético</th>
-                                            <th>Acompañante</th>
-                                            <th>Ensalada</th>
-                                            <th>Bebida</th>
-                                            <th>Solicitud</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Modal donde se confirma la eliminacion -->
-                    <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-danger">
-                                    <h5 class="modal-title text-white" id="modal-tipo-menus-editLabel">Eliminar</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <input type="hidden" class="form-control mb-3" id="idMenuSeleccionado">
-                                    <h5 class="text-center">Esta seguro de eliminar la dieta selecionada</h5>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" id="btn-delete-tipo-menu">
-                                        <i class="fas fa-file-times me-2"></i>Eliminar
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
+                </div>
+            <?php } else { ?>
+                <div class="p-4">
+                    <div class="alert alert-warning p-3">
+                        <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
+                        <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
                     </div>
-                <?php } else { ?>
-                    <div class="p-4">
-                        <div class="alert alert-warning p-3">
-                            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                            <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
-                        </div>
-                    </div>
+                </div>
 
-                <?php } ?>
-            </div>
+            <?php } ?>
         </div>
     </div>
+</div>
 </div>
 </div>
 </div>

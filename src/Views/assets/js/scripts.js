@@ -26,6 +26,20 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 });
 
+function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
+  // Elimina todos los caracteres no numéricos
+  input.value = input.value.replace(/\D/g, '');
+
+  // Limita la longitud de la entrada a 1
+  input.value = input.value.slice(0, 1);
+
+  // Manejo especial para la tecla Backspace
+  if (event && event.keyCode === 8) {
+    if (input.value.length === 0) {
+      // Si se presiona Backspace y la casilla está vacía, mover el foco al campo anterior
+      document.getElementById(inputAnteriorId).focus();
+      return;
+    }
 
 /* Validador de casillas para el código de verificación */
 function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
@@ -50,27 +64,6 @@ function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
   } else if (input.value.length > 0) {
     // Si se ha ingresado un número, mover el foco al siguiente campo
     document.getElementById(siguienteInputId).focus();
-  }
-}
-
-
-
-/* validador de selecionador */
-let selectedCard = null;
-
-function handleCheckboxClick(checkbox) {
-  // Obtener la tarjeta padre del checkbox
-  const card = checkbox.closest(".card");
-
-  // Si el checkbox pertenece a una tarjeta diferente a la seleccionada anteriormente, deseleccionar los checkboxes de la tarjeta anterior
-  if (selectedCard !== card) {
-    if (selectedCard) {
-      const checkboxesInCard = selectedCard.querySelectorAll(
-        'input[type="checkbox"]'
-        );
-      checkboxesInCard.forEach((cb) => (cb.checked = false));
-    }
-    selectedCard = card;
   }
 }
 
