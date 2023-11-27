@@ -262,4 +262,3 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     alertElement.style.display = "block";
     setTimeout(hideAlert, 3000);
 </script>
-

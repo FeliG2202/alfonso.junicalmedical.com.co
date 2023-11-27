@@ -26,20 +26,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
 });
 
-function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
-  // Elimina todos los caracteres no numéricos
-  input.value = input.value.replace(/\D/g, '');
-
-  // Limita la longitud de la entrada a 1
-  input.value = input.value.slice(0, 1);
-
-  // Manejo especial para la tecla Backspace
-  if (event && event.keyCode === 8) {
-    if (input.value.length === 0) {
-      // Si se presiona Backspace y la casilla está vacía, mover el foco al campo anterior
-      document.getElementById(inputAnteriorId).focus();
-      return;
-    }
 
 /* Validador de casillas para el código de verificación */
 function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
