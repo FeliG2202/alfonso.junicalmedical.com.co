@@ -47,9 +47,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
 
 
-<div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
+<div class="col-12 col-sm-12 col-md-12 col-lg-10 mx-auto my-5 rounded shadow-sm">
     <div class="container">
-        <div class="card">
+        <div class="card ">
          <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
           <div class="card-body">
             <nav>
@@ -226,14 +226,13 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     // Contador
                     let contador = 0;
 
-                    // Suponiendo que response.data es un array de objetos con las propiedades especificadas
+                    // Suponiendo que response.data es un array de objetos
                     response.data.forEach(item => {
                         // Incrementa el contador
                         contador++;
 
                         // Agrega un título al modal con el contador
                         modalBody.innerHTML += `<p class="modal-title mt-3">Dieta registrada #${contador}</p>`;
-
 
                         // Itera sobre las propiedades del objeto
                         Object.keys(item).forEach(key => {
