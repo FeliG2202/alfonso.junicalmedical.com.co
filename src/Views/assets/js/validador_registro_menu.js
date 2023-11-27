@@ -9,7 +9,7 @@
    });
    allSubmitButtons.forEach((btn, index) => {
      if (index === cardId) {
-       btn.disabled = !document.querySelectorAll('#tarjeta' + cardId + ' input[type="checkbox"]:checked').length;
+       btn.disabled = !document.querySelectorAll('#form' + cardId + ' input[type="checkbox"]:checked').length;
      } else {
        btn.setAttribute('disabled', 'disabled');
      }

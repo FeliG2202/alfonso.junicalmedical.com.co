@@ -30,15 +30,16 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 <div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
     <div class="container">
         <div class="card">
-           <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
-              <div class="card-body">
-                <nav>
-                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
-                    <a class="nav-item nav-link" data-toggle="tab" href="/inicio" role="tab" aria-selected="false">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
+         <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+          <div class="card-body">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-solicitud-tab" data-bs-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
+                    <a class="nav-item nav-link" id="nav-eliminar-tab" data-bs-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
+                    <a class="nav-item nav-link" id="nav-salir-tab" href="/inicio" role="tab" aria-selected="false">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
                 </div>
             </nav>
+
             <div class="tab-content table-responsive" id="nav-tabContent">
                 <!-- Registrar Dietas -->
                 <div class="tab-pane fade show active" id="Solicitud" role="tabpanel">
@@ -80,38 +81,32 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             print '<div class="card-body">';
                             echo '<div class="d-flex justify-content-between align-items-center">';
                             echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
-                            echo('<div class="form-check form-check-inline">');
-                            print '<div class="form-check checkbox-container">';
-                            echo '<input name="nombreEmpaquetado" class="form-check-input" type="checkbox" value="' . $value['nombreEmpaquetado'] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
-                            echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value['nombreEmpaquetado'] . '</label>';
-                            print '</div>';
-                            echo '</div>';
                             echo '</div>';
                             echo ("<hr>");
                             print '<div class="checkbox-group">';
-                            $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre'];
+                            $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre','nombreEmpaquetado'];
                             foreach ($checkboxNames as $name) {
                                 if (!empty($value[$name])) {
-                                   print '<div class="form-check checkbox-container">';
-                                   echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
-                                   echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
-                                   print '</div>';
-                               }
-                           }
-                           print '</div>';
-                           print '</div>';
-                           echo ('<div class="mt-2 p-2"><button type="submit" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled>Seleccionar</button></div>');
-                           print  '</div>';
-                           print '</form>';
-                           print '</div>';
-                           $cont++;
-                       }
-                       ?>
+                                 print '<div class="form-check checkbox-container">';
+                                 echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
+                                 echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
+                                 print '</div>';
+                             }
+                         }
+                         print '</div>';
+                         print '</div>';
+                         echo ('<div class="mt-2 p-2"><button type="submit" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled>Seleccionar</button></div>');
+                         print  '</div>';
+                         print '</form>';
+                         print '</div>';
+                         $cont++;
+                     }
+                     ?>
 
 
-                   </div>
-               </div>
-               <div class="tab-pane fade" id="Eliminar" role="tabpanel">
+                 </div>
+             </div>
+             <div class="tab-pane fade" id="Eliminar" role="tabpanel">
                 <!-- Eliminar dieta -->
                 <div class="card mb-4">
                     <div class="card-body">
