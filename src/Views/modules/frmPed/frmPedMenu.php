@@ -27,6 +27,26 @@ $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => '
 
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-warning">
+                <h5 class="modal-title text-dark" id="modal-tipo-menus-editLabel"><i class="fas fa-exclamation-circle me-2 fa-lg"></i>Se encontraron menus registrados.</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <a href="/inicio" class="btn btn-success" role="button">Inicio</a>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
     <div class="container">
         <div class="card">
@@ -183,11 +203,54 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
 
 <script type="text/javascript">
+
     const urlParams = new URLSearchParams(window.location.href);
     const idPersona = urlParams.get('idPersona');
     const id = idPersona.split('#').shift();
-    // ya se que funciona solo que cuando queda una solo dato en la tabla no actualiza la tabla
     console.log(id);
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (idPersona) {
+        // Realiza la consulta cuando el documento esté listo
+            axios.get(`${host}/api/frmPedEdit/read/${id}`)
+            .then(function (response) {
+                // Verifica si la respuesta contiene datos
+                if (response.data.length > 0) {
+                    // Abre la ventana modal si hay datos
+                    $('#myModal').modal('show');
+
+                    // Actualiza el contenido del cuerpo del modal con los datos
+                    const modalBody = document.querySelector('.modal-body');
+                    modalBody.innerHTML = ''; // Borra el contenido existente
+
+                    // Contador
+                    let contador = 0;
+
+                    // Suponiendo que response.data es un array de objetos con las propiedades especificadas
+                    response.data.forEach(item => {
+                        // Incrementa el contador
+                        contador++;
+
+                        // Agrega un título al modal con el contador
+                        modalBody.innerHTML += `<p class="modal-title mt-3">Dieta registrada #${contador}</p>`;
+
+
+                        // Itera sobre las propiedades del objeto
+                        Object.keys(item).forEach(key => {
+                            // Verifica si el valor no es null y no es la propiedad 'idMenuSeleccionado'
+                            if (item[key] !== null && key !== 'idMenuSeleccionado') {
+                                modalBody.innerHTML += `<p class="mb-0"><i class="fas fa-dot-circle me-1 fa-xs"></i>${item[key]}</p>`;
+                            }
+                        });
+                    });
+                }
+            })
+            .catch(function (error) {
+                console.error('Error en la solicitud', error);
+            });
+        }
+    });
+
 
     const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
         keyboard: false

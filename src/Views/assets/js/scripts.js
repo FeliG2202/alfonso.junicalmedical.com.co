@@ -53,23 +53,6 @@ function validarNumero(input, siguienteInputId, inputAnteriorId, event) {
   }
 }
 
-/* Validador de casillas para el código de verificación */
-function validarNumero(input, siguienteInputId, inputAnteriorId) {
-  // Elimina todos los caracteres no numéricos
-  input.value = input.value.replace(/\D/g, '');
-
-  // Limita la longitud de la entrada a 1
-  input.value = input.value.slice(0, 1);
-
-  if (input.value.length === 0) {
-    // Si la casilla está vacía, mover el foco al campo anterior
-    document.getElementById(inputAnteriorId).focus();
-  } else if (input.value.length > 0) {
-    // Si se ha ingresado un número, mover el foco al siguiente campo
-    document.getElementById(siguienteInputId).focus();
-  }
-}
-
 
 /*validador de campos de fechas actuales*/
 function validarFechas() {
@@ -135,7 +118,6 @@ $('.tab a').on('click', function (e) {
   $(target).fadeIn(600);
 
 });
-
 
 
 // Inicializar el componente de pestañas de Bootstrap

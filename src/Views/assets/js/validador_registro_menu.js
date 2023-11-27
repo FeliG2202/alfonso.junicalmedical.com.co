@@ -15,3 +15,21 @@
      }
    });
  }
+
+  // Espera a que la página se cargue completamente
+window.onload = function() {
+            // Verifica si el parámetro 'message' está presente en la URL
+  if (window.location.search.includes("message=true")) {
+                // Elimina el parámetro 'message' de la URL actual
+    var newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search.replace(/&?message=true/, '');
+
+                // Reemplaza la URL actual sin el parámetro 'message'
+    history.replaceState({path: newURL}, '', newURL);
+  } if (window.location.search.includes("message=false")) {
+                // Elimina el parámetro 'message' de la URL actual
+    var newURL = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.search.replace(/&?message=false/, '');
+
+                // Reemplaza la URL actual sin el parámetro 'message'
+    history.replaceState({path: newURL}, '', newURL);
+  }
+}
