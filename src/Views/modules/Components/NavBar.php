@@ -21,9 +21,9 @@
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
         <?php if (isset($_SESSION['session'])) { ?>
-          <li><a class="dropdown-item" href="/salir">Salir</a></li>
+          <li><a class="dropdown-item" href="/salir">Salir<i class="fad fa-sign-out-alt ms-2"></i></a></li>
         <?php } else { ?>
-          <li><a class="dropdown-item" href="/login">iniciar sesión</a></li>
+          <li><a class="dropdown-item" href="/login"><i class="fad fa-sign-in-alt me-2"></i>iniciar sesión</a></li>
         <?php } ?>
       </ul>
     </li>
