@@ -86,45 +86,58 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     ?>
 
                     <div class="row p-1">
-                        <!-- Tarjeta 1 -->
+    <!-- Tarjeta 1 -->
+    <div id="cardsContainer"></div>
+</div>
 
-                        <?php
-                        $cont = 0;
-                        $cont1 = 0;
-                        $cont2 = 0;
-                        foreach ($menuPorDias['data'] as $key => $value) {
-                            print '<div class="col-md-6 p-2">';
-                            print '<form method="POST" action="" id="form' . $cont . '">';
-                            print '<input type="hidden" name="selected-idm" value="'. $value['idNutriMenu'] .'">';
-                            echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
-                            print '<div class="card" id="tarjeta' . $cont . '">';
-                            print '<div class="card-body">';
-                            echo '<div class="d-flex justify-content-between align-items-center">';
-                            echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
-                            echo '</div>';
-                            echo ("<hr>");
-                            print '<div class="checkbox-group">';
-                            $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre','nombreEmpaquetado'];
-                            foreach ($checkboxNames as $name) {
-                                if (!empty($value[$name])) {
-                                 print '<div class="form-check checkbox-container">';
-                                 echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
-                                 echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
-                                 print '</div>';
-                             }
-                         }
-                         print '</div>';
-                         print '</div>';
-                         echo ('<div class="mt-2 p-2"><button type="submit" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled>Seleccionar</button></div>');
-                         print  '</div>';
-                         print '</form>';
-                         print '</div>';
-                         $cont++;
-                     }
-                     ?>
+<script>
+    axios.get('your_api_endpoint')
+    .then(function (response) {
+        let cont = 0;
+        let cont1 = 0;
+        let cont2 = 0;
+        let cardsContainer = document.getElementById('cardsContainer');
+        response.data.forEach(function(value) {
+            let card = document.createElement('div');
+            card.className = 'col-md-6 p-2';
+            card.innerHTML = `
+                <form method="POST" action="" id="form${cont}">
+                    <input type="hidden" name="selected-idm" value="${value.idNutriMenu}">
+                    <input type='hidden' name='selected-idp' value="${value.idPersona}">
+                    <div class="card" id="tarjeta${cont}">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h6 class="card-title">${value.nutriTipoNombre}</h6>
+                            </div>
+                            <hr>
+                            <div class="checkbox-group">
+                                ${value.checkboxNames.map(name => {
+                                    if (value[name]) {
+                                        return `
+                                            <div class="form-check checkbox-container">
+                                                <input name="${name}" class="form-check-input" type="checkbox" value="${value[name]}" id="flexCheckDefault${cont1++}" onclick="handleCheckboxClick(this, ${cont})">
+                                                <label class="form-check-label" for="flexCheckDefault${cont2++}">${value[name]}</label>
+                                            </div>
+                                        `;
+                                    }
+                                }).join('')}
+                            </div>
+                        </div>
+                        <div class="mt-2 p-2">
+                            <button type="submit" id="btnPedDatosPers${cont}" name="btnPedDatosPers" class="btn btn-success w-100" disabled>Seleccionar</button>
+                        </div>
+                    </div>
+                </form>
+            `;
+            cardsContainer.appendChild(card);
+            cont++;
+        });
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+</script>
 
-
-                 </div>
              </div>
              <div class="tab-pane fade" id="Eliminar" role="tabpanel">
                 <!-- Eliminar dieta -->
