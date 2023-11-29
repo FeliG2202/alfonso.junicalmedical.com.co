@@ -5,7 +5,7 @@ date_default_timezone_set("America/Bogota");
 setlocale(LC_TIME, 'es_ES.utf8');
 
 require_once("./vendor/autoload.php");
-define("host", "http://10.100.206.51");
+define("host", "https://localhost");
 //define("host", "https://alfonso.junicalmedical.com.co");
 
 use PHP\Controllers\TemplateControlador;
