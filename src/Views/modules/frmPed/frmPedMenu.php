@@ -331,10 +331,15 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         readTipos();
     })();
 
-    var alertElement = document.querySelector("#success-alert");
-    function hideAlert() {
+var alertElement = document.querySelector("#success-alert");
+function hideAlert() {
+    if (alertElement) { // Verifica si alertElement no es null
         alertElement.style.display = "none";
     }
+}
+if (alertElement) { // Verifica si alertElement no es null
     alertElement.style.display = "block";
     setTimeout(hideAlert, 3000);
+}
+
 </script>
