@@ -103,65 +103,71 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                 print '</div>';
                                 print '</div>';
                                 echo ('<div class="mt-2 p-2">
-                                    <button type="button" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled onclick="openModal()">Seleccionar</button>
-                                    </div>');
+                                    <button type="button" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal1">Seleccionar</button></div>');
                                 print  '</div>';
-                                ?>
-                                <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-warning">
-                                                <h5 class="modal-title text-dark" id="modal-tipo-menus-editLabel"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                            </div>
-                                            <div class="modal-footer">
-                                                <div class="mt-2 p-2"><button type="submit" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success w-100">Guardar</button></div>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                            </div>
+                            ?><div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Content for Modal 1 -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="mt-2 p-2"><button type="submit" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success w-100">Guardar</button></div>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
                                 </div>
-                                <?php
-                                print '</form>';
-                                print '</div>';
-                                $cont++;
-                            }
-                            ?>
+                            </div>
+                            <?php
+                            print '</form>';
+                            print '</div>';
+                            $cont++;
+                        }
+                        ?>
 
-                            <script>
-                                function openModal() {
-                                    var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
-                                    myModal.show();
-                                }
 
-                                $(document).ready(function(){
-                                  $("button").click(function(){
-                                    var selectedItems = [];
-                                    var checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre','nombreEmpaquetado'];
-                                    checkboxNames.forEach(function(name) {
-                                      $("input:checkbox[name=" + name + "]:checked").each(function(){
-                                        if (name == 'nombreEmpaquetado') {
-                                          selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i><b style="color:red;">' + $(this).val() + '</b>');
-                                      } else {
-                                          selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i>' + $(this).val());
-                                      }
-                                  });
-                                  });
-                                    // Add a title to the modal body
-                                    $(".modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
-                                    // Append the selected items to the modal body
-                                    $(".modal-body").append(selectedItems.join("<br>"));
-                                    $(".modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">En caso de querer cancelar la dieta registrada, la persona puede dirigirse a la opción "Eliminar", donde tendrá la posibilidad de seleccionar la dieta que desea eliminar o diríjase a la opción "Salir" para finalizar solicitud.</div>');
-                                });
-                              });
+                            <!-- Modal 1 -->
+<script>
+    function openModal() {
+        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+        myModal.show();
+    }
 
-                          </script>
+    $(document).ready(function () {
+    $("button").click(function () {
+        console.log("Button clicked"); // Check if this is logged in the console
 
-                      </div>
-                  </div>
-                  <div class="tab-pane fade" id="Eliminar" role="tabpanel">
+        var selectedItems = [];
+        var checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre', 'nombreEmpaquetado'];
+        checkboxNames.forEach(function (name) {
+            $("input:checkbox[name=" + name + "]:checked").each(function () {
+                if (name == 'nombreEmpaquetado') {
+                    selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i><b style="color:red;">' + $(this).val() + '</b>');
+                } else {
+                    selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i>' + $(this).val());
+                }
+            });
+        });
+
+        console.log("Selected Items:", selectedItems); // Check if this is logged in the console
+
+        // Add a title to the modal body
+        $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
+        // Append the selected items to the modal body
+        $("#modal1 .modal-body").append(selectedItems.join("<br>"));
+        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">En caso de querer cancelar la dieta registrada, la persona puede dirigirse a la opción "Eliminar", donde tendrá la posibilidad de seleccionar la dieta que desea eliminar o diríjase a la opción "Salir" para finalizar solicitud.</div>');
+    });
+});
+
+</script>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Eliminar" role="tabpanel">
                     <!-- Eliminar dieta -->
                     <div class="card mb-4">
                         <div class="card-body">
