@@ -142,6 +142,5 @@ Route::prefix('frmEmpl',function(){
     Route::get('read',[PersonaControlador::class, "consultarPersonaControlador"]);
     Route::put('update/{idPersona}',[PersonaControlador::class, "actualizarPersonaControlador"]);
     Route::delete('delete/{idPersona}',[PersonaControlador::class, "eliminarPersonaControlador"]);
-    Route::post('massive',[PersonaControlador::class, "massivePersonaControlador"]);
 });
 

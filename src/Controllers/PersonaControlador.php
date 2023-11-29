@@ -3,8 +3,6 @@
 namespace PHP\Controllers;
 
 use PHP\Models\PersonaModelo;
-use PhpOffice\PhpSpreadsheetReaderCsv;
-use PhpOffice\PhpSpreadsheetReaderXlsx;
 
 class PersonaControlador {
 
@@ -61,43 +59,4 @@ class PersonaControlador {
 
 		return response->code(200)->success('Eliminado correctamente');
 	}
-
-	// public function massivePersonaControlador(){
-	// 	if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === UPLOAD_ERR_OK) {
-    //         $archivoTemporal = $_FILES['archivo']['tmp_name'];
-    //         $datos = $this->PersonaModelo->loadExcelFile($archivoTemporal);
-	// 		print($datos);
-    //         $this->PersonaModelo->updateDatabase($datos);
-    //         return response->code(200)->success("Registros actualizados correctamente.");
-    //     } else {
-    //         return response->code(500)->error("Error al cargar el archivo.");
-    //     }
-    // }
-
-
-	public function massivePersonaControlador(){
-		if (isset($_POST['submit'])) {
-            $file_mimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel', 'text/plain', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-            if(isset($_FILES['file']['name']) && in_array($_FILES['file']['type'], $file_mimes)) {
-                $arr_file = explode('.', $_FILES['file']['name']);
-                $extension = end($arr_file);
-                if('csv' == $extension) {
-                    $reader = new PhpOfficePhpSpreadsheetReaderCsv();
-                } else {
-                    $reader = new PhpOfficePhpSpreadsheetReaderXlsx();
-                }
-                $spreadsheet = $reader->load($_FILES['file']['tmp_name']);
-                $sheetData = $spreadsheet->getActiveSheet()->toArray();
-                if (!empty($sheetData)) {
-                    $personaModelo = new PersonaModelo();
-                    for ($i=1; $i<count($sheetData); $i++) {
-                        $name = $sheetData[$i][1];
-                        $email = $sheetData[$i][2];
-                        $personaModelo->massivePersonaModel($name, $email);
-                    }
-                }
-            }
-        }
-	}
-
 }

@@ -111,7 +111,7 @@ public function consultarMenuDiaControlador() {
 }
 
 public function registrarMenuDiaControlador() {
-    if (isset($_POST['btnPedDatosPers'])) {
+    if (isset($_POST['btnPedDatosPerso'])) {
         return !$this->PedAlmMenuModelo->registrarMenuDiaModelo([
             'idPersona' => (int) $_POST['selected-idp'],
             'idMenu' => (int) $_POST['selected-idm'],
