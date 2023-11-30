@@ -159,7 +159,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
         // Append the selected items to the modal body
         $("#modal1 .modal-body").append(selectedItems.join("<br>"));
-        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">En caso de querer cancelar la dieta registrada, la persona puede dirigirse a la opción "Eliminar", donde tendrá la posibilidad de seleccionar la dieta que desea eliminar o diríjase a la opción "Salir" para finalizar solicitud.</div>');
+        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar o diríjase a la opción "Salir" para finalizar solicitud.</div>');
     });
 });
 
