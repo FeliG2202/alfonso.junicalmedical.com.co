@@ -94,7 +94,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                         if ($name == 'nombreEmpaquetado') {
                                             echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '" style="font-weight:bold; color:red;">' . $value[$name] . '</label>';
                                         } else {
-                                            echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
+                                            echo '<label class="form-check-label"  for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
                                         }
                                         print '</div>';
                                     }
@@ -103,9 +103,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                 print '</div>';
                                 print '</div>';
                                 echo ('<div class="mt-2 p-2">
-                                    <button type="button" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal1">Seleccionar</button></div>');
+                                    <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
                                 print  '</div>';
-                            ?><div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                            ?><div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header bg-warning">
@@ -116,7 +116,25 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                             <!-- Content for Modal 1 -->
                                         </div>
                                         <div class="modal-footer">
-                                            <div class="mt-2 p-2"><button type="submit" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success w-100">Guardar</button></div>
+                                            <div class="mt-2 p-2"><button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success w-100">Guardar</button></div>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Content for Modal 1 -->
+                                        </div>
+                                        <div class="modal-footer">
+                                            <div class="mt-2 p-2"><button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success w-100">Guardar</button></div>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                                         </div>
                                     </div>
@@ -154,6 +172,11 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         });
 
         console.log("Selected Items:", selectedItems); // Check if this is logged in the console
+        // Add a title to the modal body
+        $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
+        // Append the selected items to the modal body
+        $("#modal0 .modal-body").append(selectedItems.join("<br>"));
+        $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar o diríjase a la opción "Salir" para finalizar solicitud.</div>');
 
         // Add a title to the modal body
         $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
