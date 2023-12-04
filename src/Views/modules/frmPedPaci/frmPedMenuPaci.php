@@ -36,6 +36,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
               <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
                 <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
+                <a class="nav-item nav-link" id="nav-salir-tab" href="/inicio" role="tab" aria-selected="false">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
             </div>
         </nav>
         <div class="tab-content table-responsive" id="nav-tabContent">
@@ -83,20 +84,16 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             echo '</div>';
                             echo ("<hr>");
                             print '<div class="checkbox-group">';
-                            $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre','nombreEmpaquetado'];
+                            $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre'];
+
                             foreach ($checkboxNames as $name) {
                                 if (!empty($value[$name])) {
                                     print '<div class="form-check checkbox-container">';
                                     echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
-                                    if ($name == 'nombreEmpaquetado') {
-                                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '" style="font-weight:bold; color:red;">' . $value[$name] . '</label>';
-                                    } else {
-                                        echo '<label class="form-check-label"  for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
-                                    }
+                                    echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
                                     print '</div>';
                                 }
                             }
-
                             print '</div>';
                             print '</div>';
                             echo ('<div class="mt-2 p-2">
@@ -154,33 +151,31 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
                         $(document).ready(function () {
                             $("button").click(function () {
-        console.log("Button clicked"); // Check if this is logged in the console
+                        console.log("Button clicked"); // Check if this is logged in the console
 
-        var selectedItems = [];
-        var checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre', 'nombreEmpaquetado'];
-        checkboxNames.forEach(function (name) {
-            $("input:checkbox[name=" + name + "]:checked").each(function () {
-                if (name == 'nombreEmpaquetado') {
-                    selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i><b style="color:red;">' + $(this).val() + '</b>');
-                } else {
-                    selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i>' + $(this).val());
-                }
-            });
-        });
+                        var selectedItems = [];
+                        var checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre'];
 
-        console.log("Selected Items:", selectedItems); // Check if this is logged in the console
-        // Add a title to the modal body
-        $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
-        // Append the selected items to the modal body
-        $("#modal0 .modal-body").append(selectedItems.join("<br>"));
-        $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+                        checkboxNames.forEach(function (name) {
+                            $("input:checkbox[name=" + name + "]:checked").each(function () {
+                                selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i>' + $(this).val());
+                            });
+                        });
 
-        // Add a title to the modal body
-        $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
-        // Append the selected items to the modal body
-        $("#modal1 .modal-body").append(selectedItems.join("<br>"));
-        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
-    });
+
+                        console.log("Selected Items:", selectedItems); // Check if this is logged in the console
+                        // Add a title to the modal body
+                        $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
+                        // Append the selected items to the modal body
+                        $("#modal0 .modal-body").append(selectedItems.join("<br>"));
+                        $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+
+                        // Add a title to the modal body
+                        $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
+                        // Append the selected items to the modal body
+                        $("#modal1 .modal-body").append(selectedItems.join("<br>"));
+                        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+                    });
                         });
                     </script>
                 </div>
@@ -262,70 +257,12 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 </div>
 </div>
 
-<script>
-  // Función para habilitar o deshabilitar el botón de envío
-  function actualizarEstadoBoton1() {
-    var checkboxes1 = document.querySelectorAll('#from1 input[type="checkbox"]');
-    var enviarButton1 = document.getElementById('btnPedDatosPers1');
-
-    // Verifica si al menos un checkbox está seleccionado
-    var alMenosUnoSeleccionado1 = Array.from(checkboxes1).some(function(checkbox1) {
-      return checkbox1.checked;
-  });
-
-    // Habilita o deshabilita el botón de envío según si se selecciona al menos uno
-    if (alMenosUnoSeleccionado1) {
-      enviarButton1.removeAttribute('disabled');
-  } else {
-      enviarButton1.setAttribute('disabled', 'disabled');
-  }
-}
-
-  // Agrega un evento de cambio a cada checkbox
-var checkboxes1 = document.querySelectorAll('#from1 input[type="checkbox"]');
-checkboxes1.forEach(function(checkbox1) {
-    checkbox1.addEventListener('change', actualizarEstadoBoton1);
-});
-
-  // Ejecuta la función inicialmente cuando la página se carga
-document.addEventListener('DOMContentLoaded', actualizarEstadoBoton1);
-</script>
-
-<script>
-  // Función para habilitar o deshabilitar el botón de envío
-  function actualizarEstadoBoton2() {
-    var checkboxes2 = document.querySelectorAll('#from2 input[type="checkbox"]');
-    var enviarButton2 = document.getElementById('btnPedDatosPers2');
-
-    // Verifica si al menos un checkbox está seleccionado
-    var alMenosUnoSeleccionado2 = Array.from(checkboxes2).some(function(checkbox2) {
-      return checkbox2.checked;
-  });
-
-    // Habilita o deshabilita el botón de envío según si se selecciona al menos uno
-    if (alMenosUnoSeleccionado2) {
-      enviarButton2.removeAttribute('disabled');
-  } else {
-      enviarButton2.setAttribute('disabled', 'disabled');
-  }
-}
-
-  // Agrega un evento de cambio a cada checkbox
-var checkboxes2 = document.querySelectorAll('#from2 input[type="checkbox"]');
-checkboxes2.forEach(function(checkbox2) {
-    checkbox2.addEventListener('change', actualizarEstadoBoton2);
-});
-
-  // Ejecuta la función inicialmente cuando la página se carga
-document.addEventListener('DOMContentLoaded', actualizarEstadoBoton2);
-</script>
-
 <!-- ================================backend================================== -->
 
 
 <script type="text/javascript">
 
-const urlParams = new URLSearchParams(window.location.href);
+    const urlParams = new URLSearchParams(window.location.href);
     const idPaciente = urlParams.get('idPaciente');
     const id = idPaciente.split('#').shift();
     console.log(id);
