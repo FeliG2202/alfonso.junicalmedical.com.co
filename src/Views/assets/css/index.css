@@ -1,0 +1,69 @@
+* {
+  padding 0;
+  margin: 0;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/*================================
+        Error 404 Page
+==================================*/
+
+.page_404{
+    margin: 0 auto;
+    background: #fff;
+    font-family: 'Arvo',serif;
+}
+
+.page_404 img{ width: 100%; }
+.four_zero_four_bg{
+    background-image: url(https://servicioalcliente.junicalmedical.com.co/Error404.gif);
+    height: 400px;
+    background-position: center;
+}
+
+.four_zero_four_bg h1{
+    font-size: 80px;
+}
+
+.four_zero_four_bg h3{
+    font-size: 80px;
+}
+
+.link_404{
+    color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;
+}
+
+.contant_box_404{
+    margin-top: -50px;
+}
+
+.custom-card-wrapper {
+            /* Agrega un efecto de elevación leve al pasar el mouse */
+            display: block;
+            text-decoration: none; /* Elimina la decoración de texto del enlace */
+            color: inherit; /* Hereda el color del texto del elemento padre */
+        }
+
+        /* Agrega un efecto de elevación leve al pasar el mouse */
+        .custom-card:hover {
+            box-shadow: 0 8px 10px rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+
+
