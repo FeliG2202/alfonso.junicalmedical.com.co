@@ -52,27 +52,21 @@ class PedAlmMenuPaciControlador {
     }
 
     public function registrarMenuDiaControlador() {
-        if (isset($_POST['btnPedDatosPers'])) {
+        if (isset($_POST['btnPedDatosPerso'])) {
             return !$this->pedAlmMenuPaciModelo->registrarMenuDiaModelo([
                 'idPaciente' => (int) $_POST['selected-idp'],
                 'idMenu' => (int) $_POST['selected-idm'],
-                'nutriSopaNombre' => (string) $_POST['nutriSopaNombre'],
-                'nutriArrozNombre' => (string) $_POST['nutriArrozNombre'],
-                'nutriProteNombre' => (string) $_POST['nutriProteNombre'],
-                'nutriEnergeNombre' => (string) $_POST['nutriEnergeNombre'],
-                'nutriAcompNombre' => (string) $_POST['nutriAcompNombre'],
-                'nutriEnsalNombre' => (string) $_POST['nutriEnsalNombre'],
-                'nutriBebidaNombre' => (string) $_POST['nutriBebidaNombre'],
-                'date' => date('Y-m-d')
+                'nutriSopaNombre' => (empty($_POST['nutriSopaNombre']) ? null : $_POST['nutriSopaNombre']),
+            'nutriArrozNombre' => (empty($_POST['nutriArrozNombre']) ? null : $_POST['nutriArrozNombre']),
+            'nutriProteNombre' => (empty($_POST['nutriProteNombre']) ? null : $_POST['nutriProteNombre']),
+            'nutriEnergeNombre' => (empty($_POST['nutriEnergeNombre']) ? null : $_POST['nutriEnergeNombre']),
+            'nutriAcompNombre' => (empty($_POST['nutriAcompNombre']) ? null : $_POST['nutriAcompNombre']),
+            'nutriEnsalNombre' => (empty($_POST['nutriEnsalNombre']) ? null : $_POST['nutriEnsalNombre']),
+            'nutriBebidaNombre' => (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
+            'date' => date('Y-m-d')
             ])
-                ? (object) ['request' => false,
-                            'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId",
-                            'message' => "Error al registrar la dieta"
-                            ]
-                : (object) ['request' => true,
-                            'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId",
-                            'message' => "Dieta registrada correctamente"
-                            ];
+                ? (object) ['request' => false, 'url' => "index.php?folder=frmPedPaci&view=frmPedMenuPaci&idPaciente={$_GET['idPaciente']}&message=false"]
+        : (object) ['request' => true, 'url' => "index.php?folder=frmPedPaci&view=frmPedMenuPaci&idPaciente={$_GET['idPaciente']}&message=true"];
         }
     }
 
