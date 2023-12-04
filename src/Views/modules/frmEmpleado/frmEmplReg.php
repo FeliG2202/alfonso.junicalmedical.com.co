@@ -4,12 +4,25 @@ use PHP\Controllers\TemplateControlador;
 if (!isset($_SESSION['session'])) {
     TemplateControlador::redirect("index.php?view=login");
 }
+
 ?>
 
 <div class="row">
     <div class="col-lg-8 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
         <h2 class="text-center">Empleado</h2>
         <hr>
+
+        <?php
+        if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
+            $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
+            $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
+            $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
+            ?>
+            <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
+                <?php echo $alertText; ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
 
         <div class="d-flex justify-content-between my-2">
             <div>
@@ -71,8 +84,8 @@ if (!isset($_SESSION['session'])) {
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Importar datos de Excel</h1>
+                <div class="modal-header bg-success">
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Importar datos de Excel</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -83,8 +96,8 @@ if (!isset($_SESSION['session'])) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" onclick="cargar_excel()">Cargar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
@@ -133,11 +146,24 @@ if (!isset($_SESSION['session'])) {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             console.log(response);
+            window.location.href = 'index.php?folder=frmEmpleado&view=frmEmplReg&message=true';
         } catch (error) {
             console.error(error);
         }
         return false;
     }
+
+        var alertElement = document.querySelector("#success-alert");
+    function hideAlert() {
+    if (alertElement) { // Verifica si alertElement no es null
+        alertElement.style.display = "none";
+    }
+}
+if (alertElement) { // Verifica si alertElement no es null
+    alertElement.style.display = "block";
+    setTimeout(hideAlert, 3000);
+}
+
 
 </script>
 

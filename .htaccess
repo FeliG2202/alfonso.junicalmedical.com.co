@@ -8,6 +8,7 @@
     RewriteRule ^([^/]+)/([^/]+)/?$ index.php?folder=$1&view=$2 [L,QSA]
     RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?folder=$1&view=$2&idPersona=3 [L,QSA]
     RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?folder=$1&view=$2&idPaciente=3 [L,QSA]
+    RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ index.php?folder=$1&view=$2&message=3 [L,QSA]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
