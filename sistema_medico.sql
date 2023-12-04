@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 27-11-2023 a las 17:46:54
+-- Tiempo de generación: 04-12-2023 a las 16:02:43
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -39,7 +39,7 @@ CREATE TABLE `menus` (
 --
 
 INSERT INTO `menus` (`idMenu`, `menuNombre`, `menuEstado`, `idRol`) VALUES
-(1, 'Usuarios', 'online', '3'),
+(1, 'Usuarios', 'online', '1,3'),
 (2, 'Perfiles', 'online', '3'),
 (3, 'Menus', 'online', '3'),
 (4, 'Formulario', 'online/offline', '1,2,3'),
@@ -496,7 +496,8 @@ INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcio
 (14, 4, 'Menu', 'frmAlmRegMenu', 'frmAlmMenu', 'online', '1,3'),
 (15, 5, 'Arroz', 'frmAlmRegArroz', 'frmAlmArroz', 'online', '1'),
 (16, 4, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3'),
-(17, 3, 'Opciones Menu', 'frmRegOpcionesMenu', 'frmSidebarOption', 'online', '3');
+(17, 3, 'Opciones Menu', 'frmRegOpcionesMenu', 'frmSidebarOption', 'online', '3'),
+(18, 1, 'Creacion de Pacientes', 'frmPaciReg', 'frmPaciente', 'online', '1,3');
 
 -- --------------------------------------------------------
 
@@ -613,18 +614,18 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nombreEmpaquetado` varchar(100)
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
+,`nombreEmpaquetado` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -635,17 +636,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -664,7 +665,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_nu
 --
 DROP TABLE IF EXISTS `View_nutrimenupaci`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `View_nutrimenupaci`  AS SELECT `nutrimenupaci`.`idNutriMenuPaci` AS `idNutriMenuPaci`, `nutritipo`.`nutriTipoNombre` AS `nutriTipoNombre`, `nutridias`.`nutriDiasNombre` AS `nutriDiasNombre`, `nutrisopa`.`nutriSopaNombre` AS `nutriSopaNombre`, `nutriarroz`.`nutriArrozNombre` AS `nutriArrozNombre`, `nutriprote`.`nutriProteNombre` AS `nutriProteNombre`, `nutrienerge`.`nutriEnergeNombre` AS `nutriEnergeNombre`, `nutriacomp`.`nutriAcompNombre` AS `nutriAcompNombre`, `nutriensal`.`nutriEnsalNombre` AS `nutriEnsalNombre`, `nutribebida`.`nutriBebidaNombre` AS `nutriBebidaNombre`, `nutrisemana`.`nutriSemanaNombre` AS `nutriSemanaNombre`, `nutrisemana`.`nutriSemanaid` AS `nutriSemanaid` FROM ((((((((((`nutrimenupaci` join `nutritipo` on((`nutrimenupaci`.`idNutriTipo` = `nutritipo`.`idNutriTipo`))) join `nutridias` on((`nutrimenupaci`.`idNutriDias` = `nutridias`.`idNutriDias`))) join `nutrisopa` on((`nutrimenupaci`.`idNutriSopa` = `nutrisopa`.`idNutriSopa`))) join `nutriarroz` on((`nutrimenupaci`.`idNutriArroz` = `nutriarroz`.`idNutriArroz`))) join `nutriprote` on((`nutrimenupaci`.`idNutriProte` = `nutriprote`.`idNutriProte`))) join `nutrienerge` on((`nutrimenupaci`.`idNutriEnerge` = `nutrienerge`.`idNutriEnerge`))) join `nutriacomp` on((`nutrimenupaci`.`idNutriAcomp` = `nutriacomp`.`idNutriAcomp`))) join `nutriensal` on((`nutrimenupaci`.`idNutriEnsal` = `nutriensal`.`idNutriEnsal`))) join `nutribebida` on((`nutrimenupaci`.`idNutriBebida` = `nutribebida`.`idNutriBebida`))) join `nutrisemana` on((`nutrimenupaci`.`idNutriSemana` = `nutrisemana`.`idNutriSemana`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `View_nutrimenupaci`  AS SELECT `nutrimenupaci`.`idNutriMenuPaci` AS `idNutriMenuPaci`, `nutritipo`.`nutriTipoNombre` AS `nutriTipoNombre`, `nutridias`.`nutriDiasNombre` AS `nutriDiasNombre`, `nutrisopa`.`nutriSopaNombre` AS `nutriSopaNombre`, `nutriarroz`.`nutriArrozNombre` AS `nutriArrozNombre`, `nutriprote`.`nutriProteNombre` AS `nutriProteNombre`, `nutrienerge`.`nutriEnergeNombre` AS `nutriEnergeNombre`, `nutriacomp`.`nutriAcompNombre` AS `nutriAcompNombre`, `nutriensal`.`nutriEnsalNombre` AS `nutriEnsalNombre`, `nutribebida`.`nutriBebidaNombre` AS `nutriBebidaNombre`, `nutrisemana`.`nutriSemanaNombre` AS `nutriSemanaNombre`, `nutrisemana`.`nutriSemanaid` AS `nutriSemanaid` FROM ((((((((((`nutrimenupaci` left join `nutritipo` on((`nutrimenupaci`.`idNutriTipo` = `nutritipo`.`idNutriTipo`))) left join `nutridias` on((`nutrimenupaci`.`idNutriDias` = `nutridias`.`idNutriDias`))) left join `nutrisopa` on((`nutrimenupaci`.`idNutriSopa` = `nutrisopa`.`idNutriSopa`))) left join `nutriarroz` on((`nutrimenupaci`.`idNutriArroz` = `nutriarroz`.`idNutriArroz`))) left join `nutriprote` on((`nutrimenupaci`.`idNutriProte` = `nutriprote`.`idNutriProte`))) left join `nutrienerge` on((`nutrimenupaci`.`idNutriEnerge` = `nutrienerge`.`idNutriEnerge`))) left join `nutriacomp` on((`nutrimenupaci`.`idNutriAcomp` = `nutriacomp`.`idNutriAcomp`))) left join `nutriensal` on((`nutrimenupaci`.`idNutriEnsal` = `nutriensal`.`idNutriEnsal`))) left join `nutribebida` on((`nutrimenupaci`.`idNutriBebida` = `nutribebida`.`idNutriBebida`))) left join `nutrisemana` on((`nutrimenupaci`.`idNutriSemana` = `nutrisemana`.`idNutriSemana`))) ;
 
 --
 -- Índices para tablas volcadas
@@ -926,7 +927,7 @@ ALTER TABLE `nutritipo`
 -- AUTO_INCREMENT de la tabla `opcionesmenu`
 --
 ALTER TABLE `opcionesmenu`
-  MODIFY `idOpcionMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idOpcionMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
