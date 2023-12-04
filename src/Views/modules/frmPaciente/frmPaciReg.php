@@ -34,7 +34,7 @@ if (!isset($_SESSION['session'])) {
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fad fa-file-upload"></i>
                 </button>
-                <a href="index.php?folder=frmEmpleado&view=frmEmplCon" class="btn btn-outline-secondary">
+                <a href="index.php?folder=frmPaciente&view=frmPaciCon" class="btn btn-outline-secondary">
                     <i class="fas fa-search me-2"></i>Consultar
                 </a>
             </div>
@@ -45,29 +45,29 @@ if (!isset($_SESSION['session'])) {
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
-                        <label for="personaDocumento" class="form-label">Numero de Identificación</label>
-                        <input type="number" name="personaDocumento" id="personaDocumento" class="form-control" required>
+                        <label for="pacienteDocumento" class="form-label">Numero de Identificación</label>
+                        <input type="number" name="pacienteDocumento" id="pacienteDocumento" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
-                        <label for="personaNombreCompleto" class="form-label">Nombre y Apellido</label>
-                        <input type="text" name="personaNombreCompleto" id="personaNombreCompleto" class="form-control" required>
+                        <label for="pacienteNombre" class="form-label">Nombre y Apellido</label>
+                        <input type="text" name="pacienteNombre" id="pacienteNombre" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
-                        <label for="personaCorreo" class="form-label">Correo Electrónico</label>
-                        <input type="email" name="personaCorreo" id="personaCorreo" class="form-control" required>
+                        <label for="pacienteDieta" class="form-label">Dieta</label>
+                        <input type="text" name="pacienteDieta" id="pacienteDieta" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
-                        <label for="personaNumberCell" class="form-label">Numero de Celular</label>
-                        <input type="number" name="personaNumberCell" id="personaNumberCell" class="form-control">
+                        <label for="pacienteCama" class="form-label">Cama</label>
+                        <input type="number" name="pacienteCama" id="pacienteCama" class="form-control">
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@ if (!isset($_SESSION['session'])) {
             <br>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" id="btnEmpl" class="btn btn-success">Registrar</button>
+                <button type="submit" id="btnPaci" class="btn btn-success">Registrar</button>
             </div>
         </form>
     </div>
@@ -112,16 +112,16 @@ if (!isset($_SESSION['session'])) {
     addEvent(['form-create-empl'], 'submit', (event) => {
         event.preventDefault();
 
-        axios.post(`${host}/api/frmEmpl/create`, {
-            personaDocumento: getInput("personaDocumento").value,
-            personaNombreCompleto: getInput("personaNombreCompleto").value,
-            personaCorreo: getInput("personaCorreo").value,
-            personaNumberCell: getInput("personaNumberCell").value,
-            btnEmpl: getInput("btnEmpl").value
+        axios.post(`${host}/api/frmPaci/create`, {
+            pacienteDocumento: getInput("pacienteDocumento").value,
+            pacienteNombre: getInput("pacienteNombre").value,
+            pacienteDieta: getInput("pacienteDieta").value,
+            pacienteCama: getInput("pacienteCama").value,
+            btnPaci: getInput("btnPaci").value
         })
         .then(res => {
             if (res.data.status === "success") {
-                window.location.href = `${host}/index.php?folder=frmEmpleado&view=frmEmplCon`;
+                window.location.href = `${host}/index.php?folder=frmPaciente&view=frmPaciCon`;
             }
         })
         .catch(err => {
@@ -141,12 +141,12 @@ if (!isset($_SESSION['session'])) {
         try {
             const response = await axios({
                 method: 'post',
-                url: `${host}/api/frmEmpl/upload`,
+                url: `${host}/api/frmPaci/upload`,
                 data: formData,
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             console.log(response);
-            window.location.href = 'index.php?folder=frmEmpleado&view=frmEmplReg&message=true';
+            window.location.href = 'index.php?folder=frmPaciente&view=frmPaciReg&message=true';
         } catch (error) {
             console.error(error);
         }
