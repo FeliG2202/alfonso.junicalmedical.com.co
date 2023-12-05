@@ -1,7 +1,0 @@
-{
-  "name": "Alfonso Dietas",
-  "short_name": "Junical Dietas",
-  "description": "Aplicativo web para solicitud de dietas de la clínica Junical Medical S.A.S",
-  "start_url": "https://alfonso.junicalmedical.com.co/inicio",
-  "icons": [{ "src": "https://alfonso.junicalmedical.com.co/src/Views/assets/img/LogoBot.png", "sizes": "192x192" }]
-}

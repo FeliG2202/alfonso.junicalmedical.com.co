@@ -16,12 +16,10 @@
   </div>
   <!-- Navbar-->
   <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-    <p>
-      <button disabled type="button">Instalar</button>
-    </p>
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
         <?php if (isset($_SESSION['session'])) { ?>
           <li><a class="dropdown-item" href="/salir">Salir<i class="fad fa-sign-out-alt ms-2"></i></a></li>
         <?php } else { ?>
