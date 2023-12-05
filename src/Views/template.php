@@ -10,6 +10,7 @@
 
     <!-- STYLES CSS -->
     <link rel="manifest" href="<?php echo(host); ?>/src/Views/assets/js/manifest.json">
+    <script type="module" src="?php echo(host); ?>/src/Views/assets/js/button.js"></script>
     <link rel="stylesheet" href="<?php echo(host); ?>/src/Views/assets/fontawesome/css/all.min.css">
     <link href="<?php echo(host); ?>/src/Views/assets/css/index.css" rel="stylesheet" />
     <link href="<?php echo(host); ?>/src/Views/assets/css/styles.css" rel="stylesheet" />
