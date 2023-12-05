@@ -9,6 +9,7 @@
     <meta name="author" content="" />
 
     <!-- STYLES CSS -->
+    <link rel="manifest" href="<?php echo(host); ?>/src/Views/assets/js/manifest.json">
     <link rel="stylesheet" href="<?php echo(host); ?>/src/Views/assets/fontawesome/css/all.min.css">
     <link href="<?php echo(host); ?>/src/Views/assets/css/index.css" rel="stylesheet" />
     <link href="<?php echo(host); ?>/src/Views/assets/css/styles.css" rel="stylesheet" />
