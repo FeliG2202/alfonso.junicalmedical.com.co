@@ -74,54 +74,51 @@ class PersonaControlador {
 
 	public function uploadControlador() {
 
-	$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-	$inputFileName = $_FILES['excel']['tmp_name'];
+		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+		$inputFileName = $_FILES['excel']['tmp_name'];
 
-	$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-	$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-	$reader->setReadFilter(new MyReadFilter());
-	$spreadsheet = $reader->load($inputFileName);
+		$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+		$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+		$reader->setReadFilter(new MyReadFilter());
+		$spreadsheet = $reader->load($inputFileName);
 
-	$data = $spreadsheet->getActiveSheet()->toArray();
-	$baseDocument = $this->PersonaModelo->existeDocumento();
-	$baseEmail = $this->PersonaModelo->existeCorreo();
-	$documentosBase = array();
-	$correosBase = array();
+		$data = $spreadsheet->getActiveSheet()->toArray();
+		$baseDocument = $this->PersonaModelo->existeDocumento();
+		$baseEmail = $this->PersonaModelo->existeCorreo();
+		$documentosBase = array();
+		$correosBase = array();
 
-	foreach($baseDocument as $doc) {
-		$documentosBase[] = $doc->personaDocumento;
-	}
+		foreach($baseDocument as $doc) {
+			$documentosBase[] = $doc->personaDocumento;
+		}
 
-	foreach($baseEmail as $email) {
-		$correosBase[] = $email->personaCorreo;
-	}
+		foreach($baseEmail as $email) {
+			$correosBase[] = $email->personaCorreo;
+		}
 
-	foreach ($data as $row) {
-		if ($row[1] != '') {
-			if (in_array($row[2], $documentosBase)) {
-				return response->code(500)->error("El documento {$row[2]} ya está registrado.");
-				continue;
-			}
-			if (in_array($row[3], $correosBase)) {
-				return response->code(500)->error("El correo {$row[3]} ya está registrado.");
-				continue;
-			}
-			$dataParaGuardar = [
-				'personaNombreCompleto' => $row[1],
-				'personaDocumento' => $row[2],
-				'personaCorreo' => $row[3],
-				'personaNumberCell' => $row[4],
-			];
-			try {
-				$this->PersonaModelo->uploadModelo($dataParaGuardar);
-				return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
-			} catch (\Exception $e) {
-				return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
+		foreach ($data as $row) {
+			if ($row[1] != '') {
+				if (in_array($row[2], $documentosBase)) {
+					return response->code(500)->error("El documento {$row[2]} ya está registrado.");
+					continue;
+				}
+				if (in_array($row[3], $correosBase)) {
+					return response->code(500)->error("El correo {$row[3]} ya está registrado.");
+					continue;
+				}
+				$dataParaGuardar = [
+					'personaNombreCompleto' => $row[1],
+					'personaDocumento' => $row[2],
+					'personaCorreo' => $row[3],
+					'personaNumberCell' => $row[4],
+				];
+				try {
+					$this->PersonaModelo->uploadModelo($dataParaGuardar);
+					return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
+				} catch (\Exception $e) {
+					return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
+				}
 			}
 		}
 	}
-}
-
-
-
 }

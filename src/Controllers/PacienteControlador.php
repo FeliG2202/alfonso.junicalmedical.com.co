@@ -29,7 +29,8 @@ class PacienteControlador {
 			'pacienteDocumento' => request->pacienteDocumento,
 			'pacienteNombre' => request->pacienteNombre,
 			'pacienteDieta' => request->pacienteDieta,
-			'pacienteCama' => toNull(request->pacienteCama)
+			'pacienteCama' => toNull(request->pacienteCama),
+			'fecha_registro' => date('Y-m-d')
 		]);
 
 		if ($res->status === "database-error") {
@@ -73,41 +74,44 @@ class PacienteControlador {
 	}
 
 	public function uploadControlador() {
-		if (!isset($_FILES['excel'])) {
-
-			return "Por favor, selecciona un archivo para subir.";
-		}
 
 		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
 		$inputFileName = $_FILES['excel']['tmp_name'];
 
-		try {
-			$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-			$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-			$reader->setReadFilter(new MyReadFilter());
-			$spreadsheet = $reader->load($inputFileName);
-		} catch (\Exception $e) {
-			echo 'Error al cargar el archivo: ',  $e->getMessage(), "\n";
-			return;
-		}
+		$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+		$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+		$reader->setReadFilter(new MyReadFilter());
+		$spreadsheet = $reader->load($inputFileName);
 
 		$data = $spreadsheet->getActiveSheet()->toArray();
+		$camasBase = $this->PacienteModelo->camasexistente();
+		$camasBaseArray = array();
+
+		foreach($camasBase as $cama) {
+			$camasBaseArray[] = $cama->pacienteCama;
+		}
 
 		foreach ($data as $row) {
 			if ($row[1] != '') {
+				if (in_array($row[4], $camasBaseArray)) {
+					return response->code(500)->error("La cama {$row[4]} ya está ocupada.");
+					continue;
+				}
 				$dataParaGuardar = [
 					'pacienteNombre' => $row[1],
 					'pacienteDocumento' => $row[2],
 					'pacienteDieta' => $row[3],
 					'pacienteCama' => $row[4],
+					'fecha_registro' => date('Y-m-d')
 				];
 				try {
 					$this->PacienteModelo->uploadModelo($dataParaGuardar);
-					echo 'Los datos se han enviado al modelo correctamente.';
+					return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
 				} catch (\Exception $e) {
-					echo 'Error al guardar los datos: ',  $e->getMessage(), "\n";
+					return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
 				}
 			}
 		}
 	}
+
 }

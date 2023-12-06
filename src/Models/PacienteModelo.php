@@ -13,6 +13,7 @@ class PacienteModelo {
 			'pacienteNombre' => $data['pacienteNombre'],
 			'pacienteDieta' => $data['pacienteDieta'],
 			'pacienteCama' => $data['pacienteCama'],
+			'fecha_registro' => $data['fecha_registro']
 		])->execute();
 	}
 
@@ -44,6 +45,13 @@ class PacienteModelo {
 			'pacienteNombre' => $data['pacienteNombre'],
 			'pacienteDieta' => $data['pacienteDieta'],
 			'pacienteCama' => $data['pacienteCama'],
+			'fecha_registro' => $data['fecha_registro']
 		])->execute();
+	}
+
+	public function camasexistente(){
+		$data = date('Y-m-d');
+		return DB::table('pacientes')->select('pacienteCama')
+		->where(DB::equalTo('fecha_registro'), $data)->getAll();
 	}
 }

@@ -149,6 +149,9 @@ if (!isset($_SESSION['session'])) {
             window.location.href = 'index.php?folder=frmPaciente&view=frmPaciReg&message=true';
         } catch (error) {
             console.error(error);
+        if (error.response) {
+            alert(error.response.data.message);
+        }
         }
         return false;
     }
