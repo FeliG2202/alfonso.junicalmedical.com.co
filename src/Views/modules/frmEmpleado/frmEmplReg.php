@@ -146,7 +146,6 @@ if (!isset($_SESSION['session'])) {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
         console.log(response);
-        alert(response.data.message);
         window.location.href = 'index.php?folder=frmEmpleado&view=frmEmplReg&message=true';
     } catch (error) {
         console.error(error);
