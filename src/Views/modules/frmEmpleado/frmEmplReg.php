@@ -130,28 +130,33 @@ if (!isset($_SESSION['session'])) {
     });
 // END FORMULARIO User
 
-    async function cargar_excel(){
-        let archivo = document.getElementById('txt_archivo').value;
-        if (archivo.length==0) {
-            return alert("Seleccione un archivo de excel");
-        }
-        let formData = new FormData();
-        let excel = $("#txt_archivo")[0].files[0];
-        formData.append('excel',excel);
-        try {
-            const response = await axios({
-                method: 'post',
-                url: `${host}/api/frmEmpl/upload`,
-                data: formData,
-                headers: { 'Content-Type': 'multipart/form-data' }
-            });
-            console.log(response);
-           // window.location.href = 'index.php?folder=frmEmpleado&view=frmEmplReg&message=true';
-        } catch (error) {
-            console.error(error);
-        }
-        return false;
+   async function cargar_excel(){
+    let archivo = document.getElementById('txt_archivo').value;
+    if (archivo.length==0) {
+        return alert("Seleccione un archivo de excel");
     }
+    let formData = new FormData();
+    let excel = $("#txt_archivo")[0].files[0];
+    formData.append('excel',excel);
+    try {
+        const response = await axios({
+            method: 'post',
+            url: `${host}/api/frmEmpl/upload`,
+            data: formData,
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        console.log(response);
+        alert(response.data.message);
+        window.location.href = 'index.php?folder=frmEmpleado&view=frmEmplReg&message=true';
+    } catch (error) {
+        console.error(error);
+        if (error.response) {
+            alert(error.response.data.message);
+        }
+    }
+    return false;
+}
+
 
         var alertElement = document.querySelector("#success-alert");
     function hideAlert() {

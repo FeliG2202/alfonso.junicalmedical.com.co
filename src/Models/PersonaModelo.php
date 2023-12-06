@@ -51,10 +51,7 @@ class PersonaModelo {
 		return DB::table('personas')->select('personaDocumento')->getAll();
 	}
 
-	public function existeCorreo($correo){
-		return DB::table('personas')
-		->select()
-		->where(DB::equalTo('personaCorreo'), $correo)
-		->execute();
+	public function existeCorreo(){
+		return DB::table('personas')->select('personaCorreo')->getAll();
 	}
 }
