@@ -73,41 +73,52 @@ class PersonaControlador {
 	}
 
 	public function uploadControlador() {
-		if (!isset($_FILES['excel'])) {
+    if (!isset($_FILES['excel'])) {
+        return "Por favor, selecciona un archivo para subir.";
+    }
 
-			return "Por favor, selecciona un archivo para subir.";
-		}
+    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    $inputFileName = $_FILES['excel']['tmp_name'];
 
-		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-		$inputFileName = $_FILES['excel']['tmp_name'];
+    try {
+        $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+        $reader->setReadFilter(new MyReadFilter());
+        $spreadsheet = $reader->load($inputFileName);
+    } catch (\Exception $e) {
+        echo 'Error al cargar el archivo: ',  $e->getMessage(), "\n";
+        return;
+    }
 
-		try {
-			$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-			$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-			$reader->setReadFilter(new MyReadFilter());
-			$spreadsheet = $reader->load($inputFileName);
-		} catch (\Exception $e) {
-			echo 'Error al cargar el archivo: ',  $e->getMessage(), "\n";
-			return;
-		}
+    $data = $spreadsheet->getActiveSheet()->toArray();
+    $baseDocument = $this->PersonaModelo->existeDocumento();
+    $documentosBase = array();
 
-		$data = $spreadsheet->getActiveSheet()->toArray();
+    foreach($baseDocument as $doc) {
+        $documentosBase[] = $doc->personaDocumento;
+    }
 
-		foreach ($data as $row) {
-			if ($row[1] != '') {
-				$dataParaGuardar = [
-					'personaNombreCompleto' => $row[1],
-					'personaDocumento' => $row[2],
-					'personaCorreo' => $row[3],
-					'personaNumberCell' => $row[4],
-				];
-				try {
-					$this->PersonaModelo->uploadModelo($dataParaGuardar);
-					echo 'Los datos se han enviado al modelo correctamente.';
-				} catch (\Exception $e) {
-					echo 'Error al guardar los datos: ',  $e->getMessage(), "\n";
-				}
-			}
-		}
-	}
+    foreach ($data as $row) {
+        if ($row[1] != '') {
+            if (in_array($row[2], $documentosBase)) {
+                echo "El documento {$row[2]} ya está registrado.";
+                continue;
+            }
+            $dataParaGuardar = [
+                'personaNombreCompleto' => $row[1],
+                'personaDocumento' => $row[2],
+                'personaCorreo' => $row[3],
+                'personaNumberCell' => $row[4],
+            ];
+            try {
+                $this->PersonaModelo->uploadModelo($dataParaGuardar);
+                echo 'Los datos se han enviado al modelo correctamente.';
+            } catch (\Exception $e) {
+                echo 'Error al guardar los datos: ',  $e->getMessage(), "\n";
+            }
+        }
+    }
+}
+
+
 }

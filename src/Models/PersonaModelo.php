@@ -46,4 +46,15 @@ class PersonaModelo {
 			'personaNumberCell' => $data['personaNumberCell'],
 		])->execute();
 	}
+
+	public function existeDocumento(){
+		return DB::table('personas')->select('personaDocumento')->getAll();
+	}
+
+	public function existeCorreo($correo){
+		return DB::table('personas')
+		->select()
+		->where(DB::equalTo('personaCorreo'), $correo)
+		->execute();
+	}
 }
