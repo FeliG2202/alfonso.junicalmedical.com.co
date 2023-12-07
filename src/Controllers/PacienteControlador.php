@@ -106,7 +106,7 @@ class PacienteControlador {
 				];
 				try {
 					$this->PacienteModelo->uploadModelo($dataParaGuardar);
-					return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
+					return response->code(200)->success('registrado correctamente');
 				} catch (\Exception $e) {
 					return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
 				}
