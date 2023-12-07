@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 06-12-2023 a las 15:08:36
+-- Tiempo de generación: 07-12-2023 a las 16:28:35
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -342,7 +342,7 @@ CREATE TABLE `nutrimenupaci` (
   `idNutriEnerge` int NOT NULL,
   `idNutriAcomp` int NOT NULL,
   `idNutriEnsal` int NOT NULL,
-  `idNutriBebida` int NOT NULL,
+  `idNutriBebida` int DEFAULT NULL,
   `idNutriSemana` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
