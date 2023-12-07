@@ -21,6 +21,7 @@ if (!isset($_SESSION['session'])) {
 			</div>
 
 			<hr>
+			<div id="alert-container"></div>
 
 			<table class="table table-hover table-sm w-100" id="table-menu">
 				<thead>
@@ -116,10 +117,11 @@ if (!isset($_SESSION['session'])) {
 
 				axios.delete(`${host}/api/frmAlmSopa/sopa/${idNutriSopa_e}`).then(res => {
 					console.log(res)
+					handleNetworkResponse(res);
 					readTipos();
 					myModal.hide();
 				}).catch(err => {
-
+					handleNetworkError(err.response);
 				});
 			}
 		});
@@ -137,10 +139,11 @@ if (!isset($_SESSION['session'])) {
 				axios.put(`${host}/api/frmAlmSopa/sopa/${idNutriSopa_e}`, form)
 				.then(res => {
 					console.log(res.data)
+					handleNetworkResponse(res);
 					readTipos();
 					myModal.hide();
 				}).catch(err => {
-
+					handleNetworkError(err.response);
 				});
 			}
 		});

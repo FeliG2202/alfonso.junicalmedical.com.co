@@ -12,6 +12,7 @@ if (!isset($_SESSION['session'])) {
     <div class="container">
         <div class="card">
             <div class="card-body">
+                <div id="alert-container"></div>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
                         <a class="nav-item nav-link active" data-toggle="tab" href="#Empleado" role="tab" aria-selected="true">Empleado</a>
@@ -228,10 +229,11 @@ if (!isset($_SESSION['session'])) {
 
                 axios.delete(`${host}/api/frmAlmMenu/menu/${idNutriMenu1}`).then(res => {
                     console.log(res)
+                    handleNetworkResponse(res);
                     readTipos1();
                     myModal1.hide();
                 }).catch(err => {
-
+                    handleNetworkError(err.response);
                 });
             });
         }
@@ -301,10 +303,11 @@ if (!isset($_SESSION['session'])) {
 
                 axios.delete(`${host}/api/frmAlmMenu/menuPaci/${idNutriMenu2}`).then(res => {
                     console.log(res)
+                    handleNetworkResponse(res);
                     readTipos2();
                     myModal2.hide();
                 }).catch(err => {
-
+                    handleNetworkError(err.response);
                 });
             });
         }

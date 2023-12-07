@@ -38,7 +38,7 @@ class RolControlador {
 			return response->code(500)->error('Error al momento de actualizar');
 		}
 
-		return response->code(200)->success('tipo actualizado correctamente');
+		return response->code(200)->success('actualizado correctamente');
 	}
 
 	public function eliminarRolControlador(string $idRol) {

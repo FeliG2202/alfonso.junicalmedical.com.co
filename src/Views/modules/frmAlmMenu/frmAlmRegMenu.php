@@ -11,6 +11,7 @@ if (!isset($_SESSION['session'])) {
 	<div class="container">
 		<div class="card">
 			<div class="card-body">
+				<div id="alert-container"></div>
 				<nav>
 					<div class="nav nav-tabs" id="nav-tab" role="tablist">
 						<a class="nav-item nav-link active" data-toggle="tab" href="#Empleado" role="tab" aria-selected="true">Empleado</a>
@@ -269,7 +270,7 @@ if (!isset($_SESSION['session'])) {
 			}
 		})
 		.catch(err => {
-			console.log(err);
+			handleNetworkError(err.response);
 		});
 	});
 // END FORMULARIO EMPLEADOS
@@ -310,8 +311,10 @@ if (!isset($_SESSION['session'])) {
 			}
 		})
 		.catch(err => {
-			console.log(err);
+			handleNetworkResponse(err);
 		});
 	});
+
+
 // END FORMULARIO PACIENTES
 </script>
