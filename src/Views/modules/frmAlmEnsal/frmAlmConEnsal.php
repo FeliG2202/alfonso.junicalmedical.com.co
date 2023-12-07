@@ -21,6 +21,7 @@ if (!isset($_SESSION['session'])) {
 			</div>
 
 			<hr>
+			<div id="alert-container"></div>
 
 			<table class="table table-hover table-sm w-100" id="table-menu">
 				<thead>
@@ -97,11 +98,11 @@ if (!isset($_SESSION['session'])) {
 
 	const btn_reload = document.getElementById("btn-reload");
 
-	if (btn_reload) {
-		btn_reload.addEventListener("click", () => {
-			readTipos();
-		});
-	}
+	// if (btn_reload) {
+	// 	btn_reload.addEventListener("click", () => {
+	// 		readTipos();
+	// 	});
+	// }
 
 	// DETERMINO LAS VARIABLE DE ELIMINAR Y ACTUALIZAR
 	const btn_delete = document.getElementById("btn-delete-ensal-menu");
@@ -113,16 +114,20 @@ if (!isset($_SESSION['session'])) {
 			if (confirm("Está seguro de eleminar este menu?")) {
 				const idNutriEnsal_e = document.getElementById("idNutriEnsal_e").value;
 
-				axios.delete(`${host}/api/frmAlmEnsal/ensal/${idNutriEnsal_e}`).then(res => {
-					console.log(res)
+				axios.delete(`${host}/api/frmAlmEnsal/ensal/${idNutriEnsal_e}`)
+				.then(res => {
+					console.log(res.data);
+					handleNetworkResponse(res);
 					readTipos();
 					myModal.hide();
-				}).catch(err => {
-
+				})
+				.catch(err => {
+					handleNetworkError(err.response);
 				});
 			}
 		});
 	}
+
 
 	// ENVIO  A LA API LA FUNCION DE ACTUALIZAR
 	if (btn_update) {
@@ -135,12 +140,14 @@ if (!isset($_SESSION['session'])) {
 
 				axios.put(`${host}/api/frmAlmEnsal/ensal/${idNutriEnsal_e}`, form)
 				.then(res => {
-					console.log(res.data)
-					readTipos();
-					myModal.hide();
-				}).catch(err => {
-
-				});
+					console.log(res.data);
+                    handleNetworkResponse(res);
+                    readTipos();
+                    myModal.hide();
+                })
+                .catch(err => {
+                    handleNetworkResponse(err.response);
+                });
 			}
 		});
 	}
@@ -148,4 +155,6 @@ if (!isset($_SESSION['session'])) {
 	(function() {
 		readTipos();
 	})();
+
+
 </script>

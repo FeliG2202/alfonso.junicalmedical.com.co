@@ -26,6 +26,7 @@
     <script type="text/javascript">const host = "<?php echo(host); ?>";</script>
     <script src="<?php echo(host); ?>/src/Views/assets/js/scripts.js"></script>
     <script type="text/javascript" src="<?php echo(host); ?>/src/Views/assets/js/functions.js"></script>
+    <script type="text/javascript" src="<?php echo(host); ?>/src/Views/assets/js/alert.js"></script>
 </head>
 
 <body class="sb-nav-fixed">
