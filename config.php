@@ -28,7 +28,7 @@ MailService::run([
             'port' => 587,
             'name' => 'Alfonso Bot',
             'account' => 'onedesk@junicalmedical.com.co',
-            'password' => 'Dan72533'
+            'password' => 'Dan72532'
         ],
     ],
 ]);
