@@ -94,7 +94,7 @@ class PacienteControlador {
 		foreach ($data as $row) {
 			if ($row[1] != '') {
 				if (in_array($row[4], $camasBaseArray)) {
-					return response->code(500)->error("La cama {$row[4]} ya está ocupada.");
+					return response->code(300)->success("La cama {$row[4]} ya está ocupada.");
 					continue;
 				}
 				$dataParaGuardar = [

@@ -11,18 +11,7 @@ if (!isset($_SESSION['session'])) {
     <div class="col-lg-8 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
         <h2 class="text-center">Pacientes</h2>
         <hr>
-
-        <?php
-        if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
-            $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
-            $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
-            $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
-            ?>
-            <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
-                <?php echo $alertText; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
+        <div id="alert-container"></div>
 
         <div class="d-flex justify-content-between my-2">
             <div>
@@ -96,7 +85,7 @@ if (!isset($_SESSION['session'])) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="cargar_excel()">Cargar</button>
+                    <button type="button" class="btn btn-primary" onclick="cargar_excel(); $('#exampleModal').modal('hide');">Cargar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -146,26 +135,15 @@ if (!isset($_SESSION['session'])) {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             console.log(response);
-            window.location.href = 'index.php?folder=frmPaciente&view=frmPaciReg&message=true';
+            handleNetworkResponse(response);
         } catch (error) {
-            console.error(error);
-        if (error.response) {
-            alert(error.response.data.message);
+            console.log(error.response);
+            handleNetworkResponse(error.response);
+            if (error.response) {
+                handleNetworkResponse(error.response);
+            }
         }
-        }
-        return false;
     }
-
-        var alertElement = document.querySelector("#success-alert");
-    function hideAlert() {
-    if (alertElement) { // Verifica si alertElement no es null
-        alertElement.style.display = "none";
-    }
-}
-if (alertElement) { // Verifica si alertElement no es null
-    alertElement.style.display = "block";
-    setTimeout(hideAlert, 3000);
-}
 
 
 </script>
