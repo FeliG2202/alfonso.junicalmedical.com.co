@@ -72,53 +72,79 @@ class PersonaControlador {
 		return response->code(200)->success('Eliminado correctamente');
 	}
 
-	public function uploadControlador() {
+public function validateExcelData($data) {
+    $baseDocument = $this->PersonaModelo->existeDocumento();
+    $baseEmail = $this->PersonaModelo->existeCorreo();
+    $documentosBase = [];
+    $correosBase = [];
 
-		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-		$inputFileName = $_FILES['excel']['tmp_name'];
+    foreach($baseDocument as $doc) {
+        $documentosBase[] = $doc->personaDocumento;
+    }
 
-		$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-		$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-		$reader->setReadFilter(new MyReadFilter());
-		$spreadsheet = $reader->load($inputFileName);
+    foreach($baseEmail as $email) {
+        $correosBase[] = $email->personaCorreo;
+    }
 
-		$data = $spreadsheet->getActiveSheet()->toArray();
-		$baseDocument = $this->PersonaModelo->existeDocumento();
-		$baseEmail = $this->PersonaModelo->existeCorreo();
-		$documentosBase = array();
-		$correosBase = array();
+    $validationResults = [];
 
-		foreach($baseDocument as $doc) {
-			$documentosBase[] = $doc->personaDocumento;
-		}
+    foreach ($data as $row) {
+        if ($row[1] != '') {
+            if (in_array($row[2], $documentosBase) || in_array($row[3], $correosBase)) {
+                $validationResults[] = [
+                    'error' => true,
+                    'message' => in_array($row[2], $documentosBase) ? "El documento {$row[2]} ya está registrado." : "El correo {$row[3]} ya está registrado.",
+                ];
+            } else {
+                $validationResults[] = ['error' => false, 'data' => $row];
+            }
+        }
+    }
 
-		foreach($baseEmail as $email) {
-			$correosBase[] = $email->personaCorreo;
-		}
+    return $validationResults;
+}
 
-		foreach ($data as $row) {
-			if ($row[1] != '') {
-				if (in_array($row[2], $documentosBase)) {
-					return response->code(500)->error("El documento {$row[2]} ya está registrado.");
-					continue;
-				}
-				if (in_array($row[3], $correosBase)) {
-					return response->code(500)->error("El correo {$row[3]} ya está registrado.");
-					continue;
-				}
-				$dataParaGuardar = [
-					'personaNombreCompleto' => $row[1],
-					'personaDocumento' => $row[2],
-					'personaCorreo' => $row[3],
-					'personaNumberCell' => $row[4],
-				];
-				try {
-					$this->PersonaModelo->uploadModelo($dataParaGuardar);
-					return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
-				} catch (\Exception $e) {
-					return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
-				}
-			}
-		}
-	}
+public function saveValidatedData($validatedData) {
+    foreach ($validatedData as $validationResult) {
+        if (!$validationResult['error']) {
+            $row = $validationResult['data'];
+            $dataParaGuardar = [
+                'personaNombreCompleto' => $row[1],
+                'personaDocumento' => $row[2],
+                'personaCorreo' => $row[3],
+                'personaNumberCell' => $row[4],
+            ];
+
+            try {
+                $this->PersonaModelo->uploadModelo($dataParaGuardar);
+            } catch (\Exception $e) {
+                return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
+            }
+        }
+    }
+
+    return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
+}
+
+public function uploadControlador() {
+    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    $inputFileName = $_FILES['excel']['tmp_name'];
+    $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+    $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+    $reader->setReadFilter(new MyReadFilter());
+    $spreadsheet = $reader->load($inputFileName);
+
+    $data = $spreadsheet->getActiveSheet()->toArray();
+
+    $validationResults = $this->validateExcelData($data);
+
+    foreach ($validationResults as $validationResult) {
+        if ($validationResult['error']) {
+            return response->code(500)->error($validationResult['message']);
+        }
+    }
+
+    return $this->saveValidatedData($validationResults);
+}
+
 }

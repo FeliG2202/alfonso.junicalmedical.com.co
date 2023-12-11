@@ -202,6 +202,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             </div>
 
                             <hr>
+                            <div id="alert-container"></div>
 
                             <!-- tabla para mostrar datos -->
                             <div class="table-responsive">
@@ -235,7 +236,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
                                 <div class="modal-body">
                                     <input type="hidden" class="form-control mb-3" id="idMenuSeleccionado">
-                                    <h5 class="text-center">Esta seguro de eliminar la dieta selecionada</h5>
+                                    <h5 class="text-center">esta seguro de eliminar esta dieta</h5>
                                 </div>
 
                                 <div class="modal-footer">
@@ -357,9 +358,11 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             const idMenuSeleccionado = document.getElementById("idMenuSeleccionado").value;
             axios.delete(`${host}/api/frmPedEdit/delete/${idMenuSeleccionado}`).then(res => {
                 //console.log(res)
+                handleNetworkResponse(res);
                 readTipos();
                 myModal.hide();
             }).catch(err => {
+                handleNetworkError(err.response);
             });
         });
     }

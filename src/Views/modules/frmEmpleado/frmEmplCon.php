@@ -94,9 +94,8 @@ if (!isset($_SESSION['session'])) {
 	// Y HACE LA FUNCION "CLICK" PARA EL MODAL
 	function readTipos() {
 		axios.get(`${host}/api/frmEmpl/read`).then(res => {
-			if (!res.data.status) {
 				new DataTable('#table-menu', {
-					data: res.data,
+					data: (!res.data.status ? res.data : []),
 					destroy: true,
 					responsive: true,
 					language: {
@@ -120,7 +119,6 @@ if (!isset($_SESSION['session'])) {
 						});
 					},
 				});
-			}
 		});
 	}
 

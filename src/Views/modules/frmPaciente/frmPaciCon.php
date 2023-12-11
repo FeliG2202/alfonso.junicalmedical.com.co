@@ -65,7 +65,7 @@ if (!isset($_SESSION['session'])) {
 					</div>
 					<div class="mb-3">
 						<label for="pacienteCama" class="form-label">Cama</label>
-						<input type="number" class="form-control" id="pacienteCama">
+						<input type="text" class="form-control" id="pacienteCama">
 					</div>
 				</div>
 
@@ -94,33 +94,31 @@ if (!isset($_SESSION['session'])) {
 	// Y HACE LA FUNCION "CLICK" PARA EL MODAL
 	function readTipos() {
 		axios.get(`${host}/api/frmPaci/read`).then(res => {
-			if (!res.data.status) {
-				new DataTable('#table-menu', {
-					data: res.data,
-					destroy: true,
-					responsive: true,
-					language: {
-						url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
-					},
-					columns: [
-						{ data: 'pacienteDocumento' },
-						{ data: 'pacienteNombre' },
-						{ data: 'pacienteDieta' },
-						{ data: 'pacienteCama' },
-						],
-					createdRow: (html, row, index) => {
-						html.setAttribute("role", "button");
-						html.addEventListener("click", () => {
-							document.getElementById("idPaciente").value = row.idPaciente;
-							document.getElementById("pacienteDocumento").value = row.pacienteDocumento;
-							document.getElementById("pacienteNombre").value = row.pacienteNombre;
-							document.getElementById("pacienteDieta").value = row.pacienteDieta;
-							document.getElementById("pacienteCama").value = row.pacienteCama;
-							myModal.show();
-						});
-					},
-				});
-			}
+			new DataTable('#table-menu', {
+				data: (!res.data.status ? res.data : []),
+				destroy: true,
+				responsive: true,
+				language: {
+					url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
+				},
+				columns: [
+					{ data: 'pacienteDocumento' },
+					{ data: 'pacienteNombre' },
+					{ data: 'pacienteDieta' },
+					{ data: 'pacienteCama' },
+					],
+				createdRow: (html, row, index) => {
+					html.setAttribute("role", "button");
+					html.addEventListener("click", () => {
+						document.getElementById("idPaciente").value = row.idPaciente;
+						document.getElementById("pacienteDocumento").value = row.pacienteDocumento;
+						document.getElementById("pacienteNombre").value = row.pacienteNombre;
+						document.getElementById("pacienteDieta").value = row.pacienteDieta;
+						document.getElementById("pacienteCama").value = row.pacienteCama;
+						myModal.show();
+					});
+				},
+			});
 		});
 	}
 

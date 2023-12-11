@@ -139,9 +139,6 @@ if (!isset($_SESSION['session'])) {
         } catch (error) {
             console.log(error.response);
             handleNetworkResponse(error.response);
-            if (error.response) {
-                handleNetworkResponse(error.response);
-            }
         }
     }
 

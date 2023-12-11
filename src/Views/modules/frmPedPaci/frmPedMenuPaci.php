@@ -200,6 +200,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
 
                         <hr>
+                        <div id="alert-container"></div>
 
                         <!-- tabla para mostrar datos -->
                         <div class="table-responsive">
@@ -349,9 +350,11 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             const idMenuSeleccionadoPaci = document.getElementById("idMenuSeleccionadoPaci").value;
             axios.delete(`${host}/api/frmPedPaci/delete/${idMenuSeleccionadoPaci}`).then(res => {
                 //console.log(res)
+                handleNetworkResponse(res);
                 readTipos();
                 myModal.hide();
             }).catch(err => {
+                handleNetworkError(err.response);
             });
         });
     }
