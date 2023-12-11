@@ -489,7 +489,7 @@
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="flush-sub-headingFive">
 					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-sub-collapseFive" aria-expanded="false" aria-controls="flush-sub-collapseFive">
-						<b>5. VIGENCIA</b>
+						<b>5. Vigencia</b>
 					</button>
 				</h2>
 				<div id="flush-sub-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-sub-headingFive" data-bs-parent="#subAccordionFour">
