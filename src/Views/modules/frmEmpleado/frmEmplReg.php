@@ -11,6 +11,7 @@ if (!isset($_SESSION['session'])) {
     <div class="col-lg-8 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
         <h2 class="text-center">Empleado</h2>
         <hr>
+        <div id="alert-container"></div>
 
         <?php
         if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
