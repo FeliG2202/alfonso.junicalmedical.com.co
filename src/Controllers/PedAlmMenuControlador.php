@@ -123,6 +123,7 @@ public function registrarMenuDiaControlador() {
             'nutriAcompNombre' => (empty($_POST['nutriAcompNombre']) ? null : $_POST['nutriAcompNombre']),
             'nutriEnsalNombre' => (empty($_POST['nutriEnsalNombre']) ? null : $_POST['nutriEnsalNombre']),
             'nutriBebidaNombre' => (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
+            'tipoPago' => (empty($_POST['tipoPago']) ? null : $_POST['tipoPago']),
             'date' => date('Y-m-d')
         ])
         ? (object) ['request' => false, 'url' => "index.php?folder=frmPed&view=frmPedMenu&idPersona={$_GET['idPersona']}&message=false"]

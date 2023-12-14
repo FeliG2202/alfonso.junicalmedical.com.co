@@ -56,7 +56,7 @@ class PedAlmMenuModelo extends Connection {
     }
 
     public function registrarMenuDiaModelo($data) {
-        $sql = "INSERT INTO {$this->tablaMDP} (idPersona,idNutriMenu,nombreEmpaquetado,nutriSopaNombre,nutriArrozNombre,nutriProteNombre,nutriEnergeNombre,nutriAcompNombre,nutriEnsalNombre,nutriBebidaNombre,fecha_actual) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO {$this->tablaMDP} (idPersona,idNutriMenu,nombreEmpaquetado,nutriSopaNombre,nutriArrozNombre,nutriProteNombre,nutriEnergeNombre,nutriAcompNombre,nutriEnsalNombre,nutriBebidaNombre,tipoPago,fecha_actual) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             $stmt = $this->conectar()->prepare($sql);
@@ -70,7 +70,8 @@ class PedAlmMenuModelo extends Connection {
             $stmt->bindParam(8, $data['nutriAcompNombre'], PDO::PARAM_STR);
             $stmt->bindParam(9, $data['nutriEnsalNombre'], PDO::PARAM_STR);
             $stmt->bindParam(10, $data['nutriBebidaNombre'], PDO::PARAM_STR);
-            $stmt->bindParam(11, $data['date'], PDO::PARAM_STR);
+            $stmt->bindParam(11, $data['tipoPago'], PDO::PARAM_STR);
+            $stmt->bindParam(12, $data['date'], PDO::PARAM_STR);
             if ($stmt->execute()) {
                 return true;
             } else {
@@ -184,7 +185,8 @@ class PedAlmMenuModelo extends Connection {
             DB::column('nutriAcompNombre'),
             DB::column('nutriEnsalNombre'),
             DB::column('nutriBebidaNombre'),
-            DB::column('nombreEmpaquetado')
+            DB::column('nombreEmpaquetado'),
+            DB::column('tipoPago')
         )->where(
         DB::equalTo(DB::column('idpersona')), $id
         )->and(

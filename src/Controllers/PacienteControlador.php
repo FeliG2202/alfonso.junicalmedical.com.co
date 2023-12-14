@@ -85,16 +85,18 @@ class PacienteControlador {
 
 		$data = $spreadsheet->getActiveSheet()->toArray();
 		$camasBase = $this->PacienteModelo->camasexistente();
+		$camasBaseArray = array();
+
+		foreach($camasBase as $cama) {
+			$camasBaseArray[] = $cama->pacienteCama;
+		}
 
 		foreach ($data as $row) {
 			if ($row[1] != '') {
-
-				foreach ($camasBase as $existingCamas) {
-					if ($row[4] == $existingCamas->pacienteCama) {
-						return response->code(300)->success("La cama {$row[4]} ya está ocupada.");
-					}
+				if (in_array($row[4], $camasBaseArray)) {
+					return response->code(300)->success("La cama {$row[4]} ya está ocupada.");
+					continue;
 				}
-
 				$dataParaGuardar = [
 					'pacienteNombre' => $row[1],
 					'pacienteDocumento' => $row[2],
@@ -104,12 +106,12 @@ class PacienteControlador {
 				];
 				try {
 					$this->PacienteModelo->uploadModelo($dataParaGuardar);
+					return response->code(200)->success('registrado correctamente');
 				} catch (\Exception $e) {
 					return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
 				}
 			}
 		}
-		return response->code(200)->success('registrado correctamente');
 	}
 
 }
