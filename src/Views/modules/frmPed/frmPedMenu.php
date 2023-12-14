@@ -119,13 +119,13 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                     <div class="row col">
                                                         <div class="col col-lg-6">
                                                             <div class="form-check">
-                                                                <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" checked>
+                                                                <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" required>
                                                                 <label class="form-check-label" for="Radios1">
                                                                     descuento por nómina
                                                                 </label>
                                                             </div>
                                                             <div class="form-check">
-                                                                <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form0" id="Radios2">
+                                                                <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form0" id="Radios2" required>
                                                                 <label class="form-check-label" for="Radios2">
                                                                     Pago en efectivo (caja)
                                                                 </label>
@@ -155,13 +155,13 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                     <div class="row col">
                                                         <div class="col col-lg-6">
                                                             <div class="form-check">
-                                                            <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form1" id="Radios3" checked>
+                                                            <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form1" id="Radios3" required>
                                                                 <label class="form-check-label" for="Radios3">
                                                                     descuento por nómina
                                                                 </label>
                                                             </div>
                                                             <div class="form-check">
-                                                            <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form1" id="Radios4">
+                                                            <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form1" id="Radios4" required>
                                                                 <label class="form-check-label" for="Radios4">
                                                                     Pago en efectivo (caja)
                                                                 </label>
