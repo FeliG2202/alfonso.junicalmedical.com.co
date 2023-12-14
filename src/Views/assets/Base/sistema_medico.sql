@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 07-12-2023 a las 16:28:35
+-- Tiempo de generación: 14-12-2023 a las 15:10:40
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -63,7 +63,8 @@ CREATE TABLE `menu_seleccionado` (
   `nutriEnsalNombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `nutriBebidaNombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `nombreEmpaquetado` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `fecha_actual` date NOT NULL
+  `fecha_actual` date NOT NULL,
+  `tipoPago` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -214,7 +215,7 @@ CREATE TABLE `nutriempaquetado` (
 --
 
 INSERT INTO `nutriempaquetado` (`idMenuEmpaquetado`, `nombreEmpaquetado`) VALUES
-(1, 'Para Recoger ');
+(1, 'Para llevar');
 
 -- --------------------------------------------------------
 
@@ -558,7 +559,7 @@ INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell
 (11, 'Maria Paula Diaz Tibaquira', NULL, 'paulita5491@gmail.com', '1007600126', NULL),
 (12, 'Luz Adriana Rocha', NULL, 'adrianarochagonzalez@gmail.com', '1013623037', NULL),
 (13, 'Paola Prada', NULL, 'jpprada85@gmail.com', '28719410', NULL),
-(14, 'Carol Liliana Segura', NULL, 'carol841216@hotmail.com', '30946051', NULL),
+(14, 'Carol Liliana Segura', NULL, 'carol841216_@hotmail.com', '30946051', NULL),
 (15, 'Katherin Chapeton', NULL, 'katherinechapetonmontes@hotmail.com', '52430554', NULL),
 (16, 'Andres Fernando  Cardenas  Mappe', '3116681704', 'andrescardenas198612@gmail.com', '1108452460', NULL),
 (17, 'felipe gavilan prueba', '234556', 'felipegavilan2202@gmail.co', '1005958886', NULL),
