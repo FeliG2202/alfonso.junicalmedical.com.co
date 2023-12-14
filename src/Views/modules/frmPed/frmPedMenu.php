@@ -115,24 +115,26 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                 <div class="modal-body">
                                                     <!-- Content for Modal 1 -->
                                                 </div>
-                                                <div class="modal-footer row">
-                                                    <div class="col col-lg-12">
-                                                    <div class="form-check">
-                                                            <input class="form-check-input" value="descuento por nomina" type="radio" name="tipoPago" id="flexRadioDefault2" checked>
-                                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                            descuento por nomina
-                                                            </label>
+                                                <div class="modal-footer">
+                                                    <div class="row col">
+                                                        <div class="col col-lg-6">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" checked>
+                                                                <label class="form-check-label" for="Radios1">
+                                                                    descuento por nómina
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form0" id="Radios2">
+                                                                <label class="form-check-label" for="Radios2">
+                                                                    Pago en efectivo (caja)
+                                                                </label>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" id="flexRadioDefault1">
-                                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                            Pago en efectivo (caja)
-                                                            </label>
+                                                        <div class="col col-lg-6">
+                                                            <button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
+                                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
                                                         </div>
-                                                    </div>
-                                                    <div class="col col-lg-12">
-                                                        <div class=""><button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success col-lg-6">Guardar</button></div>
-                                                        <button type="button" class="btn btn-secondary col-lg-6" data-bs-dismiss="modal">Cerrar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,24 +151,26 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                 <div class="modal-body">
                                                     <!-- Content for Modal 1 -->
                                                 </div>
-                                                <div class="modal-footer row">
-                                                    <div class="col col-lg-12">
-                                                    <div class="form-check">
-                                                            <input class="form-check-input" value="descuento por nomina" type="radio" name="tipoPago" id="flexRadioDefault2" checked>
-                                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                            descuento por nomina
-                                                            </label>
+                                                <div class="modal-footer">
+                                                    <div class="row col">
+                                                        <div class="col col-lg-6">
+                                                            <div class="form-check">
+                                                            <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form1" id="Radios3" checked>
+                                                                <label class="form-check-label" for="Radios3">
+                                                                    descuento por nómina
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check">
+                                                            <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form1" id="Radios4">
+                                                                <label class="form-check-label" for="Radios4">
+                                                                    Pago en efectivo (caja)
+                                                                </label>
+                                                            </div>
                                                         </div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" id="flexRadioDefault1">
-                                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                            Pago en efectivo (caja)
-                                                            </label>
+                                                        <div class="col col-lg-6">
+                                                            <button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
+                                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
                                                         </div>
-                                                    </div>
-                                                    <div class="col col-lg-12">
-                                                        <div class=""><button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success col-lg-6">Guardar</button></div>
-                                                        <button type="button" class="btn btn-secondary col-lg-6" data-bs-dismiss="modal">Cerrar</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,13 +212,13 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                             $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                                             // Append the selected items to the modal body
                                             $("#modal0 .modal-body").append(selectedItems.join("<br>"));
-                                            $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+                                            $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</br></br> En caso de no realizar el pago correspondiente, se realiza un descuento por nómina</div>');
 
                                             // Add a title to the modal body
                                             $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                                             // Append the selected items to the modal body
                                             $("#modal1 .modal-body").append(selectedItems.join("<br>"));
-                                            $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+                                            $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</br></br> En caso de no realizar el pago correspondiente, se realiza un descuento por nómina</div>');
                                         });
                                     });
                                 </script>
@@ -350,10 +354,18 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 language: {
                     url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
                 },
-                columns: [{data: 'nutriSopaNombre'},
-                    {data: 'nutriArrozNombre'},
-                    {data: 'nutriProteNombre'},
-                    {data: 'nutriEnergeNombre'},
+                columns: [{
+                        data: 'nutriSopaNombre'
+                    },
+                    {
+                        data: 'nutriArrozNombre'
+                    },
+                    {
+                        data: 'nutriProteNombre'
+                    },
+                    {
+                        data: 'nutriEnergeNombre'
+                    },
                     {
                         data: 'nutriAcompNombre'
                     },
