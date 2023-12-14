@@ -28,9 +28,8 @@ $traducciones = array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' =>
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
 
-<div class="col-12 col-sm-12 col-md-12 col-lg-10 mx-auto my-5 rounded shadow-sm">
-    <div class="container">
-        <div class="card ">
+<div class="col-12 col-sm-12 col-md-12 col-lg-10 mx-auto m-3">
+
             <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
                 <div class="card-body">
                     <nav>
@@ -41,7 +40,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
                     </nav>
 
-                    <div class="tab-content table-responsive" id="nav-tabContent">
+                    <div class="tab-content" id="nav-tabContent">
                         <!-- Registrar Dietas -->
                         <div class="tab-pane fade show active" id="Solicitud" role="tabpanel">
 
@@ -67,7 +66,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             <?php }
                             ?>
 
-                            <div class="row p-1">
+                            <div class="row">
                                 <!-- Tarjeta 1 -->
 
                                 <?php
@@ -75,7 +74,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                 $cont1 = 0;
                                 $cont2 = 0;
                                 foreach ($menuPorDias['data'] as $key => $value) {
-                                    print '<div class="col-md-6 p-2">';
+                                    print '<div class="col-md-6 p-1">';
                                     print '<form method="POST" action="" id="form' . $cont . '">';
                                     print '<input type="hidden" name="selected-idm" value="' . $value['idNutriMenu'] . '">';
                                     echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
@@ -296,8 +295,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
                     </div>
                 </div>
-        </div>
-    </div>
+      
 </div>
 
 <!-- ================================backend================================== -->
