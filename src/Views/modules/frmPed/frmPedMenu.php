@@ -227,28 +227,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 <div class="tab-pane fade" id="Eliminar" role="tabpanel">
                     <!-- Eliminar dieta -->
 
-
-                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <!-- Las tarjetas se agregarán aquí dinámicamente -->
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
-    </div>
-
-
-
-
-
-
-
-                    <div class="row mt-3">
+                    <div class="mt-3">
                         <!-- Boton para actualizar la tabla -->
                         <button type="button" class="btn btn-outline-dark" id="btn-reload">
                             <i class="fas fa-repeat"></i>
@@ -257,10 +236,18 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         <hr>
                         <div id="alert-container"></div>
 
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                            <div id="card-container" class="card-container d-flex justify-content-center">
+                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                            <div id="card-container" class="carousel-inner">
 
                             </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                <i class="fad fa-fast-backward"></i> Atras
+                            </button>
+                            <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                Siguiente <i class="fad fa-fast-forward"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -348,57 +335,71 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     // HACE LA CONSULTA A LA BASE DE DATOS Y TRAE LOS DATOS DE LA API
     // Y HACE LA FUNCION "CLICK" PARA EL MODAL
     function readTipos() {
-    axios.get(`${host}/api/frmPedEdit/read/${id}`)
-        .then(res => {
-            const cardContainer = document.getElementById('card-container');
-            cardContainer.innerHTML = ''; // Clear previous content
+        axios.get(`${host}/api/frmPedEdit/read/${id}`)
+            .then(res => {
+                const cardContainer = document.getElementById('card-container');
+                cardContainer.innerHTML = ''; // Clear previous content
 
-            let contador = 1;
-            const data = !res.data.status ? res.data : [];
+                let contador = 1;
+                const data = !res.data.status ? res.data : [];
 
-            data.forEach(item => {
-                const card = document.createElement('div');
-                card.classList.add('card', 'col-lg-10', 'col-12'); // Set the column sizes
+                data.forEach((item, index) => {
+                    // Crear carouselItem primero
+                    const carouselItem = document.createElement('div');
+                    carouselItem.classList.add('carousel-item');
+                    if (index === 0) {
+                        carouselItem.classList.add('active');
+                    }
 
-                const cardBody = document.createElement('div');
-                cardBody.classList.add('card-body');
 
-                const htmlString = `
-                    <div class='cards-wrapper justify-content-center'>
-                        <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
-                        ${generateCardContent(item)}
-                        <input type="hidden" value="${item.idMenuSeleccionado}">
-                        <button type="button" class="btn btn-danger" onclick="showModal(${item.idMenuSeleccionado})"><i class="fad fa-trash-alt fa-lx"></i></button>
-                    </div>
+                    // Luego crear card
+                    const card = document.createElement('div');
+                    card.classList.add('card'); // Set the column sizes
+
+                    // Finalmente crear cardBody
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+
+                    const htmlString = `
+                
+                    <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
+                    ${generateCardContent(item)}
+                    <input type="hidden" value="${item.idMenuSeleccionado}">
+                    <button type="button" class="btn btn-danger" onclick="showModal(${item.idMenuSeleccionado})"><i class="fad fa-trash-alt fa-lx"></i></button>
+               
+               
                 `;
 
-                cardBody.innerHTML = htmlString;
-                card.appendChild(cardBody);
-                cardContainer.appendChild(card);
+                    cardBody.innerHTML = htmlString;
+                    card.appendChild(cardBody);
+                    carouselItem.appendChild(card); // Agregar card a carouselItem
+                    cardContainer.appendChild(carouselItem); // Agregar carouselItem a cardContainer
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
             });
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
+    }
+
+
+
+    function generateCardContent(item) {
+        const fieldsToDisplay = [
+            'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
+            'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
+            'nutriBebidaNombre', 'nombreEmpaquetado', 'tipoPago'
+        ];
+
+        let content = '';
+
+        fieldsToDisplay.forEach(field => {
+            if (item[field] !== null && item[field] !== 'null') {
+                content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
+            }
         });
-}
 
-function generateCardContent(item) {
-    const fieldsToDisplay = [
-        'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
-        'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
-        'nutriBebidaNombre', 'nombreEmpaquetado', 'tipoPago'
-    ];
-
-    let content = '';
-
-    fieldsToDisplay.forEach(field => {
-        if (item[field] !== null && item[field] !== 'null') {
-            content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
-        }
-    });
-
-    return content;
-}
+        return content;
+    }
 
 
 
