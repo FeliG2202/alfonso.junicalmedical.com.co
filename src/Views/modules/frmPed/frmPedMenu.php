@@ -239,7 +239,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         <hr>
                         <div id="alert-container"></div>
 
-                        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div id="carouselExampleControls" class="carousel slide" style="height: 250px;" data-ride="carousel">
                             <div id="card-container" class="carousel-inner d-flex mx-auto">
 
                             </div>
