@@ -104,7 +104,27 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             echo ('<div class="mt-2 p-2">
                                     <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
                             print  '</div>';
-                        ?><div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                        ?>
+                            <div class="modal" tabindex="-1" id="modalfinal">
+                                <div class="modal-dialog col-lg-9">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-warning">
+                                            <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>Dietas registradas</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="alert alert-success" role="alert">Dieta registrada correctamente</div>
+                                            <h5><b>¿Está seguro que quiere seleccionar otra dieta?</b></h5>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Si</button>
+                                            <a class="btn btn-secondary" href="/inicio">No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header bg-warning">
@@ -399,6 +419,14 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         });
 
         return content;
+    }
+
+    // Primero, verifica si 'message=true' está en la URL
+    if (urlParams.get('message') === 'true') {
+        // Si 'message=true' está en la URL, muestra el modal
+        $(document).ready(function() {
+            $('#modalfinal').modal('show');
+        });
     }
 
 
