@@ -120,7 +120,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                     <div class="form-check">
                                                         <input class="form-check-input" value="Descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" required>
                                                         <label class="form-check-label" for="Radios1">
-                                                        Descuento por nómina
+                                                            Descuento por nómina
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
@@ -229,15 +229,18 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
                     <div class="mt-3">
                         <!-- Boton para actualizar la tabla -->
-                        <button type="button" class="btn btn-outline-dark" id="btn-reload">
-                            <i class="fas fa-repeat"></i>
-                        </button>
+                        <div class="d-flex justify-content-between">
+                            <h5>Menús registrados en el día de hoy</h5>
+                            <button type="button" class="btn btn-outline-dark">
+                                <i class="fas fa-repeat"></i>
+                            </button>
+                        </div>
 
                         <hr>
                         <div id="alert-container"></div>
 
                         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                            <div id="card-container" class="carousel-inner">
+                            <div id="card-container" class="carousel-inner d-flex mx-auto">
 
                             </div>
                         </div>
@@ -262,7 +265,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
                                 <div class="modal-body">
                                     <input type="hidden" class="form-control mb-3" id="idMenuSeleccionado">
-                                    <h5 class="text-center">esta seguro de eliminar esta dieta</h5>
+                                    <h5 class="text-center">Esta seguro de eliminar esta dieta</h5>
                                 </div>
 
                                 <div class="modal-footer">
@@ -351,10 +354,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         carouselItem.classList.add('active');
                     }
 
-
                     // Luego crear card
                     const card = document.createElement('div');
-                    card.classList.add('card'); // Set the column sizes
+                    card.classList.add('card', 'col-lg-8', 'mx-auto'); // Set the column sizes
 
                     // Finalmente crear cardBody
                     const cardBody = document.createElement('div');
@@ -365,9 +367,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
                     ${generateCardContent(item)}
                     <input type="hidden" value="${item.idMenuSeleccionado}">
-                    <button type="button" class="btn btn-danger" onclick="showModal(${item.idMenuSeleccionado})"><i class="fad fa-trash-alt fa-lx"></i></button>
-               
-               
+                    <button type="button" class="btn btn-danger float-end" onclick="showModal(${item.idMenuSeleccionado})"><i class="fad fa-trash-alt fa-lx"></i></button>
                 `;
 
                     cardBody.innerHTML = htmlString;
