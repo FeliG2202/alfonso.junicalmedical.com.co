@@ -227,6 +227,27 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 <div class="tab-pane fade" id="Eliminar" role="tabpanel">
                     <!-- Eliminar dieta -->
 
+
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Las tarjetas se agregarán aquí dinámicamente -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+
+
+
+
+
+
                     <div class="row mt-3">
                         <!-- Boton para actualizar la tabla -->
                         <button type="button" class="btn btn-outline-dark" id="btn-reload">
@@ -236,11 +257,11 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         <hr>
                         <div id="alert-container"></div>
 
-                        
-                            <div id="card-container" class="card-container">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                            <div id="card-container" class="card-container d-flex justify-content-center">
 
                             </div>
-                      
+                        </div>
                     </div>
 
                     <!-- Modal donde se confirma la eliminacion -->
@@ -327,7 +348,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     // HACE LA CONSULTA A LA BASE DE DATOS Y TRAE LOS DATOS DE LA API
     // Y HACE LA FUNCION "CLICK" PARA EL MODAL
     function readTipos() {
-        axios.get(`${host}/api/frmPedEdit/read/${id}`).then(res => {
+    axios.get(`${host}/api/frmPedEdit/read/${id}`)
+        .then(res => {
             const cardContainer = document.getElementById('card-container');
             cardContainer.innerHTML = ''; // Clear previous content
 
@@ -341,47 +363,43 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 const cardBody = document.createElement('div');
                 cardBody.classList.add('card-body');
 
-                // Assuming you have properties like 'nutriSopaNombre', 'nutriArrozNombre', etc.
                 const htmlString = `
-        <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
-        <p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriSopaNombre}</p>
-        <p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriArrozNombre}</p>
-        <p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriProteNombre}</p>
-        <p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriEnergeNombre}</p>
-        <p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriAcompNombre}</p>
-        <p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriEnsalNombre}</p>
-        <p class="card-text m-0 text-"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nutriBebidaNombre}</p>
-        <p class="card-text m-0 text-danger"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.nombreEmpaquetado}</p>
-        <p class="card-text m-0 text-danger"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item.tipoPago}</p>
-        <!-- Add other properties as needed -->
-
-        <input type="hidden" value="${item.idMenuSeleccionado}">
-        <button type="button" class="btn btn-primary" onclick="showModal(${item.idMenuSeleccionado})">Open Modal</button>
-    `;
+                    <div class='cards-wrapper justify-content-center'>
+                        <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
+                        ${generateCardContent(item)}
+                        <input type="hidden" value="${item.idMenuSeleccionado}">
+                        <button type="button" class="btn btn-danger" onclick="showModal(${item.idMenuSeleccionado})"><i class="fad fa-trash-alt fa-lx"></i></button>
+                    </div>
+                `;
 
                 cardBody.innerHTML = htmlString;
                 card.appendChild(cardBody);
-
-                // Rest of your code for appending the card to the carousel goes here
-
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(htmlString, 'text/html');
-                const pTags = doc.getElementsByTagName('p');
-
-                for (let i = pTags.length - 1; i >= 0; i--) {
-                    if (pTags[i].textContent === 'null') {
-                        pTags[i].parentNode.removeChild(pTags[i]);
-                    }
-                }
-
-                const result = doc.body.innerHTML;
-                const cardContent = result;
-                cardBody.innerHTML = cardContent;
-                card.appendChild(cardBody);
                 cardContainer.appendChild(card);
             });
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
         });
-    }
+}
+
+function generateCardContent(item) {
+    const fieldsToDisplay = [
+        'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
+        'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
+        'nutriBebidaNombre', 'nombreEmpaquetado', 'tipoPago'
+    ];
+
+    let content = '';
+
+    fieldsToDisplay.forEach(field => {
+        if (item[field] !== null && item[field] !== 'null') {
+            content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
+        }
+    });
+
+    return content;
+}
+
 
 
     function showModal(idMenuSeleccionado) {
