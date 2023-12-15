@@ -118,9 +118,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                             <div class="row col">
                                                 <div class="col col-lg-6">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" value="descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" required>
+                                                        <input class="form-check-input" value="Descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" required>
                                                         <label class="form-check-label" for="Radios1">
-                                                            descuento por nómina
+                                                        Descuento por nómina
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
