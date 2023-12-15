@@ -114,7 +114,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                         </div>
                                         <div class="modal-body">
                                             <div class="alert alert-success" role="alert">Dieta registrada correctamente</div>
-                                            <h5><b>¿Está seguro de seleccionar otra dieta?</b></h5>
+                                            <h5><b>¿Desea seleccionar otra dieta?</b></h5>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Si</button>
