@@ -231,20 +231,20 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                                     // Append the selected items to the modal body
                                     $("#modal0 .modal-body").append(selectedItems.join("<br>"));
-                                    $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta que desea eliminar, de no  realiza el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
+                                    $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta.</b><br><br> <i class="fas fa-exclamation-triangle fa-lg"></i><b> Al no realizar el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
 
                                     // Add a title to the modal body
                                     $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                                     // Append the selected items to the modal body
                                     $("#modal1 .modal-body").append(selectedItems.join("<br>"));
-                                    $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta que desea eliminar, de no  realiza el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
+                                    $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta.</b><br><br> <i class="fas fa-exclamation-triangle fa-lg"></i><b> Al no realizar el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
                                 });
                             });
 
 
                             function showAlert(e) {
                                 if (e.target.checked) {
-                                    alert('Para reclamar la dieta entregar el recibo en alimentos');
+                                    alert('Entregar el recibo para reclamar la dieta en alimentos');
                                 }
                             }
                             document.getElementById('Radios4').addEventListener('change', showAlert);
