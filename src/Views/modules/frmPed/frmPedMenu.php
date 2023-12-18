@@ -105,7 +105,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
                             print  '</div>';
                         ?>
-                            <div class="modal" tabindex="-1" id="modalfinal">
+                            <div class="modal fade" id="modalfinal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog col-lg-9">
                                     <div class="modal-content">
                                         <div class="modal-header bg-warning">
