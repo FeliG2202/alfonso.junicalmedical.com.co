@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 14-12-2023 a las 15:10:40
+-- Tiempo de generación: 18-12-2023 a las 14:08:05
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -67,6 +67,25 @@ CREATE TABLE `menu_seleccionado` (
   `tipoPago` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Volcado de datos para la tabla `menu_seleccionado`
+--
+
+INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `nombreEmpaquetado`, `fecha_actual`, `tipoPago`) VALUES
+(3, 1, 18, NULL, NULL, NULL, NULL, NULL, 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2023-12-14', 'descuento por nómina'),
+(4, 1, 18, NULL, 'Arroz blanco', NULL, NULL, NULL, NULL, NULL, NULL, '2023-12-14', 'descuento por nómina'),
+(5, 3, 18, NULL, NULL, 'Creps Rellenos de Carne', NULL, 'Papa Francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2023-12-14', 'descuento por nómina'),
+(21, 1, 1, NULL, NULL, NULL, NULL, 'Papa Criolla Frita', NULL, NULL, NULL, '2023-12-15', 'Descuento por nómina'),
+(22, 19, 1, 'Sopa de avena', NULL, NULL, NULL, NULL, 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2023-12-15', 'Pago en efectivo (caja)'),
+(24, 3, 7, NULL, NULL, NULL, 'Macarrones Guisados', 'Monedas de Platano', NULL, NULL, 'Para llevar', '2023-12-18', 'Pago en efectivo (caja)'),
+(25, 1, 6, 'Sopa de pastas', 'Arroz blanco', 'Pollo al horno', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2023-12-18', 'Pago en efectivo (caja)'),
+(26, 1, 7, 'Sopa de pastas', 'Arroz blanco', 'Lomo en Tilapia', 'Macarrones Guisados', 'Monedas de Platano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2023-12-18', 'Descuento por nómina'),
+(29, 1, 7, 'Sopa de pastas', 'Arroz blanco', NULL, NULL, NULL, NULL, NULL, 'Para llevar', '2023-12-18', 'Descuento por nómina'),
+(30, 3, 6, 'Sopa de pastas', NULL, 'Pollo al horno', NULL, NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2023-12-18', 'Descuento por nómina'),
+(31, 3, 7, NULL, NULL, NULL, 'Macarrones Guisados', 'Monedas de Platano', NULL, NULL, 'Para llevar', '2023-12-18', 'Descuento por nómina'),
+(32, 1, 6, NULL, 'Arroz blanco', NULL, NULL, NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2023-12-18', 'Descuento por nómina'),
+(33, 1, 6, 'Sopa de pastas', 'Arroz blanco', 'Pollo al horno', 'Migas', NULL, NULL, NULL, NULL, '2023-12-18', 'Descuento por nómina');
+
 -- --------------------------------------------------------
 
 --
@@ -104,7 +123,7 @@ CREATE TABLE `nutriacomp` (
 
 INSERT INTO `nutriacomp` (`idNutriAcomp`, `nutriAcompNombre`) VALUES
 (1, 'Patacones'),
-(2, 'Monedas de Platano'),
+(2, 'Monedas de Plátano'),
 (3, 'Papa Francesa'),
 (4, 'Papa, Yuca (Salsa Criolla)'),
 (5, 'Croquetas de arracacha'),
@@ -306,7 +325,7 @@ INSERT INTO `nutrimenu` (`idNutriMenu`, `idNutriTipo`, `idNutriDias`, `idNutriSo
 (3, 1, 5, 5, 1, 22, 12, 9, 8, NULL, 0, 1),
 (4, 2, 5, 5, 1, 23, 3, 10, 8, NULL, 0, 1),
 (5, 2, 5, 4, 5, 9, 2, 17, 1, NULL, 1, 1),
-(6, 1, 1, 1, 1, 1, 13, NULL, 2, NULL, 0, 1),
+(6, 1, 1, 1, 1, 22, 13, NULL, 2, NULL, 0, 1),
 (7, 2, 1, 1, 1, 13, 2, 2, 2, NULL, 0, 1),
 (8, 1, 2, 14, 2, 8, NULL, 3, 1, NULL, 0, 1),
 (9, 2, 2, 14, 2, 24, NULL, 7, 1, NULL, 0, 1),
@@ -375,7 +394,7 @@ INSERT INTO `nutriprote` (`idNutriProte`, `nutriProteNombre`) VALUES
 (10, 'Pepino Relleno (Carne Molida)'),
 (11, 'Cerdo en Salsa Agridulce'),
 (12, 'Cerdo en Bistec (encebollado)'),
-(13, 'Lomo en Tilapia'),
+(13, 'Lomo de Tilapia'),
 (14, 'Pollo en Salsa de Champiñones'),
 (15, 'Sobrebarriga en salssa Criolla'),
 (16, 'Pollo en Salsa Agridulce'),
@@ -546,9 +565,9 @@ CREATE TABLE `personas` (
 --
 
 INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell`, `personaCorreo`, `personaDocumento`, `personasCodigo`) VALUES
-(1, 'Felipe Gavilan Castaño', '3156078058', 'felipegavilan2202@gmail.com', '1005958885', '706-962'),
-(2, 'Andre Castaño Molina', '3156530301', 'fgavilac@junical.com.co', '123456789', '719-566'),
-(3, 'Ana E Sotelo', '', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', '203-205'),
+(1, 'Felipe Gavilan Castaño', '3156078058', 'felipegavilan2202@gmail.com', '1005958885', NULL),
+(2, 'Andre Castaño Molina', '3156530301', 'fgavilac@junical.com.co', '123456789', NULL),
+(3, 'Ana E Sotelo', '', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', NULL),
 (4, 'Adriana Maria Suarez', '', 'adrianamsg.07@gmail.com', '66683773', NULL),
 (5, 'Cristina Ramirez', NULL, 'ancriraca@hotmail.com', '39561397', NULL),
 (6, 'Jazmín Córdoba', NULL, 'idem_91@yahoo.com', '65703278', NULL),
@@ -563,7 +582,8 @@ INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell
 (15, 'Katherin Chapeton', NULL, 'katherinechapetonmontes@hotmail.com', '52430554', NULL),
 (16, 'Andres Fernando  Cardenas  Mappe', '3116681704', 'andrescardenas198612@gmail.com', '1108452460', NULL),
 (17, 'felipe gavilan prueba', '234556', 'felipegavilan2202@gmail.co', '1005958886', NULL),
-(18, 'luz stella castaño', NULL, 'luzkasta10@gmail.com', '65820125', NULL);
+(18, 'luz stella castaño', NULL, 'luzkasta10@gmail.com', '65820125', NULL),
+(19, 'Luis Miguel Parra Ruiz ', '3134350550', 'miguelp123at@gmail.com', '1003634997', NULL);
 
 -- --------------------------------------------------------
 
@@ -849,7 +869,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
@@ -945,7 +965,7 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

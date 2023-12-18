@@ -21,7 +21,7 @@ $cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
 $hora_inicio = '06:00';
-$hora_fin = '10:00';
+$hora_fin = '17:00';
 
 $traducciones = array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miércoles', 'Thursday' => 'Jueves', 'Friday' => 'Viernes', 'Saturday' => 'Sábado', 'Sunday' => 'Domingo', 'January' => 'Enero', 'February' => 'Febrero', 'March' => 'Marzo', 'April' => 'Abril', 'May' => 'Mayo', 'June' => 'Junio', 'July' => 'Julio', 'August' => 'Agosto', 'September' => 'Septiembre', 'October' => 'Octubre', 'November' => 'Noviembre', 'December' => 'Diciembre', 'am' => 'am', 'pm' => 'pm');
 
@@ -58,7 +58,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
                         $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
                         $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
-                    ?>
+                        ?>
                         <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
                             <?php echo $alertText; ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -91,7 +91,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     print '<div class="form-check checkbox-container">';
                                     echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
                                     if ($name == 'nombreEmpaquetado') {
-                                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '" style="font-weight:bold; color:red;">' . $value[$name] . '</label>';
+                                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '" style="font-weight:bold; color:#012875;">' . $value[$name] . '</label>';
                                     } else {
                                         echo '<label class="form-check-label"  for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
                                     }
@@ -102,9 +102,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             print '</div>';
                             print '</div>';
                             echo ('<div class="mt-2 p-2">
-                                    <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
+                                <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
                             print  '</div>';
-                        ?>
+                            ?>
                             <div class="modal fade" id="modalfinal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                 <div class="modal-dialog col-lg-9">
                                     <div class="modal-content">
@@ -195,7 +195,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     </div>
                                 </div>
                             </div>
-                        <?php
+                            <?php
                             print '</form>';
                             print '</div>';
                             $cont++;
@@ -219,7 +219,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     checkboxNames.forEach(function(name) {
                                         $("input:checkbox[name=" + name + "]:checked").each(function() {
                                             if (name == 'nombreEmpaquetado') {
-                                                selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i><b style="color:red;">' + $(this).val() + '</b>');
+                                                selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i><b style="color:#012875;">' + $(this).val() + '</b>');
                                             } else {
                                                 selectedItems.push('<i class="fas fa-dot-circle me-1 fa-xs"></i>' + $(this).val());
                                             }
@@ -231,15 +231,24 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                                     // Append the selected items to the modal body
                                     $("#modal0 .modal-body").append(selectedItems.join("<br>"));
-                                    $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</br></br> <i class="fas fa-exclamation-triangle fa-lg"></i> <b>En caso de no realizar el pago, se realiza el descuento por nómina</b></div>');
+                                    $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta que desea eliminar, de no  realiza el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
 
                                     // Add a title to the modal body
                                     $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                                     // Append the selected items to the modal body
                                     $("#modal1 .modal-body").append(selectedItems.join("<br>"));
-                                    $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</br></br> <i class="fas fa-exclamation-triangle fa-lg"></i><b> En caso de no realizar el pago, se realiza el descuento por nómina</b></div>');
+                                    $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta que desea eliminar, de no  realiza el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
                                 });
                             });
+
+
+                            function showAlert(e) {
+                                if (e.target.checked) {
+                                    alert('Para reclamar la dieta entregar el recibo en alimentos');
+                                }
+                            }
+                            document.getElementById('Radios4').addEventListener('change', showAlert);
+                            document.getElementById('Radios2').addEventListener('change', showAlert);
                         </script>
 
                     </div>
@@ -306,9 +315,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     </div>
 
                 <?php } ?>
-                </div>
             </div>
         </div>
+    </div>
 
 </div>
 
@@ -325,8 +334,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         if (idPersona) {
             setInterval(function() {
                 axios.get(`${host}/api/frmPedEdit/read/${id}`)
-                    .then(function(response) {
-                        const alertContainer = document.querySelector('#alertContainer');
+                .then(function(response) {
+                    const alertContainer = document.querySelector('#alertContainer');
 
                         if (alertContainer) { // Verifica si alertContainer no es null
                             if (response.data.length > 0) {
@@ -342,9 +351,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                             }
                         }
                     })
-                    .catch(function(error) {
-                        console.error('Error en la solicitud', error);
-                    });
+                .catch(function(error) {
+                    console.error('Error en la solicitud', error);
+                });
             }, 3000);
         }
     });
@@ -359,8 +368,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     // Y HACE LA FUNCION "CLICK" PARA EL MODAL
     function readTipos() {
         axios.get(`${host}/api/frmPedEdit/read/${id}`)
-            .then(res => {
-                const cardContainer = document.getElementById('card-container');
+        .then(res => {
+            const cardContainer = document.getElementById('card-container');
                 cardContainer.innerHTML = ''; // Clear previous content
 
                 let contador = 1;
@@ -383,12 +392,12 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     cardBody.classList.add('card-body');
 
                     const htmlString = `
-                
+
                     <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
                     ${generateCardContent(item)}
                     <input type="hidden" value="${item.idMenuSeleccionado}">
                     <button type="button" class="btn btn-danger float-end" onclick="showModal(${item.idMenuSeleccionado})"><i class="fad fa-trash-alt fa-lx"></i></button>
-                `;
+                    `;
 
                     cardBody.innerHTML = htmlString;
                     card.appendChild(cardBody);
@@ -396,9 +405,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                     cardContainer.appendChild(carouselItem); // Agregar carouselItem a cardContainer
                 });
             })
-            .catch(error => {
-                console.error("Error fetching data:", error);
-            });
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
     }
 
 
@@ -408,7 +417,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
             'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
             'nutriBebidaNombre', 'nombreEmpaquetado', 'tipoPago'
-        ];
+            ];
 
         let content = '';
 
