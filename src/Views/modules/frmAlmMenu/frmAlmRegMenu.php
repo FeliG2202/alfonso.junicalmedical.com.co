@@ -5,236 +5,234 @@ if (!isset($_SESSION['session'])) {
 	TemplateControlador::redirect("index.php?view=login");
 }
 ?>
-
-<div class="col-12 col-sm-12 col-md-11 col-lg-10 mx-auto my-5 p-4 rounded shadow-sm">
-
+<div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-3 p-3 rounded shadow-sm">
 	<div class="container">
-		<div class="card">
-			<div class="card-body">
-				<div id="alert-container"></div>
-				<nav>
-					<div class="nav nav-tabs" id="nav-tab" role="tablist">
-						<a class="nav-item nav-link active" data-toggle="tab" href="#Empleado" role="tab" aria-selected="true">Empleado</a>
-						<a class="nav-item nav-link" data-toggle="tab" href="#Paciente" role="tab" aria-selected="false">Paciente</a>
+		<div class="d-flex justify-content-start my-2">
+			<button type="button" class="btn btn-outline-secondary ms-auto" id="Buttonnav"><i class="fad fa-window-restore"></i> Paciente</button>
+		</div>
+		<div id="empleado">
+			<div class="p-2">
+				<h2 class="text-center"><b>Menú Empleado</b></h2>
+				<hr>
+			</div>
+
+			<div class="d-flex justify-content-start my-2">
+				<a href="index.php?folder=frmAlmMenu&view=frmAlmConMenu" class="btn btn-outline-secondary ms-auto">
+					<i class="fas fa-search me-2"></i>Consultar
+				</a>
+			</div>
+
+			<!-- FORMULARIO DE EMPLEADO -->
+			<form class="form" id="form-create-menu1">
+				<div class="row">
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriTipo1">Tipo Menu</label>
+							<select id="idNutriTipo1" name="idNutriTipo1" class="form-select" required autofocus>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
 					</div>
-				</nav>
 
-				<div class="tab-content " id="nav-tabContent">
-					<div class="tab-pane fade show active" id="Empleado" role="tabpanel">
-						<div class="p-2">
-							<h2 class="text-center">Menú Empleado</h2>
-							<hr>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriDias1">Día</label>
+							<select id="idNutriDias1" name="idNutriDias1" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
 						</div>
-
-						<div class="gap-2 d-md-flex justify-content-md-end my-2">
-							<a href="index.php?folder=frmAlmMenu&view=frmAlmConMenu" class="btn btn-outline-secondary">
-								<i class="fas fa-search me-2"></i>Consultar
-							</a>
-						</div>
-
-						<!-- FORMULARIO DE EMPLEADO -->
-						<form class="form" id="form-create-menu1">
-							<div class="row">
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriTipo1">Tipo Menu</label>
-										<select id="idNutriTipo1" name="idNutriTipo1" class="form-select" required autofocus>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriDias1">Día</label>
-										<select id="idNutriDias1" name="idNutriDias1" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriSopa1">Sopa</label>
-										<select id="idNutriSopa1" name="idNutriSopa1" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriArroz1">Arroz</label>
-										<select id="idNutriArroz1" name="idNutriArroz1" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriProte1">Proteina</label>
-										<select id="idNutriProte1" name="idNutriProte1" class="form-select">
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriEnerge1">Energetico</label>
-										<select id="idNutriEnerge1" name="idNutriEnerge1" class="form-select">
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriAcomp1">Acompañamiento</label>
-										<select id="idNutriAcomp1" name="idNutriAcomp1" class="form-select">
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriEnsal1">Ensalada</label>
-										<select id="idNutriEnsal1" name="idNutriEnsal1" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriSemana1">Semana</label>
-										<select id="idNutriSemana1" name="idNutriSemana1" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								<button type="submit" id="btnSaveAlmRegMenu1" class="btn btn-success btn-block">Guardar</button>
-							</div>
-						</form>
-						<!-- END DE FORMULARIO DE EMPLEADOS -->
 					</div>
-					<div class="tab-pane fade" id="Paciente" role="tabpanel">
 
-						<div class="p-2">
-							<h2 class="text-center">Menú Paciente</h2>
-							<hr>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriSopa1">Sopa</label>
+							<select id="idNutriSopa1" name="idNutriSopa1" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
 						</div>
+					</div>
 
-						<!-- FORMULARIO DE PACIENTES -->
-						<div class="gap-2 d-md-flex justify-content-md-end my-2">
-							<a href="index.php?folder=frmAlmMenu&view=frmAlmConMenu" class="btn btn-outline-secondary">
-								<i class="fas fa-search me-2"></i>Consultar
-							</a>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriArroz1">Arroz</label>
+							<select id="idNutriArroz1" name="idNutriArroz1" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
 						</div>
+					</div>
 
-						<form class="form" id="form-create-menu2">
-							<div class="row">
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriTipo2">Tipo Menu</label>
-										<select id="idNutriTipo2" name="idNutriTipo2" class="form-select" required autofocus>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriProte1">Proteina</label>
+							<select id="idNutriProte1" name="idNutriProte1" class="form-select">
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
 
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriDias2">Día</label>
-										<select id="idNutriDias2" name="idNutriDias2" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriEnerge1">Energetico</label>
+							<select id="idNutriEnerge1" name="idNutriEnerge1" class="form-select">
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
 
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriSopa2">Sopa</label>
-										<select id="idNutriSopa2" name="idNutriSopa2" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriAcomp1">Acompañamiento</label>
+							<select id="idNutriAcomp1" name="idNutriAcomp1" class="form-select">
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
 
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriArroz2">Arroz</label>
-										<select id="idNutriArroz2" name="idNutriArroz2" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriEnsal1">Ensalada</label>
+							<select id="idNutriEnsal1" name="idNutriEnsal1" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
 
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriProte2">Proteina</label>
-										<select id="idNutriProte2" name="idNutriProte2" class="form-select">
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriEnerge2">Energetico</label>
-										<select id="idNutriEnerge2" name="idNutriEnerge2" class="form-select">
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriAcomp2">Acompañamiento</label>
-										<select id="idNutriAcomp2" name="idNutriAcomp2" class="form-select">
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriEnsal2">Ensalada</label>
-										<select id="idNutriEnsal2" name="idNutriEnsal2" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-
-								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
-									<div class="mb-3">
-										<label class="form-label" for="idNutriSemana2">Semana</label>
-										<select id="idNutriSemana2" name="idNutriSemana2" class="form-select" required>
-											<option value="" selected>Seleccione</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-								<button type="submit" id="btnSaveAlmRegMenu2" class="btn btn-success btn-block">Guardar</button>
-							</div>
-						</form>
-						<!-- END DE FORMULARIO DE PACIENTES -->
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriSemana1">Semana</label>
+							<select id="idNutriSemana1" name="idNutriSemana1" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
 					</div>
 				</div>
+
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" id="btnSaveAlmRegMenu1" class="btn btn-success btn-block">Guardar</button>
+				</div>
+			</form>
+			<!-- END DE FORMULARIO DE EMPLEADOS -->
+		</div>
+		<div id="paciente" style="display: none;">
+			<div class="p-2">
+				<h2 class="text-center"><b>Menú Paciente</b></h2>
+				<hr>
 			</div>
+
+			<!-- FORMULARIO DE PACIENTES -->
+			<div class="gap-2 d-md-flex justify-content-md-end my-2">
+				<a href="index.php?folder=frmAlmMenu&view=frmAlmConMenu" class="btn btn-outline-secondary">
+					<i class="fas fa-search me-2"></i>Consultar
+				</a>
+			</div>
+
+			<form class="form" id="form-create-menu2">
+				<div class="row">
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriTipo2">Tipo Menu</label>
+							<select id="idNutriTipo2" name="idNutriTipo2" class="form-select" required autofocus>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriDias2">Día</label>
+							<select id="idNutriDias2" name="idNutriDias2" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriSopa2">Sopa</label>
+							<select id="idNutriSopa2" name="idNutriSopa2" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriArroz2">Arroz</label>
+							<select id="idNutriArroz2" name="idNutriArroz2" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriProte2">Proteina</label>
+							<select id="idNutriProte2" name="idNutriProte2" class="form-select">
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriEnerge2">Energetico</label>
+							<select id="idNutriEnerge2" name="idNutriEnerge2" class="form-select">
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriAcomp2">Acompañamiento</label>
+							<select id="idNutriAcomp2" name="idNutriAcomp2" class="form-select">
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriEnsal2">Ensalada</label>
+							<select id="idNutriEnsal2" name="idNutriEnsal2" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-4">
+						<div class="mb-3">
+							<label class="form-label" for="idNutriSemana2">Semana</label>
+							<select id="idNutriSemana2" name="idNutriSemana2" class="form-select" required>
+								<option value="" selected>Seleccione</option>
+							</select>
+						</div>
+					</div>
+				</div>
+
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<button type="submit" id="btnSaveAlmRegMenu2" class="btn btn-success btn-block">Guardar</button>
+				</div>
+			</form>
+			<!-- END DE FORMULARIO DE PACIENTES -->
 		</div>
 	</div>
 </div>
 
 <!-- ================================backend================================== -->
 <script type="text/javascript">
+	// CAMBIAR DE VENTANA
+$(document).ready(function(){
+        $("#Buttonnav").click(function(){
+            $("#empleado, #paciente").toggle();
+            if($("#empleado").is(":visible")){
+                $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Paciente');
+            }else{
+                $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Empleado');
+            }
+        });
+    });
+
 	// FORMULARIO EMPLEADO
 	uploadSelect([
 		objectSelect('/api/frmAlmTipo/tipo', 'idNutriTipo1', 'idNutriTipo', ['nutriTipoNombre']),
