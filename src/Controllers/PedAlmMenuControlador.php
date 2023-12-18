@@ -165,7 +165,7 @@ public function generateReportDates() {
         Spreadsheet::setCell("H{$cont}", $menu->nutriEnergeNombre);
         Spreadsheet::setCell("I{$cont}", $menu->nutriAcompNombre);
         Spreadsheet::setCell("J{$cont}", $menu->nutriEnsalNombre);
-        Spreadsheet::setCell("K{$cont}", $menu->nutriBebidaNombre);
+        Spreadsheet::setCell("K{$cont}", $menu->tipoPago);
         Spreadsheet::setCell("L{$cont}", $menu->nombreEmpaquetado);
 
 

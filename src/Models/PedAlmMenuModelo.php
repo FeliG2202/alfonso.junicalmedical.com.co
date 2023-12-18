@@ -94,7 +94,7 @@ class PedAlmMenuModelo extends Connection {
             DB::column('nutriEnergeNombre', 'ms'),
             DB::column('nutriAcompNombre', 'ms'),
             DB::column('nutriEnsalNombre', 'ms'),
-            DB::column('nutriBebidaNombre', 'ms'),
+            DB::column('tipoPago', 'ms'),
             DB::column('fecha_actual', 'ms'),
         )->inner()->join(
             DB::as('personas', 'prs'),
@@ -137,7 +137,7 @@ class PedAlmMenuModelo extends Connection {
             DB::column('nutriEnergeNombre', 'ms'),
             DB::column('nutriAcompNombre', 'ms'),
             DB::column('nutriEnsalNombre', 'ms'),
-            DB::column('nutriBebidaNombre', 'ms'),
+            DB::column('tipoPago', 'ms'),
             DB::column('nombreEmpaquetado', 'ms'),
             DB::column('fecha_actual', 'ms'),
         )->inner()->join(

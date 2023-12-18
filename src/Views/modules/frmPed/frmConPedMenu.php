@@ -39,7 +39,7 @@
                                                 <th>Energetico</th>
                                                 <th>Acompañante</th>
                                                 <th>Ensalada</th>
-                                                <th>Bebida</th>
+                                                <th>Tipo de Pago</th>
                                                 <th>Fecha</th>
                                             </tr>
                                         </thead>
@@ -182,7 +182,7 @@
                     { data: 'nutriEnergeNombre' },
                     { data: 'nutriAcompNombre' },
                     { data: 'nutriEnsalNombre' },
-                    { data: 'nutriBebidaNombre' },
+                    { data: 'tipoPago' },
                     { data: 'fecha_actual' }
                     ],
             });
