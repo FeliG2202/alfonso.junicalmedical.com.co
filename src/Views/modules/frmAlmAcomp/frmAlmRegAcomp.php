@@ -11,7 +11,7 @@ if (!isset($_SESSION['session'])) {
 	<hr>
 
 	<div class="gap-2 d-md-flex justify-content-md-end my-2">
-		<a href="index.php?folder=frmAlmAcomp&view=frmAlmConAcomp" class="btn btn-outline-secondary">
+		<a href="/frmAlmAcomp/frmAlmConAcomp" class="btn btn-outline-secondary">
 			<i class="fas fa-search me-2"></i>Consultar
 		</a>
 	</div>

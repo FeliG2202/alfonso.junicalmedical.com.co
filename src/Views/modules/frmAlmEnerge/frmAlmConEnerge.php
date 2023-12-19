@@ -11,7 +11,7 @@ if (!isset($_SESSION['session'])) {
 	<div class="card mb-4">
 		<div class="card-body">
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-				<a href="index.php?folder=frmAlmEnerge&view=frmAlmRegEnerge" class="btn btn-outline-secondary">
+				<a href="/frmAlmEnerge/frmAlmRegEnerge" class="btn btn-outline-secondary">
 					<i class="fas fa-reply me-2"></i>Atrás
 				</a>
 

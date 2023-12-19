@@ -76,7 +76,7 @@
         </div>
         <div id="paciente" style="display: none;">
             <div class="p-2">
-                <h2 class="text-center"><b>Consolidado de Dietas Paciente</b></h2>
+                <h2 class="text-center"><b>Consolidado de Dietas Pacientes</b></h2>
                 <hr>
             </div>
 

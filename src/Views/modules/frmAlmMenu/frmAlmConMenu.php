@@ -22,7 +22,7 @@ if (!isset($_SESSION['session'])) {
             <div class="card mb-4">
                 <div class="card-body">
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-                        <a href="index.php?folder=frmAlmMenu&view=frmAlmRegMenu" class="btn btn-outline-secondary">
+                        <a href="/frmAlmMenu/frmAlmRegMenu" class="btn btn-outline-secondary">
                             <i class="fas fa-reply me-2"></i>Atrás
                         </a>
 
@@ -87,7 +87,7 @@ if (!isset($_SESSION['session'])) {
         <div class="card mb-4">
             <div class="card-body">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-                    <a href="index.php?folder=frmAlmMenu&view=frmAlmRegMenu" class="btn btn-outline-secondary">
+                    <a href="/frmAlmMenu/frmAlmRegMenu" class="btn btn-outline-secondary">
                         <i class="fas fa-reply me-2"></i>Atrás
                     </a>
 

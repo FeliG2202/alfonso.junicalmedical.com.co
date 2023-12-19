@@ -23,7 +23,7 @@ if (!isset($_SESSION['session'])) {
                 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="fad fa-file-upload"></i>
                 </button>
-                <a href="index.php?folder=frmPaciente&view=frmPaciCon" class="btn btn-outline-secondary">
+                <a href="/frmPaciente/frmPaciCon" class="btn btn-outline-secondary">
                     <i class="fas fa-search me-2"></i>Consultar
                 </a>
             </div>

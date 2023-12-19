@@ -32,7 +32,7 @@ if ($request != null) {
 				<button type="submit" name="btnRegMenu" class="btn btn-success">Registrar</button>
 			</div>
 			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-				<a href="index.php?folder=frmMenu&view=frmConMenu">Consultar Menú Principal</a>
+				<a href="frmMenu/frmConMenu">Consultar Menú Principal</a>
 			</div>
 		</form>
 	</div>

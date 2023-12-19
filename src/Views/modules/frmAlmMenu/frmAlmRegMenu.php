@@ -17,7 +17,7 @@ if (!isset($_SESSION['session'])) {
 			</div>
 
 			<div class="d-flex justify-content-start my-2">
-				<a href="index.php?folder=frmAlmMenu&view=frmAlmConMenu" class="btn btn-outline-secondary ms-auto">
+				<a href="/frmAlmMenu/frmAlmConMenu" class="btn btn-outline-secondary ms-auto">
 					<i class="fas fa-search me-2"></i>Consultar
 				</a>
 			</div>
@@ -121,7 +121,7 @@ if (!isset($_SESSION['session'])) {
 
 			<!-- FORMULARIO DE PACIENTES -->
 			<div class="gap-2 d-md-flex justify-content-md-end my-2">
-				<a href="index.php?folder=frmAlmMenu&view=frmAlmConMenu" class="btn btn-outline-secondary">
+				<a href="/frmAlmMenu/frmAlmConMenu" class="btn btn-outline-secondary">
 					<i class="fas fa-search me-2"></i>Consultar
 				</a>
 			</div>

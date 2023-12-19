@@ -12,7 +12,7 @@
                         <?php if (isset($_SESSION['session'])) { ?>
                           <a class="link_404" href="index.php?view=inicio2">Ir a casa</a>
                       <?php } else { ?>
-                        <a class="link_404" href="index.php?view=inicio">Ir a casa</a>
+                        <a class="link_404" href="/inicio">Ir a casa</a>
                       <?php } ?>
                 </div>
             </div>
