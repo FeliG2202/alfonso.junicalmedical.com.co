@@ -7,7 +7,7 @@ if (!isset($_SESSION['session'])) {
 ?>
 
 <div class="col-12 col-sm-12 col-md-11 col-lg-10 mx-auto">
-	<h2 class="mt-4 text-center">Pacientes</h2>
+	<h2 class="mt-4 text-center"><b>Pacientes</b></h2>
 
 	<div class="card mb-4">
 		<div class="card-body">
