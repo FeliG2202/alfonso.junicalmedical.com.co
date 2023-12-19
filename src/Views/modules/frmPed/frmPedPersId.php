@@ -19,7 +19,7 @@ if ($request != null) {
     <?php
     $hora_actual = date('H:i');
     $hora_inicio = '06:00';
-    $hora_fin = '18:00';
+    $hora_fin = '10:00';
 
     if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
         <?php TemplateControlador::response(
