@@ -28,190 +28,185 @@ $traducciones = array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' =>
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
 
-<div class="col-12 col-sm-12 col-md-12 col-lg-10 mx-auto m-3">
+<?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
 
-    <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
-        <div class="card-body">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-solicitud-tab" data-bs-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
-                    <a class="nav-item nav-link" id="nav-eliminar-tab" data-bs-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
-                    <a class="nav-item nav-link" id="nav-salir-tab" href="/inicio" role="tab" aria-selected="false">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
+    <div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-1 p-2 rounded shadow-sm">
+        <div class="container">
+            <div class="d-flex justify-content-start my-2">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#price"class="btn btn-outline-secondary ms-auto m-1"><i class="fad fa-file-invoice-dollar"></i> Precios</button>
+                <button type="button" class="btn btn-outline-secondary m-1" id="Buttonnav"><i class="fad fa-window-restore"></i> Eliminar dieta</button>
+                <a class="btn btn-outline-secondary m-1" href="/inicio">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
+            </div>
+            <div id="registrar">
+               <!-- Registrar Dietas -->
+               <div class="row">
+                <div class="col p-2 mb-3">
+                    <h3 class="text-center">Menú de Almuerzos</h3>
+                    <?php
+                    echo ("<h6 class='text-center'>{$fecha_traducida}</h6>"); ?>
                 </div>
-            </nav>
+                <hr>
+                <div id="alertContainer"></div>
+            </div>
+            <?php
+            if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
+                $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
+                $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
+                $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
+                ?>
+                <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
+                    <?php echo $alertText; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php }
+            ?>
 
-            <div class="tab-content" id="nav-tabContent">
-                <!-- Registrar Dietas -->
-                <div class="tab-pane fade show active" id="Solicitud" role="tabpanel">
+            <div class="row">
+                <!-- Tarjeta 1 -->
 
-                    <div class="row">
-                        <div class="col p-2 mb-3">
-                            <h3 class="text-center">Menú de Almuerzos</h3>
-                            <?php
-                            echo ("<h6 class='text-center'>{$fecha_traducida}</h6>"); ?>
+                <?php
+                $cont = 0;
+                $cont1 = 0;
+                $cont2 = 0;
+                foreach ($menuPorDias['data'] as $key => $value) {
+                    print '<div class="col-md-6 p-1">';
+                    print '<form method="POST" action="" id="form' . $cont . '">';
+                    print '<input type="hidden" name="selected-idm" value="' . $value['idNutriMenu'] . '">';
+                    echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
+                    print '<div class="card" id="tarjeta' . $cont . '">';
+                    print '<div class="card-body">';
+                    echo '<div class="d-flex justify-content-between align-items-center">';
+                    echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
+                    echo '</div>';
+                    echo ("<hr>");
+                    print '<div class="checkbox-group">';
+                    $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre', 'nombreEmpaquetado'];
+                    foreach ($checkboxNames as $name) {
+                        if (!empty($value[$name])) {
+                            print '<div class="form-check checkbox-container">';
+                            echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
+                            if ($name == 'nombreEmpaquetado') {
+                                echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '" style="font-weight:bold; color:#012875;">' . $value[$name] . '</label>';
+                            } else {
+                                echo '<label class="form-check-label"  for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
+                            }
+                            print '</div>';
+                        }
+                    }
+
+                    print '</div>';
+                    print '</div>';
+                    echo ('<div class="mt-2 p-2">
+                        <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
+                    print  '</div>';
+                    ?>
+                    <div class="modal fade" id="modalfinal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog col-lg-9">
+                            <div class="modal-content">
+                                <div class="modal-header bg-warning">
+                                    <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>Dietas registradas</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="alert alert-success" role="alert">Dieta registrada correctamente</div>
+                                    <h5><b>¿Desea seleccionar otra dieta?</b></h5>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Si</button>
+                                    <a class="btn btn-secondary" href="/inicio">No</a>
+                                </div>
+                            </div>
                         </div>
-                        <hr>
-                        <div id="alertContainer"></div>
+                    </div>
+
+                    <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info">
+                                    <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Content for Modal 1 -->
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row col">
+                                        <div class="col col-lg-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="Descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" required>
+                                                <label class="form-check-label" for="Radios1">
+                                                    Descuento por nómina
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form0" id="Radios2" required>
+                                                <label class="form-check-label" for="Radios2">
+                                                    Pago en efectivo (caja)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-6">
+                                            <button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
+                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info">
+                                    <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Content for Modal 1 -->
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="row col">
+                                        <div class="col col-lg-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="Descuento por nómina" type="radio" name="tipoPago" form="form1" id="Radios3" required>
+                                                <label class="form-check-label" for="Radios3">
+                                                    Descuento por nómina
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form1" id="Radios4" required>
+                                                <label class="form-check-label" for="Radios4">
+                                                    Pago en efectivo (caja)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col col-lg-6">
+                                            <button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
+                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <?php
-                    if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
-                        $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
-                        $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
-                        $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
-                        ?>
-                        <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
-                            <?php echo $alertText; ?>
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    <?php }
-                    ?>
-
-                    <div class="row">
-                        <!-- Tarjeta 1 -->
-
-                        <?php
-                        $cont = 0;
-                        $cont1 = 0;
-                        $cont2 = 0;
-                        foreach ($menuPorDias['data'] as $key => $value) {
-                            print '<div class="col-md-6 p-1">';
-                            print '<form method="POST" action="" id="form' . $cont . '">';
-                            print '<input type="hidden" name="selected-idm" value="' . $value['idNutriMenu'] . '">';
-                            echo ("<input type='hidden' name='selected-idp' value='{$_GET['idPersona']}'>");
-                            print '<div class="card" id="tarjeta' . $cont . '">';
-                            print '<div class="card-body">';
-                            echo '<div class="d-flex justify-content-between align-items-center">';
-                            echo '<h6 class="card-title">' . $value['nutriTipoNombre'] . '</h6>';
-                            echo '</div>';
-                            echo ("<hr>");
-                            print '<div class="checkbox-group">';
-                            $checkboxNames = ['nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre', 'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre', 'nutriBebidaNombre', 'nombreEmpaquetado'];
-                            foreach ($checkboxNames as $name) {
-                                if (!empty($value[$name])) {
-                                    print '<div class="form-check checkbox-container">';
-                                    echo '<input name="' . $name . '" class="form-check-input" type="checkbox" value="' . $value[$name] . '" id="flexCheckDefault' . $cont1++ . '" onclick="handleCheckboxClick(this, ' . $cont . ')">';
-                                    if ($name == 'nombreEmpaquetado') {
-                                        echo '<label class="form-check-label" for="flexCheckDefault' . $cont2++ . '" style="font-weight:bold; color:#012875;">' . $value[$name] . '</label>';
-                                    } else {
-                                        echo '<label class="form-check-label"  for="flexCheckDefault' . $cont2++ . '">' . $value[$name] . '</label>';
-                                    }
-                                    print '</div>';
-                                }
-                            }
-
-                            print '</div>';
-                            print '</div>';
-                            echo ('<div class="mt-2 p-2">
-                                <button type="button" form="form' . $cont . '" id="btnPedDatosPers' . $cont . '" name="btnPedDatosPers" class="btn btn-success w-100" disabled data-bs-toggle="modal" data-bs-target="#modal' . $cont . '">Seleccionar</button></div>');
-                            print  '</div>';
-                            ?>
-                            <div class="modal fade" id="modalfinal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog col-lg-9">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-warning">
-                                            <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>Dietas registradas</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="alert alert-success" role="alert">Dieta registrada correctamente</div>
-                                            <h5><b>¿Desea seleccionar otra dieta?</b></h5>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Si</button>
-                                            <a class="btn btn-secondary" href="/inicio">No</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-info">
-                                            <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Content for Modal 1 -->
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row col">
-                                                <div class="col col-lg-6">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" value="Descuento por nómina" type="radio" name="tipoPago" form="form0" id="Radios1" required>
-                                                        <label class="form-check-label" for="Radios1">
-                                                            Descuento por nómina
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form0" id="Radios2" required>
-                                                        <label class="form-check-label" for="Radios2">
-                                                            Pago en efectivo (caja)
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-lg-6">
-                                                    <button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
-                                                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header bg-info">
-                                            <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Content for Modal 1 -->
-                                        </div>
-                                        <div class="modal-footer">
-                                            <div class="row col">
-                                                <div class="col col-lg-6">
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" value="Descuento por nómina" type="radio" name="tipoPago" form="form1" id="Radios3" required>
-                                                        <label class="form-check-label" for="Radios3">
-                                                            Descuento por nómina
-                                                        </label>
-                                                    </div>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" value="Pago en efectivo (caja)" type="radio" name="tipoPago" form="form1" id="Radios4" required>
-                                                        <label class="form-check-label" for="Radios4">
-                                                            Pago en efectivo (caja)
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col col-lg-6">
-                                                    <button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
-                                                    <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                            print '</form>';
-                            print '</div>';
-                            $cont++;
-                        }
-                        ?>
+                    print '</form>';
+                    print '</div>';
+                    $cont++;
+                }
+                ?>
 
 
-                        <!-- Modal 1 -->
-                        <script>
-                            function openModal() {
-                                var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
-                                myModal.show();
-                            }
+                <!-- Modal 1 -->
+                <script>
+                    function openModal() {
+                        var myModal = new bootstrap.Modal(document.getElementById('myModal'), {});
+                        myModal.show();
+                    }
 
-                            $(document).ready(function() {
-                                $("button").click(function() {
+                    $(document).ready(function() {
+                        $("button").click(function() {
                                     console.log("Button clicked"); // Check if this is logged in the console
 
                                     var selectedItems = [];
@@ -239,92 +234,145 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                     $("#modal1 .modal-body").append(selectedItems.join("<br>"));
                                     $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta.</b><br><br> <i class="fas fa-exclamation-triangle fa-lg"></i><b> Al no realizar el pago o no reclamar el almuerzo se realiza el descuento por nómina.</b></div>');
                                 });
-                            });
+                    });
 
 
-                            function showAlert(e) {
-                                if (e.target.checked) {
-                                    alert('Entregar el recibo para reclamar la dieta en alimentos');
-                                }
-                            }
-                            document.getElementById('Radios4').addEventListener('change', showAlert);
-                            document.getElementById('Radios2').addEventListener('change', showAlert);
-                        </script>
+                    function showAlert(e) {
+                        if (e.target.checked) {
+                            alert('Entregar el recibo para reclamar la dieta en alimentos');
+                        }
+                    }
+                    document.getElementById('Radios4').addEventListener('change', showAlert);
+                    document.getElementById('Radios2').addEventListener('change', showAlert);
+                </script>
+
+            </div>
+        </div>
+        <div id="consultar" style="display: none;">
+            <!-- Eliminar dieta -->
+
+            <div class="mt-3">
+                <!-- Boton para actualizar la tabla -->
+                <div class="d-flex justify-content-between">
+                    <h5>Menús registrados en el día de hoy</h5>
+                    <button type="button" class="btn btn-outline-dark">
+                        <i class="fas fa-repeat"></i>
+                    </button>
+                </div>
+
+                <hr>
+                <div id="alert-container"></div>
+
+                <div id="carouselExampleControls" class="carousel slide" style="height: 320px;" data-ride="carousel">
+                    <div id="card-container" class="carousel-inner d-flex mx-auto">
 
                     </div>
                 </div>
-                <div class="tab-pane fade" id="Eliminar" role="tabpanel">
-                    <!-- Eliminar dieta -->
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <i class="fad fa-fast-backward"></i> Atras
+                    </button>
+                    <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        Siguiente <i class="fad fa-fast-forward"></i>
+                    </button>
+                </div>
+            </div>
 
-                    <div class="mt-3">
-                        <!-- Boton para actualizar la tabla -->
-                        <div class="d-flex justify-content-between">
-                            <h5>Menús registrados en el día de hoy</h5>
-                            <button type="button" class="btn btn-outline-dark">
-                                <i class="fas fa-repeat"></i>
-                            </button>
+            <!-- Modal donde se confirma la eliminacion -->
+            <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger">
+                            <h5 class="modal-title text-white" id="modal-tipo-menus-editLabel">Eliminar</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
-                        <hr>
-                        <div id="alert-container"></div>
-
-                        <div id="carouselExampleControls" class="carousel slide" style="height: 320px;" data-ride="carousel">
-                            <div id="card-container" class="carousel-inner d-flex mx-auto">
-
-                            </div>
+                        <div class="modal-body">
+                            <input type="hidden" class="form-control mb-3" id="idMenuSeleccionado">
+                            <h5 class="text-center">Esta seguro de eliminar esta dieta</h5>
                         </div>
-                        <div class="d-flex justify-content-center">
-                            <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                <i class="fad fa-fast-backward"></i> Atras
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" id="btn-delete-tipo-menu">
+                                <i class="fas fa-file-times me-2"></i>Eliminar
                             </button>
-                            <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                Siguiente <i class="fad fa-fast-forward"></i>
-                            </button>
+
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Modal donde se confirma la eliminacion -->
-                    <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header bg-danger">
-                                    <h5 class="modal-title text-white" id="modal-tipo-menus-editLabel">Eliminar</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-
-                                <div class="modal-body">
-                                    <input type="hidden" class="form-control mb-3" id="idMenuSeleccionado">
-                                    <h5 class="text-center">Esta seguro de eliminar esta dieta</h5>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" id="btn-delete-tipo-menu">
-                                        <i class="fas fa-file-times me-2"></i>Eliminar
-                                    </button>
-
-                                </div>
-                            </div>
-                        </div>
+        <div class="modal fade" id="price" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-info">
+                        <h5 class="modal-title" id="exampleModalLabel"><b>Tipos de precios en las dietas</b></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                <?php } else { ?>
-                    <div class="p-4">
-                        <div class="alert alert-warning p-3">
-                            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                            <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
-                        </div>
-                    </div>
-
-                <?php } ?>
+                    <div class="modal-body">
+                        <table class="table table-light">
+                            <thead>
+                              <tr>
+                                <th scope="col"></th>
+                                <th scope="col">En el servicio</th>
+                                <th scope="col">Para llevar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Almuerzo completo</td>
+                            <td>$ 9.500</td>
+                            <td>$ 10.500</td>
+                        </tr>
+                        <tr>
+                            <td>Bandeja</td>
+                            <td>$ 8.500</td>
+                            <td>$ 9.500</td>
+                        </tr>
+                        <tr>
+                            <td>Sopa</td>
+                            <td>$ 2.500</td>
+                            <td>$ 3.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
-
 </div>
+</div>
+</div>
+
+<?php } else { ?>
+    <div class="p-4">
+        <div class="alert alert-warning p-3">
+            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
+            <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
+        </div>
+    </div>
+
+<?php } ?>
 
 <!-- ================================backend================================== -->
 
-
 <script type="text/javascript">
+
+    //cambio de ventana
+    $(document).ready(function(){
+        $("#Buttonnav").click(function(){
+            $("#registrar, #consultar").toggle();
+            if($("#registrar").is(":visible")){
+                $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Eliminar dieta');
+            }else{
+                $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Registrar dieta');
+            }
+        });
+    });
+
     const urlParams = new URLSearchParams(window.location.href);
     const idPersona = urlParams.get('idPersona');
     const id = idPersona.split('#').shift();
