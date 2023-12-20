@@ -1,4 +1,4 @@
-<div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-3 p-3 rounded shadow-sm">
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 mx-auto my-3 p-3 rounded shadow-sm">
     <div class="container">
         <div class="d-flex justify-content-start my-2">
             <button type="button" class="btn btn-outline-secondary ms-auto" id="Buttonnav"><i class="fad fa-window-restore"></i> Paciente</button>
