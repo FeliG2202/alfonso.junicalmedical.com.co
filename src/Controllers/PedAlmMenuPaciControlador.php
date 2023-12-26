@@ -65,8 +65,8 @@ class PedAlmMenuPaciControlador {
             'nutriBebidaNombre' => (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
             'date' => date('Y-m-d')
             ])
-                ? (object) ['request' => false, 'url' => "index.php?folder=frmPedPaci&view=frmPedMenuPaci&idPaciente={$_GET['idPaciente']}&message=false"]
-        : (object) ['request' => true, 'url' => "index.php?folder=frmPedPaci&view=frmPedMenuPaci&idPaciente={$_GET['idPaciente']}&message=true"];
+                ? (object) ['request' => false, 'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId&message=false"]
+        : (object) ['request' => true, 'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId&message=true"];
         }
     }
 

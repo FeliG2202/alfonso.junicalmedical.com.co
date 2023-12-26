@@ -21,29 +21,21 @@ $cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
 $hora_inicio = '06:00';
-$hora_fin = '10:00';
+$hora_fin = '24:00';
 
 $traducciones = array('Monday' => 'Lunes','Tuesday' => 'Martes','Wednesday' => 'Miércoles','Thursday' => 'Jueves','Friday' => 'Viernes','Saturday' => 'Sábado','Sunday' => 'Domingo','January' => 'Enero','February' => 'Febrero','March' => 'Marzo','April' => 'Abril','May' => 'Mayo','June' => 'Junio','July' => 'Julio','August' => 'Agosto','September' => 'Septiembre','October' => 'Octubre','November' => 'Noviembre','December' => 'Diciembre','am' => 'am','pm' => 'pm');
 
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
 
-<div class="col-lg-10 mx-auto mt-3 mb-3 p-3 rounded shadow-sm responsive">
+<div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-1 p-2 rounded shadow-sm">
+    <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
     <div class="container">
-        <div class="card">
-          <div class="card-body">
-            <nav>
-              <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" data-toggle="tab" href="#Solicitud" role="tab" aria-selected="true">Solicitud</a>
-                <a class="nav-item nav-link" data-toggle="tab" href="#Eliminar" role="tab" aria-selected="false">Eliminar</a>
-                <a class="nav-item nav-link" id="nav-salir-tab" href="/inicio" role="tab" aria-selected="false">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
-            </div>
-        </nav>
-        <div class="tab-content table-responsive" id="nav-tabContent">
-            <!-- Registrar Dietas -->
-            <div class="tab-pane fade show active" id="Solicitud" role="tabpanel">
-                <?php
-                if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+        <div class="d-flex justify-content-start my-2">
+            <button type="button" class="btn btn-outline-secondary ms-auto m-1" id="Buttonnav"><i class="fad fa-window-restore"></i> Eliminar Dieta</button>
+            <a class="btn btn-outline-secondary m-1" href="/inicio">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
+        </div>
+        <div id="registrar">
                     <div class="row">
                         <div class="col p-2 mb-3">
                             <h3 class="text-center">Menú de Almuerzos</h3>
@@ -102,7 +94,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         ?><div class="modal fade" id="modal0" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-warning">
+                                    <div class="modal-header bg-info">
                                         <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -120,7 +112,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header bg-warning">
+                                    <div class="modal-header bg-info">
                                         <h5 class="modal-title text-dark" id="modal1Label"><i class="fas fa-exclamation-circle me-2 fa-ls"></i>¿Está seguro que quiere seleccionar esta dieta?</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
@@ -168,59 +160,45 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         $("#modal0 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                         // Append the selected items to the modal body
                         $("#modal0 .modal-body").append(selectedItems.join("<br>"));
-                        $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+                        $("#modal0 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta.</b></div>');
 
                         // Add a title to the modal body
                         $("#modal1 .modal-body").html("<h6><b>Dieta seleccionada</b></h6>");
                         // Append the selected items to the modal body
                         $("#modal1 .modal-body").append(selectedItems.join("<br>"));
-                        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-dark" role="alert">Para cancelar la dieta registrada, ingrese a la opción "Eliminar" y seleccionar la dieta que desea eliminar.</div>');
+                        $("#modal1 .modal-body").append('<div class="alert alert-info mt-3 text-danger" role="alert"><i class="fas fa-exclamation-triangle fa-lg"></i><b> Para borrar la dieta registrada, ingrese a la opción “Eliminar” y seleccionar la dieta.</b></div>');
                     });
                         });
                     </script>
                 </div>
-            <?php } else { ?>
-                <div class="alert alert-warning">
-                    <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                    <strong>8:00 AM</strong> hasta las <strong>10:00 AM</strong>
-                </div>
-            <?php } ?>
         </div>
+        <div id="eliminar" style="display: none;">
+            <div class="mt-3">
+                <!-- Boton para actualizar la tabla -->
+                <div class="d-flex justify-content-between">
+                    <h5>Menús registrados en el día de hoy</h5>
+                    <button type="button" class="btn btn-outline-dark">
+                        <i class="fas fa-repeat"></i>
+                    </button>
+                </div>
 
-        <div class="tab-pane fade" id="Eliminar" role="tabpanel">
-            <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
-                <!-- Eliminar dieta -->
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <!-- Boton para actualizar la tabla -->
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-                            <button type="button" class="btn btn-outline-dark" id="btn-reload">
-                                <i class="fas fa-repeat"></i>
-                            </button>
-                        </div>
+                <hr>
+                <div id="alert-container"></div>
 
-                        <hr>
-                        <div id="alert-container"></div>
+                <div id="carouselExampleControls" class="carousel slide" style="height: 320px;" data-ride="carousel">
+                    <div id="card-container" class="carousel-inner d-flex mx-auto">
 
-                        <!-- tabla para mostrar datos -->
-                        <div class="table-responsive">
-                            <table class="table table-hover table-sm w-100" id="table-menu">
-                                <thead>
-                                    <tr>
-                                        <th>Sopa</th>
-                                        <th>Arroz</th>
-                                        <th>Proteina</th>
-                                        <th>Energético</th>
-                                        <th>Acompañante</th>
-                                        <th>Ensalada</th>
-                                        <th>Bebida</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center">
+                    <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                        <i class="fad fa-fast-backward"></i> Atras
+                    </button>
+                    <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                        Siguiente <i class="fad fa-fast-forward"></i>
+                    </button>
+                </div>
+            </div>
 
                 <!-- Modal donde se confirma la eliminacion -->
                 <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
@@ -245,24 +223,33 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         </div>
                     </div>
                 </div>
-            <?php } else { ?>
+        </div>
+        </div>
+        <?php } else { ?>
                 <div class="alert alert-warning">
                     <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                    <strong>7:00 AM</strong> hasta las <strong>10:00 AM</strong>
+                    <strong>8:00 AM</strong> hasta las <strong>10:00 AM</strong>
                 </div>
             <?php } ?>
-        </div>
     </div>
-</div>
-</div>
-</div>
-</div>
+
 
 <!-- ================================backend================================== -->
 
 
 <script type="text/javascript">
 
+ //cambio de ventana
+$(document).ready(function(){
+        $("#Buttonnav").click(function(){
+            $("#registrar, #eliminar").toggle();
+            if($("#registrar").is(":visible")){
+                $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Eliminar Dieta');
+            }else{
+                $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Registrar Dieta');
+            }
+        });
+    });
     const urlParams = new URLSearchParams(window.location.href);
     const idPaciente = urlParams.get('idPaciente');
     const id = idPaciente.split('#').shift();
@@ -296,42 +283,94 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         }
     });
 
-    const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
+        const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
         keyboard: false
     });
 
 
     // HACE LA CONSULTA A LA BASE DE DATOS Y TRAE LOS DATOS DE LA API
     // Y HACE LA FUNCION "CLICK" PARA EL MODAL
-    function readTipos() {
-        axios.get(`${host}/api/frmPedPaci/read/${id}`).then(res => {
-            new DataTable('#table-menu', {
-                data: (!res.data.status ? res.data : []),
-                destroy: true,
-                responsive: true,
-                language: {
-                    url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
-                },
-                columns: [
-                    { data: 'nutriSopaNombre' },
-                    { data: 'nutriArrozNombre' },
-                    { data: 'nutriProteNombre' },
-                    { data: 'nutriEnergeNombre' },
-                    { data: 'nutriAcompNombre' },
-                    { data: 'nutriEnsalNombre' },
-                    { data: 'nutriBebidaNombre' },
-                    ],
-                createdRow: (html, row, index) => {
-                    html.setAttribute("role", "button");
-                    html.addEventListener("click", () => {
-                        document.getElementById("idMenuSeleccionadoPaci").value = row.idMenuSeleccionadoPaci;
-                        myModal.show();
-                    });
-                },
-            });
 
+    function readTipos() {
+        axios.get(`${host}/api/frmPedPaci/read/${id}`)
+        .then(res => {
+            const cardContainer = document.getElementById('card-container');
+                cardContainer.innerHTML = ''; // Clear previous content
+
+                let contador = 1;
+                const data = !res.data.status ? res.data : [];
+
+                data.forEach((item, index) => {
+                    // Crear carouselItem primero
+                    const carouselItem = document.createElement('div');
+                    carouselItem.classList.add('carousel-item');
+                    if (index === 0) {
+                        carouselItem.classList.add('active');
+                    }
+
+                    // Luego crear card
+                    const card = document.createElement('div');
+                    card.classList.add('card', 'col-lg-8', 'mx-auto'); // Set the column sizes
+
+                    // Finalmente crear cardBody
+                    const cardBody = document.createElement('div');
+                    cardBody.classList.add('card-body');
+
+                    const htmlString = `
+
+                    <h6 class='card-title'>Menú Registrado No. ${contador++}</h6>
+                    ${generateCardContent(item)}
+                    <input type="hidden" value="${item.idMenuSeleccionadoPaci}">
+                    <button type="button" class="btn btn-danger float-end" onclick="showModal(${item.idMenuSeleccionadoPaci})"><i class="fad fa-trash-alt fa-lx"></i></button>
+                    `;
+
+                    cardBody.innerHTML = htmlString;
+                    card.appendChild(cardBody);
+                    carouselItem.appendChild(card); // Agregar card a carouselItem
+                    cardContainer.appendChild(carouselItem); // Agregar carouselItem a cardContainer
+                });
+            })
+        .catch(error => {
+            console.error("Error fetching data:", error);
         });
     }
+
+
+
+    function generateCardContent(item) {
+        const fieldsToDisplay = [
+            'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
+            'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
+            'nutriBebidaNombre'
+            ];
+
+        let content = '';
+
+        fieldsToDisplay.forEach(field => {
+            if (item[field] !== null && item[field] !== 'null') {
+                content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
+            }
+        });
+
+        return content;
+    }
+
+    // Primero, verifica si 'message=true' está en la URL
+    if (urlParams.get('message') === 'true') {
+        // Si 'message=true' está en la URL, muestra el modal
+        $(document).ready(function() {
+            $('#modalfinal').modal('show');
+        });
+    }
+
+
+
+    function showModal(idMenuSeleccionadoPaci) {
+        document.getElementById('idMenuSeleccionadoPaci').value = idMenuSeleccionadoPaci;
+        myModal.show();
+    }
+
+
 
     const btn_reload = document.getElementById("btn-reload");
 
@@ -340,6 +379,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             readTipos();
         });
     }
+
 
     // DETERMINO LAS VARIABLE DE ELIMINAR Y ACTUALIZAR
     const btn_delete = document.getElementById("btn-delete-tipo-menu");

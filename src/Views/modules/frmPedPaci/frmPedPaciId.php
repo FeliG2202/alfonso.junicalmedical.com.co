@@ -5,9 +5,19 @@
     <?php
     $hora_actual = date('H:i');
     $hora_inicio = '06:00';
-    $hora_fin = '10:00';
+    $hora_fin = '24:00';
+    if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
+        $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
+        $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
+        $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
+        ?>
+        <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
+            <?php echo $alertText; ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } ?>
 
-    if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+    <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
         <form class="form" id="form-consul-menu">
             <div class="row mb-3">
                 <label for="pacienteDocumento" class="form-label">Número de identificación</label>
@@ -49,4 +59,11 @@
             console.log(err);
         });
     });
+
+    var alertElement = document.querySelector("#success-alert");
+
+if (alertElement) { // Verifica si alertElement no es null
+    alertElement.style.display = "block";
+    setTimeout(hideAlert, 3000);
+}
 </script>
