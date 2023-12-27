@@ -49,9 +49,15 @@ class PacienteModelo {
 		])->execute();
 	}
 
-	public function camasexistente(){
+	public function existeCama(){
 		$data = date('Y-m-d');
 		return DB::table('pacientes')->select('pacienteCama')
+		->where(DB::equalTo('fecha_registro'), $data)->getAll();
+	}
+
+	public function existeDocumento(){
+		$data = date('Y-m-d');
+		return DB::table('pacientes')->select('pacienteDocumento')
 		->where(DB::equalTo('fecha_registro'), $data)->getAll();
 	}
 }

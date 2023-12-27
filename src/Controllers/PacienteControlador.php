@@ -73,45 +73,90 @@ class PacienteControlador {
 		return response->code(200)->success('Eliminado correctamente');
 	}
 
-	public function uploadControlador() {
+	public function validateExcelData($data) {
+    $baseDocument = $this->PacienteModelo->existeDocumento();
+    $baseCama = $this->PacienteModelo->existeCama();
+    $documentosBase = [];
+    $CamasBase = [];
 
-		$reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-		$inputFileName = $_FILES['excel']['tmp_name'];
+    if(is_array($baseDocument)) {
+        foreach($baseDocument as $doc) {
+            $documentosBase[] = $doc->pacienteDocumento;
+        }
+    }
 
-		$inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-		$reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-		$reader->setReadFilter(new MyReadFilter());
-		$spreadsheet = $reader->load($inputFileName);
+    if(is_array($baseCama)) {
+        foreach($baseCama as $cama) {
+            $CamasBase[] = $cama->pacienteCama;
+        }
+    }
 
-		$data = $spreadsheet->getActiveSheet()->toArray();
-		$camasBase = $this->PacienteModelo->camasexistente();
-		$camasBaseArray = array();
+    $validationResults = [];
 
-		foreach($camasBase as $cama) {
-			$camasBaseArray[] = $cama->pacienteCama;
-		}
+    foreach ($data as $row) {
+        $errorMessages = [];
+        if ($row[1] != '') {
+            if (in_array($row[2], $documentosBase)) {
+                $errorMessages[] = "El documento {$row[2]} ya está registrado.";
+            }
+            if (in_array($row[4], $CamasBase)) {
+                $errorMessages[] = "El Cama {$row[4]} ya está registrada.";
+            }
+            if (!empty($errorMessages)) {
+                $validationResults[] = [
+                    'error' => true,
+                    'message' => implode(' ', $errorMessages),
+                ];
+            } else {
+                $validationResults[] = ['error' => false, 'data' => $row];
+            }
+        }
+    }
+    return $validationResults;
+}
 
-		foreach ($data as $row) {
-			if ($row[1] != '') {
-				if (in_array($row[4], $camasBaseArray)) {
-					return response->code(204)->success("La cama {$row[4]} ya está ocupada.");
-					continue;
-				}
-				$dataParaGuardar = [
+public function saveValidatedData($validatedData) {
+    foreach ($validatedData as $validationResult) {
+        if (!$validationResult['error']) {
+            $row = $validationResult['data'];
+            $dataParaGuardar = [
 					'pacienteNombre' => $row[1],
 					'pacienteDocumento' => $row[2],
 					'pacienteDieta' => $row[3],
 					'pacienteCama' => $row[4],
 					'fecha_registro' => date('Y-m-d')
 				];
-				try {
-					$this->PacienteModelo->uploadModelo($dataParaGuardar);
-					return response->code(200)->success('registrado correctamente');
-				} catch (\Exception $e) {
-					return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
-				}
-			}
-		}
-	}
+
+            try {
+                $this->PacienteModelo->uploadModelo($dataParaGuardar);
+            } catch (\Exception $e) {
+                return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
+            }
+        }
+    }
+
+    return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
+}
+
+public function uploadControlador() {
+    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    $inputFileName = $_FILES['excel']['tmp_name'];
+    $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
+    $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
+    $reader->setReadFilter(new MyReadFilter());
+    $spreadsheet = $reader->load($inputFileName);
+
+    $data = $spreadsheet->getActiveSheet()->toArray();
+
+    $validationResults = $this->validateExcelData($data);
+
+    foreach ($validationResults as $validationResult) {
+        if ($validationResult['error']) {
+            return response->code(500)->error($validationResult['message']);
+        }
+    }
+
+    return $this->saveValidatedData($validationResults);
+}
 
 }
