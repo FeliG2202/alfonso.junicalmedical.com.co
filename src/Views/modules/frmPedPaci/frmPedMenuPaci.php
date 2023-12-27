@@ -228,7 +228,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         <?php } else { ?>
                 <div class="alert alert-warning">
                     <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-                    <strong>8:00 AM</strong> hasta las <strong>10:00 AM</strong>
+                    <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
                 </div>
             <?php } ?>
     </div>

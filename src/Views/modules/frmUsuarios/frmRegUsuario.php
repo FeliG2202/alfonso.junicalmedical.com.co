@@ -65,9 +65,16 @@ if (!isset($_SESSION['session'])) {
 </div>
 
 <script>
-	$(document).ready(function() {
-		$('#idPersona').select2();
-	});
+    $(document).ready(function() {
+        // Initialize Select2
+        $('#idPersona').select2({
+            placeholder: 'Seleccione',
+            allowClear: true
+        });
+
+        // Apply Bootstrap styles manually
+        $('.select2-container').addClass('form-control');
+    });
 </script>
 
 <!-- ================================backend================================== -->
