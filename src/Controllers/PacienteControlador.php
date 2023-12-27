@@ -135,7 +135,7 @@ public function saveValidatedData($validatedData) {
         }
     }
 
-    return response->code(200)->success('Los datos se han enviado al modelo correctamente.');
+    return response->code(200)->success('los pacientes se han registrado correctamente.');
 }
 
 public function uploadControlador() {
