@@ -78,28 +78,33 @@ public function validateExcelData($data) {
     $documentosBase = [];
     $correosBase = [];
 
+if(is_array($baseDocument)) {
     foreach($baseDocument as $doc) {
         $documentosBase[] = $doc->personaDocumento;
     }
+}
 
+if(is_array($baseEmail)) {
     foreach($baseEmail as $email) {
         $correosBase[] = $email->personaCorreo;
     }
+}
 
     $validationResults = [];
 
-    foreach ($data as $row) {
-        if ($row[1] != '') {
-            if (in_array($row[2], $documentosBase) || in_array($row[3], $correosBase)) {
-                $validationResults[] = [
-                    'error' => true,
-                    'message' => in_array($row[2], $documentosBase) ? "El documento {$row[2]} ya está registrado." : "El correo {$row[3]} ya está registrado.",
-                ];
-            } else {
-                $validationResults[] = ['error' => false, 'data' => $row];
-            }
+   foreach ($data as $row) {
+    if ($row[1] != '') {
+        if (in_array($row[2], $documentosBase) || in_array($row[3], $correosBase)) {
+            $validationResults[] = [
+                'error' => true,
+                'message' => in_array($row[2], $documentosBase) ? "El documento {$row[2]} ya está registrado." : "El correo {$row[3]} ya está registrado.",
+            ];
+        } else {
+            $validationResults[] = ['error' => false, 'data' => $row];
         }
     }
+}
+
 
     return $validationResults;
 }

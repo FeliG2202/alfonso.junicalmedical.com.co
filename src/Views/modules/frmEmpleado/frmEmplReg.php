@@ -97,7 +97,7 @@ if (!isset($_SESSION['session'])) {
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="cargar_excel()">Cargar</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="cargar_excel()">Cargar</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
