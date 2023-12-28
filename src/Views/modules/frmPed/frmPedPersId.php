@@ -37,8 +37,6 @@ if ($request != null) {
 
     <div id="contenedor2">
         <div class="alert alert-warning">
-            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-            <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
         </div>
     </div>
 </div>
@@ -64,23 +62,25 @@ if ($request != null) {
     }
 
     function verificarHora() {
-        fetch(`${host}/api/frmHora/read`)
-        .then(response => response.json())
-        .then(api_data => {
-            let hora_actual = new Date();
-            let hora_inicio = new Date(`1970-01-01T${api_data[0]['nutriHoraInicio']}:00`);
-            let hora_fin = new Date(`1970-01-01T${api_data[0]['nutriHoraFinal']}:00`);
+    fetch(`${host}/api/frmHora/read`)
+    .then(response => response.json())
+    .then(api_data => {
+        let hora_actual = new Date();
+        let hora_inicio = new Date(`1970-01-01T${api_data[0]['nutriHoraInicio']}:00`);
+        let hora_fin = new Date(`1970-01-01T${api_data[0]['nutriHoraFinal']}:00`);
 
-            // Asegurarse de que las horas se comparan correctamente
-            hora_actual = new Date(`1970-01-01T${hora_actual.getHours()}:${hora_actual.getMinutes()}:00`);
+        // Asegurarse de que las horas se comparan correctamente
+        hora_actual = new Date(`1970-01-01T${hora_actual.getHours()}:${hora_actual.getMinutes()}:00`);
 
-            if (hora_actual >= hora_inicio && hora_actual <= hora_fin) {
-                contenedor1();
-            } else {
-                contenedor2();
-            }
-        });
-    }
+        if (hora_actual >= hora_inicio && hora_actual <= hora_fin) {
+            contenedor1();
+        } else {
+            contenedor2();
+            document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
+        }
+    });
+}
+
 
 // Ejecutar la función principal
     verificarHora();
