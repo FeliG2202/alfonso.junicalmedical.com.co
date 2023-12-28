@@ -9,6 +9,7 @@ use PHP\Controllers\AlmBebidaControlador;
 use PHP\Controllers\AlmDiaControlador;
 use PHP\Controllers\AlmEnergeControlador;
 use PHP\Controllers\AlmEnsalControlador;
+use PHP\Controllers\AlmHoraControlador;
 use PHP\Controllers\AlmSopaControlador;
 use PHP\Controllers\AlmProteControlador;
 use PHP\Controllers\AlmMenuControlador;
@@ -152,5 +153,10 @@ Route::prefix('frmPaci',function(){
     Route::put('update/{idPaciente}',[PacienteControlador::class, "actualizarPacienteControlador"]);
     Route::delete('delete/{idPaciente}',[PacienteControlador::class, "eliminarPacienteControlador"]);
     Route::post('upload',[PacienteControlador::class, "uploadControlador"]);
+});
+
+Route::prefix('frmHora',function(){
+    Route::get('read',[AlmHoraControlador::class, "consultarAlmHoraControlador"]);
+    Route::put('update/{idNutriHora}',[AlmHoraControlador::class,"actualizarAlmHoraControlador"]);
 });
 

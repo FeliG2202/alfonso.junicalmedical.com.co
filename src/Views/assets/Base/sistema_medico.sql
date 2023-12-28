@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 26-12-2023 a las 18:11:14
+-- Tiempo de generación: 28-12-2023 a las 14:58:08
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -73,7 +73,12 @@ CREATE TABLE `menu_seleccionado` (
 
 INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `nombreEmpaquetado`, `fecha_actual`, `tipoPago`) VALUES
 (1, 4, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne Asada', 'Frijol', 'Maduro al Horno', NULL, NULL, 'Para llevar', '2023-12-22', 'Descuento por nómina'),
-(3, 5, 13, 'Sopa de Arracacha', 'Arroz de zanahoria', 'Sobrebarriga al Horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2023-12-26', 'Descuento por nómina');
+(3, 5, 13, 'Sopa de Arracacha', 'Arroz de zanahoria', 'Sobrebarriga al Horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2023-12-26', 'Descuento por nómina'),
+(6, 12, 16, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2023-12-27', 'Pago en efectivo (caja)'),
+(7, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', NULL, NULL, 'Para llevar', '2023-12-27', 'Descuento por nómina'),
+(8, 4, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, 'Para llevar', '2023-12-28', 'Descuento por nómina'),
+(9, 4, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, NULL, '2023-12-28', 'Descuento por nómina'),
+(10, 5, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, NULL, 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2023-12-28', 'Descuento por nómina');
 
 -- --------------------------------------------------------
 
@@ -526,8 +531,8 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`idPaciente`, `pacienteNombre`, `pacienteDocumento`, `pacienteDieta`, `pacienteCama`, `fecha_registro`) VALUES
-(14, 'Felipe gavilan castaño', '1005958885', 'normal', '102', '2023-12-20'),
-(15, 'luz stella castaño', '65820125', 'normal', '103', '2023-12-20');
+(16, 'luz stella castaño', '65820125', 'normal', '103B', '2023-12-27'),
+(17, 'andre castaño molina', '123456789', 'normal', NULL, '2023-12-27');
 
 -- --------------------------------------------------------
 
@@ -619,7 +624,7 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 (2, 'Fgavilac', '1234', 'Activo', 1, 3),
 (3, 'Sleon', '1212', 'Activo', 1, 1),
 (4, 'Fgavilanc', '1234', 'Activo', 1, 1),
-(6, 'Acardenm', '123456', 'Activo', 15, 1);
+(6, 'Acardenm', '123456', 'Activo', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -858,7 +863,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
@@ -948,7 +953,7 @@ ALTER TABLE `opcionesmenu`
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `idPaciente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idPaciente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
