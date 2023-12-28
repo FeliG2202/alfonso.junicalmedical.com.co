@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 28-12-2023 a las 14:58:08
+-- Tiempo de generación: 28-12-2023 a las 17:47:38
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -475,6 +475,25 @@ INSERT INTO `nutritipo` (`idNutriTipo`, `nutriTipoNombre`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `nutri_hora`
+--
+
+CREATE TABLE `nutri_hora` (
+  `idNutriHora` int NOT NULL,
+  `nutriHoraInicio` varchar(5) NOT NULL,
+  `nutriHoraFinal` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `nutri_hora`
+--
+
+INSERT INTO `nutri_hora` (`idNutriHora`, `nutriHoraInicio`, `nutriHoraFinal`) VALUES
+(1, '07:00', '10:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `opcionesmenu`
 --
 
@@ -509,7 +528,8 @@ INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcio
 (15, 5, 'Arroz', 'frmAlmRegArroz', 'frmAlmArroz', 'online', '1'),
 (16, 4, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3'),
 (17, 3, 'Opciones Menu', 'frmRegOpcionesMenu', 'frmSidebarOption', 'online', '3'),
-(18, 1, 'Creacion de Pacientes', 'frmPaciReg', 'frmPaciente', 'online', '1,3');
+(18, 1, 'Creacion de Pacientes', 'frmPaciReg', 'frmPaciente', 'online', '1,3'),
+(19, 4, 'Hora', 'frmAlmHora', 'frmHora', 'online', '1');
 
 -- --------------------------------------------------------
 
@@ -634,18 +654,18 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nutriTipoNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriSopaNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriAcompNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSemanaid` varchar(45)
 ,`nombreEmpaquetado` varchar(100)
+,`nutriAcompNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriSemanaid` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSopaNombre` varchar(45)
+,`nutriTipoNombre` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -656,17 +676,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriTipoNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriSopaNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
 ,`nutriAcompNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
 ,`nutriBebidaNombre` varchar(45)
-,`nutriSemanaNombre` varchar(5)
+,`nutriDiasNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
 ,`nutriSemanaid` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSopaNombre` varchar(45)
+,`nutriTipoNombre` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -813,6 +833,12 @@ ALTER TABLE `nutritipo`
   ADD PRIMARY KEY (`idNutriTipo`);
 
 --
+-- Indices de la tabla `nutri_hora`
+--
+ALTER TABLE `nutri_hora`
+  ADD PRIMARY KEY (`idNutriHora`);
+
+--
 -- Indices de la tabla `opcionesmenu`
 --
 ALTER TABLE `opcionesmenu`
@@ -944,10 +970,16 @@ ALTER TABLE `nutritipo`
   MODIFY `idNutriTipo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `nutri_hora`
+--
+ALTER TABLE `nutri_hora`
+  MODIFY `idNutriHora` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `opcionesmenu`
 --
 ALTER TABLE `opcionesmenu`
-  MODIFY `idOpcionMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idOpcionMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
