@@ -10,29 +10,17 @@ if ($request != null) {
         TemplateControlador::redirect($request->url);
     }
 }
-
-$api_url = host . '/api/frmHora/read';
-$api_response = file_get_contents($api_url);
-$api_data = json_decode($api_response, true);
-
-$hora_actual = new DateTime();
-$hora_inicio = new DateTime($api_data['nutriHoraInicio']);
-$hora_fin = new DateTime($api_data['nutriHoraFinal']);
-
-echo $hora_fin->format('H:i');
 ?>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('identMenu').focus();
-    });
-</script>
 
 <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 rounded shadow-sm">
     <h2 class="text-center">Dietas</h2>
     <hr>
 
     <?php
+    $hora_actual = date('H:i');
+    $hora_inicio = '06:00';
+    $hora_fin = '10:00';
+
     if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
         <?php TemplateControlador::response(
             $request,
@@ -55,6 +43,14 @@ echo $hora_fin->format('H:i');
 
     <div class="alert alert-warning">
         <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-        <strong><?php echo $hora_inicio->format('H:i'); ?></strong> hasta las <strong><?php echo $hora_fin->format('H:i'); ?></strong>
+        <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
     </div>
 <?php } ?>
+
+
+<script>
+        // Add JavaScript to automatically select the input field when the view loads
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('identMenu').focus();
+    });
+</script>
