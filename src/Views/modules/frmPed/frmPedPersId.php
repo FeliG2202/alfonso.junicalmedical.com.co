@@ -16,12 +16,7 @@ if ($request != null) {
     <h2 class="text-center">Dietas</h2>
     <hr>
 
-    <?php
-    $hora_actual = date('H:i');
-    $hora_inicio = '06:00';
-    $hora_fin = '10:00';
-
-    if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+    <div id="contenedor1">
         <?php TemplateControlador::response(
             $request,
             "",
@@ -39,18 +34,55 @@ if ($request != null) {
             </div>
         </form>
     </div>
-<?php } else { ?>
 
-    <div class="alert alert-warning">
-        <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-        <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
+    <div id="contenedor2">
+        <div class="alert alert-warning">
+            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
+            <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
+        </div>
     </div>
-<?php } ?>
+</div>
 
 
 <script>
-        // Add JavaScript to automatically select the input field when the view loads
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('identMenu').focus();
-    });
+    function contenedor1() {
+    // Código para mostrar el contenedor 1
+        document.getElementById('contenedor1').style.display = 'block';
+        document.getElementById('contenedor2').style.display = 'none';
+    }
+
+    function contenedor2() {
+    // Código para mostrar el contenedor 2
+        document.getElementById('contenedor1').style.display = 'none';
+        document.getElementById('contenedor2').style.display = 'block';
+    }
+
+
+// Función principal
+    function obtenerHoraActual() {
+        return new Date();
+    }
+
+    function verificarHora() {
+        fetch(`${host}/api/frmHora/read`)
+        .then(response => response.json())
+        .then(api_data => {
+            let hora_actual = new Date();
+            let hora_inicio = new Date(`1970-01-01T${api_data[0]['nutriHoraInicio']}:00`);
+            let hora_fin = new Date(`1970-01-01T${api_data[0]['nutriHoraFinal']}:00`);
+
+            // Asegurarse de que las horas se comparan correctamente
+            hora_actual = new Date(`1970-01-01T${hora_actual.getHours()}:${hora_actual.getMinutes()}:00`);
+
+            if (hora_actual >= hora_inicio && hora_actual <= hora_fin) {
+                contenedor1();
+            } else {
+                contenedor2();
+            }
+        });
+    }
+
+// Ejecutar la función principal
+    verificarHora();
+
 </script>
