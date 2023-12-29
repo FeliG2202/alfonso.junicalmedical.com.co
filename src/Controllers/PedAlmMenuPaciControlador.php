@@ -22,7 +22,7 @@ class PedAlmMenuPaciControlador {
         $res = $this->pedAlmMenuPaciModelo->validarIdentificacion($data);
 
         if ($res->cant === 0) {
-            return response->code(500)->error('No existe coincidencias con el número de documento');
+            return response->code(500)->error('Paciente no autorizado');
         }
 
         return $this->pedAlmMenuPaciModelo->readIdByDocument($data);

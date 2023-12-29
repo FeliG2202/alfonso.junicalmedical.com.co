@@ -43,7 +43,12 @@ if ($request != null) {
 
 
 <script>
-       function contenedor1() {
+
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById('identMenu').focus();
+    });
+
+    function contenedor1() {
     // Código para mostrar el contenedor 1
         document.getElementById('contenedor1').style.display = 'block';
         document.getElementById('contenedor2').style.display = 'none';
@@ -61,25 +66,23 @@ if ($request != null) {
         return new Date();
     }
 
- function verificarHora() {
-    fetch(`${host}/api/frmHora/read`)
-    .then(response => response.json())
-    .then(api_data => {
-        let hora_actual = new Date();
-        let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
-        let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
+    function verificarHora() {
+        fetch(`${host}/api/frmHora/read`)
+        .then(response => response.json())
+        .then(api_data => {
+            let hora_actual = new Date();
+            let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
+            let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
 
-        if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
-            (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
-            contenedor1();
+            if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
+                (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
+                contenedor1();
         } else {
             contenedor2();
             document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
         }
     });
-}
-
-
+    }
 
 // Ejecutar la función principal
     verificarHora();

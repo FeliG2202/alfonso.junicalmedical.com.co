@@ -38,7 +38,11 @@
 <!-- ================================backend================================== -->
 <script type="text/javascript">
 
-function contenedor1() {
+   window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('pacienteDocumento').focus();
+});
+
+   function contenedor1() {
     // Código para mostrar el contenedor 1
     document.getElementById('contenedor1').style.display = 'block';
     document.getElementById('contenedor2').style.display = 'none';
@@ -74,11 +78,11 @@ function verificarHora() {
         if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
             (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
             contenedor1();
-        } else {
-            contenedor2();
-            document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
-        }
-    });
+    } else {
+        contenedor2();
+        document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
+    }
+});
 
     var alertElement = document.querySelector("#success-alert");
 
@@ -94,24 +98,24 @@ verificarHora();
 // Ejecutar la función principal
 verificarHora();
 
-    getInput("form-consul-menu").addEventListener("submit", (event) => {
-        event.preventDefault();
+getInput("form-consul-menu").addEventListener("submit", (event) => {
+    event.preventDefault();
 
-        axios.post(`${host}/api/frmPedPaci/paci`, {
-            pacienteDocumento: getInput("pacienteDocumento").value,
-            regAlmTipo: getInput("btnPedDatosPaci").value
-        })
-        .then(({ data }) => {
-            console.log(data);
-            if (data.status) {
-                console.log(data.idPaciente);
-            } else {
-                window.location.href = `${host}/index.php?folder=frmPedPaci&view=frmPedDatosPaci&idPaciente=${data.idPaciente}`;
-            }
-        })
-        .catch(err => {
-           handleNetworkResponse(err.response);
-        });
-    });
+    axios.post(`${host}/api/frmPedPaci/paci`, {
+        pacienteDocumento: getInput("pacienteDocumento").value,
+        regAlmTipo: getInput("btnPedDatosPaci").value
+    })
+    .then(({ data }) => {
+        console.log(data);
+        if (data.status) {
+            console.log(data.idPaciente);
+        } else {
+            window.location.href = `${host}/index.php?folder=frmPedPaci&view=frmPedDatosPaci&idPaciente=${data.idPaciente}`;
+        }
+    })
+    .catch(err => {
+     handleNetworkResponse(err.response);
+ });
+});
 
 </script>
