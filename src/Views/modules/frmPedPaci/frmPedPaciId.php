@@ -1,11 +1,9 @@
 <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 rounded shadow-sm">
     <h2 class="text-center">Dietas</h2>
     <hr>
+    <div id="alert-container"></div>
 
     <?php
-    $hora_actual = date('H:i');
-    $hora_inicio = '06:00';
-    $hora_fin = '24:00';
     if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
         $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
         $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
@@ -16,8 +14,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php } ?>
-
-    <?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
+    <div id="contenedor1">
         <form class="form" id="form-consul-menu">
             <div class="row mb-3">
                 <label for="pacienteDocumento" class="form-label">Número de identificación</label>
@@ -28,18 +25,75 @@
                 <button type="submit" id="btnPedDatosPaci" class="btn btn-success">Siguiente</button>
             </div>
         </form>
-    <?php } else { ?>
+    </div>
+
+    <div id="contenedor2">
         <div class="alert alert-warning">
-            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-            <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
         </div>
-    <?php }
-    ?>
+    </div>
+
 </div>
 
 
 <!-- ================================backend================================== -->
 <script type="text/javascript">
+
+function contenedor1() {
+    // Código para mostrar el contenedor 1
+    document.getElementById('contenedor1').style.display = 'block';
+    document.getElementById('contenedor2').style.display = 'none';
+}
+
+function contenedor2() {
+    // Código para mostrar el contenedor 2
+    document.getElementById('contenedor1').style.display = 'none';
+    document.getElementById('contenedor2').style.display = 'block';
+}
+
+// Función para ocultar la alerta
+function hideAlert() {
+    var alertElement = document.querySelector("#success-alert");
+    if (alertElement) {
+        alertElement.style.display = "none";
+    }
+}
+
+// Función principal
+function obtenerHoraActual() {
+    return new Date();
+}
+
+function verificarHora() {
+    fetch(`${host}/api/frmHora/read`)
+    .then(response => response.json())
+    .then(api_data => {
+        let hora_actual = new Date();
+        let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
+        let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
+
+        if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
+            (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
+            contenedor1();
+        } else {
+            contenedor2();
+            document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
+        }
+    });
+
+    var alertElement = document.querySelector("#success-alert");
+
+    if (alertElement) { // Verifica si alertElement no es null
+        alertElement.style.display = "block";
+        setTimeout(hideAlert, 3000);
+    }
+}
+
+verificarHora();
+
+
+// Ejecutar la función principal
+verificarHora();
+
     getInput("form-consul-menu").addEventListener("submit", (event) => {
         event.preventDefault();
 
@@ -56,14 +110,8 @@
             }
         })
         .catch(err => {
-            console.log(err);
+           handleNetworkResponse(err.response);
         });
     });
 
-    var alertElement = document.querySelector("#success-alert");
-
-if (alertElement) { // Verifica si alertElement no es null
-    alertElement.style.display = "block";
-    setTimeout(hideAlert, 3000);
-}
 </script>
