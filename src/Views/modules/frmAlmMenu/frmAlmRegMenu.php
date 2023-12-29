@@ -13,6 +13,7 @@ if (!isset($_SESSION['session'])) {
 		<div id="empleado">
 			<div class="p-2">
 				<h2 class="text-center"><b>Menú Empleado</b></h2>
+				<b><p class="text-center" id="semana"></p></b>
 				<hr>
 			</div>
 
@@ -116,6 +117,7 @@ if (!isset($_SESSION['session'])) {
 		<div id="paciente" style="display: none;">
 			<div class="p-2">
 				<h2 class="text-center"><b>Menú Paciente</b></h2>
+				<b><p class="text-center" id="semanapaci"></p></b>
 				<hr>
 			</div>
 
@@ -312,6 +314,15 @@ $(document).ready(function(){
 			handleNetworkResponse(err);
 		});
 	});
+
+let ahora = new Date();
+let inicioAno = new Date(ahora.getFullYear(), 0, 1);
+let numeroSemana = Math.ceil((((ahora - inicioAno) / 86400000) + inicioAno.getDay() + 1) / 7);
+let semana = numeroSemana % 2 === 0 ? "Semana actual 2" : "Semana actual 1";
+
+// Mostrar el resultado en la etiqueta <p> con id "semana"
+document.getElementById("semana").innerText = semana;
+document.getElementById("semanapaci").innerText = semana;
 
 
 // END FORMULARIO PACIENTES
