@@ -27,13 +27,14 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
 <div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-1 p-2 rounded shadow-sm">
 
-    <div id="contenedor1">
-        <div class="container">
-            <div class="d-flex justify-content-start my-2">
-                <button type="button" class="btn btn-outline-secondary ms-auto m-1" id="Buttonnav"><i class="fad fa-window-restore"></i> Eliminar Dieta</button>
-                <a class="btn btn-outline-secondary m-1" href="/inicio">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
-            </div>
-            <div id="registrar">
+
+    <div class="container">
+        <div class="d-flex justify-content-start my-2">
+            <button type="button" class="btn btn-outline-secondary ms-auto m-1" id="Buttonnav"><i class="fad fa-window-restore"></i> Eliminar Dieta</button>
+            <a class="btn btn-outline-secondary m-1" href="/inicio">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
+        </div>
+        <div id="registrar">
+            <div id="contenedor1">
                 <div class="row">
                     <div class="col p-2 mb-3">
                         <h3 class="text-center">Menú de Almuerzos</h3>
@@ -41,7 +42,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         echo ("<h6 class='text-center'>{$fecha_traducida}</h6>"); ?>
                     </div>
                     <hr>
-                    <div id="alertContainer"></div>
+
                 </div>
                 <?php
                 if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
@@ -170,61 +171,64 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 </script>
             </div>
         </div>
-        <div id="eliminar" style="display: none;">
-            <div class="mt-3">
-                <!-- Boton para actualizar la tabla -->
-                <div class="d-flex justify-content-between">
-                    <h5>Menús registrados en el día de hoy</h5>
-                    <button type="button" class="btn btn-outline-dark">
-                        <i class="fas fa-repeat"></i>
-                    </button>
-                </div>
-
-                <hr>
-                <div id="alert-container"></div>
-
-                <div id="carouselExampleControls" class="carousel slide" style="height: 320px;" data-ride="carousel">
-                    <div id="card-container" class="carousel-inner d-flex mx-auto">
-
-                    </div>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                        <i class="fad fa-fast-backward"></i> Atras
-                    </button>
-                    <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                        Siguiente <i class="fad fa-fast-forward"></i>
-                    </button>
-                </div>
+        <div id="contenedor2">
+            <div id="alertContainer"><div class="alert alert-info text-dark" role="alert">Ya tiene dietas registradas el día de hoy</div></div>
+        </div>
+    </div>
+    <div id="eliminar" style="display: none;">
+        <div class="mt-3">
+            <!-- Boton para actualizar la tabla -->
+            <div class="d-flex justify-content-between">
+                <h5>Menús registrados en el día de hoy</h5>
+                <button type="button" class="btn btn-outline-dark">
+                    <i class="fas fa-repeat"></i>
+                </button>
             </div>
 
-            <!-- Modal donde se confirma la eliminacion -->
-            <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-danger">
-                            <h5 class="modal-title text-white" id="modal-tipo-menus-editLabel">Eliminar</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
+            <hr>
+            <div id="alert-container"></div>
 
-                        <div class="modal-body">
-                            <input type="hidden" class="form-control mb-3" id="idMenuSeleccionadoPaci">
-                            <h5 class="text-center">Esta seguro de eliminar la dieta selecionada</h5>
-                        </div>
+            <div id="carouselExampleControls" class="carousel slide" style="height: 320px;" data-ride="carousel">
+                <div id="card-container" class="carousel-inner d-flex mx-auto">
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" id="btn-delete-tipo-menu">
-                                <i class="fas fa-file-times me-2"></i>Eliminar
-                            </button>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <i class="fad fa-fast-backward"></i> Atras
+                </button>
+                <button class="btn btn-outline-secondary m-2" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    Siguiente <i class="fad fa-fast-forward"></i>
+                </button>
+            </div>
+        </div>
 
-                        </div>
+        <!-- Modal donde se confirma la eliminacion -->
+        <div class="modal fade" id="modal-tipo-menus-edit" tabindex="-1" aria-labelledby="modal-tipo-menus-editLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h5 class="modal-title text-white" id="modal-tipo-menus-editLabel">Eliminar</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control mb-3" id="idMenuSeleccionadoPaci">
+                        <h5 class="text-center">Esta seguro de eliminar esta dieta</h5>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="btn-delete-tipo-menu">
+                            <i class="fas fa-file-times me-2"></i>Eliminar
+                        </button>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div id="contenedor2">
+<div id="contenedor3">
     <div class="alert alert-warning">
     </div>
 </div>
@@ -245,110 +249,81 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     // Código para mostrar el contenedor 1
         document.getElementById('contenedor1').style.display = 'block';
         document.getElementById('contenedor2').style.display = 'none';
+        document.getElementById('contenedor3').style.display = 'none';
     }
 
     function contenedor2() {
     // Código para mostrar el contenedor 2
         document.getElementById('contenedor1').style.display = 'none';
         document.getElementById('contenedor2').style.display = 'block';
+        document.getElementById('contenedor3').style.display = 'none';
     }
 
-// Función para ocultar la alerta
-    function hideAlert() {
-        var alertElement = document.querySelector("#success-alert");
-        if (alertElement) {
-            alertElement.style.display = "none";
-        }
+    function contenedor3() {
+    // Código para mostrar el contenedor 3
+        document.getElementById('contenedor1').style.display = 'none';
+        document.getElementById('contenedor2').style.display = 'none';
+        document.getElementById('contenedor3').style.display = 'block';
     }
 
 // Función principal
-    function obtenerHoraActual() {
-        return new Date();
-    }
-
     function verificarHora() {
-        fetch(`${host}/api/frmHora/read`)
-        .then(response => response.json())
-        .then(api_data => {
-            let hora_actual = new Date();
-            let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
-            let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
+    fetch(`${host}/api/frmHora/read`)
+    .then(response => response.json())
+    .then(api_data => {
+        let hora_actual = new Date();
+        let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
+        let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
 
-            if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
-                (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
-                contenedor1();
+        if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
+            (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
+            setInterval(() => {
+                fetch(`${host}/api/frmPedPaci/read/${id}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        contenedor2(); // Muestra el contenedor dos si la API trae datos
+                        readTipos();
+                    } else {
+                        contenedor1(); // Muestra el contenedor uno si la API no trae datos
+                    }
+                });
+            }, 3000); // 3000 milisegundos equivalen a 3 segundos
         } else {
-            contenedor2();
-            document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
+            contenedor3(); // Muestra el contenedor tres si no es la hora predeterminada
+            document.querySelector('#contenedor3 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
         }
     });
-
-        var alertElement = document.querySelector("#success-alert");
-        function hideAlert() {
-        if (alertElement) { // Verifica si alertElement no es null
-            alertElement.style.display = "none";
-        }
-    }
-    if (alertElement) { // Verifica si alertElement no es null
-        alertElement.style.display = "block";
-        setTimeout(hideAlert, 3000);
-    }
 }
 
-verificarHora();
+
+    verificarHora();
+
 
  //cambio de ventana
-$(document).ready(function(){
-    $("#Buttonnav").click(function(){
-        $("#registrar, #eliminar").toggle();
-        if($("#registrar").is(":visible")){
-            $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Eliminar Dieta');
-        }else{
-            $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Registrar Dieta');
-        }
+    $(document).ready(function(){
+        $("#Buttonnav").click(function(){
+            $("#registrar, #eliminar").toggle();
+            if($("#registrar").is(":visible")){
+                $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Eliminar Dieta');
+            }else{
+                $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Registrar Dieta');
+            }
+        });
     });
-});
 
-document.addEventListener("DOMContentLoaded", function () {
-    if (idPaciente) {
-        setInterval(function() {
-            axios.get(`${host}/api/frmPedPaci/read/${id}`)
-            .then(function (response) {
-                const alertContainer = document.querySelector('#alertContainer');
-
-                if (alertContainer) { // Verifica si alertContainer no es null
-                    if (response.data.length > 0) {
-                        const alertDiv = document.createElement('div');
-                        alertDiv.className = 'alert alert-info text-dark';
-                        alertDiv.role = 'alert';
-                        alertDiv.innerHTML = 'Ya tiene dietas registradas el día de hoy';
-
-                        alertContainer.innerHTML = '';
-                        alertContainer.appendChild(alertDiv);
-                    } else {
-                        alertContainer.innerHTML = '';
-                    }
-                }
-            })
-            .catch(function (error) {
-                console.error('Error en la solicitud', error);
-            });
-        }, 3000);
-    }
-});
-
-const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
-    keyboard: false
-});
+    const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
+        keyboard: false
+    });
 
 
 // HACE LA CONSULTA A LA BASE DE DATOS Y TRAE LOS DATOS DE LA API
 // Y HACE LA FUNCION "CLICK" PARA EL MODAL
 
-function readTipos() {
-    axios.get(`${host}/api/frmPedPaci/read/${id}`)
-    .then(res => {
-        const cardContainer = document.getElementById('card-container');
+    function readTipos() {
+        axios.get(`${host}/api/frmPedPaci/read/${id}`)
+        .then(res => {
+            const cardContainer = document.getElementById('card-container');
                 cardContainer.innerHTML = ''; // Clear previous content
 
                 let contador = 1;
@@ -384,71 +359,71 @@ function readTipos() {
                     cardContainer.appendChild(carouselItem); // Agregar carouselItem a cardContainer
                 });
             })
-    .catch(error => {
-        console.error("Error fetching data:", error);
-    });
-}
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
+    }
 
-function generateCardContent(item) {
-    const fieldsToDisplay = [
-        'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
-        'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
-        'nutriBebidaNombre'
-        ];
+    function generateCardContent(item) {
+        const fieldsToDisplay = [
+            'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
+            'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
+            'nutriBebidaNombre'
+            ];
 
-    let content = '';
+        let content = '';
 
-    fieldsToDisplay.forEach(field => {
-        if (item[field] !== null && item[field] !== 'null') {
-            content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
-        }
-    });
+        fieldsToDisplay.forEach(field => {
+            if (item[field] !== null && item[field] !== 'null') {
+                content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
+            }
+        });
 
-    return content;
-}
+        return content;
+    }
 
     // Primero, verifica si 'message=true' está en la URL
-if (urlParams.get('message') === 'true') {
+    if (urlParams.get('message') === 'true') {
         // Si 'message=true' está en la URL, muestra el modal
-    $(document).ready(function() {
-        $('#modalfinal').modal('show');
-    });
-}
+        $(document).ready(function() {
+            $('#modalfinal').modal('show');
+        });
+    }
 
-function showModal(idMenuSeleccionadoPaci) {
-    document.getElementById('idMenuSeleccionadoPaci').value = idMenuSeleccionadoPaci;
-    myModal.show();
-}
+    function showModal(idMenuSeleccionadoPaci) {
+        document.getElementById('idMenuSeleccionadoPaci').value = idMenuSeleccionadoPaci;
+        myModal.show();
+    }
 
-const btn_reload = document.getElementById("btn-reload");
+    const btn_reload = document.getElementById("btn-reload");
 
-if (btn_reload) {
-    btn_reload.addEventListener("click", () => {
-        readTipos();
-    });
-}
+    if (btn_reload) {
+        btn_reload.addEventListener("click", () => {
+            readTipos();
+        });
+    }
 
     // DETERMINO LAS VARIABLE DE ELIMINAR Y ACTUALIZAR
-const btn_delete = document.getElementById("btn-delete-tipo-menu");
+    const btn_delete = document.getElementById("btn-delete-tipo-menu");
 
     // ENVIO A LA API LA FUNCION DE ELIMINAR
-if (btn_delete) {
-    btn_delete.addEventListener("click", () => {
-        const idMenuSeleccionadoPaci = document.getElementById("idMenuSeleccionadoPaci").value;
-        axios.delete(`${host}/api/frmPedPaci/delete/${idMenuSeleccionadoPaci}`).then(res => {
+    if (btn_delete) {
+        btn_delete.addEventListener("click", () => {
+            const idMenuSeleccionadoPaci = document.getElementById("idMenuSeleccionadoPaci").value;
+            axios.delete(`${host}/api/frmPedPaci/delete/${idMenuSeleccionadoPaci}`).then(res => {
                 //console.log(res)
-            handleNetworkResponse(res);
-            readTipos();
-            myModal.hide();
-        }).catch(err => {
-            handleNetworkError(err.response);
+                handleNetworkResponse(res);
+                readTipos();
+                myModal.hide();
+            }).catch(err => {
+                handleNetworkError(err.response);
+            });
         });
-    });
-}
+    }
 
-(function() {
-    readTipos();
-})();
+    (function() {
+        readTipos();
+    })();
 
 </script>
 
