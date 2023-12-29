@@ -43,7 +43,7 @@ if ($request != null) {
 
 
 <script>
-    function contenedor1() {
+       function contenedor1() {
     // Código para mostrar el contenedor 1
         document.getElementById('contenedor1').style.display = 'block';
         document.getElementById('contenedor2').style.display = 'none';
@@ -61,18 +61,16 @@ if ($request != null) {
         return new Date();
     }
 
-    function verificarHora() {
+ function verificarHora() {
     fetch(`${host}/api/frmHora/read`)
     .then(response => response.json())
     .then(api_data => {
         let hora_actual = new Date();
-        let hora_inicio = new Date(`1970-01-01T${api_data[0]['nutriHoraInicio']}:00`);
-        let hora_fin = new Date(`1970-01-01T${api_data[0]['nutriHoraFinal']}:00`);
+        let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
+        let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
 
-        // Asegurarse de que las horas se comparan correctamente
-        hora_actual = new Date(`1970-01-01T${hora_actual.getHours()}:${hora_actual.getMinutes()}:00`);
-
-        if (hora_actual >= hora_inicio && hora_actual <= hora_fin) {
+        if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
+            (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
             contenedor1();
         } else {
             contenedor2();
@@ -81,6 +79,8 @@ if ($request != null) {
     });
 }
 
-    verificarHora();
 
+
+// Ejecutar la función principal
+    verificarHora();
 </script>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 28-12-2023 a las 17:47:38
+-- Tiempo de generación: 29-12-2023 a las 13:23:36
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -654,18 +654,18 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nombreEmpaquetado` varchar(100)
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
+,`nombreEmpaquetado` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -676,17 +676,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -889,7 +889,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
