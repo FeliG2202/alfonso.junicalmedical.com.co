@@ -81,8 +81,6 @@ if ($request != null) {
     });
 }
 
-
-// Ejecutar la función principal
     verificarHora();
 
 </script>

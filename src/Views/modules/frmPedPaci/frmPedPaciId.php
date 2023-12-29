@@ -5,7 +5,7 @@
     <?php
     $hora_actual = date('H:i');
     $hora_inicio = '06:00';
-    $hora_fin = '10:00';
+    $hora_fin = '24:00';
     if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
         $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
         $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
