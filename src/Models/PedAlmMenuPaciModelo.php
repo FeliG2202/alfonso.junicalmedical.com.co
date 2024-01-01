@@ -13,9 +13,11 @@ class PedAlmMenuPaciModelo extends Connection {
     public $tablaMDP = 'menu_seleccionado_paci';
 
     public function validarIdentificacion($data) {
+        $date = date("Y-m-d");
         return DB::table('pacientes')
         ->select(DB::as(DB::count('*'), 'cant'))
         ->where(DB::equalTo("pacienteDocumento"), $data['pacienteDocumento'])
+        ->and(DB::equalTo(DB::column('fecha_registro')), $date)
         ->get();
     }
 

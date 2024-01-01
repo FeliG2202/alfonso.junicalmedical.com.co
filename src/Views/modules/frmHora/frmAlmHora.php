@@ -4,9 +4,10 @@ use PHP\Controllers\TemplateControlador;
 if (!isset($_SESSION['session'])) {
 	TemplateControlador::redirect("index.php?view=login");
 }
+echo(date("Y-m-d"));
 ?>
 <div class="col-lg-5 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
-	<h2 class="text-center">Inicio y Fin del Almuerzo.</h2>
+	<h2 class="text-center">Horario de dietas.</h2>
 	<hr>
 	<div id="alert-container"></div>
 
