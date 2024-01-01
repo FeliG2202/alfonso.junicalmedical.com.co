@@ -57,16 +57,16 @@ class PedAlmMenuPaciControlador {
                 'idPaciente' => (int) $_POST['selected-idp'],
                 'idMenu' => (int) $_POST['selected-idm'],
                 'nutriSopaNombre' => (empty($_POST['nutriSopaNombre']) ? null : $_POST['nutriSopaNombre']),
-            'nutriArrozNombre' => (empty($_POST['nutriArrozNombre']) ? null : $_POST['nutriArrozNombre']),
-            'nutriProteNombre' => (empty($_POST['nutriProteNombre']) ? null : $_POST['nutriProteNombre']),
-            'nutriEnergeNombre' => (empty($_POST['nutriEnergeNombre']) ? null : $_POST['nutriEnergeNombre']),
-            'nutriAcompNombre' => (empty($_POST['nutriAcompNombre']) ? null : $_POST['nutriAcompNombre']),
-            'nutriEnsalNombre' => (empty($_POST['nutriEnsalNombre']) ? null : $_POST['nutriEnsalNombre']),
-            'nutriBebidaNombre' => (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
-            'date' => date('Y-m-d')
+                'nutriArrozNombre' => (empty($_POST['nutriArrozNombre']) ? null : $_POST['nutriArrozNombre']),
+                'nutriProteNombre' => (empty($_POST['nutriProteNombre']) ? null : $_POST['nutriProteNombre']),
+                'nutriEnergeNombre' => (empty($_POST['nutriEnergeNombre']) ? null : $_POST['nutriEnergeNombre']),
+                'nutriAcompNombre' => (empty($_POST['nutriAcompNombre']) ? null : $_POST['nutriAcompNombre']),
+                'nutriEnsalNombre' => (empty($_POST['nutriEnsalNombre']) ? null : $_POST['nutriEnsalNombre']),
+                'nutriBebidaNombre' => (empty($_POST['nutriBebidaNombre']) ? null : $_POST['nutriBebidaNombre']),
+                'date' => date('Y-m-d')
             ])
-                ? (object) ['request' => false, 'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId&message=false"]
-        : (object) ['request' => true, 'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId&message=true"];
+            ? (object) ['request' => false, 'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId&message=false"]
+            : (object) ['request' => true, 'url' => "index.php?folder=frmPedPaci&view=frmPedPaciId&message=true"];
         }
     }
 
@@ -101,9 +101,9 @@ class PedAlmMenuPaciControlador {
 
     public function consultarAlmTipoControlador(string $id) {
         return $this->pedAlmMenuPaciModelo->consultarEditAlmMenuModelo($id);
-   }
+    }
 
-   public function eliminarAlmTipoControlador(string $idMenuSeleccionadoPaci) {
+    public function eliminarAlmTipoControlador(string $idMenuSeleccionadoPaci) {
         $res = $this->pedAlmMenuPaciModelo->eliminarAlmTipoModelo([
             'idMenuSeleccionadoPaci' => (int) $idMenuSeleccionadoPaci
         ]);

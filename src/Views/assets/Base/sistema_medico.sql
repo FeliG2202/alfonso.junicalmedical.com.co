@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 29-12-2023 a las 13:23:36
+-- Tiempo de generación: 01-01-2024 a las 03:00:45
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -350,13 +350,39 @@ CREATE TABLE `nutrimenupaci` (
   `idNutriDias` int NOT NULL,
   `idNutriSopa` int NOT NULL,
   `idNutriArroz` int NOT NULL,
-  `idNutriProte` int NOT NULL,
-  `idNutriEnerge` int NOT NULL,
-  `idNutriAcomp` int NOT NULL,
+  `idNutriProte` int DEFAULT NULL,
+  `idNutriEnerge` int DEFAULT NULL,
+  `idNutriAcomp` int DEFAULT NULL,
   `idNutriEnsal` int NOT NULL,
   `idNutriBebida` int DEFAULT NULL,
   `idNutriSemana` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Volcado de datos para la tabla `nutrimenupaci`
+--
+
+INSERT INTO `nutrimenupaci` (`idNutriMenuPaci`, `idNutriTipo`, `idNutriDias`, `idNutriSopa`, `idNutriArroz`, `idNutriProte`, `idNutriEnerge`, `idNutriAcomp`, `idNutriEnsal`, `idNutriBebida`, `idNutriSemana`) VALUES
+(1, 1, 1, 1, 1, 22, 13, NULL, 2, NULL, 0),
+(2, 2, 1, 1, 1, 13, 2, 2, 2, NULL, 0),
+(3, 1, 2, 14, 2, 31, NULL, 3, 9, NULL, 0),
+(4, 2, 2, 14, 2, 24, NULL, 7, 9, NULL, 0),
+(5, 1, 3, 10, 6, 30, NULL, 4, 10, NULL, 0),
+(6, 2, 3, 10, 6, 26, 14, 6, 10, NULL, 0),
+(7, 1, 4, 4, 4, NULL, NULL, 7, 4, NULL, 0),
+(8, 2, 4, 4, 5, NULL, 6, 3, 4, NULL, 0),
+(9, 1, 5, 5, 1, 22, 12, 22, 8, NULL, 0),
+(10, 2, 5, 5, 1, 23, 15, 10, 8, NULL, 0),
+(11, 1, 1, 8, 2, 28, 10, 7, 12, NULL, 1),
+(12, 2, 1, 8, 2, 31, NULL, 22, 12, NULL, 1),
+(13, 1, 2, 9, 6, 3, NULL, 21, 2, NULL, 1),
+(14, 2, 2, 9, 6, 13, 12, NULL, 2, NULL, 1),
+(15, 1, 3, 10, 7, 22, 4, 20, 9, NULL, 1),
+(16, 2, 3, 10, 7, 5, NULL, 18, 9, NULL, 1),
+(17, 1, 4, 11, 1, 20, NULL, 3, 7, NULL, 1),
+(18, 2, 4, 11, 1, 29, NULL, 15, 7, NULL, 1),
+(19, 1, 5, 4, 4, NULL, NULL, 22, 9, NULL, 1),
+(20, 2, 5, 4, 5, 9, 16, 17, 9, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -489,7 +515,7 @@ CREATE TABLE `nutri_hora` (
 --
 
 INSERT INTO `nutri_hora` (`idNutriHora`, `nutriHoraInicio`, `nutriHoraFinal`) VALUES
-(1, '07:00', '10:00');
+(1, '07:00', '23:00');
 
 -- --------------------------------------------------------
 
@@ -529,7 +555,7 @@ INSERT INTO `opcionesmenu` (`idOpcionMenu`, `idMenu`, `opcionMenuNombre`, `opcio
 (16, 4, 'Relación de Solicitudes', 'frmConPedMenu', 'frmPed', 'online', '1,3'),
 (17, 3, 'Opciones Menu', 'frmRegOpcionesMenu', 'frmSidebarOption', 'online', '3'),
 (18, 1, 'Creacion de Pacientes', 'frmPaciReg', 'frmPaciente', 'online', '1,3'),
-(19, 4, 'Hora', 'frmAlmHora', 'frmHora', 'online', '1');
+(19, 4, 'Horario', 'frmAlmHora', 'frmHora', 'online', '1');
 
 -- --------------------------------------------------------
 
@@ -552,7 +578,9 @@ CREATE TABLE `pacientes` (
 
 INSERT INTO `pacientes` (`idPaciente`, `pacienteNombre`, `pacienteDocumento`, `pacienteDieta`, `pacienteCama`, `fecha_registro`) VALUES
 (16, 'luz stella castaño', '65820125', 'normal', '103B', '2023-12-27'),
-(17, 'andre castaño molina', '123456789', 'normal', NULL, '2023-12-27');
+(17, 'andre castaño molina', '123456789', 'normal', NULL, '2023-12-27'),
+(18, 'felipe prueba', '1005958885', 'normal', '304', '2023-12-29'),
+(19, 'felipe prueba', '1234567', 'liquida', '987', '2024-01-01');
 
 -- --------------------------------------------------------
 
@@ -949,7 +977,7 @@ ALTER TABLE `nutrimenu`
 -- AUTO_INCREMENT de la tabla `nutrimenupaci`
 --
 ALTER TABLE `nutrimenupaci`
-  MODIFY `idNutriMenuPaci` int NOT NULL AUTO_INCREMENT;
+  MODIFY `idNutriMenuPaci` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `nutriprote`
@@ -985,7 +1013,7 @@ ALTER TABLE `opcionesmenu`
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `idPaciente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `idPaciente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
