@@ -29,7 +29,7 @@ if (!isset($_SESSION['session'])) {
 						<tr>
 							<th>Numero de Identificación</th>
 							<th>Nombre y Apellido</th>
-							<th>Dieta</th>
+							<th>Torre</th>
 							<th>Cama</th>
 						</tr>
 					</thead>
@@ -60,8 +60,8 @@ if (!isset($_SESSION['session'])) {
 						<input type="text" class="form-control" id="pacienteNombre" required>
 					</div>
 					<div class="mb-3">
-						<label for="pacienteDieta" class="form-label">Dieta</label>
-						<input type="text" name="pacienteDieta" id="pacienteDieta" class="form-control" required>
+						<label for="pacienteTorre" class="form-label">Torre</label>
+						<input type="text" name="pacienteTorre" id="pacienteTorre" class="form-control" required>
 					</div>
 					<div class="mb-3">
 						<label for="pacienteCama" class="form-label">Cama</label>
@@ -104,7 +104,7 @@ if (!isset($_SESSION['session'])) {
 				columns: [
 					{ data: 'pacienteDocumento' },
 					{ data: 'pacienteNombre' },
-					{ data: 'pacienteDieta' },
+					{ data: 'pacienteTorre' },
 					{ data: 'pacienteCama' },
 					],
 				createdRow: (html, row, index) => {
@@ -113,7 +113,7 @@ if (!isset($_SESSION['session'])) {
 						document.getElementById("idPaciente").value = row.idPaciente;
 						document.getElementById("pacienteDocumento").value = row.pacienteDocumento;
 						document.getElementById("pacienteNombre").value = row.pacienteNombre;
-						document.getElementById("pacienteDieta").value = row.pacienteDieta;
+						document.getElementById("pacienteTorre").value = row.pacienteTorre;
 						document.getElementById("pacienteCama").value = row.pacienteCama;
 						myModal.show();
 					});
@@ -160,7 +160,7 @@ if (!isset($_SESSION['session'])) {
 				const form = {
 					pacienteDocumento: document.getElementById("pacienteDocumento").value,
 					pacienteNombre: document.getElementById("pacienteNombre").value,
-					pacienteDieta: document.getElementById("pacienteDieta").value,
+					pacienteTorre: document.getElementById("pacienteTorre").value,
 					pacienteCama: document.getElementById("pacienteCama").value
 				};
 

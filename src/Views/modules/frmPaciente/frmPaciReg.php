@@ -34,7 +34,7 @@ if (!isset($_SESSION['session'])) {
             <div class="row">
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
-                        <label for="pacienteDocumento" class="form-label">Numero de Identificación</label>
+                        <label for="pacienteDocumento" class="form-label">Número de Identificación</label>
                         <input type="number" name="pacienteDocumento" id="pacienteDocumento" class="form-control" required>
                     </div>
                 </div>
@@ -48,15 +48,15 @@ if (!isset($_SESSION['session'])) {
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
-                        <label for="pacienteDieta" class="form-label">Dieta</label>
-                        <input type="text" name="pacienteDieta" id="pacienteDieta" class="form-control" required>
+                        <label for="pacienteTorre" class="form-label">Torre</label>
+                        <input type="text" name="pacienteTorre" id="pacienteTorre" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                     <div class="mb-3">
                         <label for="pacienteCama" class="form-label">Cama</label>
-                        <input type="number" name="pacienteCama" id="pacienteCama" class="form-control">
+                        <input type="text" name="pacienteCama" id="pacienteCama" class="form-control">
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@ if (!isset($_SESSION['session'])) {
         axios.post(`${host}/api/frmPaci/create`, {
             pacienteDocumento: getInput("pacienteDocumento").value,
             pacienteNombre: getInput("pacienteNombre").value,
-            pacienteDieta: getInput("pacienteDieta").value,
+            pacienteTorre: getInput("pacienteTorre").value,
             pacienteCama: getInput("pacienteCama").value,
             btnPaci: getInput("btnPaci").value
         })

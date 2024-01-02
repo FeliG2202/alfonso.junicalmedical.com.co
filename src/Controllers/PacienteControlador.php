@@ -28,7 +28,7 @@ class PacienteControlador {
 		$res = $this->PacienteModelo->registrarPacienteModelo([
 			'pacienteDocumento' => request->pacienteDocumento,
 			'pacienteNombre' => request->pacienteNombre,
-			'pacienteDieta' => request->pacienteDieta,
+			'pacienteTorre' => request->pacienteTorre,
 			'pacienteCama' => toNull(request->pacienteCama),
 			'fecha_registro' => date('Y-m-d')
 		]);
@@ -48,7 +48,7 @@ class PacienteControlador {
 		$res = $this->PacienteModelo->actualizarPacienteModelo([
 			'pacienteDocumento' => request->pacienteDocumento,
 			'pacienteNombre' => request->pacienteNombre,
-			'pacienteDieta' => request->pacienteDieta,
+			'pacienteTorre' => request->pacienteTorre,
 			'pacienteCama' => request->pacienteCama,
 			'idPaciente' => (int) $idPaciente
 		]);
@@ -122,7 +122,7 @@ public function saveValidatedData($validatedData) {
             $dataParaGuardar = [
 					'pacienteNombre' => $row[1],
 					'pacienteDocumento' => $row[2],
-					'pacienteDieta' => $row[3],
+					'pacienteTorre' => $row[3],
 					'pacienteCama' => $row[4],
 					'fecha_registro' => date('Y-m-d')
 				];

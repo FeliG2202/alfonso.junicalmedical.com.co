@@ -25,8 +25,8 @@
 
             <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                 <div class="mb-3">
-                    <label class="mb-2">Dieta</label>
-                    <input type="text" id="pedDieta" class="form-control" readonly>
+                    <label class="mb-2">Torre</label>
+                    <input type="text" id="pedTorre" class="form-control" readonly>
                 </div>
             </div>
 
@@ -58,7 +58,7 @@
 
         getInput('pedNombre').value = datos.pacienteNombre;
         getInput('pedDocumento').value = datos.pacienteDocumento;
-        getInput('pedDieta').value = datos.pacienteDieta;
+        getInput('pedTorre').value = datos.pacienteTorre;
         getInput('pedCama').value = datos.pacienteCama;
     })
     .catch(error => {

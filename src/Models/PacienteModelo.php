@@ -11,7 +11,7 @@ class PacienteModelo {
 		return DB::table('pacientes')->insert([
 			'pacienteDocumento' => $data['pacienteDocumento'],
 			'pacienteNombre' => $data['pacienteNombre'],
-			'pacienteDieta' => $data['pacienteDieta'],
+			'pacienteTorre' => $data['pacienteTorre'],
 			'pacienteCama' => $data['pacienteCama'],
 			'fecha_registro' => $data['fecha_registro']
 		])->execute();
@@ -25,7 +25,7 @@ class PacienteModelo {
 		return DB::table('pacientes')->update([
 			'pacienteDocumento' => $data['pacienteDocumento'],
 			'pacienteNombre' => $data['pacienteNombre'],
-			'pacienteDieta' => $data['pacienteDieta'],
+			'pacienteTorre' => $data['pacienteTorre'],
 			'pacienteCama' => $data['pacienteCama'],
 		])->where(
 			DB::equalTo('idPaciente'), $data['idPaciente'])
@@ -43,7 +43,7 @@ class PacienteModelo {
 		return DB::table('pacientes')->insert([
 			'pacienteDocumento' => $data['pacienteDocumento'],
 			'pacienteNombre' => $data['pacienteNombre'],
-			'pacienteDieta' => $data['pacienteDieta'],
+			'pacienteTorre' => $data['pacienteTorre'],
 			'pacienteCama' => $data['pacienteCama'],
 			'fecha_registro' => $data['fecha_registro']
 		])->execute();
