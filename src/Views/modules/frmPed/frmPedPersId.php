@@ -16,7 +16,7 @@ if ($request != null) {
     <h2 class="text-center">Dietas</h2>
     <hr>
 
-    <div id="contenedor1">
+    <div id="contenedor1" style="display: none;">
         <?php TemplateControlador::response(
             $request,
             "",
@@ -35,7 +35,7 @@ if ($request != null) {
         </form>
     </div>
 
-    <div id="contenedor2">
+    <div id="contenedor2" style="display: none;">
         <div class="alert alert-warning">
         </div>
     </div>

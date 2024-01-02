@@ -14,7 +14,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php } ?>
-    <div id="contenedor1">
+    <div id="contenedor1" style="display: none;">
         <form class="form" id="form-consul-menu">
             <div class="row mb-3">
                 <label for="pacienteDocumento" class="form-label">Número de identificación</label>
@@ -27,7 +27,7 @@
         </form>
     </div>
 
-    <div id="contenedor2">
+    <div id="contenedor2" style="display: none;">
         <div class="alert alert-warning">
         </div>
     </div>
