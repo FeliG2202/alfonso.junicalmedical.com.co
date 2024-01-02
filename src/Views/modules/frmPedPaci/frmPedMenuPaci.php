@@ -288,7 +288,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                         contenedor1(); // Muestra el contenedor uno si la API no trae datos
                     }
                 });
-            }, 1500); // 3000 milisegundos equivalen a 3 segundos
+            }, 2000); // 3000 milisegundos equivalen a 3 segundos
         } else {
             contenedor3(); // Muestra el contenedor tres si no es la hora predeterminada
             document.querySelector('#contenedor3 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;

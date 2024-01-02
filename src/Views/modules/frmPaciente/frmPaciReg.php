@@ -47,50 +47,54 @@ if (!isset($_SESSION['session'])) {
                 </div>
 
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <div class="mb-3">
-                        <label for="pacienteTorre" class="form-label">Torre</label>
-                        <input type="text" name="pacienteTorre" id="pacienteTorre" class="form-control" required>
-                    </div>
-                </div>
+                  <div class="mb-3">
+                    <label for="pacienteTorre" class="form-label">Torre</label>
+                    <select class="form-select" name="pacienteTorre" id="pacienteTorre"  aria-label="Default select example">
+                        <option selected>Seleccione</option>
+                      <option value="Torre 1">Torre 1</option>
+                      <option value="Torre 2">Torre 2</option>
+                  </select>
+              </div>
+          </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                    <div class="mb-3">
-                        <label for="pacienteCama" class="form-label">Cama</label>
-                        <input type="text" name="pacienteCama" id="pacienteCama" class="form-control">
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="submit" id="btnPaci" class="btn btn-success">Registrar</button>
-            </div>
-        </form>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Importar datos de Excel</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <input class="form-control" type="file" id="txt_archivo" accept=".xlsx, .xls">
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" onclick="cargar_excel(); $('#exampleModal').modal('hide');">Cargar</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+            <div class="mb-3">
+                <label for="pacienteCama" class="form-label">Cama</label>
+                <input type="text" name="pacienteCama" id="pacienteCama" class="form-control">
             </div>
         </div>
     </div>
+
+    <br>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" id="btnPaci" class="btn btn-success">Registrar</button>
+    </div>
+</form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">Importar datos de Excel</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12">
+                        <input class="form-control" type="file" id="txt_archivo" accept=".xlsx, .xls">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="cargar_excel(); $('#exampleModal').modal('hide');">Cargar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 </div>
 
