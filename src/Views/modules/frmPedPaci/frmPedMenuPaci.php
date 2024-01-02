@@ -34,7 +34,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
             <a class="btn btn-outline-secondary m-1" href="/inicio">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
         </div>
         <div id="registrar">
-            <div id="contenedor1">
+            <div id="contenedor1" style="display: none;">
                 <div class="row">
                     <div class="col p-2 mb-3">
                         <h3 class="text-center">Menú de Almuerzos</h3>
@@ -171,7 +171,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 </script>
             </div>
         </div>
-        <div id="contenedor2">
+        <div id="contenedor2" style="display: none;">
             <div id="alertContainer"><div class="alert alert-info text-dark" role="alert">Ya tiene dietas registradas el día de hoy</div></div>
         </div>
     </div>
@@ -228,7 +228,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
         </div>
     </div>
 </div>
-<div id="contenedor3">
+<div id="contenedor3" style="display: none;">
     <div class="alert alert-warning">
     </div>
 </div>
@@ -296,9 +296,9 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
     });
 }
 
-
+window.onload = function() {
     verificarHora();
-
+}
 
  //cambio de ventana
     $(document).ready(function(){
