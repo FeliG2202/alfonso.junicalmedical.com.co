@@ -156,6 +156,7 @@ class PedAlmMenuModelo extends Connection {
         )->select(
             DB::column('pacienteDocumento', 'pct'),
             DB::column('pacienteNombre', 'pct'),
+            DB::column('pacienteTorre', 'pct'),
             DB::column('pacienteCama', 'pct'),
             DB::column('nutriSopaNombre', 'msp'),
             DB::column('nutriArrozNombre', 'msp'),

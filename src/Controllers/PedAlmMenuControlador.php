@@ -198,14 +198,15 @@ public function generateReportPaciDates() {
         Spreadsheet::setCell("B{$cont}", $menu->fecha_actual);
         Spreadsheet::setCell("C{$cont}", $menu->pacienteDocumento);
         Spreadsheet::setCell("D{$cont}", $menu->pacienteNombre);
-        Spreadsheet::setCell("E{$cont}", $menu->pacienteCama);
-        Spreadsheet::setCell("F{$cont}", $menu->nutriSopaNombre);
-        Spreadsheet::setCell("G{$cont}", $menu->nutriArrozNombre);
-        Spreadsheet::setCell("H{$cont}", $menu->nutriProteNombre);
-        Spreadsheet::setCell("I{$cont}", $menu->nutriEnergeNombre);
-        Spreadsheet::setCell("J{$cont}", $menu->nutriAcompNombre);
-        Spreadsheet::setCell("K{$cont}", $menu->nutriEnsalNombre);
-        Spreadsheet::setCell("L{$cont}", $menu->nutriBebidaNombre);
+        Spreadsheet::setCell("E{$cont}", $menu->pacienteTorre);
+        Spreadsheet::setCell("F{$cont}", $menu->pacienteCama);
+        Spreadsheet::setCell("G{$cont}", $menu->nutriSopaNombre);
+        Spreadsheet::setCell("H{$cont}", $menu->nutriArrozNombre);
+        Spreadsheet::setCell("I{$cont}", $menu->nutriProteNombre);
+        Spreadsheet::setCell("J{$cont}", $menu->nutriEnergeNombre);
+        Spreadsheet::setCell("K{$cont}", $menu->nutriAcompNombre);
+        Spreadsheet::setCell("L{$cont}", $menu->nutriEnsalNombre);
+        Spreadsheet::setCell("M{$cont}", $menu->nutriBebidaNombre);
 
         $cont++;
     }
