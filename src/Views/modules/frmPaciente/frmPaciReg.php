@@ -49,7 +49,7 @@ if (!isset($_SESSION['session'])) {
                 <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                   <div class="mb-3">
                     <label for="pacienteTorre" class="form-label">Torre</label>
-                    <select class="form-select" name="pacienteTorre" id="pacienteTorre"  aria-label="Default select example">
+                    <select class="form-select" name="pacienteTorre" id="pacienteTorre"  aria-label="Default select example" required>
                         <option selected>Seleccione</option>
                       <option value="Torre 1">Torre 1</option>
                       <option value="Torre 2">Torre 2</option>
@@ -60,7 +60,7 @@ if (!isset($_SESSION['session'])) {
           <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
             <div class="mb-3">
                 <label for="pacienteCama" class="form-label">Cama</label>
-                <input type="text" name="pacienteCama" id="pacienteCama" class="form-control">
+                <input type="text" name="pacienteCama" id="pacienteCama" class="form-control" required>
             </div>
         </div>
     </div>
