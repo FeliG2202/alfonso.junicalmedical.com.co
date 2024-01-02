@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 01-01-2024 a las 03:00:45
+-- Tiempo de generación: 02-01-2024 a las 04:26:19
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -567,20 +567,10 @@ CREATE TABLE `pacientes` (
   `idPaciente` int NOT NULL,
   `pacienteNombre` varchar(255) NOT NULL,
   `pacienteDocumento` varchar(20) NOT NULL,
-  `pacienteDieta` varchar(100) DEFAULT NULL,
+  `pacienteTorre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `pacienteCama` varchar(20) DEFAULT NULL,
   `fecha_registro` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Volcado de datos para la tabla `pacientes`
---
-
-INSERT INTO `pacientes` (`idPaciente`, `pacienteNombre`, `pacienteDocumento`, `pacienteDieta`, `pacienteCama`, `fecha_registro`) VALUES
-(16, 'luz stella castaño', '65820125', 'normal', '103B', '2023-12-27'),
-(17, 'andre castaño molina', '123456789', 'normal', NULL, '2023-12-27'),
-(18, 'felipe prueba', '1005958885', 'normal', '304', '2023-12-29'),
-(19, 'felipe prueba', '1234567', 'liquida', '987', '2024-01-01');
 
 -- --------------------------------------------------------
 
@@ -1013,7 +1003,7 @@ ALTER TABLE `opcionesmenu`
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `idPaciente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idPaciente` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
