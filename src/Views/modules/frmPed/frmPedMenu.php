@@ -20,17 +20,14 @@ $cont2 = 0;
 $cont3 = 1;
 $fecha_actual = date("l, d F Y - H:i a");
 $hora_actual = date('H:i');
-$hora_inicio = '06:00';
-$hora_fin = '10:00';
 
 $traducciones = array('Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miércoles', 'Thursday' => 'Jueves', 'Friday' => 'Viernes', 'Saturday' => 'Sábado', 'Sunday' => 'Domingo', 'January' => 'Enero', 'February' => 'Febrero', 'March' => 'Marzo', 'April' => 'Abril', 'May' => 'Mayo', 'June' => 'Junio', 'July' => 'Julio', 'August' => 'Agosto', 'September' => 'Septiembre', 'October' => 'Octubre', 'November' => 'Noviembre', 'December' => 'Diciembre', 'am' => 'am', 'pm' => 'pm');
 
 $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducciones), $fecha_actual);
 ?>
 
-<?php if ($hora_actual >= $hora_inicio && $hora_actual <= $hora_fin) { ?>
-
-    <div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-1 p-2 rounded shadow-sm">
+<div class="col-12 col-sm-12 col-md-11 col-lg-11 mx-auto my-1 p-2 rounded shadow-sm">
+    <div id="contenedor1" style="display: none;">
         <div class="container">
             <div class="d-flex justify-content-start my-2">
                 <button type="button" data-bs-toggle="modal" data-bs-target="#price"class="btn btn-outline-secondary ms-auto m-1"><i class="fad fa-file-invoice-dollar"></i> Precios</button>
@@ -346,20 +343,68 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 </div>
 </div>
 </div>
-
-<?php } else { ?>
-    <div class="p-4">
-        <div class="alert alert-warning p-3">
-            <strong>Nota: </strong>El horario para solicitar el menú comienza desde las
-            <strong>6:00 AM</strong> hasta las <strong>10:00 AM</strong>
-        </div>
+<div id="contenedor2" style="display: none;">
+    <div class="alert alert-warning">
     </div>
+</div>
+</div>
 
-<?php } ?>
 
 <!-- ================================backend================================== -->
 
 <script type="text/javascript">
+
+       function contenedor1() {
+    // Código para mostrar el contenedor 1
+    document.getElementById('contenedor1').style.display = 'block';
+    document.getElementById('contenedor2').style.display = 'none';
+}
+
+function contenedor2() {
+    // Código para mostrar el contenedor 2
+    document.getElementById('contenedor1').style.display = 'none';
+    document.getElementById('contenedor2').style.display = 'block';
+}
+
+// Función para ocultar la alerta
+function hideAlert() {
+    var alertElement = document.querySelector("#success-alert");
+    if (alertElement) {
+        alertElement.style.display = "none";
+    }
+}
+
+// Función principal
+function obtenerHoraActual() {
+    return new Date();
+}
+
+function verificarHora() {
+    fetch(`${host}/api/frmHora/read`)
+    .then(response => response.json())
+    .then(api_data => {
+        let hora_actual = new Date();
+        let hora_inicio = api_data[0]['nutriHoraInicio'].split(':').map(Number);
+        let hora_fin = api_data[0]['nutriHoraFinal'].split(':').map(Number);
+
+        if ((hora_actual.getHours() > hora_inicio[0] || (hora_actual.getHours() == hora_inicio[0] && hora_actual.getMinutes() >= hora_inicio[1])) &&
+            (hora_actual.getHours() < hora_fin[0] || (hora_actual.getHours() == hora_fin[0] && hora_actual.getMinutes() <= hora_fin[1]))) {
+            contenedor1();
+    } else {
+        contenedor2();
+        document.querySelector('#contenedor2 .alert').innerHTML = `<strong>Nota: </strong>El horario para solicitar el menú comienza desde las <strong>${api_data[0]['nutriHoraInicio']}</strong> hasta las <strong>${api_data[0]['nutriHoraFinal']}</strong>`;
+    }
+});
+
+    var alertElement = document.querySelector("#success-alert");
+
+    if (alertElement) { // Verifica si alertElement no es null
+        alertElement.style.display = "block";
+        setTimeout(hideAlert, 3000);
+    }
+}
+
+verificarHora();
 
     //cambio de ventana
     $(document).ready(function(){

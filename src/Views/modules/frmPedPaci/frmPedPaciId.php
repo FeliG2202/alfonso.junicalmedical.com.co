@@ -94,10 +94,6 @@ function verificarHora() {
 
 verificarHora();
 
-
-// Ejecutar la función principal
-verificarHora();
-
 getInput("form-consul-menu").addEventListener("submit", (event) => {
     event.preventDefault();
 
