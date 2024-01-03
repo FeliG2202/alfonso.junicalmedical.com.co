@@ -18,7 +18,7 @@ function handleNetworkResponse(response) {
 
     document.getElementById('alert-container').appendChild(alert);
 
-    setTimeout(() => alert.style.display = 'none', 3000);
+    setTimeout(() => alert.style.display = 'none', 5000);
 }
 
 $('.modal-footer button').click(function() {

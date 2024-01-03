@@ -25,21 +25,20 @@ class PacienteControlador {
 	}
 
 	public function registrarPacienteControlador() {
-	$res = $this->PacienteModelo->registrarPacienteModelo([
-		'pacienteDocumento' => request->pacienteDocumento,
-		'pacienteNombre' => request->pacienteNombre,
-		'pacienteTorre' => request->pacienteTorre,
-		'pacienteCama' => strtoupper(request->pacienteCama),
-		'fecha_registro' => date('Y-m-d')
-	]);
+		$res = $this->PacienteModelo->registrarPacienteModelo([
+			'pacienteDocumento' => request->pacienteDocumento,
+			'pacienteNombre' => request->pacienteNombre,
+			'pacienteTorre' => request->pacienteTorre,
+			'pacienteCama' => toNull(request->pacienteCama),
+			'fecha_registro' => date('Y-m-d')
+		]);
 
-	if ($res->status === "database-error") {
-		return response->code(500)->error('Error al momento de registrar');
+		if ($res->status === "database-error") {
+			return response->code(500)->error('Error al momento de registrar');
+		}
+
+		return response->code(200)->success('registrado correctamente');
 	}
-
-	return response->code(200)->success('registrado correctamente');
-}
-
 
 	public function consultarPacienteControlador() {
 		return $this->PacienteModelo->consultarPacienteModelo();
@@ -50,7 +49,7 @@ class PacienteControlador {
 			'pacienteDocumento' => request->pacienteDocumento,
 			'pacienteNombre' => request->pacienteNombre,
 			'pacienteTorre' => request->pacienteTorre,
-			'pacienteCama' => strtoupper(request->pacienteCama),
+			'pacienteCama' => request->pacienteCama,
 			'idPaciente' => (int) $idPaciente
 		]);
 
@@ -80,14 +79,14 @@ class PacienteControlador {
     $documentosBase = [];
     $CamasBase = [];
 
-    if(is_array($baseDocument)) {
-        foreach($baseDocument as $doc) {
+    if (is_array($baseDocument)) {
+        foreach ($baseDocument as $doc) {
             $documentosBase[] = $doc->pacienteDocumento;
         }
     }
 
-    if(is_array($baseCama)) {
-        foreach($baseCama as $cama) {
+    if (is_array($baseCama)) {
+        foreach ($baseCama as $cama) {
             $CamasBase[] = $cama->pacienteCama;
         }
     }
@@ -101,12 +100,14 @@ class PacienteControlador {
                 $errorMessages[] = "El documento {$row[2]} ya está registrado.";
             }
             if (in_array($row[4], $CamasBase)) {
-                $errorMessages[] = "El Cama {$row[4]} ya está registrada.";
+                $errorMessages[] = "La cama {$row[4]} ya está registrada.";
             }
+
             if (!empty($errorMessages)) {
                 $validationResults[] = [
                     'error' => true,
-                    'message' => implode(' ', $errorMessages),
+                    'messages' => $errorMessages,
+                    'data' => $row,
                 ];
             } else {
                 $validationResults[] = ['error' => false, 'data' => $row];
@@ -116,6 +117,7 @@ class PacienteControlador {
     return $validationResults;
 }
 
+
 public function saveValidatedData($validatedData) {
     foreach ($validatedData as $validationResult) {
         if (!$validationResult['error']) {
@@ -124,7 +126,7 @@ public function saveValidatedData($validatedData) {
 					'pacienteNombre' => $row[1],
 					'pacienteDocumento' => $row[2],
 					'pacienteTorre' => $row[3],
-					'pacienteCama' => strtoupper($row[4]),
+					'pacienteCama' => $row[4],
 					'fecha_registro' => date('Y-m-d')
 				];
 
@@ -153,7 +155,8 @@ public function uploadControlador() {
 
     foreach ($validationResults as $validationResult) {
         if ($validationResult['error']) {
-            return response->code(500)->error($validationResult['message']);
+        	$errorMessage = implode(', ', $validationResult['messages']);
+            return response->code(500)->error($errorMessage);
         }
     }
 
