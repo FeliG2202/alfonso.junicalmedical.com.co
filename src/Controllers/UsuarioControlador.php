@@ -18,13 +18,13 @@ class UsuarioControlador {
 			$files = $this->usuarioModelo->validateSessionModelo($_POST);
 
 			if (isset($files->status)) {
-				return (object) ['request' => false, 'url' => "index.php?view=login", "message" => "El email/contraseña es incorrecto"];
+				return (object) ['request' => false, 'url' => "index.php?view=login", "message" => "Usuario o clave incorrectos."];
 			}
 
 			if ((int) $files['cont'] > 0) {
 				return $this->loginSession();
 			} else {
-				return (object) ['request' => false, 'url' => "index.php?view=login", "message" => "El email/contraseña es incorrecto"];
+				return (object) ['request' => false, 'url' => "index.php?view=login", "message" => "Usuario o clave incorrectos."];
 			}
 		}
 	}
