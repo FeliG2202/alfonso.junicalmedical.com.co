@@ -6,53 +6,6 @@ if (!isset($_SESSION['session'])) {
 }
 
 ?>
-<script>
-    function handleServerResponse(response) {
-    const { savedData, notSavedData } = response.data;
-
-    // Crear el modal
-    const modal = document.createElement('div');
-    modal.classList.add('modal', 'fade');
-    modal.setAttribute('id', 'modal-cargar');
-    modal.setAttribute('tabindex', '-1');
-    modal.setAttribute('aria-labelledby', 'modalLabel');
-    modal.setAttribute('aria-hidden', 'true');
-
-    // Crear el diálogo del modal
-    const modalDialog = document.createElement('div');
-    modalDialog.classList.add('modal-dialog');
-    modal.appendChild(modalDialog);
-
-    // Crear el contenido del modal
-    const modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-    modalDialog.appendChild(modalContent);
-
-    // Crear el cuerpo del modal
-    const modalBody = document.createElement('div');
-    modalBody.classList.add('modal-body');
-    modalContent.appendChild(modalBody);
-
-    // Añadir los datos guardados y no guardados al cuerpo del modal
-    savedData.forEach(data => {
-        const p = document.createElement('p');
-        p.textContent = JSON.stringify(data);
-        modalBody.appendChild(p);
-    });
-
-    notSavedData.forEach(data => {
-        const p = document.createElement('p');
-        p.textContent = JSON.stringify(data);
-        modalBody.appendChild(p);
-    });
-
-    // Añadir el modal al cuerpo del documento
-    document.body.appendChild(modal);
-
-    // Mostrar el modal
-    $(modal).modal('show');
-}
-</script>
 <div class="row">
     <div class="col-lg-8 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
         <h2 class="text-center"><b>Pacientes</b></h2>
@@ -142,6 +95,23 @@ if (!isset($_SESSION['session'])) {
     </div>
 </div>
 
+<div class="modal fade" id="modal-info" tabindex="-1" aria-labelledby="modalInfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalInfoLabel">Information Modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be dynamically added here using JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <!-- ================================backend================================== -->
@@ -192,6 +162,33 @@ if (!isset($_SESSION['session'])) {
         }
     }
 
+        // Function to handle server response
+    function handleServerResponse(response) {
+        const { savedData, notSavedData } = response.data;
+
+        // Select modal body of the information modal
+        const modalInfoBody = document.querySelector('#modal-info .modal-body');
+
+        // Clear existing content in information modal body
+        modalInfoBody.innerHTML = '';
+
+        // Add saved data to information modal body
+        savedData.forEach(data => {
+            const p = document.createElement('p');
+            p.textContent = "Dato guardado correctamente: " + JSON.stringify(data);
+            modalInfoBody.appendChild(p);
+        });
+
+        // Add not saved data to information modal body
+        notSavedData.forEach(data => {
+            const p = document.createElement('p');
+            p.textContent = "Dato no guardado: " + JSON.stringify(data);
+            modalInfoBody.appendChild(p);
+        });
+
+        // Show the information modal
+        new bootstrap.Modal(document.getElementById('modal-info')).show();
+    }
 
 </script>
 
