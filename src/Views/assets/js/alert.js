@@ -24,3 +24,5 @@ function handleNetworkResponse(response) {
 $('.modal-footer button').click(function() {
     $(this).closest('.modal').modal('hide');
 });
+
+

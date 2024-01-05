@@ -6,7 +6,53 @@ if (!isset($_SESSION['session'])) {
 }
 
 ?>
+<script>
+    function handleServerResponse(response) {
+    const { savedData, notSavedData } = response.data;
 
+    // Crear el modal
+    const modal = document.createElement('div');
+    modal.classList.add('modal', 'fade');
+    modal.setAttribute('id', 'modal-cargar');
+    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute('aria-labelledby', 'modalLabel');
+    modal.setAttribute('aria-hidden', 'true');
+
+    // Crear el diálogo del modal
+    const modalDialog = document.createElement('div');
+    modalDialog.classList.add('modal-dialog');
+    modal.appendChild(modalDialog);
+
+    // Crear el contenido del modal
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+    modalDialog.appendChild(modalContent);
+
+    // Crear el cuerpo del modal
+    const modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+    modalContent.appendChild(modalBody);
+
+    // Añadir los datos guardados y no guardados al cuerpo del modal
+    savedData.forEach(data => {
+        const p = document.createElement('p');
+        p.textContent = JSON.stringify(data);
+        modalBody.appendChild(p);
+    });
+
+    notSavedData.forEach(data => {
+        const p = document.createElement('p');
+        p.textContent = JSON.stringify(data);
+        modalBody.appendChild(p);
+    });
+
+    // Añadir el modal al cuerpo del documento
+    document.body.appendChild(modal);
+
+    // Mostrar el modal
+    $(modal).modal('show');
+}
+</script>
 <div class="row">
     <div class="col-lg-8 mx-auto mt-5 mb-5 p-4 bg-gris rounded shadow-sm">
         <h2 class="text-center"><b>Pacientes</b></h2>
@@ -139,10 +185,10 @@ if (!isset($_SESSION['session'])) {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             console.log(response);
-            handleNetworkResponse(response);
+            handleServerResponse(response);
         } catch (error) {
             console.log(error.response);
-            handleNetworkResponse(error.response);
+            handleServerResponse(response);
         }
     }
 
