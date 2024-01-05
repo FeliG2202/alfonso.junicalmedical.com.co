@@ -73,94 +73,75 @@ class PacienteControlador {
 		return response->code(200)->success('Eliminado correctamente');
 	}
 
-	public function validateExcelData($data) {
+public function uploadControlador() {
+    $inputFileName = $_FILES['excel']['tmp_name'];
+    $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+    $worksheet = $spreadsheet->getActiveSheet();
+    $highestRow = $worksheet->getHighestRow();
+    $highestColumn = $worksheet->getHighestColumn();
+    $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+
+    $objects = [];
+    for ($row = 3; $row <= $highestRow; ++$row) {
+        $object = (object) [
+            'pacienteNombre' => $worksheet->getCellByColumnAndRow(2, $row)->getValue(),
+            'pacienteDocumento' => $worksheet->getCellByColumnAndRow(3, $row)->getValue(),
+            'pacienteTorre' => $worksheet->getCellByColumnAndRow(4, $row)->getValue(),
+            'pacienteCama' => $worksheet->getCellByColumnAndRow(5, $row)->getValue() !== null ? strtoupper($worksheet->getCellByColumnAndRow(5, $row)->getValue()) : null, // Convertir a mayúsculas
+ // Convertir a mayúsculas
+            'fecha_registro' => date('Y-m-d')// Agregar la fecha de registro
+        ];
+        $objects[] = $object;
+    }
+
     $baseDocument = $this->PacienteModelo->existeDocumento();
     $baseCama = $this->PacienteModelo->existeCama();
-    $documentosBase = [];
-    $CamasBase = [];
 
-    if (is_array($baseDocument)) {
-        foreach ($baseDocument as $doc) {
-            $documentosBase[] = $doc->pacienteDocumento;
-        }
+    $baseDocument = json_decode(json_encode($baseDocument), true);
+    $baseCama = json_decode(json_encode($baseCama), true);
+
+    $documentosBase = array_column($baseDocument, 'pacienteDocumento');
+    $CamasBase = array_column($baseCama, 'pacienteCama');
+
+    $validatedData = [];
+foreach ($objects as $object) {
+    // Verificar si el documento y la cama no son nulos y son únicos en la base de datos
+    if (
+        $object->pacienteDocumento !== null &&
+        $object->pacienteCama !== null &&
+        !in_array($object->pacienteDocumento, $documentosBase) &&
+        !in_array($object->pacienteCama, $CamasBase)
+    ) {
+        $validatedData[] = $object;
     }
-
-    if (is_array($baseCama)) {
-        foreach ($baseCama as $cama) {
-            $CamasBase[] = $cama->pacienteCama;
-        }
-    }
-
-    $validationResults = [];
-
-    foreach ($data as $row) {
-        $errorMessages = [];
-        if ($row[1] != '') {
-            if (in_array($row[2], $documentosBase)) {
-                $errorMessages[] = "El documento {$row[2]} ya está registrado.";
-            }
-            if (in_array($row[4], $CamasBase)) {
-                $errorMessages[] = "La cama {$row[4]} ya está registrada.";
-            }
-
-            if (!empty($errorMessages)) {
-                $validationResults[] = [
-                    'error' => true,
-                    'messages' => $errorMessages,
-                    'data' => $row,
-                ];
-            } else {
-                $validationResults[] = ['error' => false, 'data' => $row];
-            }
-        }
-    }
-    return $validationResults;
 }
 
-
-public function saveValidatedData($validatedData) {
-    foreach ($validatedData as $validationResult) {
-        if (!$validationResult['error']) {
-            $row = $validationResult['data'];
-            $dataParaGuardar = [
-					'pacienteNombre' => $row[1],
-					'pacienteDocumento' => $row[2],
-					'pacienteTorre' => $row[3],
-					'pacienteCama' => $row[4],
-					'fecha_registro' => date('Y-m-d')
-				];
-
-            try {
-                $this->PacienteModelo->uploadModelo($dataParaGuardar);
-            } catch (\Exception $e) {
-                return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
-            }
+$savedData = [];
+$notSavedData = [];
+foreach ($objects as $object) {
+    if (
+        $object->pacienteDocumento !== null &&
+        $object->pacienteCama !== null &&
+        !in_array($object->pacienteDocumento, $documentosBase) &&
+        !in_array($object->pacienteCama, $CamasBase)
+    ) {
+        $savedData[] = $object; // Guarda los datos validados en savedData
+        $this->PacienteModelo->uploadModelo((array) $object); // Enviar datos no duplicados al modelo
+    } else {
+        // Verifica si todos los campos son nulos antes de agregar a notSavedData
+        if (
+            $object->pacienteNombre !== null ||
+            $object->pacienteDocumento !== null ||
+            $object->pacienteTorre !== null ||
+            $object->pacienteCama !== null
+        ) {
+            $notSavedData[] = $object;
         }
     }
-
-    return response->code(200)->success('los pacientes se han registrado correctamente.');
 }
 
-public function uploadControlador() {
-    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-    $inputFileName = $_FILES['excel']['tmp_name'];
-    $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-    $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-    $reader->setReadFilter(new MyReadFilter());
-    $spreadsheet = $reader->load($inputFileName);
+return ['message' => 'El archivo a cargado correctamente', 'savedData' => $savedData, 'notSavedData' => $notSavedData];
 
-    $data = $spreadsheet->getActiveSheet()->toArray();
-
-    $validationResults = $this->validateExcelData($data);
-
-    foreach ($validationResults as $validationResult) {
-        if ($validationResult['error']) {
-        	$errorMessage = implode(', ', $validationResult['messages']);
-            return response->code(500)->error($errorMessage);
-        }
-    }
-
-    return $this->saveValidatedData($validationResults);
 }
 
 }
