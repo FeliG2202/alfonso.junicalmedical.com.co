@@ -147,9 +147,11 @@ Route::prefix('frmEmpl',function(){
     Route::post('upload',[PersonaControlador::class, "uploadControlador"]);
 });
 
+// creacion de pacientes
 Route::prefix('frmPaci',function(){
     Route::post('create',[PacienteControlador::class, "registrarPacienteControlador"]);
     Route::get('read',[PacienteControlador::class, "consultarPacienteControlador"]);
+    Route::get('readhistory',[PacienteControlador::class, "consultarPacienteHistoricoControlador"]);
     Route::put('update/{idPaciente}',[PacienteControlador::class, "actualizarPacienteControlador"]);
     Route::delete('delete/{idPaciente}',[PacienteControlador::class, "eliminarPacienteControlador"]);
     Route::post('upload',[PacienteControlador::class, "uploadControlador"]);

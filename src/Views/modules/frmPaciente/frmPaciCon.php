@@ -7,85 +7,134 @@ if (!isset($_SESSION['session'])) {
 ?>
 
 <div class="col-12 col-sm-12 col-md-11 col-lg-10 mx-auto">
-	<h2 class="mt-4 text-center"><b>Pacientes</b></h2>
 
-	<div class="card mb-4">
-		<div class="card-body">
-			<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
-				<a href="/frmPaciente/frmPaciReg" class="btn btn-outline-secondary">
-					<i class="fas fa-reply me-2"></i>Atrás
-				</a>
-				<button type="button" class="btn btn-outline-dark" id="btn-reload">
-					<i class="fas fa-repeat"></i>
-				</button>
+	<div class="container">
+		<div class="d-flex justify-content-start my-2">
+			<button type="button" class="btn btn-outline-secondary ms-auto" id="Buttonnav"><i class="fad fa-window-restore"></i> Historico</button>
+		</div>
+		<div id="paciente">
+			<h2 class="mt-4 text-center"><b>Pacientes</b></h2>
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+						<a href="/frmPaciente/frmPaciReg" class="btn btn-outline-secondary">
+							<i class="fas fa-reply me-2"></i>Atrás
+						</a>
+						<button type="button" class="btn btn-outline-dark" id="btn-reload">
+							<i class="fas fa-repeat"></i>
+						</button>
+					</div>
+
+					<hr>
+					<div id="alert-container"></div>
+
+					<div class="table-responsive">
+						<table class="table table-hover table-sm w-100" id="table-menu">
+							<thead>
+								<tr>
+									<th>Numero de Identificación</th>
+									<th>Nombre y Apellido</th>
+									<th>Torre</th>
+									<th>Cama</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
 			</div>
+			<div class="modal fade" id="modal-arroz-menus-edit" tabindex="-1" aria-labelledby="modal-arroz-menus-editLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form class="form" id="">
+							<div class="modal-header bg-success">
+								<h5 class="modal-title text-white" id="modal-arroz-menus-editLabel">Edición</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
 
-			<hr>
-			<div id="alert-container"></div>
+							<div class="modal-body">
+								<input type="hidden" class="form-control mb-3" id="idPaciente">
+								<div class="mb-3">
+									<label for="pacienteDocumento" class="form-label">Numero de Identificación</label>
+									<input type="number" class="form-control" id="pacienteDocumento" required>
+								</div>
+								<div class="mb-3">
+									<label for="pacienteNombre" class="form-label">Nombre y Apellido</label>
+									<input type="text" class="form-control" id="pacienteNombre" required>
+								</div>
+								<div class="mb-3">
+									<label for="pacienteTorre" class="form-label">Torre</label>
+									<input type="text" name="pacienteTorre" id="pacienteTorre" class="form-control" required>
+								</div>
+								<div class="mb-3">
+									<label for="pacienteCama" class="form-label">Cama</label>
+									<input type="text" class="form-control" id="pacienteCama">
+								</div>
+							</div>
 
-			<div class="table-responsive">
-				<table class="table table-hover table-sm w-100" id="table-menu">
-					<thead>
-						<tr>
-							<th>Numero de Identificación</th>
-							<th>Nombre y Apellido</th>
-							<th>Torre</th>
-							<th>Cama</th>
-						</tr>
-					</thead>
-					<tbody></tbody>
-				</table>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" id="btn-delete">
+									<i class="fas fa-file-times me-2"></i>Eliminar
+								</button>
+								<button type="button" class="btn btn-warning" id="btn-update">
+									<i class="fas fa-file-edit me-2"></i>Actualizar
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="historico" style="display: none;">
+			<h2 class="mt-4 text-center"><b>Historico pacientes</b></h2>
+
+			<div class="card mb-4">
+				<div class="card-body">
+					<div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">
+						<a href="/frmPaciente/frmPaciReg" class="btn btn-outline-secondary">
+							<i class="fas fa-reply me-2"></i>Atrás
+						</a>
+					</div>
+
+					<hr>
+
+					<div class="table-responsive">
+						<table class="table table-hover table-sm w-100" id="table-menu-historico">
+							<thead>
+								<tr>
+									<th>Numero de Identificación</th>
+									<th>Nombre y Apellido</th>
+									<th>Torre</th>
+									<th>Cama</th>
+									<th>Fecha</th>
+								</tr>
+							</thead>
+							<tbody></tbody>
+						</table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="modal fade" id="modal-arroz-menus-edit" tabindex="-1" aria-labelledby="modal-arroz-menus-editLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<form class="form" id="">
-				<div class="modal-header bg-success">
-					<h5 class="modal-title text-white" id="modal-arroz-menus-editLabel">Edición</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-
-				<div class="modal-body">
-					<input type="hidden" class="form-control mb-3" id="idPaciente">
-					<div class="mb-3">
-						<label for="pacienteDocumento" class="form-label">Numero de Identificación</label>
-						<input type="number" class="form-control" id="pacienteDocumento" required>
-					</div>
-					<div class="mb-3">
-						<label for="pacienteNombre" class="form-label">Nombre y Apellido</label>
-						<input type="text" class="form-control" id="pacienteNombre" required>
-					</div>
-					<div class="mb-3">
-						<label for="pacienteTorre" class="form-label">Torre</label>
-						<input type="text" name="pacienteTorre" id="pacienteTorre" class="form-control" required>
-					</div>
-					<div class="mb-3">
-						<label for="pacienteCama" class="form-label">Cama</label>
-						<input type="text" class="form-control" id="pacienteCama">
-					</div>
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" id="btn-delete">
-						<i class="fas fa-file-times me-2"></i>Eliminar
-					</button>
-					<button type="button" class="btn btn-warning" id="btn-update">
-						<i class="fas fa-file-edit me-2"></i>Actualizar
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 
 <!-- ================================backend================================== -->
-
-
 <script type="text/javascript">
+	//cambio de ventana
+	$(document).ready(function(){
+		$("#Buttonnav").click(function(){
+			$("#paciente, #historico").toggle();
+			if($("#paciente").is(":visible")){
+				$("#Buttonnav").html('<i class="fad fa-window-restore"></i> Historico');
+			}else{
+				$("#Buttonnav").html('<i class="fas fa-window-restore"></i> Pacientes');
+			}
+		});
+	});
+
 	const myModal = new bootstrap.Modal('#modal-arroz-menus-edit', {
 		keyboard: false
 	});
@@ -180,4 +229,23 @@ if (!isset($_SESSION['session'])) {
 	(function() {
 		readTipos();
 	})();
+
+	axios.get(`${host}/api/frmPaci/readhistory`).then(res => {
+	new DataTable('#table-menu-historico', {
+		data: (!res.data.status ? res.data : []),
+		destroy: true,
+		responsive: true,
+		language: {
+			url: "https://cdn.datatables.net/plug-ins/1.13.2/i18n/es-ES.json",
+		},
+		columns: [
+			{ data: 'pacienteDocumento' },
+			{ data: 'pacienteNombre' },
+			{ data: 'pacienteTorre' },
+			{ data: 'pacienteCama' },
+			{ data: 'fecha_registro' }, // Add this line
+		]
+	});
+});
+
 </script>

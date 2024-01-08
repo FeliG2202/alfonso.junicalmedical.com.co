@@ -18,6 +18,12 @@ class PacienteModelo {
 	}
 
 	public function consultarPacienteModelo() {
+		$data = date('Y-m-d');
+		return DB::table('pacientes')->select()
+		->where(DB::equalTo('fecha_registro'), $data)->getAll();
+	}
+
+	public function consultarPacienteHistoricoModelo() {
 		return DB::table('pacientes')->select()->getAll();
 	}
 

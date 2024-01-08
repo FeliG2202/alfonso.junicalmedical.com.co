@@ -231,7 +231,5 @@ if (!isset($_SESSION['session'])) {
         new bootstrap.Modal(document.getElementById('modal-info')).show();
     }
 
-
-
 </script>
 

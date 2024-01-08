@@ -44,6 +44,10 @@ class PacienteControlador {
 		return $this->PacienteModelo->consultarPacienteModelo();
 	}
 
+	public function consultarPacienteHistoricoControlador() {
+		return $this->PacienteModelo->consultarPacienteHistoricoModelo();
+	}
+
 	public function actualizarPacienteControlador(string $idPaciente) {
 		$res = $this->PacienteModelo->actualizarPacienteModelo([
 			'pacienteDocumento' => request->pacienteDocumento,
