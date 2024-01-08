@@ -50,26 +50,26 @@ if (!isset($_SESSION['session'])) {
                     <label for="pacienteTorre" class="form-label">Torre</label>
                     <select class="form-select" name="pacienteTorre" id="pacienteTorre"  aria-label="Default select example" required>
                         <option selected>Seleccione</option>
-                      <option value="Torre 1">Torre 1</option>
-                      <option value="Torre 2">Torre 2</option>
-                  </select>
-              </div>
-          </div>
+                        <option value="Torre 1">Torre 1</option>
+                        <option value="Torre 2">Torre 2</option>
+                    </select>
+                </div>
+            </div>
 
-          <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-            <div class="mb-3">
-                <label for="pacienteCama" class="form-label">Cama</label>
-                <input type="text" name="pacienteCama" id="pacienteCama" class="form-control" required>
+            <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                <div class="mb-3">
+                    <label for="pacienteCama" class="form-label">Cama</label>
+                    <input type="text" name="pacienteCama" id="pacienteCama" class="form-control" required>
+                </div>
             </div>
         </div>
-    </div>
 
-    <br>
+        <br>
 
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button type="submit" id="btnPaci" class="btn btn-success">Registrar</button>
-    </div>
-</form>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" id="btnPaci" class="btn btn-success">Registrar</button>
+        </div>
+    </form>
 </div>
 
 <!-- Modal -->
@@ -95,11 +95,11 @@ if (!isset($_SESSION['session'])) {
     </div>
 </div>
 
-<div class="modal fade" id="modal-info" tabindex="-1" aria-labelledby="modalInfoLabel" aria-hidden="true">
+<div class="modal fade" id="modal-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalInfoLabel">Information Modal</h5>
+                <h5 class="modal-title" id="modalInfoLabel">Informe</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -166,29 +166,72 @@ if (!isset($_SESSION['session'])) {
     function handleServerResponse(response) {
         const { savedData, notSavedData } = response.data;
 
-        // Select modal body of the information modal
+    // Selecciona el cuerpo del modal de información
         const modalInfoBody = document.querySelector('#modal-info .modal-body');
 
-        // Clear existing content in information modal body
+    // Limpia el contenido existente en el cuerpo del modal de información
         modalInfoBody.innerHTML = '';
 
-        // Add saved data to information modal body
+    // Añade los datos guardados al cuerpo del modal de información
         savedData.forEach(data => {
             const p = document.createElement('p');
-            p.textContent = "Dato guardado correctamente: " + JSON.stringify(data);
-            modalInfoBody.appendChild(p);
-        });
+            if (data.pacienteNombre && data.pacienteDocumento && data.pacienteTorre && data.pacienteCama) {
+                const p1 = document.createElement('p');
+                p1.textContent = "Paciente guardado:" ;
+                p1.style.color = "green";
+        p1.style.marginBottom = "0"; // Reduce el margen inferior
+        modalInfoBody.appendChild(p1);
 
-        // Add not saved data to information modal body
+        const p2 = document.createElement('p');
+        p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
+        p2.style.marginTop = "0"; // Reduce el margen superior
+        modalInfoBody.appendChild(p2);
+    } else {
+        p.textContent = "Dato no guardado porque trae nombre, documento, torre o cama";
+        p.style.color = "red";
+    }
+    modalInfoBody.appendChild(p);
+});
+
+    // Añade los datos no guardados al cuerpo del modal de información
         notSavedData.forEach(data => {
             const p = document.createElement('p');
-            p.textContent = "Dato no guardado: " + JSON.stringify(data);
-            modalInfoBody.appendChild(p);
-        });
+            let missingFields = [];
+            if (!data.pacienteNombre) missingFields.push("nombre");
+            if (!data.pacienteDocumento) missingFields.push("documento");
+            if (!data.pacienteTorre) missingFields.push("torre");
+            if (!data.pacienteCama) missingFields.push("cama");
+            if (missingFields.length > 0) {
+                const p1 = document.createElement('p');
+                p1.textContent = "Paciente no guardado por falta de " + missingFields.join(", ");
+                p1.style.color = "red";
+        p1.style.marginBottom = "0"; // Reduce el margen inferior
+        modalInfoBody.appendChild(p1);
 
-        // Show the information modal
+        const p2 = document.createElement('p');
+        p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
+        p2.style.marginTop = "0"; // Reduce el margen superior
+        modalInfoBody.appendChild(p2);
+    } else {
+        const p1 = document.createElement('p');
+        p1.textContent = "Paciente Duplicado: ";
+        p1.style.color = "red";
+        p1.style.marginBottom = "0"; // Reduce el margen inferior
+        modalInfoBody.appendChild(p1);
+
+        const p2 = document.createElement('p');
+        p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
+        p2.style.marginTop = "0"; // Reduce el margen superior
+        modalInfoBody.appendChild(p2);
+    }
+    modalInfoBody.appendChild(p);
+});
+
+    // Muestra el modal de información
         new bootstrap.Modal(document.getElementById('modal-info')).show();
     }
+
+
 
 </script>
 
