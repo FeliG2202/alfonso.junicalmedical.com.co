@@ -75,10 +75,10 @@ if (!isset($_SESSION['session'])) {
 
 							<div class="modal-footer">
 								<button type="button" class="btn btn-danger" id="btn-delete">
-									<i class="fas fa-file-times me-2"></i>Eliminar
+									<i class="fas fa-file-times me-2" aria-label="Close"></i>Eliminar
 								</button>
 								<button type="button" class="btn btn-warning" id="btn-update">
-									<i class="fas fa-file-edit me-2"></i>Actualizar
+									<i class="fas fa-file-edit me-2" aria-label="Close"></i>Actualizar
 								</button>
 							</div>
 						</form>
