@@ -29,7 +29,7 @@ class PacienteControlador {
 			'pacienteDocumento' => request->pacienteDocumento,
 			'pacienteNombre' => request->pacienteNombre,
 			'pacienteTorre' => request->pacienteTorre,
-			'pacienteCama' => toNull(request->pacienteCama),
+			'pacienteCama' => strtoupper(request->pacienteCama),
 			'fecha_registro' => date('Y-m-d')
 		]);
 
@@ -53,7 +53,7 @@ class PacienteControlador {
 			'pacienteDocumento' => request->pacienteDocumento,
 			'pacienteNombre' => request->pacienteNombre,
 			'pacienteTorre' => request->pacienteTorre,
-			'pacienteCama' => request->pacienteCama,
+			'pacienteCama' => strtoupper(request->pacienteCama),
 			'idPaciente' => (int) $idPaciente
 		]);
 
