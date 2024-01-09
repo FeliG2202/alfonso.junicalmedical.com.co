@@ -162,39 +162,35 @@ if (!isset($_SESSION['session'])) {
         }
     }
 
-        // Function to handle server response
-    function handleServerResponse(response) {
-        const { savedData, notSavedData } = response.data;
+       // Function to handle server response
+function handleServerResponse(response) {
+    const { savedData, notSavedData } = response.data;
 
     // Selecciona el cuerpo del modal de información
-        const modalInfoBody = document.querySelector('#modal-info .modal-body');
+    const modalInfoBody = document.querySelector('#modal-info .modal-body');
 
     // Limpia el contenido existente en el cuerpo del modal de información
-        modalInfoBody.innerHTML = '';
+    modalInfoBody.innerHTML = '';
 
     // Añade los datos guardados al cuerpo del modal de información
-        savedData.forEach(data => {
-            const p = document.createElement('p');
-            if (data.pacienteNombre && data.pacienteDocumento && data.pacienteTorre && data.pacienteCama) {
-                const p1 = document.createElement('p');
-                p1.textContent = "Paciente guardado:" ;
-                p1.style.color = "green";
-        p1.style.marginBottom = "0"; // Reduce el margen inferior
-        modalInfoBody.appendChild(p1);
+    savedData.forEach(data => {
+        if (data.pacienteNombre && data.pacienteDocumento && data.pacienteTorre && data.pacienteCama) {
+            const p1 = document.createElement('p');
+            p1.textContent = "Paciente guardado:";
+            p1.style.color = "green";
+            p1.style.marginBottom = "0"; // Reduce el margen inferior
+            modalInfoBody.appendChild(p1);
 
-        const p2 = document.createElement('p');
-        p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
-        p2.style.marginTop = "0"; // Reduce el margen superior
-        modalInfoBody.appendChild(p2);
-    } else {
-        p.textContent = "Dato no guardado porque trae nombre, documento, torre o cama";
-        p.style.color = "red";
-    }
-    modalInfoBody.appendChild(p);
-});
+            const p2 = document.createElement('p');
+            p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
+            p2.style.marginTop = "0"; // Reduce el margen superior
+            modalInfoBody.appendChild(p2);
+        }
+    });
 
     // Añade los datos no guardados al cuerpo del modal de información
-        notSavedData.forEach(data => {
+    notSavedData.forEach(data => {
+        if (data.pacienteNombre || data.pacienteDocumento || data.pacienteTorre || data.pacienteCama) {
             const p = document.createElement('p');
             let missingFields = [];
             if (!data.pacienteNombre) missingFields.push("nombre");
@@ -205,31 +201,33 @@ if (!isset($_SESSION['session'])) {
                 const p1 = document.createElement('p');
                 p1.textContent = "Paciente no guardado por falta de " + missingFields.join(", ");
                 p1.style.color = "red";
-        p1.style.marginBottom = "0"; // Reduce el margen inferior
-        modalInfoBody.appendChild(p1);
+                p1.style.marginBottom = "0"; // Reduce el margen inferior
+                modalInfoBody.appendChild(p1);
 
-        const p2 = document.createElement('p');
-        p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
-        p2.style.marginTop = "0"; // Reduce el margen superior
-        modalInfoBody.appendChild(p2);
-    } else {
-        const p1 = document.createElement('p');
-        p1.textContent = "Paciente Duplicado: ";
-        p1.style.color = "red";
-        p1.style.marginBottom = "0"; // Reduce el margen inferior
-        modalInfoBody.appendChild(p1);
+                const p2 = document.createElement('p');
+                p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
+                p2.style.marginTop = "0"; // Reduce el margen superior
+                modalInfoBody.appendChild(p2);
+            } else {
+                const p1 = document.createElement('p');
+                p1.textContent = "Paciente Duplicado: ";
+                p1.style.color = "red";
+                p1.style.marginBottom = "0"; // Reduce el margen inferior
+                modalInfoBody.appendChild(p1);
 
-        const p2 = document.createElement('p');
-        p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
-        p2.style.marginTop = "0"; // Reduce el margen superior
-        modalInfoBody.appendChild(p2);
-    }
-    modalInfoBody.appendChild(p);
-});
+                const p2 = document.createElement('p');
+                p2.textContent = "Datos ingresados: " + data.pacienteNombre + ", " + data.pacienteDocumento + ", " + data.pacienteTorre + ", " + data.pacienteCama;
+                p2.style.marginTop = "0"; // Reduce el margen superior
+                modalInfoBody.appendChild(p2);
+            }
+            modalInfoBody.appendChild(p);
+        }
+    });
 
     // Muestra el modal de información
-        new bootstrap.Modal(document.getElementById('modal-info')).show();
-    }
+    new bootstrap.Modal(document.getElementById('modal-info')).show();
+}
+
 
 </script>
 

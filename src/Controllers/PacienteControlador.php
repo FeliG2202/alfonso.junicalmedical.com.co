@@ -92,7 +92,6 @@ public function uploadControlador() {
             'pacienteDocumento' => $worksheet->getCellByColumnAndRow(3, $row)->getValue(),
             'pacienteTorre' => $worksheet->getCellByColumnAndRow(4, $row)->getValue(),
             'pacienteCama' => $worksheet->getCellByColumnAndRow(5, $row)->getValue() !== null ? strtoupper($worksheet->getCellByColumnAndRow(5, $row)->getValue()) : null, // Convertir a mayúsculas
- // Convertir a mayúsculas
             'fecha_registro' => date('Y-m-d')// Agregar la fecha de registro
         ];
         $objects[] = $object;
@@ -108,44 +107,40 @@ public function uploadControlador() {
     $CamasBase = array_column($baseCama, 'pacienteCama');
 
     $validatedData = [];
-foreach ($objects as $object) {
-    // Verificar si el documento y la cama no son nulos y son únicos en la base de datos
-    if (
-        $object->pacienteDocumento !== null &&
-        $object->pacienteCama !== null &&
-        !in_array($object->pacienteDocumento, $documentosBase) &&
-        !in_array($object->pacienteCama, $CamasBase)
-    ) {
-        $validatedData[] = $object;
-    }
-}
-
-$savedData = [];
-$notSavedData = [];
-foreach ($objects as $object) {
-    if (
-        $object->pacienteDocumento !== null &&
-        $object->pacienteCama !== null &&
-        !in_array($object->pacienteDocumento, $documentosBase) &&
-        !in_array($object->pacienteCama, $CamasBase)
-    ) {
-        $savedData[] = $object; // Guarda los datos validados en savedData
-        $this->PacienteModelo->uploadModelo((array) $object); // Enviar datos no duplicados al modelo
-    } else {
-        // Verifica si todos los campos son nulos antes de agregar a notSavedData
+    foreach ($objects as $object) {
+        // Verificar si el nombre, el documento, la torre y la cama no son nulos y son únicos en la base de datos
         if (
-            $object->pacienteNombre !== null ||
-            $object->pacienteDocumento !== null ||
-            $object->pacienteTorre !== null ||
-            $object->pacienteCama !== null
+            $object->pacienteNombre !== null &&
+            $object->pacienteDocumento !== null &&
+            $object->pacienteTorre !== null &&
+            $object->pacienteCama !== null &&
+            !in_array($object->pacienteDocumento, $documentosBase) &&
+            !in_array($object->pacienteCama, $CamasBase)
         ) {
+            $validatedData[] = $object;
+        }
+    }
+
+    $savedData = [];
+    $notSavedData = [];
+    foreach ($objects as $object) {
+        if (
+            $object->pacienteNombre !== null &&
+            $object->pacienteDocumento !== null &&
+            $object->pacienteTorre !== null &&
+            $object->pacienteCama !== null &&
+            !in_array($object->pacienteDocumento, $documentosBase) &&
+            !in_array($object->pacienteCama, $CamasBase)
+        ) {
+            $savedData[] = $object; // Guarda los datos validados en savedData
+            $this->PacienteModelo->uploadModelo((array) $object); // Enviar datos no duplicados al modelo
+        } else {
             $notSavedData[] = $object;
         }
     }
+
+    return ['message' => 'El archivo a cargado correctamente', 'savedData' => $savedData, 'notSavedData' => $notSavedData];
 }
 
-return ['message' => 'El archivo a cargado correctamente', 'savedData' => $savedData, 'notSavedData' => $notSavedData];
-
-}
 
 }
