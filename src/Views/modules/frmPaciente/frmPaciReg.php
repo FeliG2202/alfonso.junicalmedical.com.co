@@ -134,9 +134,10 @@ if (!isset($_SESSION['session'])) {
             }
         })
         .catch(err => {
-            console.log(err);
-        });
+         handleNetworkResponse(err.response);
+     });
     });
+
 // END FORMULARIO User
 
     async function cargar_excel(){
@@ -163,21 +164,21 @@ if (!isset($_SESSION['session'])) {
     }
 
        // Function to handle server response
-function handleServerResponse(response) {
-    const { savedData, notSavedData } = response.data;
+    function handleServerResponse(response) {
+        const { savedData, notSavedData } = response.data;
 
     // Selecciona el cuerpo del modal de información
-    const modalInfoBody = document.querySelector('#modal-info .modal-body');
+        const modalInfoBody = document.querySelector('#modal-info .modal-body');
 
     // Limpia el contenido existente en el cuerpo del modal de información
-    modalInfoBody.innerHTML = '';
+        modalInfoBody.innerHTML = '';
 
     // Añade los datos guardados al cuerpo del modal de información
-    savedData.forEach(data => {
-        if (data.pacienteNombre && data.pacienteDocumento && data.pacienteTorre && data.pacienteCama) {
-            const p1 = document.createElement('p');
-            p1.textContent = "Paciente guardado:";
-            p1.style.color = "green";
+        savedData.forEach(data => {
+            if (data.pacienteNombre && data.pacienteDocumento && data.pacienteTorre && data.pacienteCama) {
+                const p1 = document.createElement('p');
+                p1.textContent = "Paciente guardado:";
+                p1.style.color = "green";
             p1.style.marginBottom = "0"; // Reduce el margen inferior
             modalInfoBody.appendChild(p1);
 
@@ -189,18 +190,18 @@ function handleServerResponse(response) {
     });
 
     // Añade los datos no guardados al cuerpo del modal de información
-    notSavedData.forEach(data => {
-        if (data.pacienteNombre || data.pacienteDocumento || data.pacienteTorre || data.pacienteCama) {
-            const p = document.createElement('p');
-            let missingFields = [];
-            if (!data.pacienteNombre) missingFields.push("nombre");
-            if (!data.pacienteDocumento) missingFields.push("documento");
-            if (!data.pacienteTorre) missingFields.push("torre");
-            if (!data.pacienteCama) missingFields.push("cama");
-            if (missingFields.length > 0) {
-                const p1 = document.createElement('p');
-                p1.textContent = "Paciente no guardado por falta de " + missingFields.join(", ");
-                p1.style.color = "red";
+        notSavedData.forEach(data => {
+            if (data.pacienteNombre || data.pacienteDocumento || data.pacienteTorre || data.pacienteCama) {
+                const p = document.createElement('p');
+                let missingFields = [];
+                if (!data.pacienteNombre) missingFields.push("nombre");
+                if (!data.pacienteDocumento) missingFields.push("documento");
+                if (!data.pacienteTorre) missingFields.push("torre");
+                if (!data.pacienteCama) missingFields.push("cama");
+                if (missingFields.length > 0) {
+                    const p1 = document.createElement('p');
+                    p1.textContent = "Paciente no guardado por falta de " + missingFields.join(", ");
+                    p1.style.color = "red";
                 p1.style.marginBottom = "0"; // Reduce el margen inferior
                 modalInfoBody.appendChild(p1);
 
@@ -225,8 +226,8 @@ function handleServerResponse(response) {
     });
 
     // Muestra el modal de información
-    new bootstrap.Modal(document.getElementById('modal-info')).show();
-}
+        new bootstrap.Modal(document.getElementById('modal-info')).show();
+    }
 
 
 </script>
