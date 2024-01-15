@@ -72,90 +72,68 @@ class PersonaControlador {
 		return response->code(200)->success('Eliminado correctamente');
 	}
 
-public function validateExcelData($data) {
+    public function uploadControlador() {
+        $inputFileName = $_FILES['excel']['tmp_name'];
+        $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $highestRow = $worksheet->getHighestRow();
+        $highestColumn = $worksheet->getHighestColumn();
+        $highestColumnIndex = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::columnIndexFromString($highestColumn);
+
+        $objects = [];
+        for ($row = 3; $row <= $highestRow; ++$row) {
+            $object = (object) [
+                'personaNombreCompleto' => $worksheet->getCellByColumnAndRow(2, $row)->getValue(),
+                'personaDocumento' => $worksheet->getCellByColumnAndRow(3, $row)->getValue(),
+                'personaCorreo' => $worksheet->getCellByColumnAndRow(4, $row)->getValue(),
+            'personaNumberCell' => $worksheet->getCellByColumnAndRow(5, $row)->getValue()
+        ];
+        $objects[] = $object;
+    }
+
     $baseDocument = $this->PersonaModelo->existeDocumento();
     $baseEmail = $this->PersonaModelo->existeCorreo();
-    $documentosBase = [];
-    $correosBase = [];
 
-    if(is_array($baseDocument)) {
-        foreach($baseDocument as $doc) {
-            $documentosBase[] = $doc->personaDocumento;
+    $baseDocument = json_decode(json_encode($baseDocument), true);
+    $baseEmail = json_decode(json_encode($baseEmail), true);
+
+    $documentosBase = array_column($baseDocument, 'personaDocumento');
+    $EmailBase = array_column($baseEmail, 'personaCorreo');
+
+    $validatedData = [];
+    foreach ($objects as $object) {
+        // Verificar si el nombre, el documento, la torre y la cama no son nulos y son únicos en la base de datos
+        if (
+            $object->personaNombreCompleto !== null &&
+            $object->personaDocumento !== null &&
+            $object->personaCorreo !== null &&
+            $object->personaNumberCell !== null &&
+            !in_array($object->personaDocumento, $documentosBase) &&
+            !in_array($object->personaCorreo, $EmailBase)
+        ) {
+            $validatedData[] = $object;
         }
     }
 
-    if(is_array($baseEmail)) {
-        foreach($baseEmail as $email) {
-            $correosBase[] = $email->personaCorreo;
+    $savedData = [];
+    $notSavedData = [];
+    foreach ($objects as $object) {
+        if (
+            $object->personaNombreCompleto !== null &&
+            $object->personaDocumento !== null &&
+            $object->personaCorreo !== null &&
+            $object->personaNumberCell !== null &&
+            !in_array($object->personaDocumento, $documentosBase) &&
+            !in_array($object->personaCorreo, $EmailBase)
+        ) {
+            $savedData[] = $object; // Guarda los datos validados en savedData
+            $this->PersonaModelo->uploadModelo((array) $object); // Enviar datos no duplicados al modelo
+        } else {
+            $notSavedData[] = $object;
         }
     }
 
-    $validationResults = [];
-
-    foreach ($data as $row) {
-        $errorMessages = [];
-        if ($row[1] != '') {
-            if (in_array($row[2], $documentosBase)) {
-                $errorMessages[] = "El documento {$row[2]} ya está registrado.";
-            }
-            if (in_array($row[3], $correosBase)) {
-                $errorMessages[] = "El correo {$row[3]} ya está registrado.";
-            }
-            if (!empty($errorMessages)) {
-                $validationResults[] = [
-                    'error' => true,
-                    'message' => implode(' ', $errorMessages),
-                ];
-            } else {
-                $validationResults[] = ['error' => false, 'data' => $row];
-            }
-        }
-    }
-    return $validationResults;
-}
-
-
-public function saveValidatedData($validatedData) {
-    foreach ($validatedData as $validationResult) {
-        if (!$validationResult['error']) {
-            $row = $validationResult['data'];
-            $dataParaGuardar = [
-                'personaNombreCompleto' => $row[1],
-                'personaDocumento' => $row[2],
-                'personaCorreo' => $row[3],
-                'personaNumberCell' => $row[4],
-            ];
-
-            try {
-                $this->PersonaModelo->uploadModelo($dataParaGuardar);
-            } catch (\Exception $e) {
-                return response->code(500)->error('Error al guardar los datos: ',  $e->getMessage(), "\n");
-            }
-        }
-    }
-
-    return response->code(200)->success('Los usuarios se han registrado correctamente.');
-}
-
-public function uploadControlador() {
-    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-    $inputFileName = $_FILES['excel']['tmp_name'];
-    $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
-    $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
-    $reader->setReadFilter(new MyReadFilter());
-    $spreadsheet = $reader->load($inputFileName);
-
-    $data = $spreadsheet->getActiveSheet()->toArray();
-
-    $validationResults = $this->validateExcelData($data);
-
-    foreach ($validationResults as $validationResult) {
-        if ($validationResult['error']) {
-            return response->code(500)->error($validationResult['message']);
-        }
-    }
-
-    return $this->saveValidatedData($validationResults);
+    return ['message' => 'El archivo a cargado correctamente', 'savedData' => $savedData, 'notSavedData' => $notSavedData];
 }
 
 }

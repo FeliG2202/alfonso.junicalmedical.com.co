@@ -13,18 +13,6 @@ if (!isset($_SESSION['session'])) {
         <hr>
         <div id="alert-container"></div>
 
-        <?php
-        if (isset($_GET['message']) && ($_GET['message'] === 'true' || $_GET['message'] === 'false')) {
-            $messageValue = ($_GET['message'] === 'true') ? 'true' : 'false';
-            $alertClass = ($messageValue === 'true') ? 'alert-success' : 'alert-danger';
-            $alertText = ($messageValue === 'true') ? 'Registrado correctamente' : 'Error en el registro';
-            ?>
-            <div id="success-alert" class="alert <?php echo $alertClass; ?> alert-dismissible fade show" role="alert">
-                <?php echo $alertText; ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
-
         <div class="d-flex justify-content-between my-2">
             <div>
                 <a href="<?php echo(host); ?>/src/Views/assets/excel/empleados_registro.xlsx" class="btn btn-primary ms-2">
@@ -104,6 +92,23 @@ if (!isset($_SESSION['session'])) {
         </div>
     </div>
 
+    <div class="modal fade" id="modal-info" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalInfoLabel">Informe</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be dynamically added here using JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 <!-- ================================backend================================== -->
@@ -126,7 +131,7 @@ if (!isset($_SESSION['session'])) {
             }
         })
         .catch(err => {
-            console.log(err);
+           handleNetworkResponse(err.response);
         });
     });
 // END FORMULARIO User
@@ -147,24 +152,79 @@ if (!isset($_SESSION['session'])) {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
         console.log(response);
-            handleNetworkResponse(response);
+            handleServerResponse(response);
         } catch (error) {
             console.log(error.response);
             handleNetworkResponse(error.response);
         }
 }
 
+   // Function to handle server response
+    function handleServerResponse(response) {
+        const { savedData, notSavedData } = response.data;
 
-        var alertElement = document.querySelector("#success-alert");
-    function hideAlert() {
-    if (alertElement) { // Verifica si alertElement no es null
-        alertElement.style.display = "none";
+    // Selecciona el cuerpo del modal de información
+        const modalInfoBody = document.querySelector('#modal-info .modal-body');
+
+    // Limpia el contenido existente en el cuerpo del modal de información
+        modalInfoBody.innerHTML = '';
+
+    // Añade los datos guardados al cuerpo del modal de información
+        savedData.forEach(data => {
+            if (data.personaNombreCompleto && data.personaDocumento && data.personaCorreo && data.personaNumberCell) {
+                const p1 = document.createElement('p');
+                p1.textContent = "Paciente guardado:";
+                p1.style.color = "green";
+            p1.style.marginBottom = "0"; // Reduce el margen inferior
+            modalInfoBody.appendChild(p1);
+
+            const p2 = document.createElement('p');
+            p2.textContent = "Datos ingresados: " + data.personaNombreCompleto + ", " + data.personaDocumento + ", " + data.personaCorreo + ", " + data.personaNumberCell;
+            p2.style.marginTop = "0"; // Reduce el margen superior
+            modalInfoBody.appendChild(p2);
+        }
+    });
+
+    // Añade los datos no guardados al cuerpo del modal de información
+        notSavedData.forEach(data => {
+            if (data.personaNombreCompleto || data.personaDocumento || data.personaCorreo || data.personaNumberCell) {
+                const p = document.createElement('p');
+                let missingFields = [];
+                if (!data.personaNombreCompleto) missingFields.push("nombre");
+                if (!data.personaDocumento) missingFields.push("documento");
+                if (!data.personaCorreo) missingFields.push("torre");
+                if (!data.personaNumberCell) missingFields.push("cama");
+                if (missingFields.length > 0) {
+                    const p1 = document.createElement('p');
+                    p1.textContent = "Paciente no guardado por falta de " + missingFields.join(", ");
+                    p1.style.color = "red";
+                p1.style.marginBottom = "0"; // Reduce el margen inferior
+                modalInfoBody.appendChild(p1);
+
+                const p2 = document.createElement('p');
+                p2.textContent = "Datos ingresados: " + data.personaNombreCompleto + ", " + data.personaDocumento + ", " + data.personaCorreo + ", " + data.personaNumberCell;
+                p2.style.marginTop = "0"; // Reduce el margen superior
+                modalInfoBody.appendChild(p2);
+            } else {
+                const p1 = document.createElement('p');
+                p1.textContent = "Paciente Duplicado: ";
+                p1.style.color = "red";
+                p1.style.marginBottom = "0"; // Reduce el margen inferior
+                modalInfoBody.appendChild(p1);
+
+                const p2 = document.createElement('p');
+                p2.textContent = "Datos ingresados: " + data.personaNombreCompleto + ", " + data.personaDocumento + ", " + data.personaCorreo + ", " + data.personaNumberCell;
+                p2.style.marginTop = "0"; // Reduce el margen superior
+                modalInfoBody.appendChild(p2);
+            }
+            modalInfoBody.appendChild(p);
+        }
+    });
+
+    // Muestra el modal de información
+        new bootstrap.Modal(document.getElementById('modal-info')).show();
     }
-}
-if (alertElement) { // Verifica si alertElement no es null
-    alertElement.style.display = "block";
-    setTimeout(hideAlert, 3000);
-}
+
 
 
 </script>

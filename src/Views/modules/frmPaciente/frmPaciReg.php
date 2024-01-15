@@ -159,7 +159,7 @@ if (!isset($_SESSION['session'])) {
             handleServerResponse(response);
         } catch (error) {
             console.log(error.response);
-            handleServerResponse(response);
+            handleNetworkResponse(error.response);
         }
     }
 
