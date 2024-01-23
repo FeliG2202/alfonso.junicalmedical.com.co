@@ -67,27 +67,27 @@ if ($request != null) {
             </div>
 
             <div class="row">
-                <div class="col-2 m-0 p-2">
+                <div class="col-2 col-md-1 col-lg-2 m-0 p-2">
                     <input type="number" id="code-1" name="cod-1" maxlength="1" oninput="validarNumero(this, 'code-2', 'code-1')" class="form-control mb-0 m-0" required autocomplete="off">
                 </div>
 
-                <div class="col-2 m-0 p-2">
+                <div class="col-2 col-md-1 col-lg-2 m-0 p-2">
                     <input type="number" id="code-2" name="cod-2" maxlength="1" oninput="validarNumero(this, 'code-3', 'code-1')" class="form-control mb-0 m-0" required autocomplete="off">
                 </div>
 
-                <div class="col-2 m-0 p-2">
+                <div class="col-2 col-md-1 col-lg-2 m-0 p-2">
                     <input type="number" id="code-3" name="cod-3" maxlength="1" oninput="validarNumero(this, 'code-4', 'code-2')" class="form-control mb-0 m-0" required autocomplete="off">
                 </div>
 
-                <div class="col-2 m-0 p-2">
+                <div class="col-2 col-md-1 col-lg-2 m-0 p-2">
                     <input type="number" id="code-4" name="cod-4" maxlength="1" oninput="validarNumero(this, 'code-5', 'code-3')" class="form-control mb-0 m-0" required autocomplete="off">
                 </div>
 
-                <div class="col-2 m-0 p-2">
+                <div class="col-2 col-md-1 col-lg-2 m-0 p-2">
                     <input type="number" id="code-5" name="cod-5" maxlength="1" oninput="validarNumero(this, 'code-6', 'code-4')" class="form-control mb-0 m-0" required autocomplete="off">
                 </div>
 
-                <div class="col-2 m-0 p-2">
+                <div class="col-2 col-md-1 col-lg-2 m-0 p-2">
                     <input type="number" id="code-6" name="cod-6" maxlength="1" oninput="validarNumero(this, 'code-7', 'code-5')" class="form-control mb-0 m-0" required autocomplete="off">
                 </div>
             </div>
