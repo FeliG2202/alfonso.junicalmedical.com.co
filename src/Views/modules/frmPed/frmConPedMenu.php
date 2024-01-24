@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-success">
+                                <button type="submit" class="btn btn-success" aria-label="Close">
                                     <i class="fas fa-download me-2"></i>Generar
                                 </button>
                             </div>
@@ -210,6 +210,7 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+                $('#exampleModal1').modal('hide');
             }
         }).catch(err => {
             alert("Ocurrió un error al generar el reporte");
@@ -265,6 +266,7 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+                $('#exampleModal2').modal('hide');
             }
         }).catch(err => {
             alert("Ocurrió un error al generar el reporte");
