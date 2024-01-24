@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 02-01-2024 a las 04:26:19
+-- Tiempo de generación: 24-01-2024 a las 15:26:13
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -78,7 +78,81 @@ INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu
 (7, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', NULL, NULL, 'Para llevar', '2023-12-27', 'Descuento por nómina'),
 (8, 4, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, 'Para llevar', '2023-12-28', 'Descuento por nómina'),
 (9, 4, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, NULL, '2023-12-28', 'Descuento por nómina'),
-(10, 5, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, NULL, 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2023-12-28', 'Descuento por nómina');
+(10, 5, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, NULL, 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2023-12-28', 'Descuento por nómina'),
+(12, 4, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', NULL, NULL, 'Para llevar', '2024-01-02', 'Descuento por nómina'),
+(13, 4, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', NULL, NULL, NULL, '2024-01-02', 'Descuento por nómina'),
+(14, 4, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-01-03', 'Descuento por nómina'),
+(15, 4, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-01-03', 'Descuento por nómina'),
+(16, 12, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-01-04', 'Pago en efectivo (caja)'),
+(18, 4, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', NULL, NULL, 'Para llevar', '2024-01-04', 'Descuento por nómina'),
+(19, 4, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-01-04', 'Descuento por nómina'),
+(20, 12, 9, 'Sopa de cuchuco', 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', 'Papa criolla frita', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-01-05', 'Pago en efectivo (caja)'),
+(21, 5, 9, 'Sopa de cuchuco', 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', 'Papa criolla frita', NULL, NULL, NULL, '2024-01-05', 'Descuento por nómina'),
+(22, 14, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', NULL, NULL, NULL, 'Para llevar', '2024-01-05', 'Descuento por nómina'),
+(23, 4, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', NULL, NULL, 'Para llevar', '2024-01-05', 'Descuento por nómina'),
+(24, 4, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', NULL, NULL, NULL, '2024-01-05', 'Descuento por nómina'),
+(25, 12, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-09', 'Pago en efectivo (caja)'),
+(26, 12, 16, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-10', 'Pago en efectivo (caja)'),
+(27, 12, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-01-11', 'Pago en efectivo (caja)'),
+(28, 12, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-12', 'Pago en efectivo (caja)'),
+(29, 26, 1, 'Sopa de pastas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-15', 'Pago en efectivo (caja)'),
+(30, 8, 2, 'Sopa de pastas', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-15', 'Descuento por nómina'),
+(31, 20, 2, NULL, NULL, 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-01-15', 'Descuento por nómina'),
+(32, 32, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, NULL, NULL, 'Para llevar', '2024-01-15', 'Descuento por nómina'),
+(33, 32, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-01-15', 'Descuento por nómina'),
+(34, 4, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-15', 'Descuento por nómina'),
+(35, 12, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-16', 'Pago en efectivo (caja)'),
+(36, 27, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Para llevar', '2024-01-16', 'Descuento por nómina'),
+(37, 29, 3, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', NULL, NULL, 'Para llevar', '2024-01-16', 'Descuento por nómina'),
+(38, 20, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-16', 'Descuento por nómina'),
+(39, 14, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-01-17', 'Descuento por nómina'),
+(40, 12, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-01-17', 'Pago en efectivo (caja)'),
+(41, 27, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Para llevar', '2024-01-17', 'Descuento por nómina'),
+(42, 27, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Para llevar', '2024-01-17', 'Descuento por nómina'),
+(43, 29, 6, NULL, 'Arroz con zanahoria', 'Carne en bistec', NULL, 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-01-17', 'Descuento por nómina'),
+(44, 20, 6, NULL, 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-01-17', 'Descuento por nómina'),
+(45, 4, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-01-17', 'Descuento por nómina'),
+(46, 12, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-01-18', 'Pago en efectivo (caja)'),
+(47, 28, 8, NULL, 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', NULL, NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(48, 21, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-01-18', 'Descuento por nómina'),
+(49, 22, 7, NULL, 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-01-18', 'Pago en efectivo (caja)'),
+(50, 27, 8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(51, 27, 7, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(52, 4, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, NULL, 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-01-18', 'Descuento por nómina'),
+(53, 27, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(54, 27, 8, NULL, 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(55, 27, 7, NULL, 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(56, 20, 8, NULL, 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(57, 14, 8, NULL, 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', NULL, NULL, 'Para llevar', '2024-01-18', 'Descuento por nómina'),
+(58, 21, 9, 'Sopa de cuchuco', 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', 'Papa criolla frita', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-01-19', 'Descuento por nómina'),
+(59, 8, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', NULL, 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-01-19', 'Descuento por nómina'),
+(60, 29, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', NULL, NULL, NULL, '2024-01-19', 'Descuento por nómina'),
+(61, 20, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-01-19', 'Descuento por nómina'),
+(62, 14, 10, NULL, 'Arroz blanco', 'Carne asada', NULL, 'Maduro al horno', NULL, NULL, 'Para llevar', '2024-01-19', 'Descuento por nómina'),
+(63, 14, 10, NULL, 'Arroz blanco', 'Carne asada', NULL, 'Maduro al horno', NULL, NULL, 'Para llevar', '2024-01-19', 'Descuento por nómina'),
+(64, 4, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', NULL, 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-01-19', 'Descuento por nómina'),
+(65, 8, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-01-19', 'Descuento por nómina'),
+(66, 32, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-01-22', 'Descuento por nómina'),
+(67, 32, 12, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', NULL, NULL, 'Para llevar', '2024-01-22', 'Descuento por nómina'),
+(68, 32, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-01-22', 'Descuento por nómina'),
+(69, 13, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-01-22', 'Pago en efectivo (caja)'),
+(70, 8, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-01-22', 'Descuento por nómina'),
+(71, 29, 12, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', NULL, NULL, NULL, '2024-01-22', 'Descuento por nómina'),
+(72, 20, 12, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-01-22', 'Descuento por nómina'),
+(73, 12, 14, NULL, 'Arroz con zanahoria', 'Lomo de tilapia', 'Ensalada rusa', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-23', 'Pago en efectivo (caja)'),
+(74, 13, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-23', 'Pago en efectivo (caja)'),
+(75, 32, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-01-23', 'Descuento por nómina'),
+(76, 8, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-01-23', 'Descuento por nómina'),
+(77, 27, 13, 'Sopa de arracacha', 'Arroz con zanahoria', NULL, NULL, 'Papa, Yuca (Guacamole)', NULL, NULL, 'Para llevar', '2024-01-23', 'Descuento por nómina'),
+(78, 17, 13, 'Sopa de arracacha', NULL, 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-23', 'Pago en efectivo (caja)'),
+(79, 20, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-01-23', 'Descuento por nómina'),
+(80, 29, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', NULL, NULL, NULL, '2024-01-23', 'Descuento por nómina'),
+(81, 27, 15, NULL, 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
+(82, 27, 16, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
+(83, 29, 15, NULL, 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', NULL, NULL, NULL, '2024-01-24', 'Descuento por nómina'),
+(84, 32, 15, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
+(85, 20, 15, NULL, NULL, 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
+(86, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina');
 
 -- --------------------------------------------------------
 
@@ -325,7 +399,6 @@ INSERT INTO `nutrimenu` (`idNutriMenu`, `idNutriTipo`, `idNutriDias`, `idNutriSo
 (6, 2, 3, 10, 6, 26, 14, 6, 10, NULL, 0, 1),
 (7, 1, 4, 4, 4, NULL, NULL, 7, 4, NULL, 0, 1),
 (8, 2, 4, 4, 5, NULL, 6, 3, 4, NULL, 0, 1),
-(9, 1, 5, 5, 1, 22, 12, 22, 8, NULL, 0, 1),
 (10, 2, 5, 5, 1, 23, 15, 10, 8, NULL, 0, 1),
 (11, 1, 1, 8, 2, 28, 10, 7, 12, NULL, 1, 1),
 (12, 2, 1, 8, 2, 31, NULL, 22, 12, NULL, 1, 1),
@@ -336,7 +409,8 @@ INSERT INTO `nutrimenu` (`idNutriMenu`, `idNutriTipo`, `idNutriDias`, `idNutriSo
 (17, 1, 4, 11, 1, 20, NULL, 3, 7, NULL, 1, 1),
 (18, 2, 4, 11, 1, 29, NULL, 15, 7, NULL, 1, 1),
 (19, 1, 5, 4, 4, NULL, NULL, 22, 9, NULL, 1, 1),
-(20, 2, 5, 4, 5, 9, 16, 17, 9, NULL, 1, 1);
+(20, 2, 5, 4, 5, 9, 16, 17, 9, NULL, 1, 1),
+(21, 1, 5, 5, 1, 22, 12, NULL, 8, NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -496,7 +570,8 @@ CREATE TABLE `nutritipo` (
 
 INSERT INTO `nutritipo` (`idNutriTipo`, `nutriTipoNombre`) VALUES
 (1, 'Menú No. 1'),
-(2, 'Menú No. 2');
+(2, 'Menú No. 2'),
+(3, 'tipo 2');
 
 -- --------------------------------------------------------
 
@@ -515,7 +590,7 @@ CREATE TABLE `nutri_hora` (
 --
 
 INSERT INTO `nutri_hora` (`idNutriHora`, `nutriHoraInicio`, `nutriHoraFinal`) VALUES
-(1, '07:00', '23:00');
+(1, '06:00', '10:00');
 
 -- --------------------------------------------------------
 
@@ -614,9 +689,21 @@ INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell
 (20, 'Alejandra Martinez', '3215648693', 'aleja04227@hotmail.com', '1070609612', NULL),
 (21, 'Miguel ureuña', '3118287066', 'pecuniamia@hotmail.com', '1070587669', NULL),
 (22, 'Carolina mateus', '3132667767', 'contratacion@junicalmedical.com.co', '1098604129', NULL),
-(23, 'Micol Lopez', '3144900548', 'nicol_lopez115@hotmail.com', '1072426086', NULL),
+(23, 'Nicol Lopez', '3144900548', 'nicol_lopez115@hotmail.com', '1072426086', NULL),
 (24, 'Alana cardenas mappe', '3115058534', 'alisonk1234@hotmail.com', '1108454182', NULL),
-(25, 'Liliana alonso', '3204777271', 'liliconao@hotmail.com', '52441802', NULL);
+(25, 'Liliana alonso', '3204777271', 'liliconao@hotmail.com', '52441802', NULL),
+(26, 'Lina Maria Ramirez Valderrama', '3115708105', 'linamariaramirezv@hotmail.com', '39566602', NULL),
+(27, 'Natalia Huertas Cruz ', '3169143008', 'nataycami.05@hotmail.com', '1106890370', NULL),
+(28, 'Veronica Botero ', '3125530199', 'veronicaboterodelgado@hotmail.com', '1192723340', NULL),
+(29, 'Valentina Medina', '3103226767', 'valentinajessica@hotmail.com ', '1106901229', NULL),
+(30, 'Angela Gutierrez', '3123727006', 'angelagutierrez09@gmail.com ', '39580273', NULL),
+(31, 'Sirley Cardona ', '3007583471', 'sirleycardonap@gmail.com', '1013609884', NULL),
+(32, 'Yury Fernanda Duran Laguna ', '3208259416', 'yuryduranlaguna1801@hotmail.com ', '1108453490', NULL),
+(33, 'Lina Ardila ', '3204741771', 'ljohanaar@hotmail.com', '52762910', NULL),
+(34, 'Diego Abril ', '3014374730', 'daabril07@gmail.com ', '1071987574', NULL),
+(35, 'Lina Rocha', '3125033141', 'lbelenrocha@hotmail.com', '1070604353', NULL),
+(36, 'Yenifer Martinez', '3132893637', 'maye0412tavera@gmail.com ', '1070600291', NULL),
+(37, 'Jiovanna Escobar ', '3016717078', 'jandreaescobar@hotmail.com', '1070627747', NULL);
 
 -- --------------------------------------------------------
 
@@ -672,18 +759,18 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nutriTipoNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriSopaNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriAcompNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSemanaid` varchar(45)
 ,`nombreEmpaquetado` varchar(100)
+,`nutriAcompNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriSemanaid` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSopaNombre` varchar(45)
+,`nutriTipoNombre` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -694,17 +781,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriTipoNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriSopaNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
 ,`nutriAcompNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
 ,`nutriBebidaNombre` varchar(45)
-,`nutriSemanaNombre` varchar(5)
+,`nutriDiasNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
 ,`nutriSemanaid` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSopaNombre` varchar(45)
+,`nutriTipoNombre` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -907,7 +994,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
@@ -961,7 +1048,7 @@ ALTER TABLE `nutriensal`
 -- AUTO_INCREMENT de la tabla `nutrimenu`
 --
 ALTER TABLE `nutrimenu`
-  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idNutriMenu` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `nutrimenupaci`
@@ -985,7 +1072,7 @@ ALTER TABLE `nutrisopa`
 -- AUTO_INCREMENT de la tabla `nutritipo`
 --
 ALTER TABLE `nutritipo`
-  MODIFY `idNutriTipo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idNutriTipo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `nutri_hora`
@@ -1009,7 +1096,7 @@ ALTER TABLE `pacientes`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `idPersona` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

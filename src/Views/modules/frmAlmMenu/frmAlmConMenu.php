@@ -17,6 +17,7 @@ if (!isset($_SESSION['session'])) {
             <div class="p-2">
                 <h2 class="text-center"><b>Menú Empleados</b></h2>
                 <hr>
+                <div id="alert-container"></div>
             </div>
 
             <div class="card mb-4">
