@@ -38,14 +38,11 @@
 <!-- ================================backend================================== -->
 <script type="text/javascript">
 
-   window.addEventListener('DOMContentLoaded', (event) => {
-    document.getElementById('pacienteDocumento').focus();
-});
-
-   function contenedor1() {
+ function contenedor1() {
     // Código para mostrar el contenedor 1
     document.getElementById('contenedor1').style.display = 'block';
     document.getElementById('contenedor2').style.display = 'none';
+    seleccionarInput("pacienteDocumento");
 }
 
 function contenedor2() {
@@ -110,8 +107,8 @@ getInput("form-consul-menu").addEventListener("submit", (event) => {
         }
     })
     .catch(err => {
-     handleNetworkResponse(err.response);
- });
+       handleNetworkResponse(err.response);
+   });
 });
 
 </script>

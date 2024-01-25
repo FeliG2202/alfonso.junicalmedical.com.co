@@ -26,7 +26,7 @@ if ($request != null) {
         <form class="form" method="POST">
             <div class="row mb-3">
                 <label for="identMenu" class="form-label">Número de identificación</label>
-                <input type="number" name="identMenu" class="form-control" required id="identMenu">
+                <input type="number" id="identMenu"  name="identMenu" class="form-control" required>
             </div>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -44,14 +44,11 @@ if ($request != null) {
 
 <script>
 
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('identMenu').focus();
-    });
-
-    function contenedor1() {
+   function contenedor1() {
     // Código para mostrar el contenedor 1
         document.getElementById('contenedor1').style.display = 'block';
         document.getElementById('contenedor2').style.display = 'none';
+        seleccionarInput("identMenu");
     }
 
     function contenedor2() {
@@ -59,7 +56,6 @@ if ($request != null) {
         document.getElementById('contenedor1').style.display = 'none';
         document.getElementById('contenedor2').style.display = 'block';
     }
-
 
 // Función principal
     function obtenerHoraActual() {

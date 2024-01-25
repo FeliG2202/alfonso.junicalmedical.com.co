@@ -101,8 +101,5 @@ if ($request != null) {
 </div>
 
 <script>
-        // Add JavaScript to automatically select the input field when the view loads
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById('code-1').focus();
-    });
+  seleccionarInput("code-1");
 </script>

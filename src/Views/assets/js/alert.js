@@ -21,8 +21,13 @@ function handleNetworkResponse(response) {
     setTimeout(() => alert.style.display = 'none', 5000);
 }
 
-$('.modal-footer button').click(function() {
-    $(this).closest('.modal').modal('hide');
-});
+function seleccionarInput(id) {
+    var input = document.getElementById(id);
+    if(input) {
+        input.focus();
+    } else {
+        console.log("No se encontró ningún elemento con el ID proporcionado.");
+    }
+}
 
 
