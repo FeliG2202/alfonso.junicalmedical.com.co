@@ -1,3 +1,13 @@
+
+function seleccionarInput(id) {
+    var input = document.getElementById(id);
+    if(input) {
+        input.focus();
+    } else {
+        console.log("No se encontró ningún elemento con el ID proporcionado.");
+    }
+}
+
 // VALIDADOR PARA REGISTRAR MENUS CON LOS CHECK Y LOS BOTONES
  function handleCheckboxClick(checkbox, cardId) {
    const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
