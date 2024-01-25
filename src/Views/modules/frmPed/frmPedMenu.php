@@ -60,7 +60,6 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
             <div class="row">
                 <!-- Tarjeta 1 -->
-
                 <?php
                 $cont = 0;
                 $cont1 = 0;
