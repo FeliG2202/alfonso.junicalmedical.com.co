@@ -2,7 +2,7 @@ function handleNetworkResponse(response) {
     const { code, message } = response.data;
     const alert = document.createElement('div');
     const alertClasses = ['alert', 'alert-dismissible', 'fade', 'show',
-                          code === 200 ? 'alert-success' : code === 500 ? 'alert-danger' : 'alert-warning'];
+        code === 200 ? 'alert-success' : code === 500 ? 'alert-danger' : 'alert-warning'];
     alertClasses.forEach(cls => alert.classList.add(cls));
     alert.setAttribute('role', 'alert');
 
