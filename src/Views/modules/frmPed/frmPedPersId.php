@@ -43,15 +43,6 @@ if ($request != null) {
 
 
 <script>
-    function seleccionarInput(id) {
-    var input = document.getElementById(id);
-    if(input) {
-        input.focus();
-    } else {
-        console.log("No se encontró ningún elemento con el ID proporcionado.");
-    }
-}
-
    function contenedor1() {
     // Código para mostrar el contenedor 1
         document.getElementById('contenedor1').style.display = 'block';
