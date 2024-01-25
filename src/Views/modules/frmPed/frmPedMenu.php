@@ -35,8 +35,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                 <a class="btn btn-outline-secondary m-1" href="/inicio">Salir<i class="fas fa-sign-out-alt ms-2"></i></a>
             </div>
             <div id="registrar">
-               <!-- Registrar Dietas -->
-               <div class="row">
+             <!-- Registrar Dietas -->
+             <div class="row">
                 <div class="col p-2 mb-3">
                     <h3 class="text-center">Menú de Almuerzos</h3>
                     <?php
@@ -142,9 +142,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col col-lg-6">
-                                            <button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
-                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
+                                        <div class="text-end col col-lg-6">
+                                            <button type="submit" form="form0" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2 float-end">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -178,9 +177,8 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
                                                 </label>
                                             </div>
                                         </div>
-                                        <div class="col col-lg-6">
-                                            <button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2">Guardar</button>
-                                            <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal">Cerrar</button>
+                                        <div class="text-end col col-lg-6">
+                                            <button type="submit" form="form1" id="btnPedDatosPerso" name="btnPedDatosPerso" class="btn btn-success m-2 float-end">Guardar</button>
                                         </div>
                                     </div>
                                 </div>
@@ -354,7 +352,7 @@ $fecha_traducida = str_replace(array_keys($traducciones), array_values($traducci
 
 <script type="text/javascript">
 
-       function contenedor1() {
+ function contenedor1() {
     // Código para mostrar el contenedor 1
     document.getElementById('contenedor1').style.display = 'block';
     document.getElementById('contenedor2').style.display = 'none';
@@ -407,28 +405,28 @@ function verificarHora() {
 verificarHora();
 
     //cambio de ventana
-    $(document).ready(function(){
-        $("#Buttonnav").click(function(){
-            $("#registrar, #consultar").toggle();
-            if($("#registrar").is(":visible")){
-                $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Eliminar dieta');
-            }else{
-                $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Registrar dieta');
-            }
-        });
+$(document).ready(function(){
+    $("#Buttonnav").click(function(){
+        $("#registrar, #consultar").toggle();
+        if($("#registrar").is(":visible")){
+            $("#Buttonnav").html('<i class="fad fa-window-restore"></i> Eliminar dieta');
+        }else{
+            $("#Buttonnav").html('<i class="fas fa-window-restore"></i> Registrar dieta');
+        }
     });
+});
 
-    const urlParams = new URLSearchParams(window.location.href);
-    const idPersona = urlParams.get('idPersona');
-    const id = idPersona.split('#').shift();
-    console.log(id);
+const urlParams = new URLSearchParams(window.location.href);
+const idPersona = urlParams.get('idPersona');
+const id = idPersona.split('#').shift();
+console.log(id);
 
-    document.addEventListener("DOMContentLoaded", function() {
-        if (idPersona) {
-            setInterval(function() {
-                axios.get(`${host}/api/frmPedEdit/read/${id}`)
-                .then(function(response) {
-                    const alertContainer = document.querySelector('#alertContainer');
+document.addEventListener("DOMContentLoaded", function() {
+    if (idPersona) {
+        setInterval(function() {
+            axios.get(`${host}/api/frmPedEdit/read/${id}`)
+            .then(function(response) {
+                const alertContainer = document.querySelector('#alertContainer');
 
                         if (alertContainer) { // Verifica si alertContainer no es null
                             if (response.data.length > 0) {
@@ -444,25 +442,25 @@ verificarHora();
                             }
                         }
                     })
-                .catch(function(error) {
-                    console.error('Error en la solicitud', error);
-                });
-            }, 3000);
-        }
-    });
+            .catch(function(error) {
+                console.error('Error en la solicitud', error);
+            });
+        }, 3000);
+    }
+});
 
 
-    const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
-        keyboard: false
-    });
+const myModal = new bootstrap.Modal('#modal-tipo-menus-edit', {
+    keyboard: false
+});
 
 
     // HACE LA CONSULTA A LA BASE DE DATOS Y TRAE LOS DATOS DE LA API
     // Y HACE LA FUNCION "CLICK" PARA EL MODAL
-    function readTipos() {
-        axios.get(`${host}/api/frmPedEdit/read/${id}`)
-        .then(res => {
-            const cardContainer = document.getElementById('card-container');
+function readTipos() {
+    axios.get(`${host}/api/frmPedEdit/read/${id}`)
+    .then(res => {
+        const cardContainer = document.getElementById('card-container');
                 cardContainer.innerHTML = ''; // Clear previous content
 
                 let contador = 1;
@@ -498,81 +496,81 @@ verificarHora();
                     cardContainer.appendChild(carouselItem); // Agregar carouselItem a cardContainer
                 });
             })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-        });
-    }
+    .catch(error => {
+        console.error("Error fetching data:", error);
+    });
+}
 
 
 
-    function generateCardContent(item) {
-        const fieldsToDisplay = [
-            'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
-            'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
-            'nutriBebidaNombre', 'nombreEmpaquetado', 'tipoPago'
-            ];
+function generateCardContent(item) {
+    const fieldsToDisplay = [
+        'nutriSopaNombre', 'nutriArrozNombre', 'nutriProteNombre',
+        'nutriEnergeNombre', 'nutriAcompNombre', 'nutriEnsalNombre',
+        'nutriBebidaNombre', 'nombreEmpaquetado', 'tipoPago'
+        ];
 
-        let content = '';
+    let content = '';
 
-        fieldsToDisplay.forEach(field => {
-            if (item[field] !== null && item[field] !== 'null') {
-                content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
-            }
-        });
+    fieldsToDisplay.forEach(field => {
+        if (item[field] !== null && item[field] !== 'null') {
+            content += `<p class="card-text m-0"><i class="fas fa-dot-circle me-1 fa-xs"></i> ${item[field]}</p>`;
+        }
+    });
 
-        return content;
-    }
+    return content;
+}
 
     // Primero, verifica si 'message=true' está en la URL
-    if (urlParams.get('message') === 'true') {
+if (urlParams.get('message') === 'true') {
         // Si 'message=true' está en la URL, muestra el modal
-        $(document).ready(function() {
-            $('#modalfinal').modal('show');
-        });
-    }
+    $(document).ready(function() {
+        $('#modalfinal').modal('show');
+    });
+}
 
 
 
-    function showModal(idMenuSeleccionado) {
-        document.getElementById('idMenuSeleccionado').value = idMenuSeleccionado;
-        myModal.show();
-    }
+function showModal(idMenuSeleccionado) {
+    document.getElementById('idMenuSeleccionado').value = idMenuSeleccionado;
+    myModal.show();
+}
 
 
 
-    const btn_reload = document.getElementById("btn-reload");
+const btn_reload = document.getElementById("btn-reload");
 
-    if (btn_reload) {
-        btn_reload.addEventListener("click", () => {
-            readTipos();
-        });
-    }
+if (btn_reload) {
+    btn_reload.addEventListener("click", () => {
+        readTipos();
+    });
+}
 
     // DETERMINO LAS VARIABLE DE ELIMINAR Y ACTUALIZAR
-    const btn_delete = document.getElementById("btn-delete-tipo-menu");
+const btn_delete = document.getElementById("btn-delete-tipo-menu");
 
     // ENVIO A LA API LA FUNCION DE ELIMINAR
-    if (btn_delete) {
-        btn_delete.addEventListener("click", () => {
-            const idMenuSeleccionado = document.getElementById("idMenuSeleccionado").value;
-            axios.delete(`${host}/api/frmPedEdit/delete/${idMenuSeleccionado}`).then(res => {
+if (btn_delete) {
+    btn_delete.addEventListener("click", () => {
+        const idMenuSeleccionado = document.getElementById("idMenuSeleccionado").value;
+        axios.delete(`${host}/api/frmPedEdit/delete/${idMenuSeleccionado}`).then(res => {
                 //console.log(res)
-                handleNetworkResponse(res);
-                readTipos();
-                myModal.hide();
-            }).catch(err => {
-                handleNetworkError(err.response);
-            });
+            handleNetworkResponse(res);
+            readTipos();
+            myModal.hide();
+        }).catch(err => {
+            handleNetworkError(err.response);
         });
-    }
+    });
+}
 
-    (function() {
-        readTipos();
-    })();
+(function() {
+    readTipos();
+})();
 
-    var alertElement = document.querySelector("#success-alert");
+var alertElement = document.querySelector("#success-alert");
 
-    function hideAlert() {
+function hideAlert() {
         if (alertElement) { // Verifica si alertElement no es null
             alertElement.style.display = "none";
         }
