@@ -34,8 +34,10 @@ class PedAlmMenuModelo extends Connection {
     }
 
     public function updateCode(array $data) {
+        $fecha = date('Y-m-d H:i:s');
         return DB::table('personas')->update([
-            'personasCodigo' => $data['code']
+            'personasCodigo' => $data['code'],
+            'personaDate' => $fecha
         ])->where(
             DB::equalTo("idPersona"),
             $data['idPersona']
