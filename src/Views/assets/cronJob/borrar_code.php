@@ -13,7 +13,7 @@ $opt = [
 ];
 $pdo = new PDO($dsn, $user, $pass, $opt);
 
-$sql = "UPDATE personas SET personasCodigo = NULL WHERE TIMESTAMPDIFF(MINUTE, personaDate, NOW()) > 5";
+$sql = "UPDATE personas SET personasCodigo = NULL, personaDate = NULL WHERE TIMESTAMPDIFF(MINUTE, personaDate, NOW()) > 5";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 ?>
