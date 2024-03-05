@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: db
--- Tiempo de generación: 24-01-2024 a las 15:26:13
+-- Tiempo de generación: 05-03-2024 a las 15:12:57
 -- Versión del servidor: 8.2.0
 -- Versión de PHP: 8.2.8
 
@@ -152,7 +152,215 @@ INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu
 (83, 29, 15, NULL, 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', NULL, NULL, NULL, '2024-01-24', 'Descuento por nómina'),
 (84, 32, 15, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
 (85, 20, 15, NULL, NULL, 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
-(86, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina');
+(86, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-24', 'Descuento por nómina'),
+(87, 8, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-01-25', 'Descuento por nómina'),
+(88, 32, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-01-25', 'Descuento por nómina'),
+(89, 32, 18, NULL, 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', NULL, NULL, 'Para llevar', '2024-01-25', 'Descuento por nómina'),
+(90, 32, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-01-25', 'Descuento por nómina'),
+(91, 35, 17, NULL, 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-01-25', 'Descuento por nómina'),
+(92, 14, 18, NULL, 'Arroz blanco', 'Fricase de pollo', NULL, NULL, 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-01-25', 'Descuento por nómina'),
+(93, 27, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-01-25', 'Descuento por nómina'),
+(94, 27, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-01-25', 'Descuento por nómina'),
+(95, 29, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, NULL, '2024-01-25', 'Descuento por nómina'),
+(96, 17, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-01-25', 'Pago en efectivo (caja)'),
+(97, 4, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, NULL, '2024-01-25', 'Descuento por nómina'),
+(98, 35, 20, 'Sopa de avena', 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-26', 'Descuento por nómina'),
+(99, 29, 20, NULL, 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', NULL, NULL, NULL, '2024-01-26', 'Descuento por nómina'),
+(100, 20, 20, NULL, 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-26', 'Descuento por nómina'),
+(101, 12, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-26', 'Pago en efectivo (caja)'),
+(102, 27, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-26', 'Descuento por nómina'),
+(103, 13, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-26', 'Pago en efectivo (caja)'),
+(104, 32, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-26', 'Descuento por nómina'),
+(105, 32, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', NULL, NULL, 'Para llevar', '2024-01-26', 'Descuento por nómina'),
+(106, 32, 20, 'Sopa de avena', 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-26', 'Descuento por nómina'),
+(107, 32, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-26', 'Descuento por nómina'),
+(108, 32, 20, 'Sopa de avena', 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-26', 'Descuento por nómina'),
+(109, 8, 20, 'Sopa de avena', 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-26', 'Descuento por nómina'),
+(110, 13, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-29', 'Pago en efectivo (caja)'),
+(111, 29, 2, NULL, 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', NULL, NULL, NULL, '2024-01-29', 'Descuento por nómina'),
+(112, 32, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-01-29', 'Descuento por nómina'),
+(113, 32, 1, NULL, 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, NULL, NULL, 'Para llevar', '2024-01-29', 'Descuento por nómina'),
+(114, 32, 2, NULL, 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-01-29', 'Descuento por nómina'),
+(115, 20, 4, NULL, 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-30', 'Descuento por nómina'),
+(116, 14, 4, NULL, 'Arroz con Fideo', 'Pollo a la jardinera', NULL, NULL, 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-01-30', 'Descuento por nómina'),
+(117, 35, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-30', 'Descuento por nómina'),
+(118, 5, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-01-30', 'Descuento por nómina'),
+(119, 5, 3, 'Sopa de Mute', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-01-30', 'Descuento por nómina'),
+(120, 24, 21, NULL, NULL, 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-02', 'Pago en efectivo (caja)'),
+(121, 12, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-02', 'Pago en efectivo (caja)'),
+(122, 32, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-02-02', 'Pago en efectivo (caja)'),
+(123, 13, 21, 'Sopa de cuchuco', 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-02', 'Pago en efectivo (caja)'),
+(124, 4, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', NULL, NULL, 'Para llevar', '2024-02-02', 'Descuento por nómina'),
+(125, 4, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', NULL, NULL, NULL, '2024-02-02', 'Descuento por nómina'),
+(126, 12, 11, NULL, 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-02-05', 'Pago en efectivo (caja)'),
+(127, 22, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-02-05', 'Pago en efectivo (caja)'),
+(128, 32, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-02-05', 'Pago en efectivo (caja)'),
+(129, 33, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', NULL, NULL, 'Para llevar', '2024-02-05', 'Descuento por nómina'),
+(130, 14, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', NULL, NULL, 'Para llevar', '2024-02-05', 'Descuento por nómina'),
+(131, 20, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-02-05', 'Descuento por nómina'),
+(132, 29, 11, NULL, 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', NULL, NULL, NULL, '2024-02-05', 'Descuento por nómina'),
+(133, 8, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-02-05', 'Descuento por nómina'),
+(134, 13, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-02-05', 'Pago en efectivo (caja)'),
+(135, 12, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-06', 'Pago en efectivo (caja)'),
+(136, 27, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-06', 'Descuento por nómina'),
+(137, 8, 14, 'Sopa de arracacha', 'Arroz con zanahoria', 'Lomo de tilapia', 'Ensalada rusa', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-06', 'Descuento por nómina'),
+(138, 8, 14, 'Sopa de arracacha', 'Arroz con zanahoria', 'Lomo de tilapia', 'Ensalada rusa', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-06', 'Descuento por nómina'),
+(139, 32, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-06', 'Pago en efectivo (caja)'),
+(140, 29, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-06', 'Descuento por nómina'),
+(141, 20, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-06', 'Descuento por nómina'),
+(142, 14, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-06', 'Descuento por nómina'),
+(143, 13, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-06', 'Pago en efectivo (caja)'),
+(144, 27, 15, NULL, 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-07', 'Descuento por nómina'),
+(145, 22, 15, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-07', 'Pago en efectivo (caja)'),
+(146, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-07', 'Descuento por nómina'),
+(147, 8, 16, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-07', 'Descuento por nómina'),
+(148, 8, 16, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-07', 'Descuento por nómina'),
+(149, 8, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-07', 'Descuento por nómina'),
+(150, 29, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', NULL, NULL, NULL, '2024-02-07', 'Descuento por nómina'),
+(151, 12, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-07', 'Pago en efectivo (caja)'),
+(152, 13, 15, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-07', 'Pago en efectivo (caja)'),
+(153, 8, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-02-08', 'Descuento por nómina'),
+(154, 8, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-08', 'Descuento por nómina'),
+(155, 27, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-02-08', 'Descuento por nómina'),
+(156, 8, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-08', 'Descuento por nómina'),
+(157, 12, 17, NULL, 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-08', 'Pago en efectivo (caja)'),
+(158, 13, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-08', 'Pago en efectivo (caja)'),
+(159, 29, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-08', 'Descuento por nómina'),
+(160, 20, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-02-08', 'Descuento por nómina'),
+(161, 32, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-02-08', 'Pago en efectivo (caja)'),
+(162, 27, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-09', 'Descuento por nómina'),
+(163, 8, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-09', 'Descuento por nómina'),
+(164, 8, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-09', 'Descuento por nómina'),
+(166, 8, 20, 'Sopa de avena', 'Arroz con Perejil', 'Albóndigas', 'Spaguetis', 'Plátano al horno', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-09', 'Descuento por nómina'),
+(167, 13, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-09', 'Pago en efectivo (caja)'),
+(168, 32, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-09', 'Pago en efectivo (caja)'),
+(169, 20, 1, NULL, 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-12', 'Descuento por nómina'),
+(170, 8, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-12', 'Descuento por nómina'),
+(171, 8, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-12', 'Descuento por nómina'),
+(172, 13, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-12', 'Pago en efectivo (caja)'),
+(173, 27, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, NULL, NULL, 'Para llevar', '2024-02-12', 'Descuento por nómina'),
+(174, 32, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-12', 'Pago en efectivo (caja)'),
+(175, 18, 4, NULL, 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-13', 'Pago en efectivo (caja)'),
+(176, 19, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, NULL, 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-13', 'Descuento por nómina'),
+(177, 27, 3, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-13', 'Descuento por nómina'),
+(178, 12, 4, NULL, 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-13', 'Pago en efectivo (caja)'),
+(179, 13, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-13', 'Pago en efectivo (caja)'),
+(180, 32, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-13', 'Pago en efectivo (caja)'),
+(181, 32, 3, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', NULL, NULL, 'Para llevar', '2024-02-13', 'Descuento por nómina'),
+(182, 32, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', NULL, NULL, 'Para llevar', '2024-02-13', 'Descuento por nómina'),
+(183, 20, 4, NULL, 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-13', 'Descuento por nómina'),
+(184, 8, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, NULL, '2024-02-14', 'Descuento por nómina'),
+(185, 27, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-14', 'Descuento por nómina'),
+(186, 27, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-14', 'Descuento por nómina'),
+(187, 18, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, NULL, '2024-02-14', 'Pago en efectivo (caja)'),
+(188, 19, 5, NULL, NULL, 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, NULL, '2024-02-14', 'Descuento por nómina'),
+(189, 13, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-02-14', 'Pago en efectivo (caja)'),
+(190, 12, 6, NULL, 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-02-14', 'Pago en efectivo (caja)'),
+(191, 32, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-14', 'Pago en efectivo (caja)'),
+(192, 32, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-14', 'Pago en efectivo (caja)'),
+(193, 20, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-14', 'Descuento por nómina'),
+(194, 1, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-02-15', 'Descuento por nómina'),
+(195, 27, 7, NULL, 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-02-15', 'Descuento por nómina'),
+(196, 27, 8, 'Sopa de avena', 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', NULL, NULL, NULL, '2024-02-15', 'Descuento por nómina'),
+(197, 8, 8, 'Sopa de avena', 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-02-15', 'Descuento por nómina'),
+(198, 13, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-02-15', 'Pago en efectivo (caja)'),
+(199, 12, 7, NULL, 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, NULL, '2024-02-15', 'Pago en efectivo (caja)'),
+(200, 32, 8, 'Sopa de avena', 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-02-15', 'Pago en efectivo (caja)'),
+(201, 32, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', NULL, NULL, 'Para llevar', '2024-02-15', 'Descuento por nómina'),
+(202, 32, 7, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-02-15', 'Pago en efectivo (caja)'),
+(203, 20, 8, NULL, 'Arroz con Perejil', NULL, 'Spagueti  boloñesa', 'Papa francesa', 'Lechuga/ Cebolla y Tomate', NULL, 'Para llevar', '2024-02-15', 'Descuento por nómina'),
+(204, 28, 7, NULL, 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', NULL, NULL, NULL, '2024-02-15', 'Descuento por nómina'),
+(205, 24, 21, NULL, NULL, 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-16', 'Pago en efectivo (caja)'),
+(206, 32, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-02-16', 'Pago en efectivo (caja)'),
+(207, 32, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-02-16', 'Pago en efectivo (caja)'),
+(208, 27, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-02-16', 'Descuento por nómina'),
+(209, 20, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-02-16', 'Descuento por nómina'),
+(210, 13, 21, 'Sopa de cuchuco', 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-16', 'Pago en efectivo (caja)'),
+(211, 12, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-16', 'Pago en efectivo (caja)'),
+(212, 18, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-16', 'Pago en efectivo (caja)'),
+(213, 19, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-16', 'Descuento por nómina'),
+(215, 8, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-02-16', 'Descuento por nómina'),
+(216, 8, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-02-16', 'Descuento por nómina'),
+(217, 19, 11, NULL, 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', NULL, 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-02-19', 'Descuento por nómina'),
+(218, 8, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-02-19', 'Descuento por nómina'),
+(219, 8, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-02-19', 'Descuento por nómina'),
+(220, 27, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', NULL, NULL, 'Para llevar', '2024-02-19', 'Descuento por nómina'),
+(221, 13, 11, 'Sopa de colicero', 'Arroz con Fideo', 'Pollo apanado', 'Ensalada fría (tornillos)', 'Croquetas de yuca', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, NULL, '2024-02-19', 'Pago en efectivo (caja)'),
+(222, 32, 12, 'Sopa de colicero', 'Arroz con Fideo', 'Goulash', NULL, 'Papa criolla frita', 'Lechuga/ Pepino/ Zanahoria (Vinagreta)', NULL, 'Para llevar', '2024-02-19', 'Pago en efectivo (caja)'),
+(223, 27, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-20', 'Descuento por nómina'),
+(224, 18, 14, NULL, 'Arroz con zanahoria', 'Lomo de tilapia', 'Ensalada rusa', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-20', 'Pago en efectivo (caja)'),
+(225, 19, 14, 'Sopa de arracacha', NULL, 'Lomo de tilapia', 'Ensalada rusa', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-20', 'Descuento por nómina'),
+(226, 12, 13, NULL, 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-20', 'Pago en efectivo (caja)'),
+(227, 8, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-20', 'Descuento por nómina'),
+(228, 8, 14, 'Sopa de arracacha', 'Arroz con zanahoria', 'Lomo de tilapia', 'Ensalada rusa', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-20', 'Descuento por nómina'),
+(229, 13, 13, 'Sopa de arracacha', 'Arroz con zanahoria', 'Sobrebarriga al horno', NULL, 'Papa, Yuca (Guacamole)', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-20', 'Pago en efectivo (caja)'),
+(230, 27, 15, NULL, 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-21', 'Descuento por nómina'),
+(231, 18, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-21', 'Pago en efectivo (caja)'),
+(232, 12, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-21', 'Pago en efectivo (caja)'),
+(233, 13, 16, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-21', 'Pago en efectivo (caja)'),
+(234, 19, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-21', 'Pago en efectivo (caja)'),
+(235, 20, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-21', 'Descuento por nómina'),
+(236, 32, 15, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-21', 'Pago en efectivo (caja)'),
+(237, 8, 15, 'Sopa de arroz', 'Arroz con Ajonjolí', 'Cerdo asado', 'Lentejas', 'Tajada madura', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-21', 'Descuento por nómina'),
+(238, 14, 16, NULL, 'Arroz con Ajonjolí', 'Sudado de pollo', NULL, 'Papa, Yuca, Mazorca (guacamole)', NULL, NULL, 'Para llevar', '2024-02-21', 'Descuento por nómina'),
+(239, 27, 17, 'Sancocho', NULL, 'Creps rellenos de carne', NULL, 'Papa francesa', NULL, NULL, 'Para llevar', '2024-02-22', 'Descuento por nómina'),
+(240, 12, 17, NULL, 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-22', 'Pago en efectivo (caja)'),
+(241, 13, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-22', 'Pago en efectivo (caja)'),
+(242, 32, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, 'Para llevar', '2024-02-22', 'Pago en efectivo (caja)'),
+(243, 18, 18, NULL, 'Arroz blanco', 'Fricase de pollo', NULL, 'Yuca frita', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-22', 'Pago en efectivo (caja)'),
+(244, 19, 18, 'Sancocho', 'Arroz blanco', 'Fricase de pollo', NULL, NULL, 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-22', 'Pago en efectivo (caja)'),
+(245, 8, 17, 'Sancocho', 'Arroz blanco', 'Creps rellenos de carne', NULL, 'Papa francesa', 'Remolacha y Zanahoria cocida con Mayonesa', NULL, NULL, '2024-02-22', 'Descuento por nómina'),
+(246, 8, 17, 'Sancocho', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-02-22', 'Descuento por nómina'),
+(247, 27, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-23', 'Descuento por nómina'),
+(248, 12, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-23', 'Pago en efectivo (caja)'),
+(249, 4, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-23', 'Descuento por nómina'),
+(250, 4, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-23', 'Descuento por nómina'),
+(251, 20, 19, NULL, 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', NULL, NULL, 'Para llevar', '2024-02-23', 'Descuento por nómina'),
+(252, 8, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-23', 'Descuento por nómina'),
+(253, 32, 19, 'Sopa de avena', 'Arroz con Pollo', NULL, NULL, 'Papa criolla frita', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-23', 'Pago en efectivo (caja)'),
+(254, 19, 1, NULL, 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-26', 'Pago en efectivo (caja)'),
+(255, 22, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-26', 'Pago en efectivo (caja)'),
+(256, 18, 1, NULL, 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-26', 'Pago en efectivo (caja)'),
+(257, 27, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-26', 'Descuento por nómina'),
+(258, 8, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-26', 'Descuento por nómina'),
+(259, 8, 2, 'Sopa de pastas', 'Arroz blanco', 'Lomo de tilapia', 'Macarrones', 'Monedas de plátano', 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-26', 'Descuento por nómina'),
+(260, 28, 1, NULL, 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, NULL, NULL, NULL, '2024-02-26', 'Descuento por nómina'),
+(261, 27, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, NULL, '2024-02-26', 'Descuento por nómina'),
+(262, 32, 1, 'Sopa de pastas', 'Arroz blanco', 'Cerdo asado', 'Migas', NULL, 'Pepino/ Apio/ Zanahoria Agridulce (cocida)', NULL, 'Para llevar', '2024-02-26', 'Pago en efectivo (caja)'),
+(263, 18, 4, NULL, 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-27', 'Pago en efectivo (caja)'),
+(264, 19, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, NULL, 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-27', 'Pago en efectivo (caja)'),
+(265, 13, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-27', 'Pago en efectivo (caja)'),
+(266, 27, 3, NULL, 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-27', 'Descuento por nómina'),
+(267, 8, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-27', 'Descuento por nómina'),
+(268, 8, 4, 'Sopa de Mute', 'Arroz con Fideo', 'Pollo a la jardinera', NULL, 'Croquetas de yuca', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, NULL, '2024-02-27', 'Descuento por nómina'),
+(269, 32, 3, 'Sopa de Mute', 'Arroz con Fideo', 'Goulash', NULL, 'Papa francesa', 'Lechuga/ Zanahoria/ Cebolla/ Aguacate', NULL, 'Para llevar', '2024-02-27', 'Pago en efectivo (caja)'),
+(270, 18, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', NULL, NULL, NULL, '2024-02-28', 'Pago en efectivo (caja)'),
+(271, 32, 6, NULL, 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Pago en efectivo (caja)'),
+(272, 32, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Pago en efectivo (caja)'),
+(273, 12, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, NULL, '2024-02-28', 'Pago en efectivo (caja)'),
+(274, 17, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, NULL, '2024-02-28', 'Pago en efectivo (caja)'),
+(275, 13, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-02-28', 'Pago en efectivo (caja)'),
+(276, 8, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, NULL, '2024-02-28', 'Descuento por nómina'),
+(277, 8, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Descuento por nómina'),
+(278, 8, 6, 'Sopa de arroz', 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, NULL, '2024-02-28', 'Descuento por nómina'),
+(279, 27, 5, NULL, 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Descuento por nómina'),
+(280, 19, 5, 'Sopa de arroz', 'Arroz con zanahoria', 'Bagre salsa criolla', NULL, NULL, 'Tajada de Aguacate', NULL, NULL, '2024-02-28', 'Pago en efectivo (caja)'),
+(281, 28, 5, NULL, 'Arroz con zanahoria', NULL, NULL, 'Papa, Yuca (Salsa Criolla)', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Descuento por nómina'),
+(282, 22, 6, NULL, 'Arroz con zanahoria', 'Carne en bistec', 'Verduras calientes', 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Pago en efectivo (caja)'),
+(283, 22, 6, NULL, 'Arroz con zanahoria', 'Carne en bistec', NULL, 'Aborrajado', 'Tajada de Aguacate', NULL, 'Para llevar', '2024-02-28', 'Pago en efectivo (caja)'),
+(284, 20, 7, NULL, 'Arroz con Pollo', NULL, NULL, 'Croquetas de yuca', NULL, NULL, 'Para llevar', '2024-02-29', 'Descuento por nómina'),
+(285, 32, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-03-01', 'Pago en efectivo (caja)'),
+(286, 32, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, NULL, NULL, 'Para llevar', '2024-03-01', 'Pago en efectivo (caja)'),
+(287, 18, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-03-01', 'Pago en efectivo (caja)'),
+(288, 13, 21, 'Sopa de cuchuco', 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-03-01', 'Pago en efectivo (caja)'),
+(289, 13, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-03-01', 'Pago en efectivo (caja)'),
+(290, 24, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-03-01', 'Pago en efectivo (caja)');
+INSERT INTO `menu_seleccionado` (`idMenuSeleccionado`, `idPersona`, `idNutriMenu`, `nutriSopaNombre`, `nutriArrozNombre`, `nutriProteNombre`, `nutriEnergeNombre`, `nutriAcompNombre`, `nutriEnsalNombre`, `nutriBebidaNombre`, `nombreEmpaquetado`, `fecha_actual`, `tipoPago`) VALUES
+(291, 22, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-03-01', 'Pago en efectivo (caja)'),
+(292, 22, 10, NULL, 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, 'Para llevar', '2024-03-01', 'Pago en efectivo (caja)'),
+(293, 19, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', NULL, 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-03-01', 'Pago en efectivo (caja)'),
+(294, 14, 21, NULL, 'Arroz blanco', 'Cerdo asado', 'Ensalada rusa', NULL, NULL, NULL, 'Para llevar', '2024-03-01', 'Descuento por nómina'),
+(295, 8, 10, 'Sopa de cuchuco', 'Arroz blanco', 'Carne asada', 'Frijoles', 'Maduro al horno', 'Zanahoria/ Lechuga/ Tomate y Mayonesa', NULL, NULL, '2024-03-01', 'Descuento por nómina');
 
 -- --------------------------------------------------------
 
@@ -659,51 +867,52 @@ CREATE TABLE `personas` (
   `personaNumberCell` varchar(10) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
   `personaCorreo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
   `personaDocumento` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci NOT NULL,
-  `personasCodigo` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL
+  `personasCodigo` varchar(7) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish2_ci DEFAULT NULL,
+  `personaDate` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish2_ci;
 
 --
 -- Volcado de datos para la tabla `personas`
 --
 
-INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell`, `personaCorreo`, `personaDocumento`, `personasCodigo`) VALUES
-(1, 'Felipe Gavilan Castaño', '3156078058', 'felipegavilan2202@gmail.com', '1005958885', NULL),
-(2, 'Ana E Sotelo', '', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', NULL),
-(3, 'Andres Fernando  Cardenas  Mappe', '3116681704', 'andrescardenas198612@gmail.com', '1108452460', NULL),
-(4, 'Adriana  Maria Suarez', '3213735855', 'adrianamsg.07@gmail.com', '66683773', NULL),
-(5, 'Cristina Ramirez', '3202013229', 'ancriraca@hotmail.com', '39561397', NULL),
-(6, 'Jazmin Cordoba', '3125345829', 'idem_91@yahoo.com', '65703278', NULL),
-(7, 'Jerjohry Lopez', '3214079944', 'jerjohry.abgderechomedico@gmail.com', '1127388592', NULL),
-(8, 'Vasni Orjuela', '3172282679', 'vashad94@gmail.com', '1023938436', NULL),
-(9, 'Magda Valeria Mendez', '3112135412', 'gerencia@junicalmedical.com.co', '1019063981', NULL),
-(10, 'Delly Vasquez', '3102009355', 'dellyvasquezg12@gmail.com', '1010170895', NULL),
-(11, 'Maria Paula diaz Tibaquira', '3133326578', 'paulita5491@gmail.com', '1007600126', NULL),
-(12, 'Luz Adriana Rocha', '3138259255', 'adrianarochagonzalez@gmail.com', '1013623037', NULL),
-(13, 'Paola prada', '3144667314', 'jpprada85@gmail.com', '28719410', NULL),
-(14, 'Carol Liliana Segura', '3133952104', 'carol841216_@hotmail.com', '30946051', NULL),
-(15, 'Katherin Chapeton', '3108020245', 'katherinechapetonmontes@hotmail.com', '52430554', NULL),
-(16, 'Alexandra Castillo Melo', '3125918630', 'alei2324@hotmail.com', '39575732', NULL),
-(17, 'Lina Paola Camacho', '3183770738', 'linapa_26@hotmail.com', '1075627087', NULL),
-(18, 'Lina Vargas', '3224306731', 'limar0813@hotmail.com', '1070586254', NULL),
-(19, 'Sandra Angelina Rivero', '3118773934', 'saanri@gmail.com', '39576159', NULL),
-(20, 'Alejandra Martinez', '3215648693', 'aleja04227@hotmail.com', '1070609612', NULL),
-(21, 'Miguel ureuña', '3118287066', 'pecuniamia@hotmail.com', '1070587669', NULL),
-(22, 'Carolina mateus', '3132667767', 'contratacion@junicalmedical.com.co', '1098604129', NULL),
-(23, 'Nicol Lopez', '3144900548', 'nicol_lopez115@hotmail.com', '1072426086', NULL),
-(24, 'Alana cardenas mappe', '3115058534', 'alisonk1234@hotmail.com', '1108454182', NULL),
-(25, 'Liliana alonso', '3204777271', 'liliconao@hotmail.com', '52441802', NULL),
-(26, 'Lina Maria Ramirez Valderrama', '3115708105', 'linamariaramirezv@hotmail.com', '39566602', NULL),
-(27, 'Natalia Huertas Cruz ', '3169143008', 'nataycami.05@hotmail.com', '1106890370', NULL),
-(28, 'Veronica Botero ', '3125530199', 'veronicaboterodelgado@hotmail.com', '1192723340', NULL),
-(29, 'Valentina Medina', '3103226767', 'valentinajessica@hotmail.com ', '1106901229', NULL),
-(30, 'Angela Gutierrez', '3123727006', 'angelagutierrez09@gmail.com ', '39580273', NULL),
-(31, 'Sirley Cardona ', '3007583471', 'sirleycardonap@gmail.com', '1013609884', NULL),
-(32, 'Yury Fernanda Duran Laguna ', '3208259416', 'yuryduranlaguna1801@hotmail.com ', '1108453490', NULL),
-(33, 'Lina Ardila ', '3204741771', 'ljohanaar@hotmail.com', '52762910', NULL),
-(34, 'Diego Abril ', '3014374730', 'daabril07@gmail.com ', '1071987574', NULL),
-(35, 'Lina Rocha', '3125033141', 'lbelenrocha@hotmail.com', '1070604353', NULL),
-(36, 'Yenifer Martinez', '3132893637', 'maye0412tavera@gmail.com ', '1070600291', NULL),
-(37, 'Jiovanna Escobar ', '3016717078', 'jandreaescobar@hotmail.com', '1070627747', NULL);
+INSERT INTO `personas` (`idPersona`, `personaNombreCompleto`, `personaNumberCell`, `personaCorreo`, `personaDocumento`, `personasCodigo`, `personaDate`) VALUES
+(1, 'Felipe Gavilan Castaño', '3156078058', 'felipegavilan2202@gmail.com', '1005958885', '957-269', '2024-03-05 07:49:44'),
+(2, 'Ana E Sotelo', '', 'gtic.gaf.junicalmedicalsas@gmail.com', '52300674', NULL, NULL),
+(3, 'Andres Fernando  Cardenas  Mappe', '3116681704', 'andrescardenas198612@gmail.com', '1108452460', NULL, '2024-02-02 07:24:45'),
+(4, 'Adriana  Maria Suarez', '3213735855', 'adrianamsg.07@gmail.com', '66683773', NULL, '2024-02-23 09:07:58'),
+(5, 'Cristina Ramirez', '3202013229', 'ancriraca@hotmail.com', '39561397', NULL, NULL),
+(6, 'Jazmin Cordoba', '3125345829', 'idem_91@yahoo.com', '65703278', NULL, NULL),
+(7, 'Jerjohry Lopez', '3214079944', 'jerjohry.abgderechomedico@gmail.com', '1127388592', NULL, NULL),
+(8, 'Vasni Orjuela', '3172282679', 'vashad94@gmail.com', '1023938436', NULL, '2024-03-01 07:47:19'),
+(9, 'Magda Valeria Mendez', '3112135412', 'gerencia@junicalmedical.com.co', '1019063981', NULL, NULL),
+(10, 'Delly Vasquez', '3102009355', 'dellyvasquezg12@gmail.com', '1010170895', NULL, NULL),
+(11, 'Maria Paula diaz Tibaquira', '3133326578', 'paulita5491@gmail.com', '1007600126', NULL, NULL),
+(12, 'Luz Adriana Rocha', '3138259255', 'adrianarochagonzalez@gmail.com', '1013623037', '860-220', '2024-03-05 08:47:52'),
+(13, 'Paola prada', '3144667314', 'jpprada85@gmail.com', '28719410', '395-761', '2024-03-05 08:41:19'),
+(14, 'Carol Liliana Segura', '3133952104', 'carol841216_@hotmail.com', '30946051', NULL, '2024-03-01 09:14:19'),
+(15, 'Katherin Chapeton', '3108020245', 'katherinechapetonmontes@hotmail.com', '52430554', NULL, NULL),
+(16, 'Alexandra Castillo Melo', '3125918630', 'alei2324@hotmail.com', '39575732', NULL, NULL),
+(17, 'Lina Paola Camacho', '3183770738', 'linapa_26@hotmail.com', '1075627087', NULL, '2024-02-28 07:19:31'),
+(18, 'Lina Vargas', '3224306731', 'limar0813@hotmail.com', '1070586254', '208-832', '2024-03-05 09:01:30'),
+(19, 'Sandra Angelina Rivero', '3118773934', 'saanri@gmail.com', '39576159', NULL, '2024-03-01 09:05:05'),
+(20, 'Alejandra Martinez', '3215648693', 'aleja04227@hotmail.com', '1070609612', NULL, '2024-02-29 08:43:09'),
+(21, 'Miguel ureuña', '3118287066', 'pecuniamia@hotmail.com', '1070587669', NULL, NULL),
+(22, 'Carolina mateus', '3132667767', 'contratacion@junicalmedical.com.co', '1098604129', NULL, '2024-03-04 08:12:08'),
+(23, 'Nicol Lopez', '3144900548', 'nicol_lopez115@hotmail.com', '1072426086', NULL, NULL),
+(24, 'Alana cardenas mappe', '3115058534', 'alisonk1234@hotmail.com', '1108454182', NULL, '2024-03-01 09:00:36'),
+(25, 'Liliana alonso', '3204777271', 'lalonsoo@junical.com.co', '52441802', '552-317', '2024-03-05 07:47:50'),
+(26, 'Lina Maria Ramirez Valderrama', '3115708105', 'linamariaramirezv@hotmail.com', '39566602', NULL, NULL),
+(27, 'Natalia Huertas Cruz ', '3169143008', 'nataycami.05@hotmail.com', '1106890370', '951-488', '2024-03-05 07:30:19'),
+(28, 'Veronica Botero ', '3125530199', 'veronicaboterodelgado@hotmail.com', '1192723340', NULL, '2024-02-28 08:51:36'),
+(29, 'Valentina Medina', '3103226767', 'valentinajessica@hotmail.com ', '1106901229', NULL, '2024-02-10 09:03:20'),
+(30, 'Angela Gutierrez', '3123727006', 'angelagutierrez09@gmail.com ', '39580273', NULL, NULL),
+(31, 'Sirley Cardona ', '3007583471', 'sirleycardonap@gmail.com', '1013609884', NULL, NULL),
+(32, 'Yury Fernanda Duran Laguna ', '3208259416', 'yuryduranlaguna1801@hotmail.com ', '1108453490', '205-955', '2024-03-05 08:08:17'),
+(33, 'Lina Ardila ', '3204741771', 'ljohanaar@hotmail.com', '52762910', NULL, '2024-02-05 08:29:53'),
+(34, 'Diego Abril ', '3014374730', 'daabril07@gmail.com ', '1071987574', NULL, NULL),
+(35, 'Lina Rocha', '3125033141', 'lbelenrocha@hotmail.com', '1070604353', NULL, NULL),
+(36, 'Yenifer Martinez', '3132893637', 'maye0412tavera@gmail.com ', '1070600291', NULL, NULL),
+(37, 'Jiovanna Escobar ', '3016717078', 'jandreaescobar@hotmail.com', '1070627747', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -759,18 +968,18 @@ INSERT INTO `usuarios` (`idUsuario`, `usuarioLogin`, `usuarioPassword`, `usuario
 --
 CREATE TABLE `view_nutrimenu` (
 `idNutriMenu` int
-,`nombreEmpaquetado` varchar(100)
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
+,`nombreEmpaquetado` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -781,17 +990,17 @@ CREATE TABLE `view_nutrimenu` (
 --
 CREATE TABLE `View_nutrimenupaci` (
 `idNutriMenuPaci` int
-,`nutriAcompNombre` varchar(45)
-,`nutriArrozNombre` varchar(45)
-,`nutriBebidaNombre` varchar(45)
-,`nutriDiasNombre` varchar(45)
-,`nutriEnergeNombre` varchar(45)
-,`nutriEnsalNombre` varchar(45)
-,`nutriProteNombre` varchar(45)
-,`nutriSemanaid` varchar(45)
-,`nutriSemanaNombre` varchar(5)
-,`nutriSopaNombre` varchar(45)
 ,`nutriTipoNombre` varchar(45)
+,`nutriDiasNombre` varchar(45)
+,`nutriSopaNombre` varchar(45)
+,`nutriArrozNombre` varchar(45)
+,`nutriProteNombre` varchar(45)
+,`nutriEnergeNombre` varchar(45)
+,`nutriAcompNombre` varchar(45)
+,`nutriEnsalNombre` varchar(45)
+,`nutriBebidaNombre` varchar(45)
+,`nutriSemanaNombre` varchar(5)
+,`nutriSemanaid` varchar(45)
 );
 
 -- --------------------------------------------------------
@@ -994,7 +1203,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de la tabla `menu_seleccionado`
 --
 ALTER TABLE `menu_seleccionado`
-  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `idMenuSeleccionado` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- AUTO_INCREMENT de la tabla `menu_seleccionado_paci`
